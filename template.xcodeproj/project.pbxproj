@@ -23,6 +23,10 @@
 		27A9730A159DC333000E165D /* SFIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 27A97309159DC333000E165D /* SFIcon.png */; };
 		27A9730C159DC606000E165D /* flag.png in Resources */ = {isa = PBXBuildFile; fileRef = 27A9730B159DC606000E165D /* flag.png */; };
 		27A9730F159DCD06000E165D /* DeatilViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27A9730E159DCD06000E165D /* DeatilViewController.m */; };
+		27A97336159EF7FD000E165D /* Place.m in Sources */ = {isa = PBXBuildFile; fileRef = 27A97333159EF7FD000E165D /* Place.m */; };
+		27A97337159EF7FD000E165D /* PlaceMark.m in Sources */ = {isa = PBXBuildFile; fileRef = 27A97335159EF7FD000E165D /* PlaceMark.m */; };
+		27A9733A159F0112000E165D /* RegexKitLite.m in Sources */ = {isa = PBXBuildFile; fileRef = 27A97339159F0111000E165D /* RegexKitLite.m */; };
+		27A9733C159F0136000E165D /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 27A9733B159F0136000E165D /* libicucore.dylib */; };
 		288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
 		EB383B6510BBF62B0000B2D2 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB383B6410BBF62B0000B2D2 /* QuartzCore.framework */; };
 		EC8D9E341400683F00D3180C /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC8D9E331400683F00D3180C /* CoreLocation.framework */; };
@@ -53,6 +57,13 @@
 		27A9730B159DC606000E165D /* flag.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = flag.png; sourceTree = "<group>"; };
 		27A9730D159DCD06000E165D /* DeatilViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeatilViewController.h; sourceTree = "<group>"; };
 		27A9730E159DCD06000E165D /* DeatilViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeatilViewController.m; sourceTree = "<group>"; };
+		27A97332159EF7FD000E165D /* Place.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Place.h; sourceTree = "<group>"; };
+		27A97333159EF7FD000E165D /* Place.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Place.m; sourceTree = "<group>"; };
+		27A97334159EF7FD000E165D /* PlaceMark.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaceMark.h; sourceTree = "<group>"; };
+		27A97335159EF7FD000E165D /* PlaceMark.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaceMark.m; sourceTree = "<group>"; };
+		27A97338159F0111000E165D /* RegexKitLite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegexKitLite.h; sourceTree = "<group>"; };
+		27A97339159F0111000E165D /* RegexKitLite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegexKitLite.m; sourceTree = "<group>"; };
+		27A9733B159F0136000E165D /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
 		288765FC0DF74451002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		EB383B6410BBF62B0000B2D2 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -67,6 +78,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				27A9733C159F0136000E165D /* libicucore.dylib in Frameworks */,
 				187D6802159D4AFD00E41A6B /* MapKit.framework in Frameworks */,
 				18D132FA156F484200257F4B /* CFNetwork.framework in Frameworks */,
 				18AC4C0D14BE8113004EFF99 /* iAd.framework in Frameworks */,
@@ -85,6 +97,12 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				27A97338159F0111000E165D /* RegexKitLite.h */,
+				27A97339159F0111000E165D /* RegexKitLite.m */,
+				27A97332159EF7FD000E165D /* Place.h */,
+				27A97333159EF7FD000E165D /* Place.m */,
+				27A97334159EF7FD000E165D /* PlaceMark.h */,
+				27A97335159EF7FD000E165D /* PlaceMark.m */,
 				1D3623240D0F684500981E51 /* AppDelegate.h */,
 				1D3623250D0F684500981E51 /* AppDelegate.m */,
 				187D67A8159D3B8200E41A6B /* FirstViewController.h */,
@@ -145,6 +163,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				27A9733B159F0136000E165D /* libicucore.dylib */,
 				187D6801159D4AFD00E41A6B /* MapKit.framework */,
 				18D132F9156F484200257F4B /* CFNetwork.framework */,
 				18AC4C0C14BE8113004EFF99 /* iAd.framework */,
@@ -235,6 +254,9 @@
 				187D67FC159D47FD00E41A6B /* SettingViewController.m in Sources */,
 				187D6843159DB71200E41A6B /* PlaceAnnotaion.m in Sources */,
 				27A9730F159DCD06000E165D /* DeatilViewController.m in Sources */,
+				27A97336159EF7FD000E165D /* Place.m in Sources */,
+				27A97337159EF7FD000E165D /* PlaceMark.m in Sources */,
+				27A9733A159F0112000E165D /* RegexKitLite.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

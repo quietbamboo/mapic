@@ -14,7 +14,7 @@
 
 @implementation DeatilViewController
 @synthesize delegate = _delegate;
-
+@synthesize endPlace;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -24,8 +24,7 @@
     return self;
 }
 - (void)toWriteRoute{
-    [_delegate directionsViewController:self
-               routeFromAddress:@"" toAddress:@""];
+    [_delegate directionsViewController:self toPlace:endPlace];
 }
 
 - (void) loadView {

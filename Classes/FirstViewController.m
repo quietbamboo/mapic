@@ -9,13 +9,13 @@
 #import "FirstViewController.h"
 #import "CameraViewController.h"
 #import "SettingViewController.h"
-#import "PlaceAnnotaion.h"
 @interface FirstViewController ()
 
 @end
 
 @implementation FirstViewController
 @synthesize mainMapView;
+@synthesize lineColor;
 
 + (CGFloat)annotationPadding;
 {
@@ -88,6 +88,12 @@
 
     [mainMapView addSubview:resetButton];
     [self.view  addSubview:mainMapView];
+    routeView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, mainMapView.frame.size.width, mainMapView.frame.size.height)];
+    routeView.userInteractionEnabled = NO;
+    [mainMapView addSubview:routeView];
+    
+    self.lineColor = [UIColor blackColor];
+    
     [mainMapView autorelease];
 	// Do any additional setup after loading the view.
 }
@@ -111,8 +117,16 @@
 - (void)toDetailView:(UIButton *)sender {
     DeatilViewController *detail = [[DeatilViewController alloc] init];
     detail.delegate = self;
+    Place *place = [[Place alloc] init];
+    place.name = @"清河北大";
+    place.image = [UIImage imageNamed:@"andong.jpg"];
+    place.description = nil;
+    place.longitude = 116.319281;
+    place.latitude = 39.936996;
+    detail.endPlace = place;
     [self.navigationController pushViewController:detail animated:YES];
     [detail release];
+    [place release];
 }
 - (void)viewDidUnload
 {
@@ -125,27 +139,180 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
+-(NSMutableArray *)decodePolyLine: (NSMutableString *)encoded {
+	[encoded replaceOccurrencesOfString:@"\\\\" withString:@"\\"
+								options:NSLiteralSearch
+								  range:NSMakeRange(0, [encoded length])];
+	NSInteger len = [encoded length];
+	NSInteger index = 0;
+	NSMutableArray *array = [[[NSMutableArray alloc] init] autorelease];
+	NSInteger lat=0;
+	NSInteger lng=0;
+	while (index < len) {
+		NSInteger b;
+		NSInteger shift = 0;
+		NSInteger result = 0;
+		do {
+			b = [encoded characterAtIndex:index++] - 63;
+			result |= (b & 0x1f) << shift;
+			shift += 5;
+		} while (b >= 0x20);
+		NSInteger dlat = ((result & 1) ? ~(result >> 1) : (result >> 1));
+		lat += dlat;
+		shift = 0;
+		result = 0;
+		do {
+			b = [encoded characterAtIndex:index++] - 63;
+			result |= (b & 0x1f) << shift;
+			shift += 5;
+		} while (b >= 0x20);
+		NSInteger dlng = ((result & 1) ? ~(result >> 1) : (result >> 1));
+		lng += dlng;
+		NSNumber *latitude = [[[NSNumber alloc] initWithFloat:lat * 1e-5] autorelease];
+		NSNumber *longitude = [[[NSNumber alloc] initWithFloat:lng * 1e-5] autorelease];
+		printf("[%f,", [latitude doubleValue]);
+		printf("%f]", [longitude doubleValue]);
+		CLLocation *loc = [[[CLLocation alloc] initWithLatitude:[latitude floatValue] longitude:[longitude floatValue]] autorelease];
+		[array addObject:loc];
+	}
+	
+	return array;
+}
+
+-(NSArray*) calculateRoutesFrom:(CLLocationCoordinate2D) f to: (CLLocationCoordinate2D) t {
+	NSString* saddr = [NSString stringWithFormat:@"%f,%f", f.latitude, f.longitude];
+	NSString* daddr = [NSString stringWithFormat:@"%f,%f", t.latitude, t.longitude];
+	
+	NSString* apiUrlStr = [NSString stringWithFormat:@"http://maps.google.com/maps?output=dragdir&saddr=%@&daddr=%@", saddr, daddr];
+	NSURL* apiUrl = [NSURL URLWithString:apiUrlStr];
+	NSLog(@"api url: %@", apiUrl);
+	NSString *apiResponse = [NSString stringWithContentsOfURL:apiUrl];
+	NSString* encodedPoints = [apiResponse stringByMatching:@"points:\\\"([^\\\"]*)\\\"" capture:1L];
+	
+	return [self decodePolyLine:[encodedPoints mutableCopy]];
+}
+
+-(void) centerMap {
+	MKCoordinateRegion region;
+    
+	CLLocationDegrees maxLat = -90;
+	CLLocationDegrees maxLon = -180;
+	CLLocationDegrees minLat = 90;
+	CLLocationDegrees minLon = 180;
+	for(int idx = 0; idx < routes.count; idx++)
+	{
+		CLLocation* currentLocation = [routes objectAtIndex:idx];
+		if(currentLocation.coordinate.latitude > maxLat)
+			maxLat = currentLocation.coordinate.latitude;
+		if(currentLocation.coordinate.latitude < minLat)
+			minLat = currentLocation.coordinate.latitude;
+		if(currentLocation.coordinate.longitude > maxLon)
+			maxLon = currentLocation.coordinate.longitude;
+		if(currentLocation.coordinate.longitude < minLon)
+			minLon = currentLocation.coordinate.longitude;
+	}
+	region.center.latitude     = (maxLat + minLat) / 2;
+	region.center.longitude    = (maxLon + minLon) / 2;
+	region.span.latitudeDelta  = maxLat - minLat;
+	region.span.longitudeDelta = maxLon - minLon;
+	
+	[mainMapView setRegion:region animated:YES];
+}
+
+-(void) showRouteFrom: (Place*) f to:(Place*) t {
+	
+	if(routes) {
+		[mainMapView removeAnnotations:[mainMapView annotations]];
+		[routes release];
+	}
+	
+	PlaceMark* from = [[[PlaceMark alloc] initWithPlace:f] autorelease];
+	PlaceMark* to = [[[PlaceMark alloc] initWithPlace:t] autorelease];
+	
+	[mainMapView addAnnotation:from];
+	[mainMapView addAnnotation:to];
+	
+	routes = [[self calculateRoutesFrom:from.coordinate to:to.coordinate] retain];
+	
+	[self updateRouteView];
+	[self centerMap];
+}
+
+-(void) updateRouteView {
+	CGContextRef context = 	CGBitmapContextCreate(nil, 
+												  routeView.frame.size.width, 
+												  routeView.frame.size.height, 
+												  8, 
+												  4 * routeView.frame.size.width,
+												  CGColorSpaceCreateDeviceRGB(),
+												  kCGImageAlphaPremultipliedLast);
+	
+	CGContextSetStrokeColorWithColor(context, lineColor.CGColor);
+	CGContextSetRGBFillColor(context, 0.0, 0.0, 1.0, 1.0);
+	CGContextSetLineWidth(context, 3.0);
+	
+	for(int i = 0; i < routes.count; i++) {
+		CLLocation* location = [routes objectAtIndex:i];
+		CGPoint point = [mainMapView convertCoordinate:location.coordinate toPointToView:routeView];
+		
+		if(i == 0) {
+			CGContextMoveToPoint(context, point.x, routeView.frame.size.height - point.y);
+		} else {
+			CGContextAddLineToPoint(context, point.x, routeView.frame.size.height - point.y);
+		}
+	}
+	
+	CGContextStrokePath(context);
+	
+	CGImageRef image = CGBitmapContextCreateImage(context);
+	UIImage* img = [UIImage imageWithCGImage:image];
+	
+	routeView.image = img;
+	CGContextRelease(context);
+    
+}
+
 
 #pragma mark
 #pragma mark MKMapViewDelegate methods
+- (void)mapView:(MKMapView *)mapView regionWillChangeAnimated:(BOOL)animated
+{
+	routeView.hidden = YES;
+}
 
+- (void)mapView:(MKMapView *)mapView regionDidChangeAnimated:(BOOL)animated
+{
+	[self updateRouteView];
+	routeView.hidden = NO;
+	[routeView setNeedsDisplay];
+}
 - (void) mapViewDidFinishLoadingMap:(MKMapView *)mapView {
     canChangeMap = NO;
 }
 - (void) mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation{
     if (canChangeMap) {
-        MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(mainMapView.userLocation.location.coordinate,10000, 10000); 
+        MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(mainMapView.userLocation.location.coordinate,1000, 1000); 
         [mainMapView setRegion:viewRegion];
+//        
+//        PlaceAnnotaion *place = [[PlaceAnnotaion alloc] init];
+//        place.titleName = @"清河北大";
+//        place.subtitleName = nil;
+//        place.longitude = [NSNumber numberWithDouble:116.319281];
+//        place.latitude = [NSNumber numberWithDouble:39.936996];
+//        place.image = [UIImage imageNamed:@"andong.jpg"];
+//        [self.mainMapView addAnnotation:place];
+//        [place release];
         
-        PlaceAnnotaion *place = [[PlaceAnnotaion alloc] init];
-        place.titleName = @"清河北大";
-        place.subtitleName = nil;
-        place.longitude = [NSNumber numberWithDouble:116.319281];
-        place.latitude = [NSNumber numberWithDouble:39.936996];
+        Place *place = [[Place alloc] init];
+        place.name = @"清河北大";
         place.image = [UIImage imageNamed:@"andong.jpg"];
-        [self.mainMapView addAnnotation:place];
+        place.description = nil;
+        place.longitude = 116.319281;
+        place.latitude = 39.936996;
+        PlaceMark *placeMark = [[PlaceMark alloc] initWithPlace:place];
+        [self.mainMapView addAnnotation:placeMark];
         [place release];
-        
+        [placeMark release];
     }
     
 }
@@ -159,7 +326,7 @@
     // handle our two custom annotations
     //
 
-    if ([annotation isKindOfClass:[PlaceAnnotaion class]])   // for City of San Francisco
+    if ([annotation isKindOfClass:[PlaceMark class]])   // for City of San Francisco
     {
         static NSString* SFAnnotationIdentifier = @"SFAnnotationIdentifier";
         MKPinAnnotationView* pinView =
@@ -170,8 +337,8 @@
                                                                              reuseIdentifier:SFAnnotationIdentifier] autorelease];
             annotationView.canShowCallout = YES;
             
-            PlaceAnnotaion *place = annotation;
-            UIImage *flagImage = place.image;
+            PlaceMark *placeMark = annotation;
+            UIImage *flagImage = placeMark.place.image;
             
             CGRect resizeRect;
             
@@ -212,18 +379,32 @@
 
 #pragma mark 
 #pragma mark DirectionsViewControllerDelegate methods
+
 - (void)directionsViewControllerDidCancel:(DeatilViewController *)viewController{
+    
 }
-- (void)directionsViewController:(DeatilViewController *)viewController routeFromAddress:(NSString *)startAddress toAddress:(NSString *)endAddress{
+
+- (void)directionsViewController:(DeatilViewController *)viewController toPlace:(Place *)endPlace{
     [viewController.navigationController popViewControllerAnimated:YES];
-//    MKPolyline *routeLine = [MKPolyline polylineWithPoints:points count:2;
-//                             [mainMapView addOverlay:routeLine];
-//                             [mainMapView setVisibleMapRect:routeVisableRegion animated:YES]; 
+    
+    Place* home = [[[Place alloc] init] autorelease];
+	home.name = @"Current Location";
+	home.description = nil;
+	home.latitude = mainMapView.userLocation.location.coordinate.latitude;
+	home.longitude = mainMapView.userLocation.location.coordinate.longitude;
+    home.image = nil;
+
+    [self showRouteFrom:home to:endPlace];
 }
 
 
-
-
+- (void)dealloc {
+	if(routes) {
+		[routes release];
+	}
+	[routeView release];
+    [super dealloc];
+}
 
 
 
