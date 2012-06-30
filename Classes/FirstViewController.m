@@ -249,7 +249,7 @@
 	
 	CGContextSetStrokeColorWithColor(context, lineColor.CGColor);
 	CGContextSetRGBFillColor(context, 0.0, 0.0, 1.0, 1.0);
-	CGContextSetLineWidth(context, 3.0);
+	CGContextSetLineWidth(context, 6.0);
 	
 	for(int i = 0; i < routes.count; i++) {
 		CLLocation* location = [routes objectAtIndex:i];
