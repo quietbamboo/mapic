@@ -73,12 +73,6 @@
     self.navigationItem.leftBarButtonItem = btnCamera;
     [btnCamera release];
     
-    UIButton *resetButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    resetButton.frame = CGRectMake(270, 410, 50, 20);
-    [resetButton setTitle:@"重置" forState:UIControlStateNormal];
-    resetButton.imageView.image = [UIImage imageNamed:@"andong.jpg"];
-    [resetButton addTarget:self action:@selector(removePins) forControlEvents:UIControlEventTouchUpInside];
-    
     mainMapView = [[MKMapView alloc] initWithFrame:self.view.bounds];  
     mainMapView.mapType = MKMapTypeStandard;   
     mainMapView.zoomEnabled = YES; 
@@ -91,14 +85,8 @@
     [self.mainMapView addGestureRecognizer:lpress];//m_mapView是MKMapView的实例
     [lpress release];
     [self.view  addSubview:mainMapView];
-    [self.view addSubview:resetButton];
     [mainMapView autorelease];
 	// Do any additional setup after loading the view.
-}
-
-- (void)removePins{
-
-    [self.mainMapView removeAnnotations:self.mainMapView.annotations];
 }
 
 - (void)toCameraViewController{
