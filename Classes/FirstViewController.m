@@ -74,7 +74,7 @@
     [btnCamera release];
     
     UIButton *resetButton = [UIButton buttonWithType:UIButtonTypeInfoDark];
-    resetButton.frame = CGRectMake(280, 396, 30, 30);
+    resetButton.frame = CGRectMake(270, 386, 40, 40);
     [resetButton setTitle:@"重置" forState:UIControlStateNormal];
     [resetButton setImage:[UIImage imageNamed:@"reset.png"] forState:UIControlStateNormal];
     [resetButton addTarget:self action:@selector(removePins) forControlEvents:UIControlEventTouchUpInside];
@@ -144,8 +144,8 @@
         PlaceAnnotaion *place = [[PlaceAnnotaion alloc] init];
         place.titleName = @"清河北大";
         place.subtitleName = nil;
-        place.longitude = [NSNumber numberWithDouble: -122.419281];
-        place.latitude = [NSNumber numberWithDouble:37.786996];
+        place.longitude = [NSNumber numberWithDouble:116.319281];
+        place.latitude = [NSNumber numberWithDouble:39.936996];
         place.image = [UIImage imageNamed:@"andong.jpg"];
         [self.mainMapView addAnnotation:place];
         [place release];
