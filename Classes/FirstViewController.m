@@ -85,11 +85,7 @@
     mainMapView.scrollEnabled = YES;
     mainMapView.showsUserLocation = YES;
     mainMapView.delegate = self;
-    UILongPressGestureRecognizer *lpress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPress:)];
-    lpress.minimumPressDuration = 0.5;//按0.5秒响应longPress方法
-    lpress.allowableMovement = 10.0;
-    [self.mainMapView addGestureRecognizer:lpress];//m_mapView是MKMapView的实例
-    [lpress release];
+
     [mainMapView addSubview:resetButton];
     [self.view  addSubview:mainMapView];
     [mainMapView autorelease];
