@@ -27,6 +27,12 @@
     [myTabBarController release];
     [super dealloc];
 }
+- (void) alertActionSheet{  
+    UIActionSheet *actionsheet= [[UIActionSheet alloc] initWithTitle:@"分享照片" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"照相",@"图片库", nil];
+    [actionsheet showInView:myTabBarController.view];
+    [actionsheet release];
+}
+
 -(void) addCenterButtonWithImage:(UIImage*)buttonImage highlightImage:(UIImage*)highlightImage
 {
     UIButton* button = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -34,6 +40,7 @@
     button.frame = CGRectMake((self.window.frame.size.width - buttonImage.size.width)/2 , (self.window.frame.size.height - buttonImage.size.height), buttonImage.size.width, buttonImage.size.height);
     [button setBackgroundImage:buttonImage forState:UIControlStateNormal];
     [button setBackgroundImage:highlightImage forState:UIControlStateHighlighted];
+    [button addTarget:self action:@selector(alertActionSheet) forControlEvents:UIControlEventTouchUpInside];
     [self.window addSubview:button];
 }
 
@@ -77,6 +84,15 @@
 	[locaview release];
 	[firstview release];
 }
+
+
+#pragma mark
+#pragma mark UIActionSheetDelegate Methods
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+    NSLog(@"buttonIndex is %d",buttonIndex);
+}
+
+
 - (void)applicationWillResignActive:(UIApplication *)application
 {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

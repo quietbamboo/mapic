@@ -10,7 +10,7 @@
 #import <UIKit/UIKit.h>
 @class FirstViewController;
 
-@interface AppDelegate : NSObject <UIApplicationDelegate> {
+@interface AppDelegate : NSObject <UIApplicationDelegate,UIActionSheetDelegate> {
    UITabBarController* myTabBarController;
 }
 @property (nonatomic, retain) UIWindow *window;
