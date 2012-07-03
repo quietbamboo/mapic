@@ -19,29 +19,29 @@
 
 #pragma mark
 #pragma mark get some annotaion size
-+ (CGFloat)annotationPadding;
++ (CGFloat)annotationPadding
 {
     return 10.0f;
 }
 
-+ (CGFloat)calloutHeight;
++ (CGFloat)calloutHeight
 {
     return 40.0f;
 }
 
 #pragma mark
 #pragma mark to other view Methods
-- (void)removePins{
+- (void)removePins {
     [self.mainMapView removeAnnotations:self.mainMapView.annotations];
 }
 
-- (void)toCameraViewController{
+- (void)toCameraViewController {
     CameraViewController *camera = [[CameraViewController alloc] init];
     [self.navigationController pushViewController:camera animated:YES];
     [camera release];
 }
 
-- (void)toSettingViewController{
+- (void)toSettingViewController {
     SettingViewController *setting = [[SettingViewController alloc] init];
     [self.navigationController pushViewController:setting animated:YES];
     [setting release];
@@ -60,6 +60,10 @@
     [self.navigationController pushViewController:detail animated:YES];
     [detail release];
     [place release];
+}
+
+- (void)moveToCurrentLocation {
+	[mainMapView setCenterCoordinate:[mainMapView.userLocation coordinate] animated:YES];
 }
 
 #pragma mark 
