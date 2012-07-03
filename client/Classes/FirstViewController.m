@@ -62,96 +62,6 @@
     [place release];
 }
 
-#pragma mark
-#pragma mark default Mthods
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
-- (id)init {
-    self = [super init];
-    if (self) {
-        canChangeMap = YES;
-    }
-    return self;
-}
-
-- (void) viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
-} 
-
-- (void) loadView {
-    UIView *contentView = [[UIView alloc] initWithFrame:CGRectMake(0,0, 320, 480)];
-    contentView.backgroundColor = [UIColor whiteColor];
-    self.view = contentView;
-    [contentView release];
-}
-
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    self.title = @"主页";
-    UIBarButtonItem *btnSetting = [[UIBarButtonItem alloc] 
-                                initWithTitle:@"设置"                                            
-                                style:UIBarButtonItemStyleBordered 
-                                target:self 
-                                action:@selector(toSettingViewController)];
-    self.navigationItem.rightBarButtonItem = btnSetting;
-    [btnSetting release];
-    UIBarButtonItem *btnCamera = [[UIBarButtonItem alloc] 
-                                  initWithTitle:@"拍照"                                            
-                                  style:UIBarButtonItemStyleBordered 
-                                  target:self 
-                                  action:@selector(toCameraViewController)];
-    self.navigationItem.leftBarButtonItem = btnCamera;
-    [btnCamera release];
-    
-    UIButton *resetButton = [UIButton buttonWithType:UIButtonTypeInfoDark];
-    resetButton.frame = CGRectMake(270, 386, 40, 40);
-    [resetButton setTitle:@"重置" forState:UIControlStateNormal];
-    [resetButton setImage:[UIImage imageNamed:@"reset.png"] forState:UIControlStateNormal];
-    [resetButton addTarget:self action:@selector(removePins) forControlEvents:UIControlEventTouchUpInside];
-    
-    mainMapView = [[MKMapView alloc] initWithFrame:self.view.bounds];  
-    mainMapView.mapType = MKMapTypeStandard;   
-    mainMapView.zoomEnabled = YES; 
-    mainMapView.scrollEnabled = YES;
-    mainMapView.showsUserLocation = YES;
-    mainMapView.delegate = self;
-
-    [mainMapView addSubview:resetButton];
-    [self.view  addSubview:mainMapView];
-    routeView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, mainMapView.frame.size.width, mainMapView.frame.size.height)];
-    routeView.userInteractionEnabled = NO;
-    [mainMapView addSubview:routeView];
-    
-    
-    CLLocationManager *locationManager = [[CLLocationManager alloc] init];
-    locationManager.delegate = self;
-    locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-	locationManager.distanceFilter = 1000.0f;
-    [locationManager startUpdatingLocation];
-    MKCoordinateSpan theSpan; 
-    theSpan.latitudeDelta = 0.05f; 
-    theSpan.longitudeDelta = 0.05f; 
-    MKCoordinateRegion theRegion; 
-	CLLocationCoordinate2D cr  = locationManager.location.coordinate;
-    theRegion.center = cr; //[[locationManager location] coordinate]; 
-    theRegion.span = theSpan; 
-    [mainMapView setRegion:theRegion]; 
-    
-    
-    self.lineColor = [UIColor blackColor];
-    
-    [mainMapView autorelease];
-	// Do any additional setup after loading the view.
-}
-
 #pragma mark 
 #pragma mark Google get polyLine Methods
 
@@ -404,6 +314,96 @@
     home.image = nil;
 
     [self showRouteFrom:home to:endPlace];
+}
+
+#pragma mark
+#pragma mark default Mthods
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) {
+        // Custom initialization
+    }
+    return self;
+}
+
+- (id)init {
+    self = [super init];
+    if (self) {
+        canChangeMap = YES;
+    }
+    return self;
+}
+
+- (void) viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+} 
+
+- (void) loadView {
+    UIView *contentView = [[UIView alloc] initWithFrame:CGRectMake(0,0, 320, 480)];
+    contentView.backgroundColor = [UIColor whiteColor];
+    self.view = contentView;
+    [contentView release];
+}
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    self.title = @"主页";
+    UIBarButtonItem *btnSetting = [[UIBarButtonItem alloc] 
+                                   initWithTitle:@"设置"                                            
+                                   style:UIBarButtonItemStyleBordered 
+                                   target:self 
+                                   action:@selector(toSettingViewController)];
+    self.navigationItem.rightBarButtonItem = btnSetting;
+    [btnSetting release];
+    UIBarButtonItem *btnCamera = [[UIBarButtonItem alloc] 
+                                  initWithTitle:@"拍照"                                            
+                                  style:UIBarButtonItemStyleBordered 
+                                  target:self 
+                                  action:@selector(toCameraViewController)];
+    self.navigationItem.leftBarButtonItem = btnCamera;
+    [btnCamera release];
+    
+    UIButton *resetButton = [UIButton buttonWithType:UIButtonTypeInfoDark];
+    resetButton.frame = CGRectMake(270, 386, 40, 40);
+    [resetButton setTitle:@"重置" forState:UIControlStateNormal];
+    [resetButton setImage:[UIImage imageNamed:@"reset.png"] forState:UIControlStateNormal];
+    [resetButton addTarget:self action:@selector(removePins) forControlEvents:UIControlEventTouchUpInside];
+    
+    mainMapView = [[MKMapView alloc] initWithFrame:self.view.bounds];  
+    mainMapView.mapType = MKMapTypeStandard;   
+    mainMapView.zoomEnabled = YES; 
+    mainMapView.scrollEnabled = YES;
+    mainMapView.showsUserLocation = YES;
+    mainMapView.delegate = self;
+    
+    [mainMapView addSubview:resetButton];
+    [self.view  addSubview:mainMapView];
+    routeView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, mainMapView.frame.size.width, mainMapView.frame.size.height)];
+    routeView.userInteractionEnabled = NO;
+    [mainMapView addSubview:routeView];
+    
+    
+    CLLocationManager *locationManager = [[CLLocationManager alloc] init];
+    locationManager.delegate = self;
+    locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+	locationManager.distanceFilter = 1000.0f;
+    [locationManager startUpdatingLocation];
+    MKCoordinateSpan theSpan; 
+    theSpan.latitudeDelta = 0.05f; 
+    theSpan.longitudeDelta = 0.05f; 
+    MKCoordinateRegion theRegion; 
+	CLLocationCoordinate2D cr  = locationManager.location.coordinate;
+    theRegion.center = cr; //[[locationManager location] coordinate]; 
+    theRegion.span = theSpan; 
+    [mainMapView setRegion:theRegion]; 
+    
+    
+    self.lineColor = [UIColor blackColor];
+    
+    [mainMapView autorelease];
+	// Do any additional setup after loading the view.
 }
 
 - (void)viewDidUnload
