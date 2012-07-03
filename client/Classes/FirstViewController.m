@@ -343,16 +343,22 @@
     [super viewWillAppear:animated];
 } 
 
-- (void) loadView {
-    UIView *contentView = [[UIView alloc] initWithFrame:CGRectMake(0,0, 320, 480)];
-    contentView.backgroundColor = [UIColor whiteColor];
-    self.view = contentView;
-    [contentView release];
-}
+//- (void) loadView {
+//    UIView *contentView = [[UIView alloc] initWithFrame:CGRectMake(0,0, 320, 480)];
+//    contentView.backgroundColor = [UIColor whiteColor];
+//    self.view = contentView;
+//    [contentView release];
+//}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.viewControllers = [NSArray arrayWithObjects:
+                            [self viewControllerWithTabTitle:@"Home" image:[UIImage imageNamed:@"tab_feed.png"]],
+                            [self viewControllerWithTabTitle:@"Live" image:[UIImage imageNamed:@"tab_live"]],
+                            [self viewControllerWithTabTitle:@"" image:nil],
+                            [self viewControllerWithTabTitle:@"Profile" image:[UIImage imageNamed:@"tab_feed_profile.png"]],
+                            [self viewControllerWithTabTitle:@"Messages" image:[UIImage imageNamed:@"tab_messages.png"]], nil];
     self.title = @"主页";
     UIBarButtonItem *btnSetting = [[UIBarButtonItem alloc] 
                                    initWithTitle:@"设置"                                            
@@ -375,7 +381,7 @@
     [resetButton setImage:[UIImage imageNamed:@"reset.png"] forState:UIControlStateNormal];
     [resetButton addTarget:self action:@selector(removePins) forControlEvents:UIControlEventTouchUpInside];
     
-    mainMapView = [[MKMapView alloc] initWithFrame:self.view.bounds];  
+    mainMapView = [[MKMapView alloc] initWithFrame:CGRectMake(0, 0, 320, 390)];  
     mainMapView.mapType = MKMapTypeStandard;   
     mainMapView.zoomEnabled = YES; 
     mainMapView.scrollEnabled = YES;
@@ -386,7 +392,7 @@
     [self.view  addSubview:mainMapView];
     routeView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, mainMapView.frame.size.width, mainMapView.frame.size.height)];
     routeView.userInteractionEnabled = NO;
-    [mainMapView addSubview:routeView];
+   [mainMapView addSubview:routeView];
     
     
     CLLocationManager *locationManager = [[CLLocationManager alloc] init];
@@ -407,6 +413,8 @@
     self.lineColor = [UIColor blackColor];
     
     [mainMapView autorelease];
+    
+   [self addCenterButtonWithImage:[UIImage imageNamed:@"camera_button_take.png"] highlightImage:[UIImage imageNamed:@"tabBar_cameraButton_ready_matte.png"]];
 	// Do any additional setup after loading the view.
 }
 
@@ -427,6 +435,10 @@
 	}
 	[routeView release];
     [super dealloc];
+}
+- (void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item{
+    
+    self.view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 320,480 )];
 }
 
 @end

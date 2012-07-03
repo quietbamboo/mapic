@@ -10,8 +10,9 @@
 #import "DeatilViewController.h"
 #import "Place.h"
 #import "PlaceMark.h"
+#import "BaseViewController.h"
 #import "RegexKitLite.h"
-@interface FirstViewController : UIViewController <MKMapViewDelegate,CLLocationManagerDelegate,DirectionsViewControllerDelegate>{
+@interface FirstViewController : BaseViewController <MKMapViewDelegate,CLLocationManagerDelegate,DirectionsViewControllerDelegate>{
     BOOL canChangeMap;
     UIImageView* routeView;
 	NSArray* routes;
