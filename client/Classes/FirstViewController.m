@@ -343,45 +343,24 @@
     [super viewWillAppear:animated];
 } 
 
-//- (void) loadView {
-//    UIView *contentView = [[UIView alloc] initWithFrame:CGRectMake(0,0, 320, 480)];
-//    contentView.backgroundColor = [UIColor whiteColor];
-//    self.view = contentView;
-//    [contentView release];
-//}
+- (void) loadView {
+    UIView *contentView = [[UIView alloc] initWithFrame:CGRectMake(0,0, 320, 480)];
+    contentView.backgroundColor = [UIColor whiteColor];
+    self.view = contentView;
+    [contentView release];
+}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.viewControllers = [NSArray arrayWithObjects:
-                            [self viewControllerWithTabTitle:@"Home" image:[UIImage imageNamed:@"tab_feed.png"]],
-                            [self viewControllerWithTabTitle:@"Live" image:[UIImage imageNamed:@"tab_live"]],
-                            [self viewControllerWithTabTitle:@"" image:nil],
-                            [self viewControllerWithTabTitle:@"Profile" image:[UIImage imageNamed:@"tab_feed_profile.png"]],
-                            [self viewControllerWithTabTitle:@"Messages" image:[UIImage imageNamed:@"tab_messages.png"]], nil];
-    self.title = @"主页";
-    UIBarButtonItem *btnSetting = [[UIBarButtonItem alloc] 
-                                   initWithTitle:@"设置"                                            
-                                   style:UIBarButtonItemStyleBordered 
-                                   target:self 
-                                   action:@selector(toSettingViewController)];
-    self.navigationItem.rightBarButtonItem = btnSetting;
-    [btnSetting release];
-    UIBarButtonItem *btnCamera = [[UIBarButtonItem alloc] 
-                                  initWithTitle:@"拍照"                                            
-                                  style:UIBarButtonItemStyleBordered 
-                                  target:self 
-                                  action:@selector(toCameraViewController)];
-    self.navigationItem.leftBarButtonItem = btnCamera;
-    [btnCamera release];
-    
+    self.navigationController.navigationBarHidden = YES;
     UIButton *resetButton = [UIButton buttonWithType:UIButtonTypeInfoDark];
     resetButton.frame = CGRectMake(270, 386, 40, 40);
     [resetButton setTitle:@"重置" forState:UIControlStateNormal];
     [resetButton setImage:[UIImage imageNamed:@"reset.png"] forState:UIControlStateNormal];
     [resetButton addTarget:self action:@selector(removePins) forControlEvents:UIControlEventTouchUpInside];
     
-    mainMapView = [[MKMapView alloc] initWithFrame:CGRectMake(0, 0, 320, 390)];  
+    mainMapView = [[MKMapView alloc] initWithFrame:CGRectMake(0, 0, 320, 430)];  
     mainMapView.mapType = MKMapTypeStandard;   
     mainMapView.zoomEnabled = YES; 
     mainMapView.scrollEnabled = YES;
@@ -414,8 +393,7 @@
     
     [mainMapView autorelease];
     
-   [self addCenterButtonWithImage:[UIImage imageNamed:@"camera_button_take.png"] highlightImage:[UIImage imageNamed:@"tabBar_cameraButton_ready_matte.png"]];
-	// Do any additional setup after loading the view.
+   	// Do any additional setup after loading the view.
 }
 
 - (void)viewDidUnload

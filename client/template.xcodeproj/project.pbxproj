@@ -15,6 +15,8 @@
 		187D6802159D4AFD00E41A6B /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 187D6801159D4AFD00E41A6B /* MapKit.framework */; };
 		187D6840159DB32500E41A6B /* andong.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 187D683F159DB32500E41A6B /* andong.jpg */; };
 		187D6843159DB71200E41A6B /* PlaceAnnotaion.m in Sources */ = {isa = PBXBuildFile; fileRef = 187D6842159DB71200E41A6B /* PlaceAnnotaion.m */; };
+		18A3442D15A2F31800BB3185 /* tab-explore.png in Resources */ = {isa = PBXBuildFile; fileRef = 18A3442B15A2F31800BB3185 /* tab-explore.png */; };
+		18A3442E15A2F31800BB3185 /* tab-explore@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18A3442C15A2F31800BB3185 /* tab-explore@2x.png */; };
 		18AC4C0D14BE8113004EFF99 /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18AC4C0C14BE8113004EFF99 /* iAd.framework */; };
 		18D132FA156F484200257F4B /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18D132F9156F484200257F4B /* CFNetwork.framework */; };
 		1D3623260D0F684500981E51 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* AppDelegate.m */; };
@@ -64,6 +66,8 @@
 		187D683F159DB32500E41A6B /* andong.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = andong.jpg; path = Classes/andong.jpg; sourceTree = "<group>"; };
 		187D6841159DB71200E41A6B /* PlaceAnnotaion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaceAnnotaion.h; sourceTree = "<group>"; };
 		187D6842159DB71200E41A6B /* PlaceAnnotaion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaceAnnotaion.m; sourceTree = "<group>"; };
+		18A3442B15A2F31800BB3185 /* tab-explore.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "tab-explore.png"; path = "Classes/tab-explore.png"; sourceTree = "<group>"; };
+		18A3442C15A2F31800BB3185 /* tab-explore@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "tab-explore@2x.png"; path = "Classes/tab-explore@2x.png"; sourceTree = "<group>"; };
 		18AC4C0C14BE8113004EFF99 /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
 		18D132F9156F484200257F4B /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		1D3623240D0F684500981E51 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -258,6 +262,8 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				18A3442B15A2F31800BB3185 /* tab-explore.png */,
+				18A3442C15A2F31800BB3185 /* tab-explore@2x.png */,
 				274B4ABC15A2CDB800DF86F1 /* DailyBooth */,
 				183DDD84159EC79A0038B609 /* reset.png */,
 				27A97309159DC333000E165D /* SFIcon.png */,
@@ -359,6 +365,8 @@
 				274B4AD615A2CDB800DF86F1 /* tab_messages@2x.png in Resources */,
 				274B4AD715A2CDB800DF86F1 /* tabBar_cameraButton_ready_matte.png in Resources */,
 				274B4AD815A2CDB800DF86F1 /* tabBar_cameraButton_ready_matte@2x.png in Resources */,
+				18A3442D15A2F31800BB3185 /* tab-explore.png in Resources */,
+				18A3442E15A2F31800BB3185 /* tab-explore@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
