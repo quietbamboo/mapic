@@ -17,15 +17,53 @@
 @synthesize mainMapView;
 @synthesize lineColor;
 
+#pragma mark
+#pragma mark get some annotaion size
 + (CGFloat)annotationPadding;
 {
     return 10.0f;
 }
+
 + (CGFloat)calloutHeight;
 {
     return 40.0f;
 }
 
+#pragma mark
+#pragma mark to other view Methods
+- (void)removePins{
+    [self.mainMapView removeAnnotations:self.mainMapView.annotations];
+}
+
+- (void)toCameraViewController{
+    CameraViewController *camera = [[CameraViewController alloc] init];
+    [self.navigationController pushViewController:camera animated:YES];
+    [camera release];
+}
+
+- (void)toSettingViewController{
+    SettingViewController *setting = [[SettingViewController alloc] init];
+    [self.navigationController pushViewController:setting animated:YES];
+    [setting release];
+}
+
+- (void)toDetailView:(UIButton *)sender {
+    DeatilViewController *detail = [[DeatilViewController alloc] init];
+    detail.delegate = self;
+    Place *place = [[Place alloc] init];
+    place.name = @"清河北大";
+    place.image = [UIImage imageNamed:@"andong.jpg"];
+    place.description = nil;
+    place.longitude = 116.319281;
+    place.latitude = 39.936996;
+    detail.endPlace = place;
+    [self.navigationController pushViewController:detail animated:YES];
+    [detail release];
+    [place release];
+}
+
+#pragma mark
+#pragma mark default Mthods
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -34,6 +72,7 @@
     }
     return self;
 }
+
 - (id)init {
     self = [super init];
     if (self) {
@@ -45,7 +84,6 @@
 - (void) viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
 } 
-
 
 - (void) loadView {
     UIView *contentView = [[UIView alloc] initWithFrame:CGRectMake(0,0, 320, 480)];
@@ -92,52 +130,30 @@
     routeView.userInteractionEnabled = NO;
     [mainMapView addSubview:routeView];
     
+    
+    CLLocationManager *locationManager = [[CLLocationManager alloc] init];
+    locationManager.delegate = self;
+    locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+	locationManager.distanceFilter = 1000.0f;
+    [locationManager startUpdatingLocation];
+    MKCoordinateSpan theSpan; 
+    theSpan.latitudeDelta = 0.05f; 
+    theSpan.longitudeDelta = 0.05f; 
+    MKCoordinateRegion theRegion; 
+	CLLocationCoordinate2D cr  = locationManager.location.coordinate;
+    theRegion.center = cr; //[[locationManager location] coordinate]; 
+    theRegion.span = theSpan; 
+    [mainMapView setRegion:theRegion]; 
+    
+    
     self.lineColor = [UIColor blackColor];
     
     [mainMapView autorelease];
 	// Do any additional setup after loading the view.
 }
-- (void)removePins{
-    
-    [self.mainMapView removeAnnotations:self.mainMapView.annotations];
-}
 
-- (void)toCameraViewController{
-
-    CameraViewController *camera = [[CameraViewController alloc] init];
-    [self.navigationController pushViewController:camera animated:YES];
-    [camera release];
-}
-- (void)toSettingViewController{
-    SettingViewController *setting = [[SettingViewController alloc] init];
-    [self.navigationController pushViewController:setting animated:YES];
-    [setting release];
-}
-
-- (void)toDetailView:(UIButton *)sender {
-    DeatilViewController *detail = [[DeatilViewController alloc] init];
-    detail.delegate = self;
-    Place *place = [[Place alloc] init];
-    place.name = @"清河北大";
-    place.image = [UIImage imageNamed:@"andong.jpg"];
-    place.description = nil;
-    place.longitude = 116.319281;
-    place.latitude = 39.936996;
-    detail.endPlace = place;
-    [self.navigationController pushViewController:detail animated:YES];
-    [detail release];
-    [place release];
-}
-- (void)viewDidUnload
-{
-    [super viewDidUnload];
-    // Release any retained subviews of the main view.
-}
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
+#pragma mark 
+#pragma mark Google get polyLine Methods
 
 -(NSMutableArray *)decodePolyLine: (NSMutableString *)encoded {
 	[encoded replaceOccurrencesOfString:@"\\\\" withString:@"\\"
@@ -261,20 +277,22 @@
 			CGContextAddLineToPoint(context, point.x, routeView.frame.size.height - point.y);
 		}
 	}
-	
 	CGContextStrokePath(context);
-	
 	CGImageRef image = CGBitmapContextCreateImage(context);
 	UIImage* img = [UIImage imageWithCGImage:image];
-	
 	routeView.image = img;
 	CGContextRelease(context);
-    
 }
 
+#pragma mark
+#pragma mark CLLocationManagerDelegate Methods
+- (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation {
+	mainMapView.region = MKCoordinateRegionMake(newLocation.coordinate, MKCoordinateSpanMake(0.01f, 0.01f));
+	[manager stopUpdatingHeading];
+}
 
 #pragma mark
-#pragma mark MKMapViewDelegate methods
+#pragma mark MKMapViewDelegate Methods
 - (void)mapView:(MKMapView *)mapView regionWillChangeAnimated:(BOOL)animated
 {
 	routeView.hidden = YES;
@@ -291,17 +309,8 @@
 }
 - (void) mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation{
     if (canChangeMap) {
-        MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(mainMapView.userLocation.location.coordinate,1000, 1000); 
-        [mainMapView setRegion:viewRegion];
-//        
-//        PlaceAnnotaion *place = [[PlaceAnnotaion alloc] init];
-//        place.titleName = @"清河北大";
-//        place.subtitleName = nil;
-//        place.longitude = [NSNumber numberWithDouble:116.319281];
-//        place.latitude = [NSNumber numberWithDouble:39.936996];
-//        place.image = [UIImage imageNamed:@"andong.jpg"];
-//        [self.mainMapView addAnnotation:place];
-//        [place release];
+//        MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(mainMapView.userLocation.location.coordinate,1000, 1000); 
+//        [mainMapView setRegion:viewRegion];
         
         Place *place = [[Place alloc] init];
         place.name = @"清河北大";
@@ -397,6 +406,16 @@
     [self showRouteFrom:home to:endPlace];
 }
 
+- (void)viewDidUnload
+{
+    [super viewDidUnload];
+    // Release any retained subviews of the main view.
+}
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
 
 - (void)dealloc {
 	if(routes) {
@@ -405,12 +424,5 @@
 	[routeView release];
     [super dealloc];
 }
-
-
-
-
-
-
-
 
 @end
