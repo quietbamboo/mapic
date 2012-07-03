@@ -1,6 +1,8 @@
 
 
 #Remove personal data
+client/template.xcodeproj/project.xcworkspace/xcuserdata/
+client/template.xcodeproj/xcuserdata/
 
 #System hidden files
 *.DS_Store
