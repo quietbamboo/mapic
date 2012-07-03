@@ -24,7 +24,6 @@
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		274B4A9515A2926300DF86F1 /* libiphone-exif.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 274B4A9415A2926300DF86F1 /* libiphone-exif.a */; };
 		274B4A9815A2934300DF86F1 /* LocationlistViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 274B4A9715A2934300DF86F1 /* LocationlistViewController.m */; };
-		274B4ABB15A2CD1000DF86F1 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 274B4ABA15A2CD0F00DF86F1 /* BaseViewController.m */; };
 		274B4ACB15A2CDB800DF86F1 /* camera_button_take.png in Resources */ = {isa = PBXBuildFile; fileRef = 274B4ABD15A2CDB800DF86F1 /* camera_button_take.png */; };
 		274B4ACC15A2CDB800DF86F1 /* camera_button_take@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 274B4ABE15A2CDB800DF86F1 /* camera_button_take@2x.png */; };
 		274B4ACD15A2CDB800DF86F1 /* DailyBoothIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 274B4ABF15A2CDB800DF86F1 /* DailyBoothIcon.png */; };
@@ -87,8 +86,6 @@
 		274B4A9415A2926300DF86F1 /* libiphone-exif.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libiphone-exif.a"; sourceTree = "<group>"; };
 		274B4A9615A2934300DF86F1 /* LocationlistViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationlistViewController.h; sourceTree = "<group>"; };
 		274B4A9715A2934300DF86F1 /* LocationlistViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationlistViewController.m; sourceTree = "<group>"; };
-		274B4AB915A2CD0F00DF86F1 /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
-		274B4ABA15A2CD0F00DF86F1 /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
 		274B4ABD15A2CDB800DF86F1 /* camera_button_take.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = camera_button_take.png; sourceTree = "<group>"; };
 		274B4ABE15A2CDB800DF86F1 /* camera_button_take@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "camera_button_take@2x.png"; sourceTree = "<group>"; };
 		274B4ABF15A2CDB800DF86F1 /* DailyBoothIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DailyBoothIcon.png; sourceTree = "<group>"; };
@@ -148,8 +145,6 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				274B4AB915A2CD0F00DF86F1 /* BaseViewController.h */,
-				274B4ABA15A2CD0F00DF86F1 /* BaseViewController.m */,
 				274B4A9415A2926300DF86F1 /* libiphone-exif.a */,
 				274B4A8615A2924600DF86F1 /* usr */,
 				27A97338159F0111000E165D /* RegexKitLite.h */,
@@ -388,7 +383,6 @@
 				27A97337159EF7FD000E165D /* PlaceMark.m in Sources */,
 				27A9733A159F0112000E165D /* RegexKitLite.m in Sources */,
 				274B4A9815A2934300DF86F1 /* LocationlistViewController.m in Sources */,
-				274B4ABB15A2CD1000DF86F1 /* BaseViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

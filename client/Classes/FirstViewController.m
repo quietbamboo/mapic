@@ -373,7 +373,6 @@
     routeView.userInteractionEnabled = NO;
    [mainMapView addSubview:routeView];
     
-    
     CLLocationManager *locationManager = [[CLLocationManager alloc] init];
     locationManager.delegate = self;
     locationManager.desiredAccuracy = kCLLocationAccuracyBest;
@@ -388,9 +387,8 @@
     theRegion.span = theSpan; 
     [mainMapView setRegion:theRegion]; 
     
-    
     self.lineColor = [UIColor blackColor];
-    
+
     [mainMapView autorelease];
     
    	// Do any additional setup after loading the view.
@@ -413,10 +411,6 @@
 	}
 	[routeView release];
     [super dealloc];
-}
-- (void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item{
-    
-    self.view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 320,480 )];
 }
 
 @end

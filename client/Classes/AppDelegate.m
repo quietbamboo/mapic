@@ -20,44 +20,45 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 @implementation AppDelegate
 @synthesize window = _window;
-//@synthesize navigationController = _navigationController;
+
 - (void)dealloc
 {
-   [_window release];
-//    [_navigationController release];
-//    [window release];
-    
+    [_window release];
+    [myTabBarController release];
     [super dealloc];
+}
+-(void) addCenterButtonWithImage:(UIImage*)buttonImage highlightImage:(UIImage*)highlightImage
+{
+    UIButton* button = [UIButton buttonWithType:UIButtonTypeCustom];
+    button.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleTopMargin;
+    button.frame = CGRectMake((self.window.frame.size.width - buttonImage.size.width)/2 , (self.window.frame.size.height - buttonImage.size.height), buttonImage.size.width, buttonImage.size.height);
+    [button setBackgroundImage:buttonImage forState:UIControlStateNormal];
+    [button setBackgroundImage:highlightImage forState:UIControlStateHighlighted];
+    [self.window addSubview:button];
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
     [self initTarBarController];
-    [self.window addSubview:m_TarBarController.view];
+    [self.window addSubview:myTabBarController.view];
+    // Create a custom UIButton and add it to the center of our tab bar
+    [self addCenterButtonWithImage:[UIImage imageNamed:@"camera_button_take.png"] highlightImage:[UIImage imageNamed:@"tabBar_cameraButton_ready_matte.png"]];
     [self.window makeKeyAndVisible];
     return YES;
 }
 - (void)initTarBarController{
-	m_TarBarController = [[UITabBarController alloc]init];
-	
-	
-	
-    
-	
-	
-	
+	myTabBarController = [[UITabBarController alloc]init];
 	FirstViewController* firstview = [[FirstViewController alloc]init];
 	UINavigationController* firstviewNav = [[UINavigationController alloc] initWithRootViewController:firstview];
     firstviewNav.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"first" image:[UIImage imageNamed:@"tab-explore"] tag:0];
-	//[zoekenviewNav release];
     
 	LocationlistViewController* locaview = [[LocationlistViewController alloc]init];
-	//UINavigationController* trefwoordenviewNav = [[UINavigationController alloc] initWithRootViewController:trefwoordenview];
+
     locaview.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"详细" image:[UIImage imageNamed:@"tab_live"] tag:1];
     
     UIViewController *centerview = [[UIViewController alloc]init];
-	//UINavigationController* afvalsoortenviewNav = [[UINavigationController alloc]initWithRootViewController:afvalsoortenview];
+
 	centerview.tabBarItem = [[UITabBarItem alloc] initWithTitle:nil image:nil tag:2];
     
     UIViewController *fourview = [[UIViewController alloc]init];
@@ -66,10 +67,9 @@
     SettingViewController* settingview = [[SettingViewController alloc]init];
 	settingview.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Setting" image:[UIImage imageNamed:@"tab_feed_profile.png"] tag:4];
     
-    
 	NSArray* Controllers = [NSArray arrayWithObjects:firstviewNav,locaview,centerview,fourview,settingview,nil];
 	
-	m_TarBarController.viewControllers = Controllers;
+	myTabBarController.viewControllers = Controllers;
 	
 	[centerview release];
 	[fourview release];

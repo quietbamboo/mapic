@@ -11,10 +11,9 @@
 @class FirstViewController;
 
 @interface AppDelegate : NSObject <UIApplicationDelegate> {
-   UITabBarController* m_TarBarController;
+   UITabBarController* myTabBarController;
 }
 @property (nonatomic, retain) UIWindow *window;
-//@property (nonatomic, retain) UINavigationController *navigationController;
 
 @end
 
