@@ -16,6 +16,7 @@
     UIImageView* routeView;
 	NSArray* routes;
 	UIColor* lineColor;
+    NSArray* nsArray;
 }
 
 @property (retain, nonatomic) MKMapView *mainMapView;

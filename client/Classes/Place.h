@@ -16,6 +16,7 @@
 	double latitude;
 	double longitude;
     UIImage *image;
+    int btnTag;
 }
 
 @property (nonatomic, retain) NSString* name;
@@ -23,4 +24,5 @@
 @property (nonatomic) double latitude;
 @property (nonatomic) double longitude;
 @property (nonatomic,retain) UIImage *image;
+@property (nonatomic) int btnTag;
 @end

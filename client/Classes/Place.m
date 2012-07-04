@@ -16,7 +16,7 @@
 @synthesize latitude;
 @synthesize longitude;
 @synthesize image;
-
+@synthesize btnTag;
 - (void) dealloc
 {
 	[name release];

@@ -29,7 +29,29 @@
 {
     return 40.0f;
 }
-
+#pragma mark
+#pragma mark init nsArray
+- (void)initnaArray{
+     NSDictionary *dic1 = [NSDictionary dictionaryWithObjectsAndKeys:@"flag.png",@"image",[NSNumber numberWithDouble:39.946996],@"lat",[NSNumber numberWithDouble:116.339281],@"lon",@"名字1",@"name",@"简介1",@"dec",nil];
+     NSDictionary *dic2 = [NSDictionary dictionaryWithObjectsAndKeys:@"andong.png",@"image",[NSNumber numberWithDouble:39.966996],@"lat",[NSNumber numberWithDouble:116.329281],@"lon",@"名字2",@"name",@"简介2",@"dec",nil];
+     NSDictionary *dic3 = [NSDictionary dictionaryWithObjectsAndKeys:@"reset.png",@"image",[NSNumber numberWithDouble:39.976996],@"lat",[NSNumber numberWithDouble:116.359281],@"lon",@"名字3",@"name",@"简介3",@"dec",nil];
+     nsArray = [NSArray arrayWithObjects:dic1,dic2,dic3, nil];
+    
+     for (NSUInteger i = 0; i<nsArray.count; i++) {
+         Place *place = [[Place alloc] init];
+         NSDictionary *nsdic = [nsArray objectAtIndex:i];
+         place.btnTag = i;
+         place.name = [nsdic objectForKey:@"name"];
+         place.image = [UIImage imageNamed:[nsdic objectForKey:@"image"]];
+         place.latitude = [(NSNumber *)[nsdic objectForKey:@"lat"] doubleValue];
+         place.longitude = [(NSNumber *)[nsdic objectForKey:@"lon"] doubleValue];
+         place.description = [nsdic objectForKey:@"dec"];
+         PlaceMark *placeMark = [[PlaceMark alloc] initWithPlace:place];
+         [self.mainMapView addAnnotation:placeMark];
+         [place release];
+         [placeMark release];
+    }
+}
 #pragma mark
 #pragma mark to other view Methods
 - (void)removePins {
@@ -52,15 +74,17 @@
     DeatilViewController *detail = [[DeatilViewController alloc] init];
     detail.delegate = self;
     Place *place = [[Place alloc] init];
-    place.name = @"清河北大";
-    place.image = [UIImage imageNamed:@"andong.jpg"];
-    place.description = nil;
-    place.longitude = 116.319281;
-    place.latitude = 39.936996;
+    NSDictionary *nsdic = [nsArray objectAtIndex:sender.tag];
+    place.name = [nsdic objectForKey:@"name"];
+    place.image = [UIImage imageNamed:[nsdic objectForKey:@"image"]];
+    place.latitude = [(NSNumber *)[nsdic objectForKey:@"lat"] doubleValue];
+    place.longitude = [(NSNumber *)[nsdic objectForKey:@"lon"] doubleValue];
+    place.description = [nsdic objectForKey:@"dec"];
     detail.endPlace = place;
     [self.navigationController pushViewController:detail animated:YES];
     [detail release];
     [place release];
+    NSLog(@"%d",sender.tag);
 }
 
 - (void)moveToCurrentLocation {
@@ -126,7 +150,7 @@
 	
 	NSString* apiUrlStr = [NSString stringWithFormat:@"http://maps.google.com/maps?output=dragdir&saddr=%@&daddr=%@", saddr, daddr];
 	NSURL* apiUrl = [NSURL URLWithString:apiUrlStr];
-	NSLog(@"api url: %@", apiUrl);
+	//NSLog(@"api url: %@", apiUrl);
 	NSString *apiResponse = [NSString stringWithContentsOfURL:apiUrl];
 	NSString* encodedPoints = [apiResponse stringByMatching:@"points:\\\"([^\\\"]*)\\\"" capture:1L];
 	
@@ -236,17 +260,22 @@
     if (canChangeMap) {
 //        MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(mainMapView.userLocation.location.coordinate,1000, 1000); 
 //        [mainMapView setRegion:viewRegion];
-        
-        Place *place = [[Place alloc] init];
-        place.name = @"清河北大";
-        place.image = [UIImage imageNamed:@"andong.jpg"];
-        place.description = nil;
-        place.longitude = 116.319281;
-        place.latitude = 39.936996;
-        PlaceMark *placeMark = [[PlaceMark alloc] initWithPlace:place];
-        [self.mainMapView addAnnotation:placeMark];
-        [place release];
-        [placeMark release];
+       
+//        [dic1 release];
+//        [dic2 release];
+//        [dic3 release];
+//        [nsArray release];
+//        Place *place = [[Place alloc] init];
+//        place.name = @"清河北大";
+//        place.image = [UIImage imageNamed:@"andong.jpg"];
+//        place.description = nil;
+//        place.longitude = 116.319281;
+//        place.latitude = 39.936996;
+//        PlaceMark *placeMark = [[PlaceMark alloc] initWithPlace:place];
+//        [self.mainMapView addAnnotation:placeMark];
+//        [place release];
+//        [placeMark release];
+       
     }
     
 }
@@ -298,6 +327,7 @@
             UIButton *accesbutton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
             [accesbutton addTarget:self action:@selector(toDetailView:) 
                          forControlEvents:UIControlEventTouchUpInside];
+            accesbutton.tag = placeMark.place.btnTag;
             [annotationView setRightCalloutAccessoryView:accesbutton];
             return annotationView;
         }
@@ -405,9 +435,12 @@
     [mainMapView setRegion:theRegion]; 
     
     self.lineColor = [UIColor blackColor];
+    [self moveToCurrentLocation];
+    
+//    NSMutableArray *ns =[NSMutableDictionary ];
 
     [mainMapView autorelease];
-    
+    [self initnaArray];
    	// Do any additional setup after loading the view.
 }
 - (void)Updatemapslider: (id) sender{
