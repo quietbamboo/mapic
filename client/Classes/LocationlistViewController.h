@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface LocationlistViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
+#import "DeatilViewController.h"
+@interface LocationlistViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,DirectionsViewControllerDelegate>
 
 @end

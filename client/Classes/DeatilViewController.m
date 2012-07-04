@@ -26,6 +26,9 @@
 - (void)toWriteRoute{
     [_delegate directionsViewController:self toPlace:endPlace];
 }
+- (void)toCloseSelf{
+    [_delegate directionsViewControllerDidCancel:self];
+}
 
 - (void) loadView {
     UIView *contentView = [[UIView alloc] initWithFrame:CGRectMake(0,0, 320, 480)];
@@ -37,6 +40,7 @@
 {
     [super viewDidLoad];
     self.title = @"Deatil";
+    self.navigationController.navigationBarHidden = NO;
     UIBarButtonItem *btnRoute = [[UIBarButtonItem alloc] 
                                    initWithTitle:@"路线"                                            
                                    style:UIBarButtonItemStyleBordered 
@@ -44,6 +48,15 @@
                                    action:@selector(toWriteRoute)];
     self.navigationItem.rightBarButtonItem = btnRoute;
     [btnRoute release];
+    
+    self.navigationController.navigationBarHidden = NO;
+    UIBarButtonItem * btnClose = [[UIBarButtonItem alloc] 
+                                 initWithTitle:@"关闭"                                            
+                                 style:UIBarButtonItemStyleBordered 
+                                 target:self 
+                                 action:@selector(toCloseSelf)];
+    self.navigationItem.leftBarButtonItem = btnClose;
+    [btnClose release];
 	// Do any additional setup after loading the view.
 }
 

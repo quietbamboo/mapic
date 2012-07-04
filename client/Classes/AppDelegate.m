@@ -57,24 +57,24 @@
 - (void)initTarBarController{
 	myTabBarController = [[UITabBarController alloc]init];
 	FirstViewController* firstview = [[FirstViewController alloc]init];
-	UINavigationController* firstviewNav = [[UINavigationController alloc] initWithRootViewController:firstview];
-    firstviewNav.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"first" image:[UIImage imageNamed:@"tab-explore"] tag:0];
+	//UINavigationController* firstviewNav = [[UINavigationController alloc] initWithRootViewController:firstview];
+    firstview.tabBarItem = [[[UITabBarItem alloc] initWithTitle:@"first" image:[UIImage imageNamed:@"tab-explore"] tag:0] autorelease];
     
 	LocationlistViewController* locaview = [[LocationlistViewController alloc]init];
-
-    locaview.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"详细" image:[UIImage imageNamed:@"tab_live"] tag:1];
+    //UINavigationController* locaviewNav = [[UINavigationController alloc] initWithRootViewController:locaview];
+    locaview.tabBarItem = [[[UITabBarItem alloc] initWithTitle:@"详细" image:[UIImage imageNamed:@"tab_live"] tag:1]autorelease];
     
     UIViewController *centerview = [[UIViewController alloc]init];
 
-	centerview.tabBarItem = [[UITabBarItem alloc] initWithTitle:nil image:nil tag:2];
+	centerview.tabBarItem = [[[UITabBarItem alloc] initWithTitle:nil image:nil tag:2] autorelease];
     
     UIViewController *fourview = [[UIViewController alloc]init];
-    fourview.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"four" image:[UIImage imageNamed:@"tab-explore"] tag:3];
+    fourview.tabBarItem = [[[UITabBarItem alloc] initWithTitle:@"four" image:[UIImage imageNamed:@"tab-explore"] tag:3] autorelease];
     
     SettingViewController* settingview = [[SettingViewController alloc]init];
-	settingview.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Setting" image:[UIImage imageNamed:@"tab_feed_profile.png"] tag:4];
+	settingview.tabBarItem = [[[UITabBarItem alloc] initWithTitle:@"Setting" image:[UIImage imageNamed:@"tab_feed_profile.png"] tag:4] autorelease];
     
-	NSArray* Controllers = [NSArray arrayWithObjects:firstviewNav,locaview,centerview,fourview,settingview,nil];
+	NSArray* Controllers = [NSArray arrayWithObjects:firstview,locaview,centerview,fourview,settingview,nil];
 	
 	myTabBarController.viewControllers = Controllers;
 	
@@ -83,6 +83,8 @@
     [settingview release];
 	[locaview release];
 	[firstview release];
+//    [firstviewNav release];
+//    [locaviewNav release];
 }
 
 

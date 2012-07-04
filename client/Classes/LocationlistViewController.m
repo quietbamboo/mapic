@@ -37,6 +37,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.navigationController.navigationBarHidden = YES;
 	// Do any additional setup after loading the view.
     UITableView *tableview= [[UITableView alloc] initWithFrame:CGRectMake(0,0, 320, 436) style:UITableViewStylePlain];
     tableview.separatorStyle = UITableViewStyleGrouped;
@@ -97,6 +98,18 @@
 - (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath{
     
     NSLog(@"this good 1");
+    DeatilViewController *detail = [[DeatilViewController alloc] init];
+    detail.delegate = [self.tabBarController.viewControllers objectAtIndex:0];
+    Place *place = [[Place alloc] init];
+    place.name = @"清河北大";
+    place.image = [UIImage imageNamed:@"andong.jpg"];
+    place.description = nil;
+    place.longitude = 116.319281;
+    place.latitude = 39.936996;
+    detail.endPlace = place;
+    [self.navigationController pushViewController:detail animated:YES];
+    [detail release];
+    [place release];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
