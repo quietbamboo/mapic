@@ -16,6 +16,7 @@
 @implementation FirstViewController
 @synthesize mainMapView;
 @synthesize lineColor;
+@synthesize mapslider;
 
 #pragma mark
 #pragma mark get some annotaion size
@@ -360,6 +361,12 @@
     [resetButton setImage:[UIImage imageNamed:@"reset.png"] forState:UIControlStateNormal];
     [resetButton addTarget:self action:@selector(removePins) forControlEvents:UIControlEventTouchUpInside];
     
+    mapslider = [[[UISlider alloc] initWithFrame:CGRectMake(60, 10, 200, 10)] autorelease];
+    mapslider.maximumValue = 10000;
+    mapslider.minimumValue = 0;
+    mapslider.value = 1000;
+    [mapslider addTarget:self action:@selector(Updatemapslider:) forControlEvents:UIControlEventTouchUpInside];
+    
     mainMapView = [[MKMapView alloc] initWithFrame:CGRectMake(0, 0, 320, 430)];  
     mainMapView.mapType = MKMapTypeStandard;   
     mainMapView.zoomEnabled = YES; 
@@ -372,6 +379,7 @@
     routeView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, mainMapView.frame.size.width, mainMapView.frame.size.height)];
     routeView.userInteractionEnabled = NO;
    [mainMapView addSubview:routeView];
+    [mainMapView addSubview:mapslider];
     
     CLLocationManager *locationManager = [[CLLocationManager alloc] init];
     locationManager.delegate = self;
@@ -392,6 +400,12 @@
     [mainMapView autorelease];
     
    	// Do any additional setup after loading the view.
+}
+- (void)Updatemapslider: (id) sender{
+    
+    NSLog(@"this is ******%f**",mapslider.value);
+    MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(mainMapView.userLocation.location.coordinate,mapslider.value, mapslider.value); 
+    [mainMapView setRegion:viewRegion animated:YES];
 }
 
 - (void)viewDidUnload
