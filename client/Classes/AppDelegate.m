@@ -20,11 +20,12 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 @implementation AppDelegate
 @synthesize window = _window;
-
+@synthesize firstview = _firstview;
 - (void)dealloc
 {
     [_window release];
     [myTabBarController release];
+    [_firstview release];
     [super dealloc];
 }
 - (void) alertActionSheet{  
@@ -56,13 +57,13 @@
 }
 - (void)initTarBarController{
 	myTabBarController = [[UITabBarController alloc]init];
-	FirstViewController* firstview = [[FirstViewController alloc]init];
-	//UINavigationController* firstviewNav = [[UINavigationController alloc] initWithRootViewController:firstview];
-    firstview.tabBarItem = [[[UITabBarItem alloc] initWithTitle:@"first" image:[UIImage imageNamed:@"tab-explore"] tag:0] autorelease];
+	_firstview = [[FirstViewController alloc]init];
+	UINavigationController* firstviewNav = [[UINavigationController alloc] initWithRootViewController:_firstview];
+    firstviewNav.tabBarItem = [[[UITabBarItem alloc] initWithTitle:@"first" image:[UIImage imageNamed:@"tab-explore"] tag:0] autorelease];
     
 	LocationlistViewController* locaview = [[LocationlistViewController alloc]init];
-    //UINavigationController* locaviewNav = [[UINavigationController alloc] initWithRootViewController:locaview];
-    locaview.tabBarItem = [[[UITabBarItem alloc] initWithTitle:@"详细" image:[UIImage imageNamed:@"tab_live"] tag:1]autorelease];
+    UINavigationController* locaviewNav = [[UINavigationController alloc] initWithRootViewController:locaview];
+    locaviewNav.tabBarItem = [[[UITabBarItem alloc] initWithTitle:@"详细" image:[UIImage imageNamed:@"tab_live"] tag:1]autorelease];
     
     UIViewController *centerview = [[UIViewController alloc]init];
 
@@ -74,7 +75,7 @@
     SettingViewController* settingview = [[SettingViewController alloc]init];
 	settingview.tabBarItem = [[[UITabBarItem alloc] initWithTitle:@"Setting" image:[UIImage imageNamed:@"tab_feed_profile.png"] tag:4] autorelease];
     
-	NSArray* Controllers = [NSArray arrayWithObjects:firstview,locaview,centerview,fourview,settingview,nil];
+	NSArray* Controllers = [NSArray arrayWithObjects:firstviewNav,locaviewNav,centerview,fourview,settingview,nil];
 	
 	myTabBarController.viewControllers = Controllers;
 	
@@ -82,9 +83,9 @@
 	[fourview release];
     [settingview release];
 	[locaview release];
-	[firstview release];
-//    [firstviewNav release];
-//    [locaviewNav release];
+	
+    [firstviewNav release];
+    [locaviewNav release];
 }
 
 
@@ -94,6 +95,9 @@
     NSLog(@"buttonIndex is %d",buttonIndex);
 }
 
++ (AppDelegate *)getAppDelegate {
+	return (AppDelegate *)[[UIApplication sharedApplication] delegate];
+}
 
 - (void)applicationWillResignActive:(UIApplication *)application
 {

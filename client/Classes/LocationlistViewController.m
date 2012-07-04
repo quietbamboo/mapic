@@ -14,44 +14,20 @@
 
 @implementation LocationlistViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
+#pragma mark 
+#pragma mark DirectionsViewControllerDelegate methods
+
+- (void)directionsViewControllerDidCancel:(DeatilViewController *)viewController{
+    
 }
 
-- (id)init {
-    self = [super init];
-    return self;
+- (void)directionsViewController:(DeatilViewController *)viewController toPlace:(Place *)endPlace{
+    [viewController.navigationController popViewControllerAnimated:YES];
+    [(FirstViewController *)[[AppDelegate getAppDelegate] firstview] showRouteLine:endPlace];
+    self.tabBarController.selectedIndex = 0;
 }
 
-- (void)loadView {
-    UIView *contentView = [[UIView alloc] initWithFrame:CGRectMake(0,0, 320, 480)];
-    contentView.backgroundColor = [UIColor whiteColor];
-    self.view = contentView;
-    [contentView release];
-}
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    self.navigationController.navigationBarHidden = YES;
-	// Do any additional setup after loading the view.
-    UITableView *tableview= [[UITableView alloc] initWithFrame:CGRectMake(0,0, 320, 436) style:UITableViewStylePlain];
-    tableview.separatorStyle = UITableViewStyleGrouped;
-    //tableview.separatorColor = [UIColor blackColor];
-    [tableview setDelegate:self];
-    [tableview setDataSource:self];
-    [self.view addSubview: tableview];
-    [tableview release];
-}
-- (void)viewDidUnload
-{
-    [super viewDidUnload];
-    // Release any retained subviews of the main view.
-}
+
 
 
 #pragma mark
@@ -99,7 +75,7 @@
     
     NSLog(@"this good 1");
     DeatilViewController *detail = [[DeatilViewController alloc] init];
-    detail.delegate = [self.tabBarController.viewControllers objectAtIndex:0];
+    detail.delegate = self;
     Place *place = [[Place alloc] init];
     place.name = @"清河北大";
     place.image = [UIImage imageNamed:@"andong.jpg"];
@@ -111,6 +87,51 @@
     [detail release];
     [place release];
 }
+
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) {
+        // Custom initialization
+    }
+    return self;
+}
+
+- (id)init {
+    self = [super init];
+    return self;
+}
+
+- (void)loadView {
+    UIView *contentView = [[UIView alloc] initWithFrame:CGRectMake(0,0, 320, 480)];
+    contentView.backgroundColor = [UIColor whiteColor];
+    self.view = contentView;
+    [contentView release];
+}
+ 
+- (void) viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    self.navigationController.navigationBarHidden = YES;
+}
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+	// Do any additional setup after loading the view.
+    UITableView *tableview= [[UITableView alloc] initWithFrame:CGRectMake(0,0, 320, 436) style:UITableViewStylePlain];
+    tableview.separatorStyle = UITableViewStyleGrouped;
+    //tableview.separatorColor = [UIColor blackColor];
+    [tableview setDelegate:self];
+    [tableview setDataSource:self];
+    [self.view addSubview: tableview];
+    [tableview release];
+}
+- (void)viewDidUnload
+{
+    [super viewDidUnload];
+    // Release any retained subviews of the main view.
+}
+
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {

@@ -69,6 +69,16 @@
 
 #pragma mark 
 #pragma mark Google get polyLine Methods
+-(void) showRouteLine:(Place *)endPlace{
+    Place* home = [[[Place alloc] init] autorelease];
+	home.name = @"Current Location";
+	home.description = nil;
+	home.latitude = mainMapView.userLocation.location.coordinate.latitude;
+	home.longitude = mainMapView.userLocation.location.coordinate.longitude;
+    home.image = nil;
+    
+    [self showRouteFrom:home to:endPlace];
+}
 
 -(NSMutableArray *)decodePolyLine: (NSMutableString *)encoded {
 	[encoded replaceOccurrencesOfString:@"\\\\" withString:@"\\"
@@ -310,7 +320,6 @@
 
 - (void)directionsViewController:(DeatilViewController *)viewController toPlace:(Place *)endPlace{
     [viewController.navigationController popViewControllerAnimated:YES];
-    
     Place* home = [[[Place alloc] init] autorelease];
 	home.name = @"Current Location";
 	home.description = nil;
@@ -342,6 +351,7 @@
 
 - (void) viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    self.navigationController.navigationBarHidden = YES;
 } 
 
 - (void) loadView {
@@ -354,7 +364,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.navigationController.navigationBarHidden = YES;
     UIButton *resetButton = [UIButton buttonWithType:UIButtonTypeInfoDark];
     resetButton.frame = CGRectMake(270, 386, 40, 40);
     [resetButton setTitle:@"重置" forState:UIControlStateNormal];

@@ -8,12 +8,15 @@
 
 
 #import <UIKit/UIKit.h>
+#import "Place.h"
 @class FirstViewController;
 
 @interface AppDelegate : NSObject <UIApplicationDelegate,UIActionSheetDelegate> {
    UITabBarController* myTabBarController;
+    FirstViewController *firstview;
 }
 @property (nonatomic, retain) UIWindow *window;
-
+@property (nonatomic, retain) FirstViewController *firstview;
++ (AppDelegate *)getAppDelegate;
 @end
 

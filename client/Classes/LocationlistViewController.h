@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "DeatilViewController.h"
+#import "AppDelegate.h"
 @interface LocationlistViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,DirectionsViewControllerDelegate>
 
 @end

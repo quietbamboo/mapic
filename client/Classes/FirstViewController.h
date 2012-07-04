@@ -18,8 +18,9 @@
 	UIColor* lineColor;
 }
 
-@property (strong, nonatomic) MKMapView *mainMapView;
+@property (retain, nonatomic) MKMapView *mainMapView;
 @property (nonatomic, retain) UIColor* lineColor;
 @property (nonatomic, retain) UISlider* mapslider;
 -(void) showRouteFrom: (Place*) start to:(Place*) end;
+-(void) showRouteLine:(Place *)endPlace;
 @end
