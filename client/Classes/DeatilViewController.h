@@ -9,9 +9,11 @@
 #import <UIKit/UIKit.h>
 #import "Place.h"
 @protocol DirectionsViewControllerDelegate;
-@interface DeatilViewController : UIViewController{
+@interface DeatilViewController : UIViewController<UIScrollViewDelegate>{
     id<DirectionsViewControllerDelegate> delegate;
     Place *endPlace;
+    double sizeheight;
+    UIScrollView *scrollview;
 }
 @property (nonatomic, assign) id<DirectionsViewControllerDelegate> delegate;
 @property (nonatomic, retain) Place *endPlace;

@@ -167,6 +167,7 @@
 				27A9730E159DCD06000E165D /* DeatilViewController.m */,
 				274B4A9615A2934300DF86F1 /* LocationlistViewController.h */,
 				274B4A9715A2934300DF86F1 /* LocationlistViewController.m */,
+				29B97317FDCFA39411CA2CEA /* Resources */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -238,7 +239,6 @@
 			children = (
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
-				29B97317FDCFA39411CA2CEA /* Resources */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
 			);
@@ -267,6 +267,7 @@
 				187D676C159D399800E41A6B /* Info.plist */,
 			);
 			name = Resources;
+			path = ..;
 			sourceTree = "<group>";
 		};
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
