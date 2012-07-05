@@ -17,6 +17,7 @@
 @synthesize longitude;
 @synthesize image;
 @synthesize btnTag;
+@synthesize Distance;
 - (void) dealloc
 {
 	[name release];

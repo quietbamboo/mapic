@@ -9,6 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "DeatilViewController.h"
 #import "AppDelegate.h"
-@interface LocationlistViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,DirectionsViewControllerDelegate>
+@interface LocationlistViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,DirectionsViewControllerDelegate>{
+
+    NSMutableArray *nsArray;
+}
 
 @end

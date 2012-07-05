@@ -17,6 +17,7 @@
 	double longitude;
     UIImage *image;
     int btnTag;
+    int Distance;
 }
 
 @property (nonatomic, retain) NSString* name;
@@ -25,4 +26,5 @@
 @property (nonatomic) double longitude;
 @property (nonatomic,retain) UIImage *image;
 @property (nonatomic) int btnTag;
+@property (nonatomic) int Distance;
 @end

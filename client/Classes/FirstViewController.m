@@ -32,12 +32,12 @@
 #pragma mark
 #pragma mark init nsArray
 - (void)initnaArray{
-     NSDictionary *dic1 = [NSDictionary dictionaryWithObjectsAndKeys:@"flag.png",@"image",[NSNumber numberWithDouble:39.946996],@"lat",[NSNumber numberWithDouble:116.339281],@"lon",@"名字1",@"name",@"简介1",@"dec",nil];
-     NSDictionary *dic2 = [NSDictionary dictionaryWithObjectsAndKeys:@"andong.png",@"image",[NSNumber numberWithDouble:39.966996],@"lat",[NSNumber numberWithDouble:116.329281],@"lon",@"名字2",@"name",@"简介2",@"dec",nil];
-     NSDictionary *dic3 = [NSDictionary dictionaryWithObjectsAndKeys:@"reset.png",@"image",[NSNumber numberWithDouble:39.976996],@"lat",[NSNumber numberWithDouble:116.359281],@"lon",@"名字3",@"name",@"简介3",@"dec",nil];
-    NSDictionary *dic4 = [NSDictionary dictionaryWithObjectsAndKeys:@"reset.png",@"image",[NSNumber numberWithDouble:37.775812],@"lat",[NSNumber numberWithDouble:-122.406403],@"lon",@"名字3",@"name",@"简介3",@"dec",nil];
-    NSDictionary *dic5 = [NSDictionary dictionaryWithObjectsAndKeys:@"flag.png",@"image",[NSNumber numberWithDouble:37.775812],@"lat",[NSNumber numberWithDouble:-122.426403],@"lon",@"名字3",@"name",@"简介3",@"dec",nil];
-     NSDictionary *dic6 = [NSDictionary dictionaryWithObjectsAndKeys:@"flag.png",@"image",[NSNumber numberWithDouble:37.775812],@"lat",[NSNumber numberWithDouble:-122.416403],@"lon",@"名字3",@"name",@"简介3",@"dec",nil];
+     NSDictionary *dic1 = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:1500],@"Distance",@"flag.png",@"image",[NSNumber numberWithDouble:39.946996],@"lat",[NSNumber numberWithDouble:116.339281],@"lon",@"名字1",@"name",@"简介1简介1简介1简介1简介1简介1简介1简介1简介1简简介1简介1介1简介1简介1简介1简介1",@"dec",nil];
+     NSDictionary *dic2 = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:1200],@"Distance",@"andong.png",@"image",[NSNumber numberWithDouble:39.966996],@"lat",[NSNumber numberWithDouble:116.329281],@"lon",@"名字2",@"name",@"简简介1简介1简介1简介1简介1简介1简介1简介1简简介1简介1介1介2",@"dec",nil];
+     NSDictionary *dic3 = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:1100],@"Distance",@"reset.png",@"image",[NSNumber numberWithDouble:39.976996],@"lat",[NSNumber numberWithDouble:116.359281],@"lon",@"名字3",@"name",@"简简介1简介1简介1简介1简介1简介1简介1简介1简介1简介1简介1简介13",@"dec",nil];
+    NSDictionary *dic4 = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:1300],@"Distance",@"reset.png",@"image",[NSNumber numberWithDouble:37.775812],@"lat",[NSNumber numberWithDouble:-122.406403],@"lon",@"名字4",@"name",@"简简介1简介1简介1简介1简介1简介1简介1简介1简介简介11介3",@"dec",nil];
+    NSDictionary *dic5 = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:1400],@"Distance",@"flag.png",@"image",[NSNumber numberWithDouble:37.775812],@"lat",[NSNumber numberWithDouble:-122.426403],@"lon",@"名字5",@"name",@"简简介1简介1简介1简介1简介1简介1简介1简介1简介1简介1简介1简介1介3",@"dec",nil];
+     NSDictionary *dic6 = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:1600],@"Distance",@"flag.png",@"image",[NSNumber numberWithDouble:37.775812],@"lat",[NSNumber numberWithDouble:-122.416403],@"lon",@"名字6",@"name",@"简简介1简介1简介1简介1简介1简介1简介1简介1简介1简介1简介1介3",@"dec",nil];
     nsArray = [[NSMutableArray alloc] initWithCapacity:0];
     [nsArray addObject:dic1];
     [nsArray addObject:dic2];
@@ -53,7 +53,7 @@
          place.image = [UIImage imageNamed:[nsdic objectForKey:@"image"]];
          place.latitude = [(NSNumber *)[nsdic objectForKey:@"lat"] doubleValue];
          place.longitude = [(NSNumber *)[nsdic objectForKey:@"lon"] doubleValue];
-         place.description = [nsdic objectForKey:@"dec"];
+         place.description = [NSString stringWithFormat:@"距离:%d",[(NSNumber *)[nsdic objectForKey:@"Distance"] intValue]];
          PlaceMark *placeMark = [[PlaceMark alloc] initWithPlace:place];
          [self.mainMapView addAnnotation:placeMark];
          [place release];
