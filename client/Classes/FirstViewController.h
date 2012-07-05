@@ -13,15 +13,15 @@
 #import "RegexKitLite.h"
 @interface FirstViewController : UIViewController <MKMapViewDelegate,CLLocationManagerDelegate,DirectionsViewControllerDelegate>{
     BOOL canChangeMap;
-    UIImageView* routeView;
-	NSArray* routes;
-	UIColor* lineColor;
-    NSArray* nsArray;
+    UIImageView *routeView;
+	NSArray *routes;
+	UIColor *lineColor;
+    NSMutableArray *nsArray;
 }
 
 @property (retain, nonatomic) MKMapView *mainMapView;
-@property (nonatomic, retain) UIColor* lineColor;
-@property (nonatomic, retain) UISlider* mapslider;
--(void) showRouteFrom: (Place*) start to:(Place*) end;
--(void) showRouteLine:(Place *)endPlace;
+@property (nonatomic, retain) UIColor *lineColor;
+@property (nonatomic, retain) UISlider *mapslider;
+-(void) showRouteFrom: (Place *) start to:(Place *) end;
+-(void) showRouteLine:(Place *) endPlace;
 @end

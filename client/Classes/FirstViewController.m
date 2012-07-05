@@ -35,9 +35,11 @@
      NSDictionary *dic1 = [NSDictionary dictionaryWithObjectsAndKeys:@"flag.png",@"image",[NSNumber numberWithDouble:39.946996],@"lat",[NSNumber numberWithDouble:116.339281],@"lon",@"名字1",@"name",@"简介1",@"dec",nil];
      NSDictionary *dic2 = [NSDictionary dictionaryWithObjectsAndKeys:@"andong.png",@"image",[NSNumber numberWithDouble:39.966996],@"lat",[NSNumber numberWithDouble:116.329281],@"lon",@"名字2",@"name",@"简介2",@"dec",nil];
      NSDictionary *dic3 = [NSDictionary dictionaryWithObjectsAndKeys:@"reset.png",@"image",[NSNumber numberWithDouble:39.976996],@"lat",[NSNumber numberWithDouble:116.359281],@"lon",@"名字3",@"name",@"简介3",@"dec",nil];
-     nsArray = [NSArray arrayWithObjects:dic1,dic2,dic3, nil];
-    
-     for (NSUInteger i = 0; i<nsArray.count; i++) {
+    nsArray = [[NSMutableArray alloc] initWithCapacity:0];
+    [nsArray addObject:dic1];
+    [nsArray addObject:dic2];
+    [nsArray addObject:dic3];
+     for (NSUInteger i = 0; i < [nsArray count]; i++) {
          Place *place = [[Place alloc] init];
          NSDictionary *nsdic = [nsArray objectAtIndex:i];
          place.btnTag = i;
@@ -74,7 +76,7 @@
     DeatilViewController *detail = [[DeatilViewController alloc] init];
     detail.delegate = self;
     Place *place = [[Place alloc] init];
-    NSDictionary *nsdic = [nsArray objectAtIndex:sender.tag];
+    NSDictionary *nsdic = [nsArray objectAtIndex:[sender tag]];
     place.name = [nsdic objectForKey:@"name"];
     place.image = [UIImage imageNamed:[nsdic objectForKey:@"image"]];
     place.latitude = [(NSNumber *)[nsdic objectForKey:@"lat"] doubleValue];
@@ -84,7 +86,6 @@
     [self.navigationController pushViewController:detail animated:YES];
     [detail release];
     [place release];
-    NSLog(@"%d",sender.tag);
 }
 
 - (void)moveToCurrentLocation {
@@ -382,6 +383,7 @@
 - (void) viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     self.navigationController.navigationBarHidden = YES;
+    [self moveToCurrentLocation];
 } 
 
 - (void) loadView {
@@ -436,7 +438,6 @@
     
     self.lineColor = [UIColor blackColor];
     [self moveToCurrentLocation];
-    
 //    NSMutableArray *ns =[NSMutableDictionary ];
 
     [mainMapView autorelease];
@@ -445,7 +446,7 @@
 }
 - (void)Updatemapslider: (id) sender{
     
-    NSLog(@"this is ******%f**",mapslider.value);
+  //  NSLog(@"this is ******%f**",mapslider.value);
     MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(mainMapView.userLocation.location.coordinate,mapslider.value, mapslider.value); 
     [mainMapView setRegion:viewRegion animated:YES];
 }
