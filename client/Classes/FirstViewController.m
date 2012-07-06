@@ -63,8 +63,9 @@
 #pragma mark
 #pragma mark to other view Methods
 - (void)removePins {
-    [self.mainMapView removeAnnotations:self.mainMapView.annotations];
-}
+   // [self.mainMapView removeAnnotations:self.mainMapView.annotations];
+    
+   }
 
 - (void)toCameraViewController {
     CameraViewController *camera = [[CameraViewController alloc] init];
@@ -97,6 +98,31 @@
 - (void)moveToCurrentLocation {
 	[mainMapView setCenterCoordinate:[mainMapView.userLocation coordinate] animated:YES];
 }
+
+#pragma mark
+#pragma mark show Photos and Camera Methods
+
+-(void)showPhotos{
+    [[[AppDelegate getAppDelegate] centerButton] setHidden:YES];
+    UIImagePickerController *imagePickerController = [[UIImagePickerController alloc]init];
+    imagePickerController.delegate = imagePickeDelegate;
+    imagePickerController.allowsImageEditing = YES;
+    imagePickerController.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    [self presentModalViewController:imagePickerController animated:YES];
+    [imagePickerController release];
+}
+
+-(void)showCamera{
+    [[[AppDelegate getAppDelegate] centerButton] setHidden:YES];
+    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+        UIImagePickerController *imagePickerController = [[UIImagePickerController alloc]init];
+        imagePickerController.delegate = imagePickeDelegate;
+        imagePickerController.sourceType = UIImagePickerControllerSourceTypeCamera;
+        [self presentModalViewController:imagePickerController animated:YES];
+        [imagePickerController release];
+    }
+}
+
 
 #pragma mark 
 #pragma mark Google get polyLine Methods
@@ -383,6 +409,7 @@
     self = [super init];
     if (self) {
         canChangeMap = YES;
+        imagePickeDelegate = [[ImagePickeDelegateMthods alloc] init];
     }
     return self;
 }

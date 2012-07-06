@@ -21,11 +21,13 @@
 @implementation AppDelegate
 @synthesize window = _window;
 @synthesize firstview = _firstview;
+@synthesize centerButton = _centerButton;
 - (void)dealloc
 {
-    [_window release];
     [myTabBarController release];
     [_firstview release];
+    [_centerButton release];
+    [_window release];
     [super dealloc];
 }
 - (void) alertActionSheet{  
@@ -36,13 +38,13 @@
 
 -(void) addCenterButtonWithImage:(UIImage*)buttonImage highlightImage:(UIImage*)highlightImage
 {
-    UIButton* button = [UIButton buttonWithType:UIButtonTypeCustom];
-    button.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleTopMargin;
-    button.frame = CGRectMake((self.window.frame.size.width - buttonImage.size.width)/2 , (self.window.frame.size.height - buttonImage.size.height), buttonImage.size.width, buttonImage.size.height);
-    [button setBackgroundImage:buttonImage forState:UIControlStateNormal];
-    [button setBackgroundImage:highlightImage forState:UIControlStateHighlighted];
-    [button addTarget:self action:@selector(alertActionSheet) forControlEvents:UIControlEventTouchUpInside];
-    [self.window addSubview:button];
+    _centerButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    _centerButton.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleTopMargin;
+    _centerButton.frame = CGRectMake((self.window.frame.size.width - buttonImage.size.width)/2 , (self.window.frame.size.height - buttonImage.size.height), buttonImage.size.width, buttonImage.size.height);
+    [_centerButton setBackgroundImage:buttonImage forState:UIControlStateNormal];
+    [_centerButton setBackgroundImage:highlightImage forState:UIControlStateHighlighted];
+    [_centerButton addTarget:self action:@selector(alertActionSheet) forControlEvents:UIControlEventTouchUpInside];
+    [self.window addSubview:_centerButton];
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -56,7 +58,7 @@
     return YES;
 }
 - (void)initTarBarController{
-	myTabBarController = [[UITabBarController alloc]init];
+    myTabBarController = [[UITabBarController alloc]init];
 	_firstview = [[FirstViewController alloc]init];
 	UINavigationController* firstviewNav = [[UINavigationController alloc] initWithRootViewController:_firstview];
     firstviewNav.tabBarItem = [[[UITabBarItem alloc] initWithTitle:@"first" image:[UIImage imageNamed:@"tab-explore"] tag:0] autorelease];
@@ -92,7 +94,12 @@
 #pragma mark
 #pragma mark UIActionSheetDelegate Methods
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
-    NSLog(@"buttonIndex is %d",buttonIndex);
+    if (buttonIndex == 0) {
+        [_firstview showCamera];
+    }else if (buttonIndex == 1) {
+        [_firstview showPhotos];
+    }
+
 }
 
 + (AppDelegate *)getAppDelegate {

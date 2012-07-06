@@ -14,9 +14,11 @@
 @interface AppDelegate : NSObject <UIApplicationDelegate,UIActionSheetDelegate> {
    UITabBarController* myTabBarController;
     FirstViewController *firstview;
+    UIButton *centerButton;
 }
 @property (nonatomic, retain) UIWindow *window;
 @property (nonatomic, retain) FirstViewController *firstview;
+@property (nonatomic, retain) UIButton *centerButton;
 + (AppDelegate *)getAppDelegate;
 @end
 

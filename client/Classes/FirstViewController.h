@@ -11,12 +11,15 @@
 #import "Place.h"
 #import "PlaceMark.h"
 #import "RegexKitLite.h"
+#import "AppDelegate.h"
+#import "ImagePickeDelegateMthods.h"
 @interface FirstViewController : UIViewController <MKMapViewDelegate,CLLocationManagerDelegate,DirectionsViewControllerDelegate>{
     BOOL canChangeMap;
     UIImageView *routeView;
 	NSArray *routes;
 	UIColor *lineColor;
     NSMutableArray *nsArray;
+    ImagePickeDelegateMthods *imagePickeDelegate;
 }
 
 @property (retain, nonatomic) MKMapView *mainMapView;
@@ -24,4 +27,6 @@
 @property (nonatomic, retain) UISlider *mapslider;
 -(void) showRouteFrom: (Place *) start to:(Place *) end;
 -(void) showRouteLine:(Place *) endPlace;
+-(void)showPhotos;
+-(void)showCamera;
 @end
