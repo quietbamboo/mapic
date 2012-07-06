@@ -106,15 +106,15 @@
     [[[AppDelegate getAppDelegate] centerButton] setHidden:YES];
     UIImagePickerController *imagePickerController = [[UIImagePickerController alloc]init];
     imagePickerController.delegate = imagePickeDelegate;
-    imagePickerController.allowsImageEditing = YES;
+  //  imagePickerController.allowsImageEditing = YES;
     imagePickerController.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
     [self presentModalViewController:imagePickerController animated:YES];
     [imagePickerController release];
 }
 
 -(void)showCamera{
-    [[[AppDelegate getAppDelegate] centerButton] setHidden:YES];
     if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+         [[[AppDelegate getAppDelegate] centerButton] setHidden:YES];
         UIImagePickerController *imagePickerController = [[UIImagePickerController alloc]init];
         imagePickerController.delegate = imagePickeDelegate;
         imagePickerController.sourceType = UIImagePickerControllerSourceTypeCamera;
