@@ -47,8 +47,19 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.title = endPlace.name;
+    UILabel *titleText = [[UILabel alloc] initWithFrame: CGRectMake(100, 0, 200, 50)];
+    titleText.backgroundColor = [UIColor clearColor];
+    titleText.textColor=[UIColor whiteColor];
+    [titleText setFont:[UIFont systemFontOfSize:14]];
+    [titleText setText:endPlace.name];
+    titleText.textAlignment = UITextAlignmentCenter;
     
+    self.navigationItem.titleView = titleText;
+    
+    
+
+    //self.title = titleText.text;//endPlace.name;
+    [titleText release];
     UIBarButtonItem *btnRoute = [[UIBarButtonItem alloc] 
                                    initWithTitle:@"路线"                                            
                                    style:UIBarButtonItemStyleBordered 
