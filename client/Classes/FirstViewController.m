@@ -39,12 +39,22 @@
     NSDictionary *dic5 = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:1400],@"Distance",@"logo.png",@"image",[NSNumber numberWithDouble:37.775812],@"lat",[NSNumber numberWithDouble:-122.426403],@"lon",@"故宫",@"name",@"在北京市中心，也称紫禁城，是明清两代的皇宫，先后居住过24个皇帝。现辟为故宫博物院。紫禁城被称为“殿宇之海”，总面积72万多平方米，有殿宇宫室9999间半。周围环绕着高10米，长3400米的宫墙，墙外有52米宽的护城河。紫禁城分外朝和内廷两大部分。外朝以太和、中和、保和三大殿为中心，文华、武英殿为两翼；内廷以乾清宫、交泰殿、坤宁宫为中心，东西六宫为两翼，布局严谨有序。一条从午门、三大殿、后三宫直达御花园的钦安殿和神武门的中路，构成了整个故宫的中轴。这个中轴又在北京城的中轴线上。在紫禁城中轴宫殿两旁，还对称分布着许多殿宇，也都宏伟华丽。紫禁城4个城角都有精巧玲珑的角楼，所谓“九梁十八柱”，异常美观。故宫博物院内陈列我国各个朝代的艺术珍品，是中国最丰富的文化和艺术的宝库。故宫的整个建筑金碧辉煌，庄严绚丽，被誉为世界五大宫之一（北京故宫、凡尔赛宫、白金汉宫、白宫、克里姆林宫），并为联合国科教文组织列为“世界文化遗产”。",@"dec",nil];
     NSDictionary *dic6 = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:1600],@"Distance",@"reset.png",@"image",[NSNumber numberWithDouble:37.775812],@"lat",[NSNumber numberWithDouble:-122.416403],@"lon",@"北海公园",@"name",@"位于故宫西北。北海占地70余万平方米，水面占全园面积一半以上。北海及其南面的中海和南海均为皇城内最重要的皇家园林，因位于紫禁城西，当时统称为西苑。琼华岛是北海景物的中心，也是历代帝王心目中的海上仙山。清顺治8年（公元1651年）在琼华岛山顶建喇嘛塔（白塔），山前建佛寺。北海北岸布置了几组宗教建筑，有：小西天、大西天、阐福寺，西天梵境等，还有五色琉璃镶砌的九龙壁，两面各有蟠龙9条，戏珠于波涛云际，造型生动，色彩明快。园内还保存有文物铁影壁、一座16面多角形塔式石幢、495方历代著名书法家真迹、万岁山团城和承光殿玉佛等",@"dec",nil];
     nsArray = [[NSMutableArray alloc] initWithCapacity:0];
-    [nsArray addObject:dic1];
-    [nsArray addObject:dic2];
-    [nsArray addObject:dic3];
-    [nsArray addObject:dic4];
-    [nsArray addObject:dic5];
-    [nsArray addObject:dic6];
+    if (isinitArray) {
+        [nsArray removeAllObjects];
+        [nsArray addObject:dic1];
+        [nsArray addObject:dic2];
+        [nsArray addObject:dic3];
+        [nsArray addObject:dic4];
+        [nsArray addObject:dic5];
+        [nsArray addObject:dic6];
+    }else {
+        [nsArray addObject:dic1];
+        [nsArray addObject:dic2];
+        [nsArray addObject:dic3];
+        [nsArray addObject:dic4];
+        [nsArray addObject:dic5];
+        [nsArray addObject:dic6];
+    }
      for (NSUInteger i = 0; i < [nsArray count]; i++) {
          Place *place = [[Place alloc] init];
          NSDictionary *nsdic = [nsArray objectAtIndex:i];
@@ -69,8 +79,12 @@
 #pragma mark
 #pragma mark to other view Methods
 - (void)removePins {
-   // [self.mainMapView removeAnnotations:self.mainMapView.annotations];
-    
+    isinitArray = YES;
+   [self.mainMapView removeAnnotations:self.mainMapView.annotations];
+   // [self.mainMapView.annotations removeAllObjects];
+    [self moveToCurrentLocation];
+    mainMapView.showsUserLocation = YES;
+    [self initnaArray]; 
    }
 
 - (void)toCameraViewController {
@@ -332,8 +346,6 @@
                                          [FirstViewController annotationPadding],
                                          [FirstViewController annotationPadding]).size;
             maxSize.height -= self.navigationController.navigationBar.frame.size.height + [FirstViewController calloutHeight];
-            NSLog(@"this is image width **%f** height ***%f*",resizeRect.size.width,resizeRect.size.height);
-            NSLog(@"this is maxsize width **%f** height ***%f*",maxSize.width,maxSize.height);
             if (resizeRect.size.width > maxSize.width)
                 resizeRect.size = CGSizeMake(maxSize.width - 200, resizeRect.size.height / resizeRect.size.width * maxSize.width - 300);
             if (resizeRect.size.height > maxSize.height)
@@ -465,6 +477,7 @@
     
     self.lineColor = [UIColor blackColor];
     [mainMapView autorelease];
+    isinitArray = NO;
     [self initnaArray];
 
    	// Do any additional setup after loading the view.

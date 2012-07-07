@@ -21,6 +21,7 @@
 	UIColor *lineColor;
     NSMutableArray *nsArray;
     ImagePickeDelegateMthods *imagePickeDelegate;
+    BOOL                isinitArray;
 }
 
 @property (retain, nonatomic) MKMapView *mainMapView;
