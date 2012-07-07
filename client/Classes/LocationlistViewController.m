@@ -85,7 +85,7 @@
     UILabel *namelable = [[UILabel alloc] initWithFrame:CGRectMake(60, 2.0, 130, 30.0)];
     namelable.text = [nsdic objectForKey:@"name"];
     namelable.font = [UIFont boldSystemFontOfSize:15];     
-    namelable.textColor = [UIColor purpleColor];         
+    namelable.textColor = [UIColor blackColor];         
     namelable.textAlignment = UITextAlignmentLeft; 
     namelable.numberOfLines = 1;
     namelable.lineBreakMode = UILineBreakModeTailTruncation;
@@ -95,7 +95,7 @@
     UILabel *desclabel = [[UILabel alloc]initWithFrame:CGRectMake(195.0, 2.0, 80.0, 56.0)];
     desclabel.text = [nsdic objectForKey:@"dec"];   
     
-    desclabel.font = [UIFont boldSystemFontOfSize:12];     
+    desclabel.font = [UIFont boldSystemFontOfSize:10];     
     desclabel.textColor = [UIColor purpleColor];         
     desclabel.textAlignment = UITextAlignmentLeft; 
     desclabel.numberOfLines = 3;
