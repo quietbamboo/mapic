@@ -19,10 +19,12 @@
 		18A3442E15A2F31800BB3185 /* tab-explore@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18A3442C15A2F31800BB3185 /* tab-explore@2x.png */; };
 		18AC4C0D14BE8113004EFF99 /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18AC4C0C14BE8113004EFF99 /* iAd.framework */; };
 		18D132FA156F484200257F4B /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18D132F9156F484200257F4B /* CFNetwork.framework */; };
+		18FFDC3515A7D0A10068952B /* weibo.png in Resources */ = {isa = PBXBuildFile; fileRef = 18FFDC3315A7D0A10068952B /* weibo.png */; };
+		18FFDC3615A7D0A10068952B /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 18FFDC3415A7D0A10068952B /* logo.png */; };
+		18FFDCCA15A7EA760068952B /* libiphone-exif.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 18FFDCC915A7EA760068952B /* libiphone-exif.a */; };
 		1D3623260D0F684500981E51 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* AppDelegate.m */; };
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
-		274B4A9515A2926300DF86F1 /* libiphone-exif.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 274B4A9415A2926300DF86F1 /* libiphone-exif.a */; };
 		274B4A9815A2934300DF86F1 /* LocationlistViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 274B4A9715A2934300DF86F1 /* LocationlistViewController.m */; };
 		274B4ACB15A2CDB800DF86F1 /* camera_button_take.png in Resources */ = {isa = PBXBuildFile; fileRef = 274B4ABD15A2CDB800DF86F1 /* camera_button_take.png */; };
 		274B4ACC15A2CDB800DF86F1 /* camera_button_take@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 274B4ABE15A2CDB800DF86F1 /* camera_button_take@2x.png */; };
@@ -70,21 +72,23 @@
 		18A3442C15A2F31800BB3185 /* tab-explore@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "tab-explore@2x.png"; path = "Classes/tab-explore@2x.png"; sourceTree = "<group>"; };
 		18AC4C0C14BE8113004EFF99 /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
 		18D132F9156F484200257F4B /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		18FFDC3315A7D0A10068952B /* weibo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = weibo.png; sourceTree = "<group>"; };
+		18FFDC3415A7D0A10068952B /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
+		18FFDCC915A7EA760068952B /* libiphone-exif.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libiphone-exif.a"; sourceTree = "<group>"; };
+		18FFDCCD15A7EB7D0068952B /* EXF.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EXF.h; sourceTree = "<group>"; };
+		18FFDCCE15A7EB7D0068952B /* EXFConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EXFConstants.h; sourceTree = "<group>"; };
+		18FFDCCF15A7EB7D0068952B /* EXFGPS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EXFGPS.h; sourceTree = "<group>"; };
+		18FFDCD015A7EB7D0068952B /* EXFHandlers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EXFHandlers.h; sourceTree = "<group>"; };
+		18FFDCD115A7EB7D0068952B /* EXFJFIF.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EXFJFIF.h; sourceTree = "<group>"; };
+		18FFDCD215A7EB7D0068952B /* EXFJpeg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EXFJpeg.h; sourceTree = "<group>"; };
+		18FFDCD315A7EB7D0068952B /* EXFLogging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EXFLogging.h; sourceTree = "<group>"; };
+		18FFDCD415A7EB7D0068952B /* EXFMetaData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EXFMetaData.h; sourceTree = "<group>"; };
+		18FFDCD515A7EB7D0068952B /* EXFTagDefinitionHolder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EXFTagDefinitionHolder.h; sourceTree = "<group>"; };
+		18FFDCD615A7EB7D0068952B /* EXFUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EXFUtils.h; sourceTree = "<group>"; };
 		1D3623240D0F684500981E51 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		1D3623250D0F684500981E51 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		1D6058910D05DD3D006BFB54 /* DaiDai.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DaiDai.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		274B4A8915A2924600DF86F1 /* EXF.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EXF.h; sourceTree = "<group>"; };
-		274B4A8A15A2924600DF86F1 /* EXFConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EXFConstants.h; sourceTree = "<group>"; };
-		274B4A8B15A2924600DF86F1 /* EXFGPS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EXFGPS.h; sourceTree = "<group>"; };
-		274B4A8C15A2924600DF86F1 /* EXFHandlers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EXFHandlers.h; sourceTree = "<group>"; };
-		274B4A8D15A2924600DF86F1 /* EXFJFIF.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EXFJFIF.h; sourceTree = "<group>"; };
-		274B4A8E15A2924600DF86F1 /* EXFJpeg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EXFJpeg.h; sourceTree = "<group>"; };
-		274B4A8F15A2924600DF86F1 /* EXFLogging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EXFLogging.h; sourceTree = "<group>"; };
-		274B4A9015A2924600DF86F1 /* EXFMetaData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EXFMetaData.h; sourceTree = "<group>"; };
-		274B4A9115A2924600DF86F1 /* EXFTagDefinitionHolder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EXFTagDefinitionHolder.h; sourceTree = "<group>"; };
-		274B4A9215A2924600DF86F1 /* EXFUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EXFUtils.h; sourceTree = "<group>"; };
-		274B4A9415A2926300DF86F1 /* libiphone-exif.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libiphone-exif.a"; sourceTree = "<group>"; };
 		274B4A9615A2934300DF86F1 /* LocationlistViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationlistViewController.h; sourceTree = "<group>"; };
 		274B4A9715A2934300DF86F1 /* LocationlistViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationlistViewController.m; sourceTree = "<group>"; };
 		274B4ABD15A2CDB800DF86F1 /* camera_button_take.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = camera_button_take.png; sourceTree = "<group>"; };
@@ -138,7 +142,7 @@
 				288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */,
 				EB383B6510BBF62B0000B2D2 /* QuartzCore.framework in Frameworks */,
 				ECC37D9D124195B200F97B50 /* MessageUI.framework in Frameworks */,
-				274B4A9515A2926300DF86F1 /* libiphone-exif.a in Frameworks */,
+				18FFDCCA15A7EA760068952B /* libiphone-exif.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -148,8 +152,7 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				274B4A9415A2926300DF86F1 /* libiphone-exif.a */,
-				274B4A8615A2924600DF86F1 /* usr */,
+				18FFDCCC15A7EB7C0068952B /* include */,
 				27A97338159F0111000E165D /* RegexKitLite.h */,
 				27A97339159F0111000E165D /* RegexKitLite.m */,
 				27A97332159EF7FD000E165D /* Place.h */,
@@ -176,45 +179,29 @@
 			path = Classes;
 			sourceTree = "<group>";
 		};
+		18FFDCCC15A7EB7C0068952B /* include */ = {
+			isa = PBXGroup;
+			children = (
+				18FFDCCD15A7EB7D0068952B /* EXF.h */,
+				18FFDCCE15A7EB7D0068952B /* EXFConstants.h */,
+				18FFDCCF15A7EB7D0068952B /* EXFGPS.h */,
+				18FFDCD015A7EB7D0068952B /* EXFHandlers.h */,
+				18FFDCD115A7EB7D0068952B /* EXFJFIF.h */,
+				18FFDCD215A7EB7D0068952B /* EXFJpeg.h */,
+				18FFDCD315A7EB7D0068952B /* EXFLogging.h */,
+				18FFDCD415A7EB7D0068952B /* EXFMetaData.h */,
+				18FFDCD515A7EB7D0068952B /* EXFTagDefinitionHolder.h */,
+				18FFDCD615A7EB7D0068952B /* EXFUtils.h */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
 		19C28FACFE9D520D11CA2CBB /* Products */ = {
 			isa = PBXGroup;
 			children = (
 				1D6058910D05DD3D006BFB54 /* DaiDai.app */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		274B4A8615A2924600DF86F1 /* usr */ = {
-			isa = PBXGroup;
-			children = (
-				274B4A8715A2924600DF86F1 /* local */,
-			);
-			path = usr;
-			sourceTree = "<group>";
-		};
-		274B4A8715A2924600DF86F1 /* local */ = {
-			isa = PBXGroup;
-			children = (
-				274B4A8815A2924600DF86F1 /* include */,
-			);
-			path = local;
-			sourceTree = "<group>";
-		};
-		274B4A8815A2924600DF86F1 /* include */ = {
-			isa = PBXGroup;
-			children = (
-				274B4A8915A2924600DF86F1 /* EXF.h */,
-				274B4A8A15A2924600DF86F1 /* EXFConstants.h */,
-				274B4A8B15A2924600DF86F1 /* EXFGPS.h */,
-				274B4A8C15A2924600DF86F1 /* EXFHandlers.h */,
-				274B4A8D15A2924600DF86F1 /* EXFJFIF.h */,
-				274B4A8E15A2924600DF86F1 /* EXFJpeg.h */,
-				274B4A8F15A2924600DF86F1 /* EXFLogging.h */,
-				274B4A9015A2924600DF86F1 /* EXFMetaData.h */,
-				274B4A9115A2924600DF86F1 /* EXFTagDefinitionHolder.h */,
-				274B4A9215A2924600DF86F1 /* EXFUtils.h */,
-			);
-			path = include;
 			sourceTree = "<group>";
 		};
 		274B4ABC15A2CDB800DF86F1 /* DailyBooth */ = {
@@ -243,8 +230,8 @@
 			children = (
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
-				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
+				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
 			);
 			name = CustomTemplate;
@@ -262,6 +249,8 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				18FFDC3315A7D0A10068952B /* weibo.png */,
+				18FFDC3415A7D0A10068952B /* logo.png */,
 				18A3442B15A2F31800BB3185 /* tab-explore.png */,
 				18A3442C15A2F31800BB3185 /* tab-explore@2x.png */,
 				274B4ABC15A2CDB800DF86F1 /* DailyBooth */,
@@ -277,6 +266,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				18FFDCC915A7EA760068952B /* libiphone-exif.a */,
 				27A9733B159F0136000E165D /* libicucore.dylib */,
 				187D6801159D4AFD00E41A6B /* MapKit.framework */,
 				18D132F9156F484200257F4B /* CFNetwork.framework */,
@@ -367,6 +357,8 @@
 				274B4AD815A2CDB800DF86F1 /* tabBar_cameraButton_ready_matte@2x.png in Resources */,
 				18A3442D15A2F31800BB3185 /* tab-explore.png in Resources */,
 				18A3442E15A2F31800BB3185 /* tab-explore@2x.png in Resources */,
+				18FFDC3515A7D0A10068952B /* weibo.png in Resources */,
+				18FFDC3615A7D0A10068952B /* logo.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
