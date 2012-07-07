@@ -7,7 +7,7 @@
 //
 
 #import "LocationlistViewController.h"
-
+#define TableViewTag 100
 @interface LocationlistViewController ()
 
 @end
@@ -39,12 +39,22 @@
     NSDictionary *dic5 = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:1400],@"Distance",@"logo.png",@"image",[NSNumber numberWithDouble:37.775812],@"lat",[NSNumber numberWithDouble:-122.426403],@"lon",@"故宫",@"name",@"在北京市中心，也称紫禁城，是明清两代的皇宫，先后居住过24个皇帝。现辟为故宫博物院。紫禁城被称为“殿宇之海”，总面积72万多平方米，有殿宇宫室9999间半。周围环绕着高10米，长3400米的宫墙，墙外有52米宽的护城河。紫禁城分外朝和内廷两大部分。外朝以太和、中和、保和三大殿为中心，文华、武英殿为两翼；内廷以乾清宫、交泰殿、坤宁宫为中心，东西六宫为两翼，布局严谨有序。一条从午门、三大殿、后三宫直达御花园的钦安殿和神武门的中路，构成了整个故宫的中轴。这个中轴又在北京城的中轴线上。在紫禁城中轴宫殿两旁，还对称分布着许多殿宇，也都宏伟华丽。紫禁城4个城角都有精巧玲珑的角楼，所谓“九梁十八柱”，异常美观。故宫博物院内陈列我国各个朝代的艺术珍品，是中国最丰富的文化和艺术的宝库。故宫的整个建筑金碧辉煌，庄严绚丽，被誉为世界五大宫之一（北京故宫、凡尔赛宫、白金汉宫、白宫、克里姆林宫），并为联合国科教文组织列为“世界文化遗产”。",@"dec",nil];
     NSDictionary *dic6 = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:1600],@"Distance",@"reset.png",@"image",[NSNumber numberWithDouble:37.775812],@"lat",[NSNumber numberWithDouble:-122.416403],@"lon",@"北海公园",@"name",@"位于故宫西北。北海占地70余万平方米，水面占全园面积一半以上。北海及其南面的中海和南海均为皇城内最重要的皇家园林，因位于紫禁城西，当时统称为西苑。琼华岛是北海景物的中心，也是历代帝王心目中的海上仙山。清顺治8年（公元1651年）在琼华岛山顶建喇嘛塔（白塔），山前建佛寺。北海北岸布置了几组宗教建筑，有：小西天、大西天、阐福寺，西天梵境等，还有五色琉璃镶砌的九龙壁，两面各有蟠龙9条，戏珠于波涛云际，造型生动，色彩明快。园内还保存有文物铁影壁、一座16面多角形塔式石幢、495方历代著名书法家真迹、万岁山团城和承光殿玉佛等",@"dec",nil];
     nsArray = [[NSMutableArray alloc] initWithCapacity:0];
-    [nsArray addObject:dic1];
-    [nsArray addObject:dic2];
-    [nsArray addObject:dic3];
-    [nsArray addObject:dic4];
-    [nsArray addObject:dic5];
-    [nsArray addObject:dic6];
+    if (isloading) {
+        [nsArray removeAllObjects];
+        [nsArray addObject:dic6];
+        [nsArray addObject:dic5];
+        [nsArray addObject:dic4];
+        [nsArray addObject:dic3];
+        [nsArray addObject:dic2];
+        [nsArray addObject:dic1];
+    }else {
+        [nsArray addObject:dic1];
+        [nsArray addObject:dic2];
+        [nsArray addObject:dic3];
+        [nsArray addObject:dic4];
+        [nsArray addObject:dic5];
+        [nsArray addObject:dic6];
+    }
     
 }
 
@@ -164,12 +174,27 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     [self initNStableArray];
-    UITableView *tableview= [[UITableView alloc] initWithFrame:CGRectMake(0,0, 320, 436) style:UITableViewStylePlain];
+    UITableView *tableview= [[UITableView alloc] initWithFrame:CGRectMake(0,0, 320, 421) style:UITableViewStylePlain];
     tableview.separatorStyle = UITableViewStyleGrouped;
     //tableview.separatorColor = [UIColor blackColor];
+    tableview.tag = TableViewTag;
     [tableview setDelegate:self];
     [tableview setDataSource:self];
     [self.view addSubview: tableview];
+    isloading = NO;
+    if (_refreshHeaderView == nil) {
+        
+        EGORefreshTableHeaderView *view = [[EGORefreshTableHeaderView alloc] initWithFrame:CGRectMake(0.0f, 0.0f - tableview.bounds.size.height, self.view.frame.size.width, tableview.bounds.size.height)];
+        view.delegate = self;
+        [tableview addSubview:view];
+        _refreshHeaderView = view;
+        [view release];
+        
+    }
+    
+    //  update the last update date
+    [_refreshHeaderView refreshLastUpdatedDate];
+    
     [tableview release];
 }
 - (void)viewDidUnload
@@ -182,6 +207,53 @@
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
+#pragma mark -
+#pragma mark UIScrollViewDelegate Methods
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView{	
+    [_refreshHeaderView egoRefreshScrollViewDidScroll:scrollView];
+}
+
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{
+    
+	[_refreshHeaderView egoRefreshScrollViewDidEndDragging:scrollView];
+}
+#pragma mark -
+#pragma mark Data Source Loading / Reloading Methods
+
+- (void)reloadTableViewDataSource{
+	isloading = YES;
+    [self initNStableArray];
+}
+
+- (void)doneLoadingTableViewData{
+	//  model should call this when its done loading
+	isloading = NO;
+    UITableView *tableView = (UITableView *)[self.view viewWithTag:TableViewTag];
+	[_refreshHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:tableView];
+    [tableView reloadData];
+	
+}
+#pragma mark -
+#pragma mark EGORefreshTableHeaderDelegate Methods
+
+- (void) egoRefreshTableHeaderDidTriggerRefresh:(EGORefreshTableHeaderView*) view {
+	
+	[self reloadTableViewDataSource];
+	[self performSelector:@selector(doneLoadingTableViewData) withObject:nil afterDelay:3.0];
+	
+}
+
+- (BOOL) egoRefreshTableHeaderDataSourceIsLoading:(EGORefreshTableHeaderView*) view {
+	
+	return isloading; // should return if data source model is reloading
+	
+}
+
+- (NSDate*) egoRefreshTableHeaderDataSourceLastUpdated:(EGORefreshTableHeaderView*) view {
+	return [NSDate date]; // should return date data source was last changed
 }
 
 @end

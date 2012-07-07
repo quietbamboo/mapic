@@ -9,6 +9,7 @@
 #import "FirstViewController.h"
 #import "CameraViewController.h"
 #import "SettingViewController.h"
+#define ButtonTag 1000
 @interface FirstViewController ()
 
 @end
@@ -16,7 +17,6 @@
 @implementation FirstViewController
 @synthesize mainMapView;
 @synthesize lineColor;
-@synthesize mapslider;
 
 #pragma mark
 #pragma mark get some annotaion size
@@ -48,7 +48,7 @@
      for (NSUInteger i = 0; i < [nsArray count]; i++) {
          Place *place = [[Place alloc] init];
          NSDictionary *nsdic = [nsArray objectAtIndex:i];
-         place.btnTag = i;
+         place.btnTag = ButtonTag + i;
          place.name = [nsdic objectForKey:@"name"];
          place.image = [UIImage imageNamed:[nsdic objectForKey:@"image"]];
          place.latitude = [(NSNumber *)[nsdic objectForKey:@"lat"] doubleValue];
@@ -59,6 +59,12 @@
          [place release];
          [placeMark release];
     }
+}
+- (void)updateMapSlider: (UISlider *) sender{
+    
+    //  NSLog(@"this is ******%f**",mapslider.value);
+    MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(mainMapView.userLocation.location.coordinate,sender.value, sender.value); 
+    [mainMapView setRegion:viewRegion animated:YES];
 }
 #pragma mark
 #pragma mark to other view Methods
@@ -83,7 +89,7 @@
     DeatilViewController *detail = [[DeatilViewController alloc] init];
     detail.delegate = self;
     Place *place = [[Place alloc] init];
-    NSDictionary *nsdic = [nsArray objectAtIndex:[sender tag]];
+    NSDictionary *nsdic = [nsArray objectAtIndex:([sender tag] - ButtonTag) ];
     place.name = [nsdic objectForKey:@"name"];
     place.image = [UIImage imageNamed:[nsdic objectForKey:@"image"]];
     place.latitude = [(NSNumber *)[nsdic objectForKey:@"lat"] doubleValue];
@@ -97,11 +103,6 @@
 
 - (void)moveToCurrentLocation {
 	[mainMapView setCenterCoordinate:[mainMapView.userLocation coordinate] animated:YES];
-//    CLLocationCoordinate2D mapCenter = mainMapView.centerCoordinate;
-//    mapCenter = [mainMapView convertPoint:
-//                 CGPointMake(1, (mainMapView.frame.size.height/2.0))
-//                     toCoordinateFromView:mainMapView];
-//    [mainMapView setCenterCoordinate:mapCenter animated:YES];
 }
 
 #pragma mark
@@ -407,7 +408,7 @@
 - (void) viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     self.navigationController.navigationBarHidden = YES;
-    [self moveToCurrentLocation];
+    //[self moveToCurrentLocation];
 } 
 
 - (void) loadView {
@@ -426,32 +427,32 @@
 	locationManager.distanceFilter = 1000.0f;
     [locationManager startUpdatingLocation];
     
-    UIButton *resetButton = [UIButton buttonWithType:UIButtonTypeInfoDark];
-    resetButton.frame = CGRectMake(270, 386, 40, 40);
-    [resetButton setTitle:@"重置" forState:UIControlStateNormal];
-    [resetButton setImage:[UIImage imageNamed:@"reset.png"] forState:UIControlStateNormal];
-    [resetButton addTarget:self action:@selector(removePins) forControlEvents:UIControlEventTouchUpInside];
-    
-    mapslider = [[[UISlider alloc] initWithFrame:CGRectMake(60, 10, 200, 10)] autorelease];
-    mapslider.maximumValue = 10000;
-    mapslider.minimumValue = 0;
-    mapslider.value = 1000;
-    [mapslider addTarget:self action:@selector(Updatemapslider:) forControlEvents:UIControlEventTouchUpInside];
-    
     mainMapView = [[MKMapView alloc] initWithFrame:CGRectMake(0, 0, 320, 430)];  
     mainMapView.mapType = MKMapTypeStandard;   
     mainMapView.zoomEnabled = YES; 
     mainMapView.scrollEnabled = YES;
     mainMapView.showsUserLocation = YES;
     mainMapView.delegate = self;
-    
-    [mainMapView addSubview:resetButton];
     [self.view  addSubview:mainMapView];
+    
+    UIButton *resetButton = [UIButton buttonWithType:UIButtonTypeInfoDark];
+    resetButton.frame = CGRectMake(270, 386, 40, 40);
+    [resetButton setTitle:@"重置" forState:UIControlStateNormal];
+    [resetButton setImage:[UIImage imageNamed:@"reset.png"] forState:UIControlStateNormal];
+    [resetButton addTarget:self action:@selector(removePins) forControlEvents:UIControlEventTouchUpInside];
+    [mainMapView addSubview:resetButton];
+    
     routeView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, mainMapView.frame.size.width, mainMapView.frame.size.height)];
     routeView.userInteractionEnabled = NO;
     [mainMapView addSubview:routeView];
+
+   UISlider  *mapslider = [[[UISlider alloc] initWithFrame:CGRectMake(60, 10, 200, 10)] autorelease];
+    mapslider.maximumValue = 10000;
+    mapslider.minimumValue = 0;
+    mapslider.value = 1000;
+    [mapslider addTarget:self action:@selector(updateMapSlider:) forControlEvents:UIControlEventTouchUpInside];
     [mainMapView addSubview:mapslider];
-    
+    //[mapslider release];
    
     MKCoordinateSpan theSpan; 
     theSpan.latitudeDelta = 0.05f; 
@@ -463,18 +464,12 @@
     [mainMapView setRegion:theRegion]; 
     
     self.lineColor = [UIColor blackColor];
-  
     [mainMapView autorelease];
     [self initnaArray];
 
    	// Do any additional setup after loading the view.
 }
-- (void)Updatemapslider: (id) sender{
-    
-  //  NSLog(@"this is ******%f**",mapslider.value);
-    MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(mainMapView.userLocation.location.coordinate,mapslider.value, mapslider.value); 
-    [mainMapView setRegion:viewRegion animated:YES];
-}
+
 
 - (void)viewDidUnload
 {

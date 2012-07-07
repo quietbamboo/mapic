@@ -9,9 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "DeatilViewController.h"
 #import "AppDelegate.h"
-@interface LocationlistViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,DirectionsViewControllerDelegate>{
+#import "EGORefreshTableHeaderView.h"
+@interface LocationlistViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,DirectionsViewControllerDelegate,EGORefreshTableHeaderDelegate>{
 
     NSMutableArray *nsArray;
+    EGORefreshTableHeaderView *_refreshHeaderView;
+    BOOL                isloading;
 }
 
 @end
