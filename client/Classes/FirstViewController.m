@@ -97,6 +97,11 @@
 
 - (void)moveToCurrentLocation {
 	[mainMapView setCenterCoordinate:[mainMapView.userLocation coordinate] animated:YES];
+//    CLLocationCoordinate2D mapCenter = mainMapView.centerCoordinate;
+//    mapCenter = [mainMapView convertPoint:
+//                 CGPointMake(1, (mainMapView.frame.size.height/2.0))
+//                     toCoordinateFromView:mainMapView];
+//    [mainMapView setCenterCoordinate:mapCenter animated:YES];
 }
 
 #pragma mark
@@ -291,24 +296,7 @@
 }
 - (void) mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation{
     if (canChangeMap) {
-//        MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(mainMapView.userLocation.location.coordinate,1000, 1000); 
-//        [mainMapView setRegion:viewRegion];
-       
-//        [dic1 release];
-//        [dic2 release];
-//        [dic3 release];
-//        [nsArray release];
-//        Place *place = [[Place alloc] init];
-//        place.name = @"清河北大";
-//        place.image = [UIImage imageNamed:@"andong.jpg"];
-//        place.description = nil;
-//        place.longitude = 116.319281;
-//        place.latitude = 39.936996;
-//        PlaceMark *placeMark = [[PlaceMark alloc] initWithPlace:place];
-//        [self.mainMapView addAnnotation:placeMark];
-//        [place release];
-//        [placeMark release];
-       
+        [self moveToCurrentLocation];
     }
     
 }
@@ -430,6 +418,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    CLLocationManager *locationManager = [[CLLocationManager alloc] init];
+    locationManager.delegate = self;
+    locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+	locationManager.distanceFilter = 1000.0f;
+    [locationManager startUpdatingLocation];
+    
     UIButton *resetButton = [UIButton buttonWithType:UIButtonTypeInfoDark];
     resetButton.frame = CGRectMake(270, 386, 40, 40);
     [resetButton setTitle:@"重置" forState:UIControlStateNormal];
@@ -453,14 +447,10 @@
     [self.view  addSubview:mainMapView];
     routeView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, mainMapView.frame.size.width, mainMapView.frame.size.height)];
     routeView.userInteractionEnabled = NO;
-   [mainMapView addSubview:routeView];
+    [mainMapView addSubview:routeView];
     [mainMapView addSubview:mapslider];
     
-    CLLocationManager *locationManager = [[CLLocationManager alloc] init];
-    locationManager.delegate = self;
-    locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-	locationManager.distanceFilter = 1000.0f;
-    [locationManager startUpdatingLocation];
+   
     MKCoordinateSpan theSpan; 
     theSpan.latitudeDelta = 0.05f; 
     theSpan.longitudeDelta = 0.05f; 
@@ -471,9 +461,7 @@
     [mainMapView setRegion:theRegion]; 
     
     self.lineColor = [UIColor blackColor];
-    [self moveToCurrentLocation];
-//    NSMutableArray *ns =[NSMutableDictionary ];
-
+  
     [mainMapView autorelease];
     [self initnaArray];
 
