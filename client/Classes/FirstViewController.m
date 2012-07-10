@@ -80,11 +80,22 @@
 #pragma mark to other view Methods
 - (void)removePins {
     isinitArray = YES;
-   [self.mainMapView removeAnnotations:self.mainMapView.annotations];
+   //[self.mainMapView removeAnnotations:self.mainMapView.annotations];
+    
+    for (id<MKAnnotation> myAnnotation in mainMapView.annotations ) {
+        if ([myAnnotation isKindOfClass:[MKUserLocation class]]){
+            
+        }else {
+             [self.mainMapView removeAnnotation:myAnnotation];
+        }
+         
+    }
+  
+   
    // [self.mainMapView.annotations removeAllObjects];
     [self moveToCurrentLocation];
     mainMapView.showsUserLocation = YES;
-    [self initnaArray]; 
+    //[self initnaArray]; 
    }
 
 - (void)toCameraViewController {
