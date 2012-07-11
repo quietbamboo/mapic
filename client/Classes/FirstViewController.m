@@ -88,10 +88,7 @@
         }else {
              [self.mainMapView removeAnnotation:myAnnotation];
         }
-         
     }
-  
-   
    // [self.mainMapView.annotations removeAllObjects];
     [self moveToCurrentLocation];
     mainMapView.showsUserLocation = YES;

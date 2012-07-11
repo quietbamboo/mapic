@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface UploadViewController : UIViewController
+@interface UploadViewController : UIViewController<UIScrollViewDelegate>{
+
+    UIScrollView *scrollview;
+}
 
 @end
