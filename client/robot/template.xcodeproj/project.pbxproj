@@ -16,7 +16,6 @@
 		18A61B0214C00FAE0087908A /* warning_22@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18A61B0114C00FAE0087908A /* warning_22@2x.png */; };
 		18A61B8414C024A50087908A /* delete_22.png in Resources */ = {isa = PBXBuildFile; fileRef = 18A61B8314C024A50087908A /* delete_22.png */; };
 		18AC4C0D14BE8113004EFF99 /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18AC4C0C14BE8113004EFF99 /* iAd.framework */; };
-		18C518E514ADA30A00989BA1 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18C518E414ADA30A00989BA1 /* GameKit.framework */; };
 		18CC804C14D62AB4005754DE /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18CC804B14D62AB4005754DE /* Security.framework */; };
 		18D132FA156F484200257F4B /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18D132F9156F484200257F4B /* CFNetwork.framework */; };
 		18E36A7415AD4253006E62AA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E36A6415AD4253006E62AA /* AppDelegate.m */; };
@@ -230,9 +229,7 @@
 		18A61B0114C00FAE0087908A /* warning_22@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "warning_22@2x.png"; sourceTree = "<group>"; };
 		18A61B8314C024A50087908A /* delete_22.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = delete_22.png; sourceTree = "<group>"; };
 		18AC4C0C14BE8113004EFF99 /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
-		18C518E414ADA30A00989BA1 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		18CC804B14D62AB4005754DE /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
-		18D132F7156F475000257F4B /* SpeechKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SpeechKit.framework; sourceTree = "<group>"; };
 		18D132F9156F484200257F4B /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		18E36A6415AD4253006E62AA /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		18E36A6515AD4253006E62AA /* CameraViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraViewController.m; sourceTree = "<group>"; };
@@ -350,7 +347,6 @@
 				2782827F1541645500326471 /* AVFoundation.framework in Frameworks */,
 				18CC804C14D62AB4005754DE /* Security.framework in Frameworks */,
 				18AC4C0D14BE8113004EFF99 /* iAd.framework in Frameworks */,
-				18C518E514ADA30A00989BA1 /* GameKit.framework in Frameworks */,
 				EC8D9E341400683F00D3180C /* CoreLocation.framework in Frameworks */,
 				EC69030813850D7C002DD900 /* SystemConfiguration.framework in Frameworks */,
 				ECA20DD0133722BC00AD7CB6 /* Foundation.framework in Frameworks */,
@@ -506,13 +502,11 @@
 				18E3C9DF1576FF56000418D7 /* CoreVideo.framework */,
 				18E3C9DD1576FF40000418D7 /* CoreMedia.framework */,
 				18D132F9156F484200257F4B /* CFNetwork.framework */,
-				18D132F7156F475000257F4B /* SpeechKit.framework */,
 				27F85C741548F2AF0053FBEC /* StoreKit.framework */,
 				7A0346B01546604F00BB2432 /* Accelerate.framework */,
 				2782827E1541645500326471 /* AVFoundation.framework */,
 				18CC804B14D62AB4005754DE /* Security.framework */,
 				18AC4C0C14BE8113004EFF99 /* iAd.framework */,
-				18C518E414ADA30A00989BA1 /* GameKit.framework */,
 				EC8D9E331400683F00D3180C /* CoreLocation.framework */,
 				EC69030713850D7C002DD900 /* SystemConfiguration.framework */,
 				ECA20DCF133722BC00AD7CB6 /* Foundation.framework */,
