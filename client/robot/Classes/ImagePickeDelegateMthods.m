@@ -26,8 +26,10 @@
     
     NSLog(@"this is good");
      //imageView为自己定义的UIImageView
+    UIImageWriteToSavedPhotosAlbum(image,nil,nil,nil);
     [picker dismissModalViewControllerAnimated:YES];
     [[[AppDelegate getAppDelegate] centerButton] setHidden:NO];
+    
 
 }
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
