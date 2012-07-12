@@ -12,5 +12,5 @@
 
     UIScrollView *scrollview;
 }
-
+@property (nonatomic,retain) UIImage *image;
 @end

@@ -27,17 +27,18 @@
     NSLog(@"this is good");
      //imageView为自己定义的UIImageView
     UIImageWriteToSavedPhotosAlbum(image,nil,nil,nil);
+    //[picker.navigationController pushViewController:upload animated:YES];
     [picker dismissModalViewControllerAnimated:YES];
-    [[[AppDelegate getAppDelegate] centerButton] setHidden:NO];
-    
-
+    //[[[AppDelegate getAppDelegate] centerButton] setHidden:NO];
+    UploadViewController *upload = [[UploadViewController alloc] init];
+    upload.image = image;
 }
-- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
-    NSLog(@"this is info");
-  //  imageView.image = image; //imageView为自己定义的UIImageView
-    [picker dismissModalViewControllerAnimated:YES];
-        [[[AppDelegate getAppDelegate] centerButton] setHidden:NO];
-}
+//- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
+//    NSLog(@"this is info");
+//  //  imageView.image = image; //imageView为自己定义的UIImageView
+//    [picker dismissModalViewControllerAnimated:YES];
+//        [[[AppDelegate getAppDelegate] centerButton] setHidden:NO];
+//}
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker{
     NSLog(@"this is picker");
     [picker dismissModalViewControllerAnimated:YES];

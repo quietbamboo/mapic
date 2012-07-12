@@ -12,14 +12,14 @@
 #import "PlaceMark.h"
 #import "RegexKitLite.h"
 #import "AppDelegate.h"
-#import "ImagePickeDelegateMthods.h"
-@interface FirstViewController : UIViewController <MKMapViewDelegate,CLLocationManagerDelegate,DirectionsViewControllerDelegate>{
+#import "UploadViewController.h"
+@interface FirstViewController : UIViewController <MKMapViewDelegate,CLLocationManagerDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate,DirectionsViewControllerDelegate>{
     BOOL canChangeMap;
     UIImageView *routeView;
 	NSArray *routes;
 	UIColor *lineColor;
     NSMutableArray *nsArray;
-    ImagePickeDelegateMthods *imagePickeDelegate;
+    UploadViewController *uploadDelegate;
     BOOL                isinitArray;
 }
 

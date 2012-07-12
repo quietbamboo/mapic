@@ -13,6 +13,7 @@
 @end
 
 @implementation UploadViewController
+@synthesize image;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -31,13 +32,21 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated{
+    self.navigationController.navigationBarHidden = NO;
     scrollview.contentSize = CGSizeMake(320,900);
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    scrollview = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, 320, 387)];
+    UIBarButtonItem *btnRoute = [[UIBarButtonItem alloc] 
+                                 initWithTitle:@"取消"                                            
+                                 style:UIBarButtonItemStyleBordered 
+                                 target:self 
+                                 action:@selector(toWriteRoute)];
+    self.navigationItem.rightBarButtonItem = btnRoute;
+    [btnRoute release];
+    scrollview = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, 320, 480)];
     scrollview.backgroundColor=[UIColor colorWithRed:0.859f green:0.886f blue:0.929f alpha:1.0f];
     //scrollview.backgroundColor = [UIColor blackColor];
     scrollview.contentMode = UIViewContentModeScaleToFill;
@@ -50,7 +59,7 @@
     [self.view addSubview:scrollview];
 	// Do any additional setup after loading the view.
     UIImageView *imageview = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 460)];
-    imageview.image = [UIImage imageNamed:@"andong.jpg"];
+    imageview.image = self.image;//[UIImage imageNamed:@"andong.jpg"];
     [scrollview addSubview:imageview];
     [imageview release];
     
@@ -63,7 +72,7 @@
     [scrollview addSubview:namelabel];
     [namelabel release];
     
-    UITextField* text = [[UITextField alloc] initWithFrame:CGRectMake(65, 480, 220, 20)];
+    UITextField* text = [[UITextField alloc] initWithFrame:CGRectMake(65, 480, 220, 30)];
     text.borderStyle = UITextBorderStyleRoundedRect;//设置文本框边框风格
     text.autocorrectionType = UITextAutocorrectionTypeYes;//启用自动提示更正功能
     text.placeholder = @"Enter the photo name";//设置默认显示文本
@@ -72,7 +81,7 @@
     [text setBackgroundColor:[UIColor whiteColor]];
     [scrollview addSubview:text];
     
-    UILabel *textlabel=[[UILabel alloc] initWithFrame:CGRectMake(0.0f, 510.0f, 60.0f, 20.0f)];
+    UILabel *textlabel=[[UILabel alloc] initWithFrame:CGRectMake(0.0f, 520.0f, 60.0f, 20.0f)];
     textlabel.font=[UIFont fontWithName:@"HelveticaNeue-Bold" size:18];
     textlabel.textColor=[UIColor blueColor];
     textlabel.text = NSLocalizedString(@"简介：", nil);
@@ -81,7 +90,7 @@
     [scrollview addSubview:textlabel];
     [textlabel release];
     
-    UITextView *textView = [[[UITextView  alloc] initWithFrame:CGRectMake(65, 510, 250, 200)] autorelease]; //初始化大小并自动释放
+    UITextView *textView = [[[UITextView  alloc] initWithFrame:CGRectMake(65, 520, 250, 200)] autorelease]; //初始化大小并自动释放
     textView.textColor = [UIColor blackColor];//设置textview里面的字体颜色  
     textView.font = [UIFont fontWithName:@"Arial" size:18.0];//设置字体名字和字体大小  
     //textView.delegate = self;//设置它的委托方法  
@@ -94,13 +103,13 @@
     [scrollview addSubview: textView];//加入到整个页面中
     
     UIButton *uploadButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    uploadButton.frame = CGRectMake(0, 720, 60, 30);
+    uploadButton.frame = CGRectMake(0, 730, 60, 30);
     [uploadButton setTitle:@"上传" forState:UIControlStateNormal];
     [uploadButton addTarget:self action:@selector(toupload) forControlEvents:UIControlEventTouchUpInside];
     [scrollview addSubview:uploadButton];
     
     UIButton *canceledButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    canceledButton.frame = CGRectMake(100, 720, 60, 30);
+    canceledButton.frame = CGRectMake(260, 730, 60, 30);
     [canceledButton setTitle:@"取消" forState:UIControlStateNormal];
     [canceledButton addTarget:self action:@selector(tocanceled) forControlEvents:UIControlEventTouchUpInside];
     [scrollview addSubview:canceledButton];

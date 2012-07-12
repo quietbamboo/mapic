@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "AppDelegate.h"
+#import "UploadViewController.h"
 @interface ImagePickeDelegateMthods : NSObject<UINavigationControllerDelegate,UIImagePickerControllerDelegate>
 
 @end
