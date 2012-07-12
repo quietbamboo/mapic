@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "HjxPhotoViewController.h"
+#import "AppDelegate.h"
 @interface UserViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
 
 @end

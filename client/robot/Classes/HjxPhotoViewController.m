@@ -11,11 +11,13 @@
 @implementation HjxPhotoViewController
 
 @synthesize listlabel;
-@synthesize adMobAd;
-@synthesize adTimer;
+//@synthesize adMobAd;
+//@synthesize adTimer;
+@synthesize clicked;
 
 static const NSTimeInterval kSlideshowInterval = 6;
-
+#pragma mark
+#pragma mark BarAnimation
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 - (void)showBarsAnimationDidStop {
@@ -28,31 +30,6 @@ static const NSTimeInterval kSlideshowInterval = 6;
 - (void)hideBarsAnimationDidStop {
 	self.navigationController.navigationBarHidden = YES;
     //	[self.navigationController setNavigationBarHidden:YES animated:YES];
-}
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)nextAction {
-	[self pauseAction];
-	if (_centerPhotoIndex < _photoSource.numberOfPhoto - 1) {
-		_scrollView.centerPageIndex = _centerPhotoIndex+1;
-	}
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)previousAction {
-    
-	[self pauseAction];
-	if (_centerPhotoIndex > 0) {
-		_scrollView.centerPageIndex = _centerPhotoIndex-1;
-	}
-}
-
-
-- (void)moveToPhoto:(id<TTPhoto>)photo {
-	id<TTPhoto> previousPhoto = [_centerPhoto autorelease];
-	_centerPhoto = [photo retain];
-	[self didMoveToPhoto:_centerPhoto fromPhoto:previousPhoto];
 }
 
 
@@ -93,13 +70,23 @@ static const NSTimeInterval kSlideshowInterval = 6;
 		[UIView commitAnimations];
 	}
 }
+#pragma mark
+#pragma mark move to photo
 
+- (void)moveToPhoto:(id<TTPhoto>)photo {
+	id<TTPhoto> previousPhoto = [_centerPhoto autorelease];
+	_centerPhoto = [photo retain];
+	[self didMoveToPhoto:_centerPhoto fromPhoto:previousPhoto];
+}
+#pragma mark
+#pragma mark showCaptions
 - (void)showCaptions:(BOOL)show {
 	for (TTPhotoView* photoView in _scrollView.visiblePages.objectEnumerator) {
 		photoView.hidesCaption = !show;
 	}
 }
-
+#pragma mark
+#pragma mark Activity
 - (void)showActivity{
     
 	CGRect screenFrame = [UIScreen mainScreen].bounds;
@@ -115,15 +102,17 @@ static const NSTimeInterval kSlideshowInterval = 6;
 	[listlabel setHidden:YES];
 }
 
+#pragma mark
+#pragma mark Timer
 - (void) handleTimer: (id) timer{
 	//using this to grach
-	NSString* clicked = [[TTNavigator navigator] URL];
+	//NSString* clicked = [[TTNavigator navigator] URL];
 	//NSLog(@"Clicked %@", clicked);
 	NSString* urlString;
 	NSString* titleString;
 	
-	NSString *prefix = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"prefix"];
-	NSString *baseurl = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"baseurl"];
+	NSString *prefix = @"pet";//[[[NSBundle mainBundle] infoDictionary] objectForKey:@"prefix"];
+	NSString *baseurl = @"http://iphone.dotaart.com/asian/new";//[[[NSBundle mainBundle] infoDictionary] objectForKey:@"baseurl"];
 	if([clicked isEqualToString:@"tt://photo/all"]){
 		urlString = [NSString stringWithFormat:@"%@/list.php?tag=all&prefix=%@", baseurl, prefix];
 		titleString = @"Most Recent";
@@ -235,95 +224,170 @@ static const NSTimeInterval kSlideshowInterval = 6;
     
 }
 
-- (double)getCrossX {
-   // if([AppDelegate isIpad])
-        return (TTScreenBounds().size.width + 728) / 2 - 20;
-   // else
-   //     return (TTScreenBounds().size.width + 320) / 2 - 20;
+#pragma mark
+#pragma mark Seven methods About UIBarButtonItem
+- (void)saveAction {
+	UIImage *img = [self centerPhotoView].image;
+    //UIImageWriteToSavedPhotosAlbum(img, self, @selector(image:didFinishSavingWithError:contextInfo:), self);
+	UIImageWriteToSavedPhotosAlbum(img, nil, nil, nil);
+	//Get the filename of the sound file:
+	//	NSString *music_path = [NSString stringWithFormat:@"%@%@",
+	//					  [[NSBundle mainBundle] resourcePath],
+	//					  @"beep.wav"];
+	//NSLog(@"photo index %@", _photoSource );
+	
+	//itootSound* sound;
+	//sound = [itootSound alloc];
+	//[sound playSound:@"beep.wav"];
+	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Download success!"
+                          //message:[NSString stringWithFormat:@"Photo size: %iX%i\nView it in your photo album", [self centerPhotoView].image.size.width, img.size.height]
+                          //0X1081212928 ??
+                                                    message:[NSString stringWithFormat:@"View it in your photo album"]
+                                                   delegate:self cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
+	[alert addButtonWithTitle:@"Goto uploader's profile"];
+	[alert addButtonWithTitle:@"Goto image's profile"];
+	[alert show];
+	[alert release];
 }
 
-- (double)getAdmobX {
-    return TTScreenBounds().size.width - ([self getCrossX] + 20);
+- (void)reportAction{
+	//NSLog(@"good %d", _centerPhotoIndex);
+	//when this is my uploads, report means remove the image permanently
+	
+	
+	//check whether current file is this user's
+	//if so pop up for delete confirmation
+	//else pop up for report confirmation
+	//file format : d7cd992a67d3b3cf37ebfe68b1e3a3fbc433a8f6___1284834179___.jpg
+	
+	NSArray *arrayOfLines = [photoList componentsSeparatedByString:@"_-_-_"];
+	NSArray *lineparts = [[arrayOfLines objectAtIndex:_centerPhotoIndex] componentsSeparatedByString:@"-----"];
+	NSArray *lineparts2 = [[lineparts objectAtIndex:0] componentsSeparatedByString:@"/"];
+	NSString *filename = [lineparts2 objectAtIndex:([lineparts2 count] - 1)];
+	NSArray *lp3 = [filename componentsSeparatedByString:@"___"];
+	NSString *userId = [lp3 objectAtIndex:0];
+	NSString *device_id = [NSString stringWithFormat:@"%@", [[UIDevice currentDevice] uniqueIdentifier]];
+	//NSLog(filename);
+	
+	if([device_id isEqualToString:userId]){
+		//delete?
+		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Delete your photo?"
+														message:@"Caution! Do you want to permanently remove this photo?\nIt can not be restored!" 
+													   delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:nil];
+		[alert addButtonWithTitle:@"Delete"];
+		[alert show];
+		[alert release];
+	}else {
+		//report?
+		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Report this photo?"
+														message:@"Are you sure this photo contains sexual / violation / unrelated or other unsuitable contents?" 
+													   delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:nil];
+		[alert addButtonWithTitle:@"Yes"];
+		[alert show];
+		[alert release];
+	}
 }
 
-- (double)getAdHeight {
-   // if([AppDelegate isIpad])
-        return 90;
-   // else
-     //   return 50;
+- (void)goodAction{
+	//NSLog(@"good %d", _centerPhotoIndex);
+	NSArray *arrayOfLines = [photoList componentsSeparatedByString:@"_-_-_"];
+	NSArray *lineparts = [[arrayOfLines objectAtIndex:_centerPhotoIndex] componentsSeparatedByString:@"-----"];
+	NSArray *lineparts2 = [[lineparts objectAtIndex:0] componentsSeparatedByString:@"/"];
+	NSString *filename = [lineparts2 objectAtIndex:([lineparts2 count] - 1)];
+	//NSLog(filename);
+	
+	NSString *device_id = [NSString stringWithFormat:@"%@", [[UIDevice currentDevice] uniqueIdentifier]];
+	NSString *prefix = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"prefix"];
+	NSString *baseurl = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"baseurl"];
+	NSString *requestString = [NSString stringWithFormat:@"id=%@&filename=%@&prefix=%@&rate=1", device_id, filename, prefix];
+	NSData *requestData = [NSData dataWithBytes: [requestString UTF8String] length: [requestString length]];
+	NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL: [NSURL URLWithString:
+                                                                              [NSString stringWithFormat:@"%@/rate.php", baseurl]]];
+	[request setHTTPMethod: @"POST"];
+	[request setHTTPBody: requestData];
+	// now lets make the connection to the web
+	NSData *returnData = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
+	NSString *response = [[NSString alloc] initWithData:returnData encoding:NSUTF8StringEncoding];
+	
+	
+	NSString* msg = [NSString stringWithFormat:@"%@", response];
+	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Thank you for your rating" message:msg 
+												   delegate:self cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
+	[alert addButtonWithTitle:@"Goto uploader's profile"];
+	[alert addButtonWithTitle:@"Goto image's profile"];
+	[alert show];
+	[alert release];
 }
 
-- (void) initAds{
-    NSLog(@"initAds");    
-    CGRect adFrame = CGRectZero;
-   // if([AppDelegate isIpad])
-        adFrame.size = GAD_SIZE_728x90;
-   // else
-   //     adFrame.size = GAD_SIZE_320x50;
-    adMobAd = [[GADBannerView alloc]initWithFrame:adFrame];
-   // adMobAd.adUnitID = [AppDelegate getAdjustedString:@"admob"];
-    adMobAd.delegate = self;
-    
-    //CGRectMake(0.0,self.view.frame.size.height -GAD_SIZE_320x50.height,GAD_SIZE_320x50.width,GAD_SIZE_320x50.height)];
-    adMobAd.rootViewController = self;
-    [adMobAd loadRequest:[GADRequest request]];
-    
-    //banner for inneractive ads
-   // if([AppDelegate isIpad]) {
-        adBanner = [[UIView alloc] initWithFrame:CGRectMake(0, 0, TTScreenBounds().size.width, 90)];
-   // } else {
-   //     adBanner = [[UIView alloc] initWithFrame:CGRectMake(0, 0, TTScreenBounds().size.width, 60)];
-   // }
-    
-    crossButton = [[UIImageView alloc] initWithFrame:CGRectMake([self getCrossX], [self getAdHeight], 20, 20)];  
-    [crossButton setImage:TTIMAGE(@"bundle://Three20.bundle/images/cross.jpg")];
-    
-    [self.view addSubview:adMobAd];
-    [self.view addSubview:adBanner];
-    [self.view addSubview:crossButton];
-    [self.view bringSubviewToFront:adBanner];
-    [self.view bringSubviewToFront:adMobAd];
-    [self.view bringSubviewToFront:crossButton];
-    adMobAd.hidden = YES;
-    adBanner.hidden = YES;
-    crossButton.hidden = YES;
-    
+- (void)badAction {	
+	//NSLog(@"bad %d", _centerPhotoIndex);
+	NSArray *arrayOfLines = [photoList componentsSeparatedByString:@"_-_-_"];
+	NSArray *lineparts = [[arrayOfLines objectAtIndex:_centerPhotoIndex] componentsSeparatedByString:@"-----"];
+	NSArray *lineparts2 = [[lineparts objectAtIndex:0] componentsSeparatedByString:@"/"];
+	NSString *filename = [lineparts2 objectAtIndex:([lineparts2 count] - 1)];
+	//NSLog(filename);
+	
+	NSString *device_id = [NSString stringWithFormat:@"%@", [[UIDevice currentDevice] uniqueIdentifier]];
+	NSString *prefix = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"prefix"];
+	NSString *baseurl = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"baseurl"];
+	NSString *requestString = [NSString stringWithFormat:@"id=%@&filename=%@&prefix=%@&rate=-1", device_id, filename, prefix];
+	NSData *requestData = [NSData dataWithBytes: [requestString UTF8String] length: [requestString length]];
+	NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL: [NSURL URLWithString: 
+                                                                              [NSString stringWithFormat:@"%@/rate.php", baseurl]]];
+	[request setHTTPMethod: @"POST"];
+	[request setHTTPBody: requestData];
+	// now lets make the connection to the web
+	NSData *returnData = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
+	NSString *response = [[NSString alloc] initWithData:returnData encoding:NSUTF8StringEncoding];
+	
+	
+	NSString* msg = [NSString stringWithFormat:@"%@", response];
+	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Thank you for your rating" message:msg 
+												   delegate:self cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
+	[alert addButtonWithTitle:@"Goto uploader's profile"];
+	[alert addButtonWithTitle:@"Goto image's profile"];
+	[alert show];
+	[alert release];
 }
 
-//handle touch event
-- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
-    UITouch *touch = [touches anyObject];
-    CGPoint touchLocation = [touch locationInView:adBanner];
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)nextAction {
+	[self pauseAction];
+	if (_centerPhotoIndex < _photoSource.numberOfPhoto - 1) {
+		_scrollView.centerPageIndex = _centerPhotoIndex+1;
+	}
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)previousAction {
     
-    NSLog(@"touch x %f y %f", touchLocation.x, touchLocation.y );
-    //if((touchLocation.x - 310) * (touchLocation.x - 310) + (touchLocation.y - 60) * (touchLocation.y - 60) <= 10 * 10){
-    if((touchLocation.x - ([self getCrossX] + 10)) * (touchLocation.x - ([self getCrossX] + 10)) + 
-       (touchLocation.y - ([self getAdHeight] + 10)) * (touchLocation.y - ([self getAdHeight] + 10)) <= 11 * 11){
-        //close all ads
-        NSLog(@"cross clicked");
-        adMobAd.hidden = YES;
-        adBanner.hidden = YES;
-        crossButton.hidden = YES;
+	[self pauseAction];
+	if (_centerPhotoIndex > 0) {
+		_scrollView.centerPageIndex = _centerPhotoIndex-1;
+	}
+}
+
+- (void)playAction {
+    if (!_slideshowTimer) {
+        UIBarButtonItem* pauseButton =
+        [[[UIBarButtonItem alloc] initWithBarButtonSystemItem: UIBarButtonSystemItemPause
+                                                       target: self
+                                                       action: @selector(pauseAction)]
+         autorelease];
+        pauseButton.tag = 1;
+        
+        [_toolbar replaceItemWithTag:1 withItem:pauseButton];
+        
+        _slideshowTimer = [NSTimer scheduledTimerWithTimeInterval:kSlideshowInterval
+                                                           target:self
+                                                         selector:@selector(slideshowTimer)
+                                                         userInfo:nil
+                                                          repeats:YES];
     }
 }
-
-//periodic change ads
-- (void) handleAdTimer: (id)timer{
-    
-    NSString* prefix = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"prefix"];
-    if([prefix isEqualToString:@"background"] ||
-       [prefix isEqualToString:@"baby"] ||
-       [prefix isEqualToString:@"pet"]){
-        return;
-    }
-    
-   // NSLog(@"in timer %f, %f, %d", TTScreenBounds().size.height, TTScreenBounds().size.width, (int)[AppDelegate isIpad]);
-    crossButton.hidden = NO;
-    adMobAd.hidden = NO;
-    adBanner.hidden = NO;
-    [adMobAd loadRequest:[GADRequest request]];
-}
-
+#pragma mark
+#pragma mark default Mthods
 - (void)viewDidLoad {
     //only called once when entering the image section
 	
@@ -337,7 +401,7 @@ static const NSTimeInterval kSlideshowInterval = 6;
 									repeats: NO];
     
     ////init ads anyway, but default not shown
-    [self initAds];
+    //[self initAds];
     
 }
 
@@ -362,11 +426,11 @@ static const NSTimeInterval kSlideshowInterval = 6;
         
         
         //then start timer to periodic select two ads to show
-        adTimer = [NSTimer scheduledTimerWithTimeInterval: 5
-                                                   target: self
-                                                 selector: @selector(handleAdTimer:)
-                                                 userInfo: nil
-                                                  repeats: YES];
+//        adTimer = [NSTimer scheduledTimerWithTimeInterval: 5
+//                                                   target: self
+//                                                 selector: @selector(handleAdTimer:)
+//                                                 userInfo: nil
+//                                                  repeats: YES];
 //	}//*/
     
 }
@@ -441,19 +505,19 @@ static const NSTimeInterval kSlideshowInterval = 6;
     
 }
 
-- (void)updateToolbarWithOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    
-	adMobAd.frame = CGRectMake([self getAdmobX], 0, //self.view.frame.size.height - TTToolbarHeight() - 50,
-							   TTScreenBounds().size.width, [self getAdHeight]);
-	adBanner.frame = CGRectMake(0 , 0, //self.view.frame.size.height - TTToolbarHeight() - 50,
-                                TTScreenBounds().size.width, [self getAdHeight]);
-    crossButton.frame = CGRectMake([self getCrossX], [self getAdHeight], 20, 20);  
-    
-	//_toolbar.frame = CGRectMake(0, TTScreenBounds().size.height - TTToolbarHeight(),
-	//							TTScreenBounds().size.width, TTToolbarHeight()); //cause tool bar bug!
-    _toolbar.frame = CGRectMake(0, self.view.frame.size.height - TTToolbarHeight(),
-								self.view.frame.size.width, TTToolbarHeight());
-}//*/
+//- (void)updateToolbarWithOrientation:(UIInterfaceOrientation)interfaceOrientation {
+//    
+//	//adMobAd.frame = CGRectMake([self getAdmobX], 0, //self.view.frame.size.height - TTToolbarHeight() - 50,
+//	//						   TTScreenBounds().size.width, [self getAdHeight]);
+//	//adBanner.frame = CGRectMake(0 , 0, //self.view.frame.size.height - TTToolbarHeight() - 50,
+//     //                           TTScreenBounds().size.width, [self getAdHeight]);
+//    //crossButton.frame = CGRectMake([self getCrossX], [self getAdHeight], 20, 20);  
+//    
+//	//_toolbar.frame = CGRectMake(0, TTScreenBounds().size.height - TTToolbarHeight(),
+//	//							TTScreenBounds().size.width, TTToolbarHeight()); //cause tool bar bug!
+//    _toolbar.frame = CGRectMake(0, self.view.frame.size.height - TTToolbarHeight(),
+//								self.view.frame.size.width, TTToolbarHeight());
+//}//*/
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -467,12 +531,12 @@ static const NSTimeInterval kSlideshowInterval = 6;
     
     //if not vip, stop timer here
   //  if(![AppDelegate isAdsFree] && adTimer && adTimer.isValid){
-        [adTimer invalidate];
+    //    [adTimer invalidate];
    // }
     
     
     //important for solving the crashing problem
-	adMobAd.delegate = nil;
+	//adMobAd.delegate = nil;
     
     if(true)return;
     
@@ -496,55 +560,17 @@ static const NSTimeInterval kSlideshowInterval = 6;
 	TT_RELEASE_SAFELY(_toolbar);
 	
 	
-	TT_RELEASE_SAFELY(adMobAd);
+	//TT_RELEASE_SAFELY(adMobAd);
 	TT_RELEASE_SAFELY(photoList);
     
-    TT_RELEASE_SAFELY(crossButton);
-    TT_RELEASE_SAFELY(adBanner);
+    //TT_RELEASE_SAFELY(crossButton);
+   // TT_RELEASE_SAFELY(adBanner);
     
     
 }
 
-- (void)reportAction{
-	//NSLog(@"good %d", _centerPhotoIndex);
-	//when this is my uploads, report means remove the image permanently
-	
-	
-	//check whether current file is this user's
-	//if so pop up for delete confirmation
-	//else pop up for report confirmation
-	//file format : d7cd992a67d3b3cf37ebfe68b1e3a3fbc433a8f6___1284834179___.jpg
-	
-	NSArray *arrayOfLines = [photoList componentsSeparatedByString:@"_-_-_"];
-	NSArray *lineparts = [[arrayOfLines objectAtIndex:_centerPhotoIndex] componentsSeparatedByString:@"-----"];
-	NSArray *lineparts2 = [[lineparts objectAtIndex:0] componentsSeparatedByString:@"/"];
-	NSString *filename = [lineparts2 objectAtIndex:([lineparts2 count] - 1)];
-	NSArray *lp3 = [filename componentsSeparatedByString:@"___"];
-	NSString *userId = [lp3 objectAtIndex:0];
-	NSString *device_id = [NSString stringWithFormat:@"%@", [[UIDevice currentDevice] uniqueIdentifier]];
-	//NSLog(filename);
-	
-	if([device_id isEqualToString:userId]){
-		//delete?
-		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Delete your photo?"
-														message:@"Caution! Do you want to permanently remove this photo?\nIt can not be restored!" 
-													   delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:nil];
-		[alert addButtonWithTitle:@"Delete"];
-		[alert show];
-		[alert release];
-	}else {
-		//report?
-		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Report this photo?"
-														message:@"Are you sure this photo contains sexual / violation / unrelated or other unsuitable contents?" 
-													   delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:nil];
-		[alert addButtonWithTitle:@"Yes"];
-		[alert show];
-		[alert release];
-	}
-    
-	
-}
-
+#pragma mark
+#pragma mark UIAlertViewDelegate
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
 	
 	NSString *device_id = [NSString stringWithFormat:@"%@", [[UIDevice currentDevice] uniqueIdentifier]];
@@ -556,10 +582,13 @@ static const NSTimeInterval kSlideshowInterval = 6;
 	NSString *hisId = [lineparts3 objectAtIndex:0];
 	
 	NSString *prefix = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"prefix"];
+    NSLog(@"this is prefix *****%@****",prefix);
 	NSString *baseurl = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"baseurl"];
+    NSLog(@"this is baseurl ******%@****",baseurl);
 	NSString *statUrl = @"%@/stat.php?id=%@&prefix=%@&command=%@";
+    NSLog(@"this is statUrl *****%@******",statUrl);
 	NSString *imgUrl = @"%@/img.php?imageId=%@&prefix=%@";
-	
+	NSLog(@"this is imgUrl *****%@*******",imgUrl);
 	if([[alertView title] isEqualToString:@"Thank you for your rating"] ||
 	   [[alertView title] isEqualToString:@"Download success!"]){
 		
@@ -617,131 +646,109 @@ static const NSTimeInterval kSlideshowInterval = 6;
 }
 
 
-- (void)goodAction{
-	//NSLog(@"good %d", _centerPhotoIndex);
-	NSArray *arrayOfLines = [photoList componentsSeparatedByString:@"_-_-_"];
-	NSArray *lineparts = [[arrayOfLines objectAtIndex:_centerPhotoIndex] componentsSeparatedByString:@"-----"];
-	NSArray *lineparts2 = [[lineparts objectAtIndex:0] componentsSeparatedByString:@"/"];
-	NSString *filename = [lineparts2 objectAtIndex:([lineparts2 count] - 1)];
-	//NSLog(filename);
-	
-	NSString *device_id = [NSString stringWithFormat:@"%@", [[UIDevice currentDevice] uniqueIdentifier]];
-	NSString *prefix = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"prefix"];
-	NSString *baseurl = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"baseurl"];
-	NSString *requestString = [NSString stringWithFormat:@"id=%@&filename=%@&prefix=%@&rate=1", device_id, filename, prefix];
-	NSData *requestData = [NSData dataWithBytes: [requestString UTF8String] length: [requestString length]];
-	NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL: [NSURL URLWithString:
-                                                                              [NSString stringWithFormat:@"%@/rate.php", baseurl]]];
-	[request setHTTPMethod: @"POST"];
-	[request setHTTPBody: requestData];
-	// now lets make the connection to the web
-	NSData *returnData = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
-	NSString *response = [[NSString alloc] initWithData:returnData encoding:NSUTF8StringEncoding];
-	
-	
-	NSString* msg = [NSString stringWithFormat:@"%@", response];
-	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Thank you for your rating" message:msg 
-												   delegate:self cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
-	[alert addButtonWithTitle:@"Goto uploader's profile"];
-	[alert addButtonWithTitle:@"Goto image's profile"];
-	[alert show];
-	[alert release];
-	
-}
-
-- (void)badAction {	
-	//NSLog(@"bad %d", _centerPhotoIndex);
-	NSArray *arrayOfLines = [photoList componentsSeparatedByString:@"_-_-_"];
-	NSArray *lineparts = [[arrayOfLines objectAtIndex:_centerPhotoIndex] componentsSeparatedByString:@"-----"];
-	NSArray *lineparts2 = [[lineparts objectAtIndex:0] componentsSeparatedByString:@"/"];
-	NSString *filename = [lineparts2 objectAtIndex:([lineparts2 count] - 1)];
-	//NSLog(filename);
-	
-	NSString *device_id = [NSString stringWithFormat:@"%@", [[UIDevice currentDevice] uniqueIdentifier]];
-	NSString *prefix = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"prefix"];
-	NSString *baseurl = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"baseurl"];
-	NSString *requestString = [NSString stringWithFormat:@"id=%@&filename=%@&prefix=%@&rate=-1", device_id, filename, prefix];
-	NSData *requestData = [NSData dataWithBytes: [requestString UTF8String] length: [requestString length]];
-	NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL: [NSURL URLWithString: 
-                                                                              [NSString stringWithFormat:@"%@/rate.php", baseurl]]];
-	[request setHTTPMethod: @"POST"];
-	[request setHTTPBody: requestData];
-	// now lets make the connection to the web
-	NSData *returnData = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
-	NSString *response = [[NSString alloc] initWithData:returnData encoding:NSUTF8StringEncoding];
-	
-	
-	NSString* msg = [NSString stringWithFormat:@"%@", response];
-	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Thank you for your rating" message:msg 
-												   delegate:self cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
-	[alert addButtonWithTitle:@"Goto uploader's profile"];
-	[alert addButtonWithTitle:@"Goto image's profile"];
-	[alert show];
-	[alert release];
-}
-
 - (TTPhotoView*)centerPhotoView {
 	return (TTPhotoView*)_scrollView.centerPage;
 }
 
-- (void)saveAction {
-	UIImage *img = [self centerPhotoView].image;
-    //UIImageWriteToSavedPhotosAlbum(img, self, @selector(image:didFinishSavingWithError:contextInfo:), self);
-	UIImageWriteToSavedPhotosAlbum(img, nil, nil, nil);
-	//Get the filename of the sound file:
-	//	NSString *music_path = [NSString stringWithFormat:@"%@%@",
-	//					  [[NSBundle mainBundle] resourcePath],
-	//					  @"beep.wav"];
-	//NSLog(@"photo index %@", _photoSource );
-	
-	//itootSound* sound;
-	//sound = [itootSound alloc];
-	//[sound playSound:@"beep.wav"];
-	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Download success!"
-                          //message:[NSString stringWithFormat:@"Photo size: %iX%i\nView it in your photo album", [self centerPhotoView].image.size.width, img.size.height]
-                          //0X1081212928 ??
-                                                    message:[NSString stringWithFormat:@"View it in your photo album"]
-                                                   delegate:self cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
-	[alert addButtonWithTitle:@"Goto uploader's profile"];
-	[alert addButtonWithTitle:@"Goto image's profile"];
-	[alert show];
-	[alert release];
+#pragma mark
+#pragma mark about ad
+- (double)getCrossX {
+    // if([AppDelegate isIpad])
+    return (TTScreenBounds().size.width + 728) / 2 - 20;
+    // else
+    //     return (TTScreenBounds().size.width + 320) / 2 - 20;
 }
 
-
-- (void)playAction {
-    if (!_slideshowTimer) {
-        UIBarButtonItem* pauseButton =
-        [[[UIBarButtonItem alloc] initWithBarButtonSystemItem: UIBarButtonSystemItemPause
-                                                       target: self
-                                                       action: @selector(pauseAction)]
-         autorelease];
-        pauseButton.tag = 1;
-        
-        [_toolbar replaceItemWithTag:1 withItem:pauseButton];
-        
-        _slideshowTimer = [NSTimer scheduledTimerWithTimeInterval:kSlideshowInterval
-                                                           target:self
-                                                         selector:@selector(slideshowTimer)
-                                                         userInfo:nil
-                                                          repeats:YES];
-    }
+- (double)getAdmobX {
+    return TTScreenBounds().size.width - ([self getCrossX] + 20);
 }
 
-
-//admob delegate
-- (void)adView:(GADBannerView *)view
-didFailToReceiveAdWithError:(GADRequestError *)error{
-    //only when admob fail show inneractive
-    NSLog(@"admob ad fail");
-    adBanner.hidden = NO;
-   // NSString *inneractive = [AppDelegate getAdjustedString:@"inneractive"];
-   // [InneractiveAd DisplayAd:(NSString*)inneractive withType:IaAdType_Banner withRoot:adBanner withReload:15];
+- (double)getAdHeight {
+    // if([AppDelegate isIpad])
+    return 90;
+    // else
+    //   return 50;
 }
-
-- (void)adViewDidReceiveAd:(GADBannerView *)view{
-    NSLog(@"admob ad success");
-    adBanner.hidden = YES;
-}
-
+////admob delegate
+//- (void)adView:(GADBannerView *)view
+//didFailToReceiveAdWithError:(GADRequestError *)error{
+//    //only when admob fail show inneractive
+//    NSLog(@"admob ad fail");
+//    adBanner.hidden = NO;
+//   // NSString *inneractive = [AppDelegate getAdjustedString:@"inneractive"];
+//   // [InneractiveAd DisplayAd:(NSString*)inneractive withType:IaAdType_Banner withRoot:adBanner withReload:15];
+//}
+//
+//- (void)adViewDidReceiveAd:(GADBannerView *)view{
+//    NSLog(@"admob ad success");
+//    adBanner.hidden = YES;
+//}
+////handle touch event
+//- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
+//    UITouch *touch = [touches anyObject];
+//    // CGPoint touchLocation = [touch locationInView:adBanner];
+//    
+//    NSLog(@"touch x %f y %f", touchLocation.x, touchLocation.y );
+//    //if((touchLocation.x - 310) * (touchLocation.x - 310) + (touchLocation.y - 60) * (touchLocation.y - 60) <= 10 * 10){
+//    if((touchLocation.x - ([self getCrossX] + 10)) * (touchLocation.x - ([self getCrossX] + 10)) + 
+//       (touchLocation.y - ([self getAdHeight] + 10)) * (touchLocation.y - ([self getAdHeight] + 10)) <= 11 * 11){
+//        //close all ads
+//        NSLog(@"cross clicked");
+//        adMobAd.hidden = YES;
+//        adBanner.hidden = YES;
+//        crossButton.hidden = YES;
+//    }
+//}
+////periodic change ads
+//- (void) handleAdTimer: (id)timer{
+//    
+//    NSString* prefix = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"prefix"];
+//    if([prefix isEqualToString:@"background"] ||
+//       [prefix isEqualToString:@"baby"] ||
+//       [prefix isEqualToString:@"pet"]){
+//        return;
+//    }
+//    
+//    // NSLog(@"in timer %f, %f, %d", TTScreenBounds().size.height, TTScreenBounds().size.width, (int)[AppDelegate isIpad]);
+//    crossButton.hidden = NO;
+//    adMobAd.hidden = NO;
+//    adBanner.hidden = NO;
+//    [adMobAd loadRequest:[GADRequest request]];
+//}
+//- (void) initAds{
+//    NSLog(@"initAds");    
+//    CGRect adFrame = CGRectZero;
+//    // if([AppDelegate isIpad])
+//    adFrame.size = GAD_SIZE_728x90;
+//    // else
+//    //     adFrame.size = GAD_SIZE_320x50;
+//    adMobAd = [[GADBannerView alloc]initWithFrame:adFrame];
+//    // adMobAd.adUnitID = [AppDelegate getAdjustedString:@"admob"];
+//    adMobAd.delegate = self;
+//    
+//    //CGRectMake(0.0,self.view.frame.size.height -GAD_SIZE_320x50.height,GAD_SIZE_320x50.width,GAD_SIZE_320x50.height)];
+//    adMobAd.rootViewController = self;
+//    [adMobAd loadRequest:[GADRequest request]];
+//    
+//    //banner for inneractive ads
+//    // if([AppDelegate isIpad]) {
+//    adBanner = [[UIView alloc] initWithFrame:CGRectMake(0, 0, TTScreenBounds().size.width, 90)];
+//    // } else {
+//    //     adBanner = [[UIView alloc] initWithFrame:CGRectMake(0, 0, TTScreenBounds().size.width, 60)];
+//    // }
+//    
+//    crossButton = [[UIImageView alloc] initWithFrame:CGRectMake([self getCrossX], [self getAdHeight], 20, 20)];  
+//    [crossButton setImage:TTIMAGE(@"bundle://Three20.bundle/images/cross.jpg")];
+//    
+//    [self.view addSubview:adMobAd];
+//    [self.view addSubview:adBanner];
+//    [self.view addSubview:crossButton];
+//    [self.view bringSubviewToFront:adBanner];
+//    [self.view bringSubviewToFront:adMobAd];
+//    [self.view bringSubviewToFront:crossButton];
+//    adMobAd.hidden = YES;
+//    adBanner.hidden = YES;
+//    crossButton.hidden = YES;
+//    
+//}
 @end

@@ -22,10 +22,10 @@ NSString* photoList;
 
 @interface HjxPhotoViewController : TTPhotoViewController<UIAlertViewDelegate, GADBannerViewDelegate> {
 
-    GADBannerView *adMobAd;
-    NSTimer *adTimer;
-    UIView *adBanner;
-    UIImageView* crossButton;
+//    GADBannerView *adMobAd;
+//    NSTimer *adTimer;
+//    UIView *adBanner;
+//    UIImageView* crossButton;
     
 	TTActivityLabel *listlabel;
 	UIBarButtonItem* _goodButton;
@@ -38,8 +38,8 @@ NSString* photoList;
 
 
 
-@property (nonatomic, retain) NSTimer *adTimer;
-@property (nonatomic, retain) GADBannerView *adMobAd;
+//@property (nonatomic, retain) NSTimer *adTimer;
+//@property (nonatomic, retain) GADBannerView *adMobAd;
 @property (nonatomic, retain) TTActivityLabel *listlabel;
-
+@property (nonatomic, retain) NSString* clicked;
 @end

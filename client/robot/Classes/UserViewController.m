@@ -49,6 +49,7 @@
 - (void) viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     self.navigationController.navigationBarHidden = YES;
+    [AppDelegate getAppDelegate].centerButton.hidden = NO;
 }
 - (void)viewDidUnload
 {
@@ -93,6 +94,12 @@
 #pragma mark UITableViewDelegate Methods
 
 - (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath{
-    
+    NSLog(@"this is user");
+    HjxPhotoViewController *hjxPhotoview = [[HjxPhotoViewController alloc] initWithNibName:nil bundle:nil];
+    hjxPhotoview.clicked = @"tt://photo/top";
+    self.navigationController.navigationBarHidden = NO;
+    [AppDelegate getAppDelegate].centerButton.hidden = YES;
+    [self.navigationController pushViewController:hjxPhotoview animated:YES];
+    [hjxPhotoview release];
 }
 @end
