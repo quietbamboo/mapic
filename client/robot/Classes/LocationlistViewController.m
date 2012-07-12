@@ -140,11 +140,34 @@
 //    [self.navigationController pushViewController:detail animated:YES];
 //    [detail release];
 //    [place release];
-    HjxPhotoViewController *photoview = [[HjxPhotoViewController alloc] initWithNibName:nil bundle:nil];
+    HjxPhotoViewController *hjxPhotoview = [[HjxPhotoViewController alloc] initWithNibName:nil bundle:nil];
+    switch (indexPath.row) {
+        case 0:
+            hjxPhotoview.clicked = @"tt://photo/top";
+            break;
+        case 1:
+            hjxPhotoview.clicked = @"tt://photo/random";
+            break;
+        case 2:
+            hjxPhotoview.clicked = @"tt://photo/hd";
+            break;
+        case 3:
+            hjxPhotoview.clicked = @"tt://photo/my";
+            break;
+        case 4:
+            hjxPhotoview.clicked = @"tt://photo/like";
+            break;
+        case 5:
+            hjxPhotoview.clicked = @"tt://photo/recent.like";
+            break;
+        default:
+            break;
+    }
+    
     self.navigationController.navigationBarHidden = NO;
     [AppDelegate getAppDelegate].centerButton.hidden = YES;
-    [self.navigationController pushViewController:photoview animated:YES];
-
+    [self.navigationController pushViewController:hjxPhotoview animated:YES];
+    [hjxPhotoview release];
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil

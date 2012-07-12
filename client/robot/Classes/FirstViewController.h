@@ -13,6 +13,7 @@
 #import "RegexKitLite.h"
 #import "AppDelegate.h"
 #import "UploadViewController.h"
+#import "HjxPhotoViewController.h"
 @interface FirstViewController : UIViewController <MKMapViewDelegate,CLLocationManagerDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate,DirectionsViewControllerDelegate>{
     BOOL canChangeMap;
     UIImageView *routeView;

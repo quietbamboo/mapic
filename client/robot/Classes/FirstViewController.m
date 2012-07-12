@@ -108,19 +108,47 @@
 }
 
 - (void)toDetailView:(UIButton *)sender {
-    DeatilViewController *detail = [[DeatilViewController alloc] init];
-    detail.delegate = self;
-    Place *place = [[Place alloc] init];
-    NSDictionary *nsdic = [nsArray objectAtIndex:([sender tag] - ButtonTag) ];
-    place.name = [nsdic objectForKey:@"name"];
-    place.image = [UIImage imageNamed:[nsdic objectForKey:@"image"]];
-    place.latitude = [(NSNumber *)[nsdic objectForKey:@"lat"] doubleValue];
-    place.longitude = [(NSNumber *)[nsdic objectForKey:@"lon"] doubleValue];
-    place.description = [nsdic objectForKey:@"dec"];
-    detail.endPlace = place;
-    [self.navigationController pushViewController:detail animated:YES];
-    [detail release];
-    [place release];
+//    DeatilViewController *detail = [[DeatilViewController alloc] init];
+//    detail.delegate = self;
+//    Place *place = [[Place alloc] init];
+//    NSDictionary *nsdic = [nsArray objectAtIndex:([sender tag] - ButtonTag) ];
+//    place.name = [nsdic objectForKey:@"name"];
+//    place.image = [UIImage imageNamed:[nsdic objectForKey:@"image"]];
+//    place.latitude = [(NSNumber *)[nsdic objectForKey:@"lat"] doubleValue];
+//    place.longitude = [(NSNumber *)[nsdic objectForKey:@"lon"] doubleValue];
+//    place.description = [nsdic objectForKey:@"dec"];
+//    detail.endPlace = place;
+//    [self.navigationController pushViewController:detail animated:YES];
+//    [detail release];
+//    [place release];
+    HjxPhotoViewController *hjxPhotoview = [[HjxPhotoViewController alloc] initWithNibName:nil bundle:nil];
+    switch ([sender tag] - ButtonTag) {
+        case 0:
+            hjxPhotoview.clicked = @"tt://photo/top";
+            break;
+        case 1:
+            hjxPhotoview.clicked = @"tt://photo/random";
+            break;
+        case 2:
+            hjxPhotoview.clicked = @"tt://photo/hd";
+            break;
+        case 3:
+            hjxPhotoview.clicked = @"tt://photo/my";
+            break;
+        case 4:
+            hjxPhotoview.clicked = @"tt://photo/like";
+            break;
+        case 5:
+            hjxPhotoview.clicked = @"tt://photo/recent.like";
+            break;
+        default:
+            break;
+    }
+    
+    self.navigationController.navigationBarHidden = NO;
+    [AppDelegate getAppDelegate].centerButton.hidden = YES;
+    [self.navigationController pushViewController:hjxPhotoview animated:YES];
+    [hjxPhotoview release];
 }
 
 - (void)moveToCurrentLocation {
