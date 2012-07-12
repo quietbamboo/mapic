@@ -12,6 +12,7 @@
 #import "DeatilViewController.h"
 #import "CameraViewController.h"
 #import "LocationlistViewController.h"
+#import "UserViewController.h"
 #define kSDK_KEY @"fbd22af151f7a5f25abb5ecd23664315"
 
 
@@ -71,18 +72,18 @@
 
 	centerview.tabBarItem = [[[UITabBarItem alloc] initWithTitle:nil image:nil tag:2] autorelease];
     
-    UIViewController *fourview = [[UIViewController alloc]init];
-    fourview.tabBarItem = [[[UITabBarItem alloc] initWithTitle:@"four" image:[UIImage imageNamed:@"tab-explore"] tag:3] autorelease];
+    UserViewController *userview = [[UserViewController alloc] init];
+    userview.tabBarItem = [[[UITabBarItem alloc] initWithTitle:@"four" image:[UIImage imageNamed:@"tab-explore"] tag:3] autorelease];
     
     SettingViewController* settingview = [[SettingViewController alloc]init];
 	settingview.tabBarItem = [[[UITabBarItem alloc] initWithTitle:@"Setting" image:[UIImage imageNamed:@"tab_feed_profile.png"] tag:4] autorelease];
     
-	NSArray* Controllers = [NSArray arrayWithObjects:firstviewNav,locaviewNav,centerview,fourview,settingview,nil];
+	NSArray* Controllers = [NSArray arrayWithObjects:firstviewNav,locaviewNav,centerview,userview,settingview,nil];
 	
 	myTabBarController.viewControllers = Controllers;
 	
 	[centerview release];
-	[fourview release];
+	[userview release];
     [settingview release];
 	[locaview release];
 	
