@@ -10,7 +10,6 @@
 #import "FirstViewController.h"
 #import "SettingViewController.h"
 #import "DeatilViewController.h"
-#import "CameraViewController.h"
 #import "LocationlistViewController.h"
 #import "UserViewController.h"
 #define kSDK_KEY @"fbd22af151f7a5f25abb5ecd23664315"

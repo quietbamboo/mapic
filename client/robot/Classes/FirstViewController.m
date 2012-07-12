@@ -7,7 +7,6 @@
 //
 
 #import "FirstViewController.h"
-#import "CameraViewController.h"
 #import "SettingViewController.h"
 #define ButtonTag 1000
 @interface FirstViewController ()
@@ -94,12 +93,6 @@
     mainMapView.showsUserLocation = YES;
     //[self initnaArray]; 
    }
-
-- (void)toCameraViewController {
-    CameraViewController *camera = [[CameraViewController alloc] init];
-    [self.navigationController pushViewController:camera animated:YES];
-    [camera release];
-}
 
 - (void)toSettingViewController {
     SettingViewController *setting = [[SettingViewController alloc] init];

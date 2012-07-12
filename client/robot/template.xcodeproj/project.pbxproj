@@ -22,12 +22,10 @@
 		18CC804C14D62AB4005754DE /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18CC804B14D62AB4005754DE /* Security.framework */; };
 		18D132FA156F484200257F4B /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18D132F9156F484200257F4B /* CFNetwork.framework */; };
 		18E36A7415AD4253006E62AA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E36A6415AD4253006E62AA /* AppDelegate.m */; };
-		18E36A7515AD4253006E62AA /* CameraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E36A6515AD4253006E62AA /* CameraViewController.m */; };
 		18E36A7615AD4253006E62AA /* DeatilViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E36A6615AD4253006E62AA /* DeatilViewController.m */; };
 		18E36A7715AD4253006E62AA /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E36A6715AD4253006E62AA /* FirstViewController.m */; };
 		18E36A7915AD4253006E62AA /* LocationlistViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E36A6915AD4253006E62AA /* LocationlistViewController.m */; };
 		18E36A7A15AD4253006E62AA /* Place.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E36A6A15AD4253006E62AA /* Place.m */; };
-		18E36A7B15AD4253006E62AA /* PlaceAnnotaion.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E36A6B15AD4253006E62AA /* PlaceAnnotaion.m */; };
 		18E36A7C15AD4253006E62AA /* PlaceMark.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E36A6C15AD4253006E62AA /* PlaceMark.m */; };
 		18E36A7D15AD4253006E62AA /* RegexKitLite.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E36A6D15AD4253006E62AA /* RegexKitLite.m */; };
 		18E36A7E15AD4253006E62AA /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E36A6E15AD4253006E62AA /* SettingViewController.m */; };
@@ -258,23 +256,19 @@
 		18CC804B14D62AB4005754DE /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		18D132F9156F484200257F4B /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		18E36A6415AD4253006E62AA /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		18E36A6515AD4253006E62AA /* CameraViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraViewController.m; sourceTree = "<group>"; };
 		18E36A6615AD4253006E62AA /* DeatilViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeatilViewController.m; sourceTree = "<group>"; };
 		18E36A6715AD4253006E62AA /* FirstViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirstViewController.m; sourceTree = "<group>"; };
 		18E36A6915AD4253006E62AA /* LocationlistViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationlistViewController.m; sourceTree = "<group>"; };
 		18E36A6A15AD4253006E62AA /* Place.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Place.m; sourceTree = "<group>"; };
-		18E36A6B15AD4253006E62AA /* PlaceAnnotaion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaceAnnotaion.m; sourceTree = "<group>"; };
 		18E36A6C15AD4253006E62AA /* PlaceMark.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaceMark.m; sourceTree = "<group>"; };
 		18E36A6D15AD4253006E62AA /* RegexKitLite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegexKitLite.m; sourceTree = "<group>"; };
 		18E36A6E15AD4253006E62AA /* SettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingViewController.m; sourceTree = "<group>"; };
 		18E36A6F15AD4253006E62AA /* UploadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UploadViewController.m; sourceTree = "<group>"; };
 		18E36A7015AD4253006E62AA /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		18E36A7115AD4253006E62AA /* CameraViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraViewController.h; sourceTree = "<group>"; };
 		18E36A7215AD4253006E62AA /* DeatilViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeatilViewController.h; sourceTree = "<group>"; };
 		18E36A7315AD4253006E62AA /* FirstViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirstViewController.h; sourceTree = "<group>"; };
 		18E36A8115AD4275006E62AA /* LocationlistViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationlistViewController.h; sourceTree = "<group>"; };
 		18E36A8215AD4275006E62AA /* Place.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Place.h; sourceTree = "<group>"; };
-		18E36A8315AD4275006E62AA /* PlaceAnnotaion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaceAnnotaion.h; sourceTree = "<group>"; };
 		18E36A8415AD4275006E62AA /* PlaceMark.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaceMark.h; sourceTree = "<group>"; };
 		18E36A8515AD4275006E62AA /* RegexKitLite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegexKitLite.h; sourceTree = "<group>"; };
 		18E36A8615AD4275006E62AA /* SettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingViewController.h; sourceTree = "<group>"; };
@@ -416,38 +410,34 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				186DFF5415AE663B005AE621 /* MockPhotoSource.h */,
-				186DFF5315AE663B005AE621 /* MockPhotoSource.m */,
-				186DFF5115AE6250005AE621 /* HjxPhotoViewController.h */,
-				186DFF5015AE6250005AE621 /* HjxPhotoViewController.m */,
 				18E36A8A15AD4AA0006E62AA /* include */,
 				18ED81B414AC00800092CAC8 /* RefreshTableHeaderView */,
 				EC8BD82C13F359D500A6E82D /* Inneractive */,
 				ECC37D811241950700F97B50 /* AdMob */,
+				18E36A8515AD4275006E62AA /* RegexKitLite.h */,
+				18E36A6D15AD4253006E62AA /* RegexKitLite.m */,
+				18E36A8215AD4275006E62AA /* Place.h */,
+				18E36A6A15AD4253006E62AA /* Place.m */,
+				18E36A8415AD4275006E62AA /* PlaceMark.h */,
+				18E36A6C15AD4253006E62AA /* PlaceMark.m */,
+				186DFF5415AE663B005AE621 /* MockPhotoSource.h */,
+				186DFF5315AE663B005AE621 /* MockPhotoSource.m */,
 				18E36A7015AD4253006E62AA /* AppDelegate.h */,
 				18E36A6415AD4253006E62AA /* AppDelegate.m */,
-				18E36A7115AD4253006E62AA /* CameraViewController.h */,
-				18E36A6515AD4253006E62AA /* CameraViewController.m */,
-				18E36A7215AD4253006E62AA /* DeatilViewController.h */,
-				18E36A6615AD4253006E62AA /* DeatilViewController.m */,
 				18E36A7315AD4253006E62AA /* FirstViewController.h */,
 				18E36A6715AD4253006E62AA /* FirstViewController.m */,
 				18E36A8115AD4275006E62AA /* LocationlistViewController.h */,
 				18E36A6915AD4253006E62AA /* LocationlistViewController.m */,
-				18E36A8215AD4275006E62AA /* Place.h */,
-				18E36A6A15AD4253006E62AA /* Place.m */,
-				18E36A8315AD4275006E62AA /* PlaceAnnotaion.h */,
-				18E36A6B15AD4253006E62AA /* PlaceAnnotaion.m */,
-				18E36A8415AD4275006E62AA /* PlaceMark.h */,
-				18E36A6C15AD4253006E62AA /* PlaceMark.m */,
-				18E36A8515AD4275006E62AA /* RegexKitLite.h */,
-				18E36A6D15AD4253006E62AA /* RegexKitLite.m */,
+				186DFF5615AE692E005AE621 /* UserViewController.h */,
+				186DFF5715AE692E005AE621 /* UserViewController.m */,
 				18E36A8615AD4275006E62AA /* SettingViewController.h */,
 				18E36A6E15AD4253006E62AA /* SettingViewController.m */,
 				18E36A8715AD4275006E62AA /* UploadViewController.h */,
 				18E36A6F15AD4253006E62AA /* UploadViewController.m */,
-				186DFF5615AE692E005AE621 /* UserViewController.h */,
-				186DFF5715AE692E005AE621 /* UserViewController.m */,
+				186DFF5115AE6250005AE621 /* HjxPhotoViewController.h */,
+				186DFF5015AE6250005AE621 /* HjxPhotoViewController.m */,
+				18E36A7215AD4253006E62AA /* DeatilViewController.h */,
+				18E36A6615AD4253006E62AA /* DeatilViewController.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -989,12 +979,10 @@
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
 				18ED81B714AC00800092CAC8 /* EGORefreshTableHeaderView.m in Sources */,
 				18E36A7415AD4253006E62AA /* AppDelegate.m in Sources */,
-				18E36A7515AD4253006E62AA /* CameraViewController.m in Sources */,
 				18E36A7615AD4253006E62AA /* DeatilViewController.m in Sources */,
 				18E36A7715AD4253006E62AA /* FirstViewController.m in Sources */,
 				18E36A7915AD4253006E62AA /* LocationlistViewController.m in Sources */,
 				18E36A7A15AD4253006E62AA /* Place.m in Sources */,
-				18E36A7B15AD4253006E62AA /* PlaceAnnotaion.m in Sources */,
 				18E36A7C15AD4253006E62AA /* PlaceMark.m in Sources */,
 				18E36A7D15AD4253006E62AA /* RegexKitLite.m in Sources */,
 				18E36A7E15AD4253006E62AA /* SettingViewController.m in Sources */,
