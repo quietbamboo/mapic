@@ -126,20 +126,24 @@
 
 - (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath{
     
-    NSLog(@"this good 1");
-    DeatilViewController *detail = [[DeatilViewController alloc] init];
-    detail.delegate = self;
-    Place *place = [[Place alloc] init];
-    NSDictionary *nsdic = [nsArray objectAtIndex:indexPath.row];
-    place.name = [nsdic objectForKey:@"name"];
-    place.image = [UIImage imageNamed:[nsdic objectForKey:@"image"]];
-    place.latitude = [(NSNumber *)[nsdic objectForKey:@"lat"] doubleValue];
-    place.longitude = [(NSNumber *)[nsdic objectForKey:@"lon"] doubleValue];
-    place.description = [nsdic objectForKey:@"dec"];
-    detail.endPlace = place;
-    [self.navigationController pushViewController:detail animated:YES];
-    [detail release];
-    [place release];
+//    NSLog(@"this good 1");
+//    DeatilViewController *detail = [[DeatilViewController alloc] init];
+//    detail.delegate = self;
+//    Place *place = [[Place alloc] init];
+//    NSDictionary *nsdic = [nsArray objectAtIndex:indexPath.row];
+//    place.name = [nsdic objectForKey:@"name"];
+//    place.image = [UIImage imageNamed:[nsdic objectForKey:@"image"]];
+//    place.latitude = [(NSNumber *)[nsdic objectForKey:@"lat"] doubleValue];
+//    place.longitude = [(NSNumber *)[nsdic objectForKey:@"lon"] doubleValue];
+//    place.description = [nsdic objectForKey:@"dec"];
+//    detail.endPlace = place;
+//    [self.navigationController pushViewController:detail animated:YES];
+//    [detail release];
+//    [place release];
+    HjxPhotoViewController *photoview = [[HjxPhotoViewController alloc] initWithNibName:nil bundle:nil];
+    self.navigationController.navigationBarHidden = NO;
+    [AppDelegate getAppDelegate].centerButton.hidden = YES;
+    [self.navigationController pushViewController:photoview animated:YES];
 
 }
 
@@ -167,6 +171,7 @@
 - (void) viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     self.navigationController.navigationBarHidden = YES;
+    [AppDelegate getAppDelegate].centerButton.hidden = NO;
 }
 
 - (void)viewDidLoad

@@ -25,7 +25,6 @@
 		18E36A7515AD4253006E62AA /* CameraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E36A6515AD4253006E62AA /* CameraViewController.m */; };
 		18E36A7615AD4253006E62AA /* DeatilViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E36A6615AD4253006E62AA /* DeatilViewController.m */; };
 		18E36A7715AD4253006E62AA /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E36A6715AD4253006E62AA /* FirstViewController.m */; };
-		18E36A7815AD4253006E62AA /* ImagePickeDelegateMthods.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E36A6815AD4253006E62AA /* ImagePickeDelegateMthods.m */; };
 		18E36A7915AD4253006E62AA /* LocationlistViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E36A6915AD4253006E62AA /* LocationlistViewController.m */; };
 		18E36A7A15AD4253006E62AA /* Place.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E36A6A15AD4253006E62AA /* Place.m */; };
 		18E36A7B15AD4253006E62AA /* PlaceAnnotaion.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E36A6B15AD4253006E62AA /* PlaceAnnotaion.m */; };
@@ -262,7 +261,6 @@
 		18E36A6515AD4253006E62AA /* CameraViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraViewController.m; sourceTree = "<group>"; };
 		18E36A6615AD4253006E62AA /* DeatilViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeatilViewController.m; sourceTree = "<group>"; };
 		18E36A6715AD4253006E62AA /* FirstViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirstViewController.m; sourceTree = "<group>"; };
-		18E36A6815AD4253006E62AA /* ImagePickeDelegateMthods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImagePickeDelegateMthods.m; sourceTree = "<group>"; };
 		18E36A6915AD4253006E62AA /* LocationlistViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationlistViewController.m; sourceTree = "<group>"; };
 		18E36A6A15AD4253006E62AA /* Place.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Place.m; sourceTree = "<group>"; };
 		18E36A6B15AD4253006E62AA /* PlaceAnnotaion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaceAnnotaion.m; sourceTree = "<group>"; };
@@ -274,7 +272,6 @@
 		18E36A7115AD4253006E62AA /* CameraViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraViewController.h; sourceTree = "<group>"; };
 		18E36A7215AD4253006E62AA /* DeatilViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeatilViewController.h; sourceTree = "<group>"; };
 		18E36A7315AD4253006E62AA /* FirstViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirstViewController.h; sourceTree = "<group>"; };
-		18E36A8015AD4275006E62AA /* ImagePickeDelegateMthods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImagePickeDelegateMthods.h; sourceTree = "<group>"; };
 		18E36A8115AD4275006E62AA /* LocationlistViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationlistViewController.h; sourceTree = "<group>"; };
 		18E36A8215AD4275006E62AA /* Place.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Place.h; sourceTree = "<group>"; };
 		18E36A8315AD4275006E62AA /* PlaceAnnotaion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaceAnnotaion.h; sourceTree = "<group>"; };
@@ -435,8 +432,6 @@
 				18E36A6615AD4253006E62AA /* DeatilViewController.m */,
 				18E36A7315AD4253006E62AA /* FirstViewController.h */,
 				18E36A6715AD4253006E62AA /* FirstViewController.m */,
-				18E36A8015AD4275006E62AA /* ImagePickeDelegateMthods.h */,
-				18E36A6815AD4253006E62AA /* ImagePickeDelegateMthods.m */,
 				18E36A8115AD4275006E62AA /* LocationlistViewController.h */,
 				18E36A6915AD4253006E62AA /* LocationlistViewController.m */,
 				18E36A8215AD4275006E62AA /* Place.h */,
@@ -997,7 +992,6 @@
 				18E36A7515AD4253006E62AA /* CameraViewController.m in Sources */,
 				18E36A7615AD4253006E62AA /* DeatilViewController.m in Sources */,
 				18E36A7715AD4253006E62AA /* FirstViewController.m in Sources */,
-				18E36A7815AD4253006E62AA /* ImagePickeDelegateMthods.m in Sources */,
 				18E36A7915AD4253006E62AA /* LocationlistViewController.m in Sources */,
 				18E36A7A15AD4253006E62AA /* Place.m in Sources */,
 				18E36A7B15AD4253006E62AA /* PlaceAnnotaion.m in Sources */,

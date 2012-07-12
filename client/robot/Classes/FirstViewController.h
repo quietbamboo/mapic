@@ -19,7 +19,6 @@
 	NSArray *routes;
 	UIColor *lineColor;
     NSMutableArray *nsArray;
-    UploadViewController *uploadDelegate;
     BOOL                isinitArray;
 }
 

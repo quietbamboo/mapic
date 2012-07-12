@@ -131,6 +131,7 @@
 #pragma mark show Photos and Camera Methods
 
 -(void)showPhotos{
+    self.tabBarController.selectedIndex = 0;
     [[[AppDelegate getAppDelegate] centerButton] setHidden:YES];
     UIImagePickerController *imagePickerController = [[UIImagePickerController alloc]init];
     imagePickerController.delegate = self;
@@ -141,6 +142,7 @@
 }
 
 -(void)showCamera{
+    self.tabBarController.selectedIndex = 0;
     if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
          [[[AppDelegate getAppDelegate] centerButton] setHidden:YES];
         UIImagePickerController *imagePickerController = [[UIImagePickerController alloc]init];
@@ -150,6 +152,7 @@
         [imagePickerController release];
     }
 }
+
 #pragma mark
 #pragma mark imagePickeDelegate
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingImage:(UIImage *)image editingInfo:(NSDictionary *)editingInfo{
@@ -180,22 +183,11 @@
     [upload release];
     
 }
-//- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
-//    NSLog(@"this is info");
-//  //  imageView.image = image; //imageView为自己定义的UIImageView
-//    [picker dismissModalViewControllerAnimated:YES];
-//        [[[AppDelegate getAppDelegate] centerButton] setHidden:NO];
-//}
+
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker{
     NSLog(@"this is picker");
     [picker dismissModalViewControllerAnimated:YES];
     [[[AppDelegate getAppDelegate] centerButton] setHidden:NO];
-}
-- (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated{
-    NSLog(@"this is nav will show");
-}
-- (void)navigationController:(UINavigationController *)navigationController didShowViewController:(UIViewController *)viewController animated:(BOOL)animated{
-    NSLog(@"this is nav did show");
 }
 
 #pragma mark 
@@ -466,7 +458,6 @@
     self = [super init];
     if (self) {
         canChangeMap = YES;
-        uploadDelegate = [[UploadViewController alloc] init];
     }
     return self;
 }
@@ -474,7 +465,7 @@
 - (void) viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     self.navigationController.navigationBarHidden = YES;
-    //[self moveToCurrentLocation];
+    [AppDelegate getAppDelegate].centerButton.hidden = NO;
 } 
 
 - (void) loadView {

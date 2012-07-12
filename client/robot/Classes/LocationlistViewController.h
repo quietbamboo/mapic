@@ -10,6 +10,7 @@
 #import "DeatilViewController.h"
 #import "AppDelegate.h"
 #import "EGORefreshTableHeaderView.h"
+#import "HjxPhotoViewController.h"
 @interface LocationlistViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,DirectionsViewControllerDelegate,EGORefreshTableHeaderDelegate>{
 
     NSMutableArray *nsArray;

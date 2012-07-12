@@ -11,6 +11,8 @@
 @implementation HjxPhotoViewController
 
 @synthesize listlabel;
+@synthesize adMobAd;
+@synthesize adTimer;
 
 static const NSTimeInterval kSlideshowInterval = 6;
 
@@ -234,10 +236,10 @@ static const NSTimeInterval kSlideshowInterval = 6;
 }
 
 - (double)getCrossX {
-    if([AppDelegate isIpad])
+   // if([AppDelegate isIpad])
         return (TTScreenBounds().size.width + 728) / 2 - 20;
-    else
-        return (TTScreenBounds().size.width + 320) / 2 - 20;
+   // else
+   //     return (TTScreenBounds().size.width + 320) / 2 - 20;
 }
 
 - (double)getAdmobX {
@@ -245,21 +247,21 @@ static const NSTimeInterval kSlideshowInterval = 6;
 }
 
 - (double)getAdHeight {
-    if([AppDelegate isIpad])
+   // if([AppDelegate isIpad])
         return 90;
-    else
-        return 50;
+   // else
+     //   return 50;
 }
 
 - (void) initAds{
     NSLog(@"initAds");    
     CGRect adFrame = CGRectZero;
-    if([AppDelegate isIpad])
+   // if([AppDelegate isIpad])
         adFrame.size = GAD_SIZE_728x90;
-    else
-        adFrame.size = GAD_SIZE_320x50;
+   // else
+   //     adFrame.size = GAD_SIZE_320x50;
     adMobAd = [[GADBannerView alloc]initWithFrame:adFrame];
-    adMobAd.adUnitID = [AppDelegate getAdjustedString:@"admob"];
+   // adMobAd.adUnitID = [AppDelegate getAdjustedString:@"admob"];
     adMobAd.delegate = self;
     
     //CGRectMake(0.0,self.view.frame.size.height -GAD_SIZE_320x50.height,GAD_SIZE_320x50.width,GAD_SIZE_320x50.height)];
@@ -267,11 +269,11 @@ static const NSTimeInterval kSlideshowInterval = 6;
     [adMobAd loadRequest:[GADRequest request]];
     
     //banner for inneractive ads
-    if([AppDelegate isIpad]) {
+   // if([AppDelegate isIpad]) {
         adBanner = [[UIView alloc] initWithFrame:CGRectMake(0, 0, TTScreenBounds().size.width, 90)];
-    } else {
-        adBanner = [[UIView alloc] initWithFrame:CGRectMake(0, 0, TTScreenBounds().size.width, 60)];
-    }
+   // } else {
+   //     adBanner = [[UIView alloc] initWithFrame:CGRectMake(0, 0, TTScreenBounds().size.width, 60)];
+   // }
     
     crossButton = [[UIImageView alloc] initWithFrame:CGRectMake([self getCrossX], [self getAdHeight], 20, 20)];  
     [crossButton setImage:TTIMAGE(@"bundle://Three20.bundle/images/cross.jpg")];
@@ -315,7 +317,7 @@ static const NSTimeInterval kSlideshowInterval = 6;
         return;
     }
     
-    NSLog(@"in timer %f, %f, %d", TTScreenBounds().size.height, TTScreenBounds().size.width, (int)[AppDelegate isIpad]);
+   // NSLog(@"in timer %f, %f, %d", TTScreenBounds().size.height, TTScreenBounds().size.width, (int)[AppDelegate isIpad]);
     crossButton.hidden = NO;
     adMobAd.hidden = NO;
     adBanner.hidden = NO;
@@ -349,7 +351,7 @@ static const NSTimeInterval kSlideshowInterval = 6;
     
     
     //not vip, show ads
-	if(![AppDelegate isAdsFree]){
+	//if(![AppDelegate isAdsFree]){
         //first, show big ads
         
         // if(random() % 50 == 1){
@@ -365,7 +367,7 @@ static const NSTimeInterval kSlideshowInterval = 6;
                                                  selector: @selector(handleAdTimer:)
                                                  userInfo: nil
                                                   repeats: YES];
-	}//*/
+//	}//*/
     
 }
 
@@ -464,9 +466,9 @@ static const NSTimeInterval kSlideshowInterval = 6;
     NSLog(@"release timer in viewWillDisappear");
     
     //if not vip, stop timer here
-    if(![AppDelegate isAdsFree] && adTimer && adTimer.isValid){
+  //  if(![AppDelegate isAdsFree] && adTimer && adTimer.isValid){
         [adTimer invalidate];
-    }
+   // }
     
     
     //important for solving the crashing problem
@@ -733,8 +735,8 @@ didFailToReceiveAdWithError:(GADRequestError *)error{
     //only when admob fail show inneractive
     NSLog(@"admob ad fail");
     adBanner.hidden = NO;
-    NSString *inneractive = [AppDelegate getAdjustedString:@"inneractive"];
-    [InneractiveAd DisplayAd:(NSString*)inneractive withType:IaAdType_Banner withRoot:adBanner withReload:15];
+   // NSString *inneractive = [AppDelegate getAdjustedString:@"inneractive"];
+   // [InneractiveAd DisplayAd:(NSString*)inneractive withType:IaAdType_Banner withRoot:adBanner withReload:15];
 }
 
 - (void)adViewDidReceiveAd:(GADBannerView *)view{

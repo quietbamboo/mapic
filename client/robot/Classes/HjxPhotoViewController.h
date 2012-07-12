@@ -12,7 +12,6 @@
 //#import "AdMobDelegateProtocol.h"
 //#import "AdMobView.h"
 #import "GADBannerView.h"
-#import "AppDelegate.h"
 #import "InneractiveAd.h"
 
 
