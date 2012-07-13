@@ -14,6 +14,10 @@
 
 @implementation UploadViewController
 @synthesize image;
+@synthesize label;
+@synthesize imgPicker;
+@synthesize pop;
+@synthesize imageView;
 #pragma mark
 #pragma mark default Mthods
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -174,16 +178,133 @@
 #pragma mark toButton
 - (void)toupload{
 
-    UIAlertView *uppload = [[UIAlertView alloc] initWithTitle:@"提示"
-                                                      message:@"上传"
-                                                     delegate:self
-                                            cancelButtonTitle:@"OK"
-                                            otherButtonTitles:nil];
-    [uppload show];
-    [uppload release];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Upload confirmation" message:@"Are you sure to upload this image?\n\nBe patient when uploading ...\n\nIf you want to remove a previously uploaded and approved photo, you can do so in \"Uploaded By Me\" section by clicking the <!> button" 
+												   delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:nil];
+	[alert addButtonWithTitle:@"Yes"];
+	[alert show];
+	[alert release];
 }
 - (void)closeUpload{
     [self.navigationController popViewControllerAnimated:YES];
 }
-
+#pragma mark
+#pragma mark Upload
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
+	//[imageView removeFromSuperview];
+	//[[TTNavigator navigator] openURLAction:[TTURLAction actionWithURLPath:@"tt://catalog"]];
+	if([[alertView title] isEqualToString:@"Thank you!"]){
+		
+		//restart home
+		[[TTNavigator navigator] removeAllViewControllers];
+		[[TTNavigator navigator] openURLAction:[TTURLAction actionWithURLPath:@"tt://catalog"]];
+		
+		
+	}
+	
+	if([[alertView title] isEqualToString:@"Upload confirmation"] && buttonIndex == 0){
+		[[TTNavigator navigator] removeAllViewControllers];
+		[[TTNavigator navigator] openURLAction:[TTURLAction actionWithURLPath:@"tt://catalog"]];
+	}
+	
+	if(buttonIndex == 1){
+		//send image
+		label = [[[TTActivityLabel alloc] initWithStyle:TTActivityLabelStyleWhiteBox] autorelease];
+		label.text = @"Uploading & checking duplication ...";
+		[label sizeToFit];
+		label.frame = CGRectMake(0, self.view.frame.size.height / 2.5, self.view.frame.size.width, label.frame.size.height);
+		[self.view addSubview:label];
+        
+		[NSTimer scheduledTimerWithTimeInterval: 0.3
+                                         target: self
+                                       selector: @selector(handleTimer:)
+                                       userInfo: nil
+                                        repeats: NO];
+	}
+}
+- (void) handleTimer: (id) timer{
+    NSLog(@"handleTimer");
+    [timer invalidate];
+	//upload image
+	/*
+	 turning the image into a NSData object
+	 getting the image back out of the UIImageView
+	 setting the quality to 90
+	 */
+	
+	//iphone name : [[UIDevice currentDevice] name]
+	
+	//device id: [NSString stringWithFormat:@"%@", [[UIDevice currentDevice] uniqueIdentifier]]
+	
+	NSString *prefix = @"UploadServlet";//@"pet";//[[[NSBundle mainBundle] infoDictionary] objectForKey:@"prefix"];
+	NSString *baseurl = @"http://192.168.1.102:8080/upload";//@"http://iphone.dotaart.com/asian/new";//[[[NSBundle mainBundle] infoDictionary] objectForKey:@"baseurl"];
+	NSString *device_id = [NSString stringWithFormat:@"%@", [[UIDevice currentDevice] uniqueIdentifier]];
+    
+	//NSData *imageData = UIImageJPEGRepresentation(image, 1);
+	//NSLog(@"before getint image data");
+	NSData *imageData = UIImageJPEGRepresentation(self.image, 1.0);
+	//NSLog(@"after getint image data");
+	
+	// setting up the URL to post to
+	NSString *urlString = [NSString stringWithFormat:@"%@/%@", baseurl, prefix];//upload.php?prefix=
+	
+	// setting up the request object now
+	NSMutableURLRequest *request = [[[NSMutableURLRequest alloc] init] autorelease];
+	[request setURL:[NSURL URLWithString:urlString]];
+	[request setHTTPMethod:@"POST"];
+	
+	/*
+	 add some header info now
+	 we always need a boundary when we post a file
+	 also we need to set the content type
+	 
+	 You might want to generate a random boundary.. this is just the same 
+	 as my output from wireshark on a valid html post
+	 */
+	NSString *boundary = [NSString stringWithString:@"---------------------------14737809831466499882746641449"];
+	NSString *contentType = [NSString stringWithFormat:@"multipart/form-data; boundary=%@",boundary];
+	[request addValue:contentType forHTTPHeaderField: @"Content-Type"];
+	/*
+	 now lets create the body of the post
+	 */
+	NSMutableData *body = [NSMutableData data];
+	[body appendData:[[NSString stringWithFormat:@"\r\n--%@\r\n",boundary] dataUsingEncoding:NSUTF8StringEncoding]];	
+	[body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"userfile\"; filename=\"%@_____%@\"\r\n", device_id, [[UIDevice currentDevice] name]] dataUsingEncoding:NSUTF8StringEncoding]];
+	[body appendData:[[NSString stringWithString:@"Content-Type: application/octet-stream\r\n\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];
+	[body appendData:[NSData dataWithData:imageData]];
+	[body appendData:[[NSString stringWithFormat:@"\r\n--%@--\r\n",boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+	// setting the body of the post to the reqeust
+	[request setHTTPBody:body];
+	
+	//NSLog(@"sending ");
+	// now lets make the connection to the web
+	NSData *returnData = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
+	//NSLog(@"sending returned");
+	NSString *returnString = [[NSString alloc] initWithData:returnData encoding:NSUTF8StringEncoding];
+	
+	if([returnData length] == 0){
+		returnString = @"Either you don't have network access or our server is down.\nTry again later:)";
+	}
+	//NSLog(returnString);
+	
+	//[indicator stopAnimating];
+	//
+	
+	
+	NSString* msg = [NSString stringWithFormat:@"%@", returnString];
+	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Thank you!" message:msg 
+												   delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+	[alert show];
+	[alert release];
+	
+	[label removeFromSuperview];
+	
+	//[self.view removeAllSubviews];
+	//CGRect mainBounds = [[UIScreen mainScreen] bounds];
+	//imageView = [[UIImageView alloc] initWithFrame:mainBounds];
+	//imageView.contentMode = UIViewContentModeScaleAspectFit;	
+	//imageView = [[UIImageView alloc] initWithImage:image];
+	//[self.view addSubview:imageView];
+    
+    
+}
 @end
