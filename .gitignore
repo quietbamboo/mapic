@@ -1,6 +1,9 @@
 
 
 #Remove personal data
+client/robot/template.xcodeproj/project.xcworkspace/xcuserdata/
 
 #System hidden files
 *.DS_Store
+
+
