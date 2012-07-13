@@ -17,11 +17,11 @@
 #pragma mark 
 #pragma mark DirectionsViewControllerDelegate methods
 
-- (void)directionsViewControllerDidCancel:(DeatilViewController *)viewController{
+- (void)directionsViewControllerDidCancel:(HjxPhotoViewController *)viewController{
     
 }
 
-- (void)directionsViewController:(DeatilViewController *)viewController toPlace:(Place *)endPlace{
+- (void)directionsViewController:(HjxPhotoViewController *)viewController toPlace:(Place *)endPlace{
     [viewController.navigationController popViewControllerAnimated:YES];
     [(FirstViewController *)[[AppDelegate getAppDelegate] firstview] showRouteLine:endPlace];
     self.tabBarController.selectedIndex = 0;
@@ -128,18 +128,6 @@
     
 //    NSLog(@"this good 1");
 //    DeatilViewController *detail = [[DeatilViewController alloc] init];
-//    detail.delegate = self;
-//    Place *place = [[Place alloc] init];
-//    NSDictionary *nsdic = [nsArray objectAtIndex:indexPath.row];
-//    place.name = [nsdic objectForKey:@"name"];
-//    place.image = [UIImage imageNamed:[nsdic objectForKey:@"image"]];
-//    place.latitude = [(NSNumber *)[nsdic objectForKey:@"lat"] doubleValue];
-//    place.longitude = [(NSNumber *)[nsdic objectForKey:@"lon"] doubleValue];
-//    place.description = [nsdic objectForKey:@"dec"];
-//    detail.endPlace = place;
-//    [self.navigationController pushViewController:detail animated:YES];
-//    [detail release];
-//    [place release];
     HjxPhotoViewController *hjxPhotoview = [[HjxPhotoViewController alloc] initWithNibName:nil bundle:nil];
     switch (indexPath.row) {
         case 0:
@@ -163,11 +151,23 @@
         default:
             break;
     }
-    
+    hjxPhotoview.delegate = self;
+    Place *place = [[Place alloc] init];
+    NSDictionary *nsdic = [nsArray objectAtIndex:indexPath.row];
+    place.name = [nsdic objectForKey:@"name"];
+    place.image = [UIImage imageNamed:[nsdic objectForKey:@"image"]];
+    place.latitude = [(NSNumber *)[nsdic objectForKey:@"lat"] doubleValue];
+    place.longitude = [(NSNumber *)[nsdic objectForKey:@"lon"] doubleValue];
+    place.description = [nsdic objectForKey:@"dec"];
+    hjxPhotoview.endPlace = place;
+//    [self.navigationController pushViewController:detail animated:YES];
+//    [detail release];
+
     self.navigationController.navigationBarHidden = NO;
     [AppDelegate getAppDelegate].centerButton.hidden = YES;
     [self.navigationController pushViewController:hjxPhotoview animated:YES];
     [hjxPhotoview release];
+    [place release];
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil

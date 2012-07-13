@@ -14,7 +14,8 @@
 //@synthesize adMobAd;
 //@synthesize adTimer;
 @synthesize clicked;
-
+@synthesize delegate = _delegate;
+@synthesize endPlace;
 static const NSTimeInterval kSlideshowInterval = 6;
 #pragma mark
 #pragma mark BarAnimation
@@ -100,6 +101,16 @@ static const NSTimeInterval kSlideshowInterval = 6;
 
 - (void)stopActivity{
 	[listlabel setHidden:YES];
+    if (self.endPlace != nil) {
+        UIBarButtonItem *btnRoute = [[UIBarButtonItem alloc] 
+                                     initWithTitle:@"路线"                                            
+                                     style:UIBarButtonItemStyleBordered 
+                                     target:self 
+                                     action:@selector(toWriteRoute)];
+        self.navigationItem.rightBarButtonItem = btnRoute;
+        //self.navigationItem.leftBarButtonItem = btnRoute;
+        [btnRoute release];
+    }
 }
 
 #pragma mark
@@ -387,6 +398,15 @@ static const NSTimeInterval kSlideshowInterval = 6;
     }
 }
 #pragma mark
+#pragma mark DirectionsViewControllerDelegate
+- (void)toWriteRoute{
+    [_delegate directionsViewController:self toPlace:endPlace];
+}
+- (void)toCloseSelf{
+    [_delegate directionsViewControllerDidCancel:self];
+}
+
+#pragma mark
 #pragma mark default Mthods
 - (void)viewDidLoad {
     //only called once when entering the image section
@@ -407,7 +427,7 @@ static const NSTimeInterval kSlideshowInterval = 6;
 
 - (void)viewWillAppear:(BOOL)animated{
     //could be called multiple times returning from thumbnail view
-    
+    self.navigationController.navigationBarHidden = NO;
     [super viewWillAppear:animated];
     NSLog(@"view will appear");
     //parallel with loading photo list

@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "DeatilViewController.h"
+//#import "DeatilViewController.h"
 #import "AppDelegate.h"
 #import "EGORefreshTableHeaderView.h"
 #import "HjxPhotoViewController.h"

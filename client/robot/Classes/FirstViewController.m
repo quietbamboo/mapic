@@ -101,19 +101,8 @@
 }
 
 - (void)toDetailView:(UIButton *)sender {
-//    DeatilViewController *detail = [[DeatilViewController alloc] init];
-//    detail.delegate = self;
-//    Place *place = [[Place alloc] init];
-//    NSDictionary *nsdic = [nsArray objectAtIndex:([sender tag] - ButtonTag) ];
-//    place.name = [nsdic objectForKey:@"name"];
-//    place.image = [UIImage imageNamed:[nsdic objectForKey:@"image"]];
-//    place.latitude = [(NSNumber *)[nsdic objectForKey:@"lat"] doubleValue];
-//    place.longitude = [(NSNumber *)[nsdic objectForKey:@"lon"] doubleValue];
-//    place.description = [nsdic objectForKey:@"dec"];
-//    detail.endPlace = place;
-//    [self.navigationController pushViewController:detail animated:YES];
-//    [detail release];
-//    [place release];
+    //DeatilViewController *detail = [[DeatilViewController alloc] init];
+   
     HjxPhotoViewController *hjxPhotoview = [[HjxPhotoViewController alloc] initWithNibName:nil bundle:nil];
     switch ([sender tag] - ButtonTag) {
         case 0:
@@ -137,11 +126,23 @@
         default:
             break;
     }
+    hjxPhotoview.delegate = self;
+    Place *place = [[Place alloc] init];
+    NSDictionary *nsdic = [nsArray objectAtIndex:([sender tag] - ButtonTag) ];
+    place.name = [nsdic objectForKey:@"name"];
+    place.image = [UIImage imageNamed:[nsdic objectForKey:@"image"]];
+    place.latitude = [(NSNumber *)[nsdic objectForKey:@"lat"] doubleValue];
+    place.longitude = [(NSNumber *)[nsdic objectForKey:@"lon"] doubleValue];
+    place.description = [nsdic objectForKey:@"dec"];
+    hjxPhotoview.endPlace = place;
+    //[self.navigationController pushViewController:hjxPhotoview animated:YES];
+    //[detail release];
     
     self.navigationController.navigationBarHidden = NO;
     [AppDelegate getAppDelegate].centerButton.hidden = YES;
     [self.navigationController pushViewController:hjxPhotoview animated:YES];
     [hjxPhotoview release];
+    [place release];
 }
 
 - (void)moveToCurrentLocation {
@@ -447,11 +448,11 @@
 #pragma mark 
 #pragma mark DirectionsViewControllerDelegate methods
 
-- (void)directionsViewControllerDidCancel:(DeatilViewController *)viewController{
+- (void)directionsViewControllerDidCancel:(HjxPhotoViewController *)viewController{
     
 }
 
-- (void)directionsViewController:(DeatilViewController *)viewController toPlace:(Place *)endPlace{
+- (void)directionsViewController:(HjxPhotoViewController *)viewController toPlace:(Place *)endPlace{
     [viewController.navigationController popViewControllerAnimated:YES];
     Place* home = [[[Place alloc] init] autorelease];
 	home.name = @"Current Location";

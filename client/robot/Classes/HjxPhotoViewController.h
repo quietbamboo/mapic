@@ -13,13 +13,13 @@
 //#import "AdMobView.h"
 #import "GADBannerView.h"
 #import "InneractiveAd.h"
-
+#import "Place.h"
 
 
 //@class AdMobView;
 
 NSString* photoList;
-
+@protocol DirectionsViewControllerDelegate;
 @interface HjxPhotoViewController : TTPhotoViewController<UIAlertViewDelegate, GADBannerViewDelegate> {
 
 //    GADBannerView *adMobAd;
@@ -42,4 +42,11 @@ NSString* photoList;
 //@property (nonatomic, retain) GADBannerView *adMobAd;
 @property (nonatomic, retain) TTActivityLabel *listlabel;
 @property (nonatomic, retain) NSString* clicked;
+@property (nonatomic, assign) id<DirectionsViewControllerDelegate> delegate;
+@property (nonatomic, retain) Place *endPlace;
+@end
+@protocol DirectionsViewControllerDelegate <NSObject>
+
+- (void)directionsViewControllerDidCancel:(HjxPhotoViewController *)viewController;
+- (void)directionsViewController:(HjxPhotoViewController *)viewController toPlace:(Place *)endPlace;
 @end

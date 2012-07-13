@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "DeatilViewController.h"
+//#import "DeatilViewController.h"
 #import "Place.h"
 #import "PlaceMark.h"
 #import "RegexKitLite.h"
