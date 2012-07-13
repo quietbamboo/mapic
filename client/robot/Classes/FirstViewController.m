@@ -28,6 +28,7 @@
 {
     return 40.0f;
 }
+
 #pragma mark
 #pragma mark init nsArray
 - (void)initnaArray{
@@ -200,7 +201,9 @@
     //[[[AppDelegate getAppDelegate] centerButton] setHidden:NO];
     UploadViewController *upload = [[UploadViewController alloc] init];
     upload.image = image;
+    
     [self.navigationController pushViewController:upload animated:YES];
+    //[self.tabBarController.view setHidden:YES];
     [[[AppDelegate getAppDelegate] centerButton] setHidden:NO];
     [upload release];
     
@@ -464,7 +467,31 @@
     [self showRouteFrom:home to:endPlace];
 
 }
-
+#pragma mark
+#pragma mark showTaBar
+-(void) showTabBar:(UITabBarController*) tabbarcontroller {
+    
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationDuration:0.5];
+    for(UIView*view in tabbarcontroller.view.subviews)
+    {
+        NSLog(@"%@", view);
+        
+        if([view isKindOfClass:[UITabBar class]])
+        {
+            [view setFrame:CGRectMake(view.frame.origin.x,431, view.frame.size.width, view.frame.size.height)];
+            
+        }
+        else
+        {
+            [view setFrame:CGRectMake(view.frame.origin.x, view.frame.origin.y, view.frame.size.width,431)];
+        }
+        
+        
+    }
+    
+    [UIView commitAnimations];
+}
 #pragma mark
 #pragma mark default Mthods
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -487,6 +514,7 @@
 - (void) viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     self.navigationController.navigationBarHidden = YES;
+    [self showTabBar:self.tabBarController];
     [AppDelegate getAppDelegate].centerButton.hidden = NO;
 } 
 

@@ -14,7 +14,8 @@
 
 @implementation UploadViewController
 @synthesize image;
-
+#pragma mark
+#pragma mark default Mthods
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -32,7 +33,10 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
     self.navigationController.navigationBarHidden = NO;
+    [AppDelegate getAppDelegate].centerButton.hidden = YES;
+    [self hideTabBar:self.tabBarController];
     scrollview.contentSize = CGSizeMake(320,900);
 }
 
@@ -43,9 +47,16 @@
                                  initWithTitle:@"取消"                                            
                                  style:UIBarButtonItemStyleBordered 
                                  target:self 
-                                 action:@selector(toWriteRoute)];
-    self.navigationItem.rightBarButtonItem = btnRoute;
+                                 action:@selector(closeUpload)];
+    self.navigationItem.leftBarButtonItem = btnRoute;
     [btnRoute release];
+    UIBarButtonItem *btnUpload = [[UIBarButtonItem alloc] 
+                                 initWithTitle:@"上传"                                            
+                                 style:UIBarButtonItemStyleBordered 
+                                 target:self 
+                                 action:@selector(toupload)];
+    self.navigationItem.rightBarButtonItem = btnUpload;
+    [btnUpload release];
     scrollview = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, 320, 480)];
     scrollview.backgroundColor=[UIColor colorWithRed:0.859f green:0.886f blue:0.929f alpha:1.0f];
     //scrollview.backgroundColor = [UIColor blackColor];
@@ -95,7 +106,7 @@
     textView.font = [UIFont fontWithName:@"Arial" size:18.0];//设置字体名字和字体大小  
     //textView.delegate = self;//设置它的委托方法  
     textView.backgroundColor = [UIColor whiteColor];//设置它的背景颜色
-    textView.text = @"简介内容简介内容简介内容简介内容简介内容简介内容简介内容简介内容简介内容简介内容简介内容简介内容简介内容简介内容简介内容简介内容简介内容简介内容简介内容简介内容简介内容简介内容简介内容简介内容简介内容简介内容简介内容";//设置它显示的内容  
+    textView.text = @"";//设置它显示的内容  
     textView.returnKeyType = UIReturnKeyDefault;//返回键的类型  
     textView.keyboardType = UIKeyboardTypeDefault;//键盘类型  
     textView.scrollEnabled = YES;//是否可以拖动  
@@ -103,17 +114,11 @@
     [scrollview addSubview: textView];//加入到整个页面中
     
     UIButton *uploadButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    uploadButton.frame = CGRectMake(0, 730, 60, 30);
-    [uploadButton setTitle:@"上传" forState:UIControlStateNormal];
+    uploadButton.frame = CGRectMake(60, 745, 200, 50);
+    [uploadButton setTitle:@"上    传" forState:UIControlStateNormal];
+    uploadButton.titleLabel.font = [UIFont systemFontOfSize:20];
     [uploadButton addTarget:self action:@selector(toupload) forControlEvents:UIControlEventTouchUpInside];
     [scrollview addSubview:uploadButton];
-    
-    UIButton *canceledButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    canceledButton.frame = CGRectMake(260, 730, 60, 30);
-    [canceledButton setTitle:@"取消" forState:UIControlStateNormal];
-    [canceledButton addTarget:self action:@selector(tocanceled) forControlEvents:UIControlEventTouchUpInside];
-    [scrollview addSubview:canceledButton];
-    
     
 }
 
@@ -128,6 +133,44 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 #pragma mark
+#pragma mark hideTabBar and showTabBar
+-(void) hideTabBar:(UITabBarController*) tabbarcontroller {
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationDuration:0.5];
+    for(UIView*view in tabbarcontroller.view.subviews)
+    {
+        if([view isKindOfClass:[UITabBar class]])
+        {
+            [view setFrame:CGRectMake(view.frame.origin.x,480, view.frame.size.width, view.frame.size.height)];
+        }
+        else
+        {
+            [view setFrame:CGRectMake(view.frame.origin.x, view.frame.origin.y, view.frame.size.width,480)];
+        }
+        
+    }
+    [UIView commitAnimations];
+}
+
+-(void) showTabBar:(UITabBarController*) tabbarcontroller {
+    
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationDuration:0.5];
+    for(UIView*view in tabbarcontroller.view.subviews)
+    {  
+        if([view isKindOfClass:[UITabBar class]])
+        {
+            [view setFrame:CGRectMake(view.frame.origin.x,431, view.frame.size.width, view.frame.size.height)];
+            
+        }
+        else
+        {
+            [view setFrame:CGRectMake(view.frame.origin.x, view.frame.origin.y, view.frame.size.width,431)];
+        }
+    }
+    [UIView commitAnimations];
+}
+#pragma mark
 #pragma mark toButton
 - (void)toupload{
 
@@ -139,15 +182,8 @@
     [uppload show];
     [uppload release];
 }
-- (void)tocanceled{
-
-    UIAlertView *canceled = [[UIAlertView alloc] initWithTitle:@"提示"
-                                                      message:@"上传"
-                                                     delegate:self
-                                            cancelButtonTitle:@"OK"
-                                            otherButtonTitles:nil];
-    [canceled show];
-    [canceled release];  
+- (void)closeUpload{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 @end
