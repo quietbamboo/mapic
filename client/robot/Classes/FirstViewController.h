@@ -14,13 +14,15 @@
 #import "AppDelegate.h"
 #import "UploadViewController.h"
 #import "HjxPhotoViewController.h"
-@interface FirstViewController : UIViewController <MKMapViewDelegate,CLLocationManagerDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate,DirectionsViewControllerDelegate>{
+#import "CustomSegmentedControl.h"
+@interface FirstViewController : UIViewController <MKMapViewDelegate,CLLocationManagerDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate,DirectionsViewControllerDelegate,CustomSegmentedControlDelegate>{
     BOOL canChangeMap;
     UIImageView *routeView;
 	NSArray *routes;
 	UIColor *lineColor;
     NSMutableArray *nsArray;
     BOOL                isinitArray;
+    NSArray* buttons;
 }
 
 @property (retain, nonatomic) MKMapView *mainMapView;

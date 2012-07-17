@@ -9,8 +9,17 @@
 #import "FirstViewController.h"
 #import "SettingViewController.h"
 #define ButtonTag 1000
-@interface FirstViewController ()
+#define TAG_VALUE 9000
 
+typedef enum {
+    CapLeft          = 0,
+    CapMiddle        = 1,
+    CapRight         = 2,
+    CapLeftAndRight  = 3
+} CapLocation;
+
+@interface FirstViewController ()
+-(void)addView:(UIView*)subView verticalOffset:(NSUInteger)verticalOffset title:(NSString*)title;
 @end
 
 @implementation FirstViewController
@@ -524,15 +533,7 @@
     self.view = contentView;
     [contentView release];
 }
-- (void) satelliteBu{
-    mainMapView.mapType = MKMapTypeSatellite;
-}
-- (void) standardBu{
-    mainMapView.mapType = MKMapTypeStandard;
-}
-- (void) hybridBu{
-    mainMapView.mapType = MKMapTypeHybrid;
-}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -557,23 +558,14 @@
     [resetButton addTarget:self action:@selector(removePins) forControlEvents:UIControlEventTouchUpInside];
     [mainMapView addSubview:resetButton];
     
-    UIButton *standardButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    standardButton.frame = CGRectMake(10, 386, 50, 30);
-    [standardButton setTitle:@"标准" forState:UIControlStateNormal];
-    [standardButton addTarget:self action:@selector(standardBu) forControlEvents:UIControlEventTouchUpInside];
-    [mainMapView addSubview:standardButton];
-    
-    UIButton *satellitedButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    satellitedButton.frame = CGRectMake(70, 386, 50, 30);
-    [satellitedButton setTitle:@"卫星" forState:UIControlStateNormal];
-    [satellitedButton addTarget:self action:@selector(satelliteBu) forControlEvents:UIControlEventTouchUpInside];
-    [mainMapView addSubview:satellitedButton];
-    
-    UIButton *hybridButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    hybridButton.frame = CGRectMake(130, 386, 50, 30);
-    [hybridButton setTitle:@"混合" forState:UIControlStateNormal];
-    [hybridButton addTarget:self action:@selector(hybridBu) forControlEvents:UIControlEventTouchUpInside];
-    [mainMapView addSubview:hybridButton];
+    buttons = [[NSArray arrayWithObjects:
+                [NSDictionary dictionaryWithObjectsAndKeys:[NSArray arrayWithObjects:@"One", @"Two", @"Three", nil], @"titles", [NSValue valueWithCGSize:CGSizeMake(50,30)], @"size", @"bottombarblue.png", @"button-image", @"bottombarblue_pressed.png", @"button-highlight-image", @"blue-divider.png", @"divider-image", [NSNumber numberWithFloat:14.0], @"cap-width", nil],
+                nil] retain];
+    // A blue segment control with 3 values
+    NSDictionary* blueSegmentedControlData = [buttons objectAtIndex:0];
+    NSArray* blueSegmentedControlTitles = [blueSegmentedControlData objectForKey:@"titles"];
+    CustomSegmentedControl* blueSegmentedControl = [[[CustomSegmentedControl alloc] initWithSegmentCount:blueSegmentedControlTitles.count segmentsize:[[blueSegmentedControlData objectForKey:@"size"] CGSizeValue] dividerImage:[UIImage imageNamed:[blueSegmentedControlData objectForKey:@"divider-image"]] tag:TAG_VALUE delegate:self] autorelease];
+    [self addView:blueSegmentedControl verticalOffset:0 title:@"Blue segmented control"];
     
     routeView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, mainMapView.frame.size.width, mainMapView.frame.size.height)];
     routeView.userInteractionEnabled = NO;
@@ -623,5 +615,119 @@
 	[routeView release];
     [super dealloc];
 }
+#pragma mark -
+#pragma mark Three map types of methods
+- (void) satelliteBu{
+    mainMapView.mapType = MKMapTypeSatellite;
+}
+- (void) standardBu{
+    mainMapView.mapType = MKMapTypeStandard;
+}
+- (void) hybridBu{
+    mainMapView.mapType = MKMapTypeHybrid;
+}
+#pragma mark -
+#pragma mark CustomSegmentedControlDelegate
+-(void)addView:(UIView*)subView verticalOffset:(NSUInteger)verticalOffset title:(NSString*)title
+{
+    // Figure out the vertical location based on the offset and heights
+    //CGFloat elementVerticalLocation = (VERTICAL_HEIGHT + (VERTICAL_SPACING * 2)) * verticalOffset;
+    
+    //  // Add a label
+    //  UILabel* label = [[[UILabel alloc] initWithFrame:CGRectMake(HORIZONTAL_OFFSET, elementVerticalLocation + VERTICAL_OFFSET, 0, 0)] autorelease];
+    //  label.backgroundColor = [UIColor clearColor];
+    //  label.textColor = [UIColor blueColor];
+    //  label.text = title;
+    //  [label sizeToFit];
+    //  
+    //  [self.view addSubview:label];
+    
+    // Adjust location of new subView and add it
+    //  subView.frame = CGRectMake(HORIZONTAL_OFFSET, elementVerticalLocation + 5 + VERTICAL_OFFSET, subView.frame.size.width, subView.frame.size.height);
+    subView.frame = CGRectMake(80, 386, subView.frame.size.width, subView.frame.size.height);
+    [mainMapView addSubview:subView];
+}
 
+-(UIImage*)image:(UIImage*)image withCap:(CapLocation)location capWidth:(NSUInteger)capWidth buttonWidth:(NSUInteger)buttonWidth
+{
+    UIGraphicsBeginImageContextWithOptions(CGSizeMake(buttonWidth, image.size.height), NO, 0.0);
+    
+    if (location == CapLeft)
+        // To draw the left cap and not the right, we start at 0, and increase the width of the image by the cap width to push the right cap out of view
+        [image drawInRect:CGRectMake(0, 0, buttonWidth + capWidth, image.size.height)];
+    else if (location == CapRight)
+        // To draw the right cap and not the left, we start at negative the cap width and increase the width of the image by the cap width to push the left cap out of view
+        [image drawInRect:CGRectMake(0.0-capWidth, 0, buttonWidth + capWidth, image.size.height)];
+    else if (location == CapMiddle)
+        // To draw neither cap, we start at negative the cap width and increase the width of the image by both cap widths to push out both caps out of view
+        [image drawInRect:CGRectMake(0.0-capWidth, 0, buttonWidth + (capWidth * 2), image.size.height)];
+    
+    UIImage* resultImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return resultImage;
+}
+
+
+- (UIButton*) buttonFor:(CustomSegmentedControl*)segmentedControl atIndex:(NSUInteger)segmentIndex;
+{
+    NSUInteger dataOffset = segmentedControl.tag - TAG_VALUE ;
+    NSDictionary* data = [buttons objectAtIndex:dataOffset];
+    NSArray* titles = [data objectForKey:@"titles"];
+    
+    CapLocation location;
+    if (segmentIndex == 0)
+        location = CapLeft;
+    else if (segmentIndex == titles.count - 1)
+        location = CapRight;
+    else
+        location = CapMiddle;
+    
+    UIImage* buttonImage = nil;
+    UIImage* buttonPressedImage = nil;
+    
+    CGFloat capWidth = [[data objectForKey:@"cap-width"] floatValue];
+    CGSize buttonSize = [[data objectForKey:@"size"] CGSizeValue];
+    
+    if (location == CapLeftAndRight)
+    {
+        buttonImage = [[UIImage imageNamed:[data objectForKey:@"button-image"]] stretchableImageWithLeftCapWidth:capWidth topCapHeight:0.0];
+        buttonPressedImage = [[UIImage imageNamed:[data objectForKey:@"button-highlight-image"]] stretchableImageWithLeftCapWidth:capWidth topCapHeight:0.0];
+    }
+    else
+    {
+        buttonImage = [self image:[[UIImage imageNamed:[data objectForKey:@"button-image"]] stretchableImageWithLeftCapWidth:capWidth topCapHeight:0.0] withCap:location capWidth:capWidth buttonWidth:buttonSize.width];
+        buttonPressedImage = [self image:[[UIImage imageNamed:[data objectForKey:@"button-highlight-image"]] stretchableImageWithLeftCapWidth:capWidth topCapHeight:0.0] withCap:location capWidth:capWidth buttonWidth:buttonSize.width];
+    }
+    
+    UIButton* button = [UIButton buttonWithType:UIButtonTypeCustom];
+    button.frame = CGRectMake(0.0, 0.0, buttonSize.width, buttonSize.height);
+    
+    [button setTitle:[titles objectAtIndex:segmentIndex] forState:UIControlStateNormal];
+    [button setBackgroundImage:buttonImage forState:UIControlStateNormal];
+    [button setBackgroundImage:buttonPressedImage forState:UIControlStateHighlighted];
+    [button setBackgroundImage:buttonPressedImage forState:UIControlStateSelected];
+    button.adjustsImageWhenHighlighted = NO;
+    
+    if (segmentIndex == 0)
+        button.selected = YES;
+    return button;
+}
+- (void) touchUpInsideSegmentIndex:(NSUInteger)segmentIndex{
+    
+    switch (segmentIndex) {
+        case 0:
+            NSLog(@"aaaaaaaaa");
+            [self standardBu];
+            break;
+        case 1:
+            NSLog(@"bbbbbbbbbbbb");
+            [self satelliteBu];
+            break;
+        default:
+            NSLog(@"ccccccccccc");
+            [self hybridBu];
+            break;
+    }
+}
 @end
