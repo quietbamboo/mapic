@@ -524,7 +524,15 @@
     self.view = contentView;
     [contentView release];
 }
-
+- (void) satelliteBu{
+    mainMapView.mapType = MKMapTypeSatellite;
+}
+- (void) standardBu{
+    mainMapView.mapType = MKMapTypeStandard;
+}
+- (void) hybridBu{
+    mainMapView.mapType = MKMapTypeHybrid;
+}
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -548,6 +556,24 @@
     [resetButton setImage:[UIImage imageNamed:@"reset.png"] forState:UIControlStateNormal];
     [resetButton addTarget:self action:@selector(removePins) forControlEvents:UIControlEventTouchUpInside];
     [mainMapView addSubview:resetButton];
+    
+    UIButton *standardButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    standardButton.frame = CGRectMake(10, 386, 50, 30);
+    [standardButton setTitle:@"标准" forState:UIControlStateNormal];
+    [standardButton addTarget:self action:@selector(standardBu) forControlEvents:UIControlEventTouchUpInside];
+    [mainMapView addSubview:standardButton];
+    
+    UIButton *satellitedButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    satellitedButton.frame = CGRectMake(70, 386, 50, 30);
+    [satellitedButton setTitle:@"卫星" forState:UIControlStateNormal];
+    [satellitedButton addTarget:self action:@selector(satelliteBu) forControlEvents:UIControlEventTouchUpInside];
+    [mainMapView addSubview:satellitedButton];
+    
+    UIButton *hybridButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    hybridButton.frame = CGRectMake(130, 386, 50, 30);
+    [hybridButton setTitle:@"混合" forState:UIControlStateNormal];
+    [hybridButton addTarget:self action:@selector(hybridBu) forControlEvents:UIControlEventTouchUpInside];
+    [mainMapView addSubview:hybridButton];
     
     routeView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, mainMapView.frame.size.width, mainMapView.frame.size.height)];
     routeView.userInteractionEnabled = NO;
