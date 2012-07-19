@@ -76,7 +76,7 @@
     userviewNav.tabBarItem = [[[UITabBarItem alloc] initWithTitle:@"four" image:[UIImage imageNamed:@"tab-explore"] tag:3] autorelease];
     
     SettingViewController* settingview = [[SettingViewController alloc]init];
-	settingview.tabBarItem = [[[UITabBarItem alloc] initWithTitle:@"Setting" image:[UIImage imageNamed:@"tab_feed_profile.png"] tag:4] autorelease];
+	settingview.tabBarItem = [[[UITabBarItem alloc] initWithTitle:@"User" image:[UIImage imageNamed:@"tab_feed_profile.png"] tag:4] autorelease];
     
 	NSArray* Controllers = [NSArray arrayWithObjects:firstviewNav,locaviewNav,centerview,userviewNav,settingview,nil];
 	

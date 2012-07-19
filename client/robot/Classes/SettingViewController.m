@@ -61,17 +61,20 @@ enum {
     
     UILabel *label1 = [[UILabel alloc]initWithFrame:CGRectMake(120.0, 25.0, 200.0, 20.0)];
     label1.text = @"Mattt Thompson";
+    label1.backgroundColor = [UIColor clearColor];
     label1.font = [UIFont systemFontOfSize:15];
     [header addSubview:label1];
     [label1 release];
     UILabel *label2 = [[UILabel alloc]initWithFrame:CGRectMake(120.0, 45.0, 100.0, 20.0)];
     label2.text = @"Mattt Thompson";
     label2.font = [UIFont systemFontOfSize:10];
+    label2.backgroundColor = [UIColor clearColor];
     [header addSubview:label2];
     [label2 release];
     UILabel *label3 = [[UILabel alloc]initWithFrame:CGRectMake(120.0, 65.0, 100.0, 15.0)];
     label3.text = @"Mattt Thompson";
     label3.font = [UIFont systemFontOfSize:10];
+    label3.backgroundColor = [UIColor clearColor];
     [header addSubview:label3];
     [label3 release];
     
