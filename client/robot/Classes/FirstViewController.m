@@ -656,7 +656,7 @@ typedef enum {
 	CATransition *animation = [CATransition animation];
 	//相关参数设置
 	[animation setDelegate:self];
-	[animation setDuration:1.0f];
+	[animation setDuration:0.5f];
 	[animation setTimingFunction:UIViewAnimationCurveEaseInOut];
 	//向上卷的参数
 	if(!isCurl)
