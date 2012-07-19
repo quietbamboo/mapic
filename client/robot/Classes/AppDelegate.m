@@ -83,10 +83,10 @@
 	myTabBarController.viewControllers = Controllers;
 	
 	[centerview release];
+    [userview release];
 	[userviewNav release];
     [settingview release];
 	[locaview release];
-	
     [firstviewNav release];
     [locaviewNav release];
 }
