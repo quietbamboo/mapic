@@ -537,7 +537,7 @@ typedef enum {
     self.view = contentView;
     [contentView release];
     
-    firstView = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 320.0f, 430.0f)];
+    firstView = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 320.0f, 431.0f)];
 	firstView.backgroundColor = [UIColor lightGrayColor];
     [self.view addSubview:firstView];
     buttons = [[NSArray arrayWithObjects:
@@ -578,9 +578,9 @@ typedef enum {
     [locationManager startUpdatingLocation];
     
 
-	secondView = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 320.0f, 430.0f)];
+	secondView = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 320.0f, 431.0f)];
 	secondView.backgroundColor = [UIColor whiteColor];
-    mainMapView = [[MKMapView alloc] initWithFrame:CGRectMake(0, 0, 320, 430)];  
+    mainMapView = [[MKMapView alloc] initWithFrame:CGRectMake(0, 0, 320, 431)];  
     mainMapView.mapType = MKMapTypeStandard;   
     mainMapView.zoomEnabled = YES; 
     mainMapView.scrollEnabled = YES;
