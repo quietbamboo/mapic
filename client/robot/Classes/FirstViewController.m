@@ -559,9 +559,8 @@ typedef enum {
     [mainMapView addSubview:resetButton];
     
     buttons = [[NSArray arrayWithObjects:
-                [NSDictionary dictionaryWithObjectsAndKeys:[NSArray arrayWithObjects:@"One", @"Two", @"Three", nil], @"titles", [NSValue valueWithCGSize:CGSizeMake(50,30)], @"size", @"bottombarblue.png", @"button-image", @"bottombarblue_pressed.png", @"button-highlight-image", @"blue-divider.png", @"divider-image", [NSNumber numberWithFloat:14.0], @"cap-width", nil],
+                [NSDictionary dictionaryWithObjectsAndKeys:[NSArray arrayWithObjects:@"标准", @"卫星", @"混合", nil], @"titles", [NSValue valueWithCGSize:CGSizeMake(50,30)], @"size", @"bottombarblue.png", @"button-image", @"bottombarblue_pressed.png", @"button-highlight-image", @"blue-divider.png", @"divider-image", [NSNumber numberWithFloat:14.0], @"cap-width", nil],
                 nil] retain];
-    // A blue segment control with 3 values
     NSDictionary* blueSegmentedControlData = [buttons objectAtIndex:0];
     NSArray* blueSegmentedControlTitles = [blueSegmentedControlData objectForKey:@"titles"];
     CustomSegmentedControl* blueSegmentedControl = [[[CustomSegmentedControl alloc] initWithSegmentCount:blueSegmentedControlTitles.count segmentsize:[[blueSegmentedControlData objectForKey:@"size"] CGSizeValue] dividerImage:[UIImage imageNamed:[blueSegmentedControlData objectForKey:@"divider-image"]] tag:TAG_VALUE delegate:self] autorelease];
