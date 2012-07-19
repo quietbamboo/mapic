@@ -39,6 +39,7 @@
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     self.navigationController.navigationBarHidden = NO;
+    self.navigationController.navigationBar.tintColor = [UIColor colorWithRed:(1.0/255.0) green:(1.0 / 255.0) blue:(1.0 / 255.0) alpha:1];
     [AppDelegate getAppDelegate].centerButton.hidden = YES;
     [self hideTabBar:self.tabBarController];
     scrollview.contentSize = CGSizeMake(320,900);
