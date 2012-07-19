@@ -23,6 +23,7 @@
     NSMutableArray *nsArray;
     BOOL                isinitArray;
     NSArray* buttons;
+    BOOL isCurl;
 }
 
 @property (retain, nonatomic) MKMapView *mainMapView;
