@@ -24,6 +24,8 @@
     BOOL                isinitArray;
     NSArray* buttons;
     BOOL isCurl;
+    UIView *firstView;
+    UIView *secondView;
 }
 
 @property (retain, nonatomic) MKMapView *mainMapView;

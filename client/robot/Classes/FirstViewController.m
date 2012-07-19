@@ -102,8 +102,12 @@ typedef enum {
     [self moveToCurrentLocation];
     mainMapView.showsUserLocation = YES;
     //[self initnaArray]; 
+    [self doCurl];
    }
-
+- (void) originBu{
+    [mainMapView setCenterCoordinate:[mainMapView.userLocation coordinate] animated:YES];
+    [self doCurl];
+}
 - (void)toSettingViewController {
     SettingViewController *setting = [[SettingViewController alloc] init];
     [self.navigationController pushViewController:setting animated:YES];
@@ -533,16 +537,35 @@ typedef enum {
     self.view = contentView;
     [contentView release];
     
+    firstView = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 320.0f, 430.0f)];
+	firstView.backgroundColor = [UIColor lightGrayColor];
+    [self.view addSubview:firstView];
     buttons = [[NSArray arrayWithObjects:
-                [NSDictionary dictionaryWithObjectsAndKeys:[NSArray arrayWithObjects:@"标准", @"卫星", @"混合", nil], @"titles", [NSValue valueWithCGSize:CGSizeMake(50,30)], @"size", @"bottombarblue.png", @"button-image", @"bottombarblue_pressed.png", @"button-highlight-image", @"blue-divider.png", @"divider-image", [NSNumber numberWithFloat:14.0], @"cap-width", nil],
+                [NSDictionary dictionaryWithObjectsAndKeys:[NSArray arrayWithObjects:@"标准", @"卫星", @"混合", nil], @"titles", [NSValue valueWithCGSize:CGSizeMake(100,38)], @"size", @"bottombarblue.png", @"button-image", @"bottombarblue_pressed.png", @"button-highlight-image", @"blue-divider.png", @"divider-image", [NSNumber numberWithFloat:14.0], @"cap-width", nil],
                 nil] retain];
     NSDictionary* blueSegmentedControlData = [buttons objectAtIndex:0];
     NSArray* blueSegmentedControlTitles = [blueSegmentedControlData objectForKey:@"titles"];
     CustomSegmentedControl* blueSegmentedControl = [[[CustomSegmentedControl alloc] initWithSegmentCount:blueSegmentedControlTitles.count segmentsize:[[blueSegmentedControlData objectForKey:@"size"] CGSizeValue] dividerImage:[UIImage imageNamed:[blueSegmentedControlData objectForKey:@"divider-image"]] tag:TAG_VALUE delegate:self] autorelease];
     [self addView:blueSegmentedControl verticalOffset:0 title:@"Blue segmented control"];
-//    UIView *frontView = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 320.0f, 430.0f)];
-//	frontView.backgroundColor = [UIColor lightGrayColor];
-//    [self.view addSubview:frontView];
+   
+    UIButton *resetButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    resetButton.frame = CGRectMake(10, 306, 90, 38);
+    [resetButton setTitle:@"重置" forState:UIControlStateNormal];
+    //[resetButton setImage:[UIImage imageNamed:@"reset.png"] forState:UIControlStateNormal];
+    [resetButton addTarget:self action:@selector(removePins) forControlEvents:UIControlEventTouchUpInside];
+    [firstView addSubview:resetButton];
+    
+    UIButton *originButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    originButton.frame = CGRectMake(110, 306, 100, 38);
+    [originButton setTitle:@"当前位置" forState:UIControlStateNormal];
+    [originButton addTarget:self action:@selector(originBu) forControlEvents:UIControlEventTouchUpInside];
+    [firstView addSubview:originButton];
+    
+    UIButton *curlButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    curlButton.frame = CGRectMake(220, 306, 90, 38);
+    [curlButton setTitle:@"关闭" forState:UIControlStateNormal];
+    [curlButton addTarget:self action:@selector(doCurl) forControlEvents:UIControlEventTouchUpInside];
+    [firstView addSubview:curlButton];
 }
 
 - (void)viewDidLoad
@@ -555,28 +578,21 @@ typedef enum {
     [locationManager startUpdatingLocation];
     
 
-	UIView *frontView = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 320.0f, 430.0f)];
-	frontView.backgroundColor = [UIColor whiteColor];
+	secondView = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 320.0f, 430.0f)];
+	secondView.backgroundColor = [UIColor whiteColor];
     mainMapView = [[MKMapView alloc] initWithFrame:CGRectMake(0, 0, 320, 430)];  
     mainMapView.mapType = MKMapTypeStandard;   
     mainMapView.zoomEnabled = YES; 
     mainMapView.scrollEnabled = YES;
     mainMapView.showsUserLocation = YES;
     mainMapView.delegate = self;
-    [frontView  addSubview:mainMapView];
-    [self.view addSubview:frontView];
+    [secondView  addSubview:mainMapView];
+    [self.view addSubview:secondView];
 
     isCurl=NO;
-    
-    UIButton *resetButton = [UIButton buttonWithType:UIButtonTypeInfoDark];
-    resetButton.frame = CGRectMake(270, 386, 40, 40);
-    [resetButton setTitle:@"重置" forState:UIControlStateNormal];
-    [resetButton setImage:[UIImage imageNamed:@"reset.png"] forState:UIControlStateNormal];
-    [resetButton addTarget:self action:@selector(removePins) forControlEvents:UIControlEventTouchUpInside];
-    [mainMapView addSubview:resetButton];
-    
+
     UIButton *curlButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    curlButton.frame = CGRectMake(10, 50, 50, 30);
+    curlButton.frame = CGRectMake(260, 386, 50, 30);
     [curlButton setTitle:@"翻页" forState:UIControlStateNormal];
     //[curlButton setImage:[UIImage imageNamed:@"reset.png"] forState:UIControlStateNormal];
     [curlButton addTarget:self action:@selector(doCurl) forControlEvents:UIControlEventTouchUpInside];
@@ -647,14 +663,14 @@ typedef enum {
 	{
 		//设置动画类型为pageCurl，并只卷一半
 		[animation setType:@"pageCurl"];   
-		animation.endProgress=0.5;
+		animation.endProgress=0.6;
 	}
 	//向下卷的参数
 	else
 	{
 		//设置动画类型为pageUnCurl，并从一半开始向下卷
 		[animation setType:@"pageUnCurl"];
-		animation.startProgress=0.5;
+		animation.startProgress=0.4;
 	}
 	//卷的过程完成后停止，并且不从层中移除动画
 	[animation setFillMode:kCAFillModeForwards];
@@ -671,14 +687,17 @@ typedef enum {
 #pragma mark Three map types of methods
 - (void) satelliteBu{
     [mainMapView setMapType:(MKMapTypeSatellite)];
+    [self doCurl];
     //mainMapView.mapType = MKMapTypeSatellite;
 }
 - (void) standardBu{
     [mainMapView setMapType:MKMapTypeStandard];
+    [self doCurl];
     //mainMapView.mapType = MKMapTypeStandard;
 }
 - (void) hybridBu{
     [mainMapView setMapType:MKMapTypeHybrid];
+    [self doCurl];
     //mainMapView.mapType = MKMapTypeHybrid;
 }
 #pragma mark -
@@ -699,8 +718,8 @@ typedef enum {
     
     // Adjust location of new subView and add it
     //  subView.frame = CGRectMake(HORIZONTAL_OFFSET, elementVerticalLocation + 5 + VERTICAL_OFFSET, subView.frame.size.width, subView.frame.size.height);
-    subView.frame = CGRectMake(100, 386, subView.frame.size.width, subView.frame.size.height);
-    [self.view addSubview:subView];
+    subView.frame = CGRectMake(10, 364, subView.frame.size.width, subView.frame.size.height);
+    [firstView addSubview:subView];
 }
 
 -(UIImage*)image:(UIImage*)image withCap:(CapLocation)location capWidth:(NSUInteger)capWidth buttonWidth:(NSUInteger)buttonWidth
