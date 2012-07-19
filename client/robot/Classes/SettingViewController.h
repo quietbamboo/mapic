@@ -7,7 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+@class TTTQuadrantControl;
+@interface SettingViewController : UITableViewController{
+    
+    TTTQuadrantControl *_quadrantControl;
+}
 
-@interface SettingViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
 
+@property (nonatomic, retain) TTTQuadrantControl *quadrantControl;
 @end
