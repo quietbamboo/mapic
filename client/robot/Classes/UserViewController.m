@@ -23,6 +23,18 @@
     return self;
 }
 
+- (id)init {
+    self = [super init];
+    return self;
+}
+
+- (void)loadView {
+    UIView *contentView = [[UIView alloc] initWithFrame:CGRectMake(0,0, 320, 480)];
+    contentView.backgroundColor = [UIColor whiteColor];
+    self.view = contentView;
+    [contentView release];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -32,25 +44,29 @@
     //tableview.separatorColor = [UIColor blackColor];
     [tableview setDelegate:self];
     [tableview setDataSource:self];
+    JMTabView *tabHeaderView = [[[JMTabView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 60.)] autorelease];
+    [tabHeaderView setDelegate:self];
+    [tabHeaderView addTabItemWithTitle:@"Following" icon:[UIImage imageNamed:@"icon1.png"]];
+    [tabHeaderView addTabItemWithTitle:@"News" icon:[UIImage imageNamed:@"icon2.png"]];
+    //[tabHeaderView addTabItemWithTitle:@"popular" icon:[UIImage imageNamed:@"icon3.png"]];
+    //    You can run blocks by specifiying an executeBlock: paremeter
+    //    #if NS_BLOCKS_AVAILABLE
+    //    [tabView addTabItemWithTitle:@"One" icon:nil executeBlock:^{NSLog(@"abc");}];
+    //    #endif
+    [tabHeaderView setSelectedIndex:0];
+    tableview.tableHeaderView = tabHeaderView;
+
     [self.view addSubview: tableview];
     
     [tableview release];
 }
-- (id)init {
-    self = [super init];
-    return self;
-}
-- (void)loadView {
-    UIView *contentView = [[UIView alloc] initWithFrame:CGRectMake(0,0, 320, 480)];
-    contentView.backgroundColor = [UIColor whiteColor];
-    self.view = contentView;
-    [contentView release];
-}
+
 - (void) viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     self.navigationController.navigationBarHidden = YES;
     [AppDelegate getAppDelegate].centerButton.hidden = NO;
 }
+
 - (void)viewDidUnload
 {
     [super viewDidUnload];
@@ -78,7 +94,7 @@
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle 
                                        reuseIdentifier:SimpleTableIdentifier] autorelease];  
     }
-    cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
+   // cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
     
     cell.imageView.image = [UIImage imageNamed:@"reset.png"];
     cell.textLabel.text = @"label0";
@@ -124,4 +140,13 @@
     [self.navigationController pushViewController:hjxPhotoview animated:YES];
     [hjxPhotoview release];
 }
+
+#pragma mark
+#pragma mark JMTabViewDelegate Method
+-(void)tabView:(JMTabView *)tabView didSelectTabAtIndex:(NSUInteger)itemIndex;
+{
+    NSLog(@"Selected Tab Index: %d", itemIndex);
+}
+
 @end
+

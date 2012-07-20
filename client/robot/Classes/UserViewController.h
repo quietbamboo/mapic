@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "HjxPhotoViewController.h"
 #import "AppDelegate.h"
-@interface UserViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
+#import "JMTabView.h"
+@interface UserViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,JMTabViewDelegate>
 
 @end
