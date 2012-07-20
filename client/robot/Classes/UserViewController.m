@@ -61,7 +61,7 @@
     
     notificationView = [[NotificationView alloc] initWithFrame:CGRectMake(154, 385, 140, 47)];
     notificationView.userLabel.text =@"1";
-    notificationView.followerLabel.text = @"2";
+    notificationView.messageLabel.text = @"2";
     notificationView.likeLabel.text = @"3";
     [self.view addSubview:notificationView];
     [notificationView release];

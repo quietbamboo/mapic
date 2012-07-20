@@ -10,7 +10,7 @@
 
 @implementation NotificationView
 @synthesize userLabel = _userLabel;
-@synthesize followerLabel = _followerLabel;
+@synthesize messageLabel = _messageLabel;
 @synthesize likeLabel = _likeLabel;
 - (id)initWithFrame:(CGRect)frame
 {
@@ -39,16 +39,16 @@
         [self addSubview:imageView3];
         [imageView3 release];
         
-        _userLabel = [[UILabel alloc] initWithFrame:CGRectMake(40, 0, 10, 30)];
+        _messageLabel = [[UILabel alloc] initWithFrame:CGRectMake(40, 0, 10, 30)];
+        _messageLabel.text =@"0"; 
+        _messageLabel.backgroundColor = [UIColor clearColor];
+        [self addSubview:_messageLabel];
+        
+        _userLabel = [[UILabel alloc] initWithFrame:CGRectMake(80, 0, 10, 30)];
         _userLabel.text = @"0";
         _userLabel.backgroundColor = [UIColor clearColor];
         [self addSubview:_userLabel];
        
-        _followerLabel = [[UILabel alloc] initWithFrame:CGRectMake(80, 0, 10, 30)];
-        _followerLabel.text =@"0"; 
-        _followerLabel.backgroundColor = [UIColor clearColor];
-        [self addSubview:_followerLabel];
-        
         _likeLabel= [[UILabel alloc] initWithFrame:CGRectMake(125, 0, 10, 30)];
         _likeLabel.text = @"";
         _likeLabel.backgroundColor = [UIColor clearColor];
@@ -70,7 +70,7 @@
 }
 - (void)dealloc{
     [_likeLabel release];
-    [_followerLabel release];
+    [_messageLabel release];
     [_userLabel release];
     [super dealloc];
 }

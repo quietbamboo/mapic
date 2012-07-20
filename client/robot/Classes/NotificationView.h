@@ -11,10 +11,10 @@
 @interface NotificationView : UIView{
     
     UILabel *userLabel;
-    UILabel *followerLabel;
+    UILabel *messageLabel;
     UILabel *likeLabel;
 }
 @property (retain, nonatomic) UILabel *userLabel;
-@property (retain, nonatomic) UILabel *followerLabel;
+@property (retain, nonatomic) UILabel *messageLabel;
 @property (retain, nonatomic) UILabel *likeLabel;
 @end
