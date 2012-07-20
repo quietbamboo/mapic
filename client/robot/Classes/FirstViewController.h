@@ -27,6 +27,7 @@
     BOOL isCurl;
     UIView *firstView;
     UIView *secondView;
+    HGKOptionPanel *panel;
 }
 
 @property (retain, nonatomic) MKMapView *mainMapView;

@@ -24,7 +24,7 @@
         self.backgroundColor = [UIColor clearColor];
         isExpanded = YES;
         btnShowHide = [UIButton buttonWithType:UIButtonTypeCustom];
-        [btnShowHide setFrame:CGRectMake(150, frame.size.height - 20, 20, 20)];
+        [btnShowHide setFrame:CGRectMake(145, frame.size.height - 30, 30, 30)];
         [btnShowHide setImage:[UIImage imageNamed:@"iconCollapse.png"] forState:UIControlStateNormal];
         [btnShowHide addTarget:self action:@selector(controlPanelShowHide:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:btnShowHide];
@@ -50,7 +50,7 @@
     {
         self.isExpanded = YES;
         
-        frame.origin.y -= (self.frame.size.height - 20);
+        frame.origin.y -= (self.frame.size.height - 30);
         self.frame = frame;
         NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:0.65f target:self selector:@selector(changebackgroundColor:) userInfo:nil repeats:NO];
 
@@ -58,9 +58,9 @@
     } else {
         self.isExpanded = NO;
    
-        frame.origin.y += (self.frame.size.height - 20);
+        frame.origin.y += (self.frame.size.height - 30);
         self.frame = frame;
-        self.backgroundColor = [UIColor blackColor];
+        self.backgroundColor = [UIColor lightGrayColor];
                [self.btnShowHide setImage:[UIImage imageNamed:@"iconExpand.png"] forState:UIControlStateNormal];
     }
     [UIView commitAnimations];

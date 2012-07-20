@@ -542,13 +542,7 @@ typedef enum {
     firstView = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 320.0f, 431.0f)];
 	firstView.backgroundColor = [UIColor lightGrayColor];
     [self.view addSubview:firstView];
-    buttons = [[NSArray arrayWithObjects:
-                [NSDictionary dictionaryWithObjectsAndKeys:[NSArray arrayWithObjects:@"标准", @"卫星", @"混合", nil], @"titles", [NSValue valueWithCGSize:CGSizeMake(100,38)], @"size", @"bottombarblue.png", @"button-image", @"bottombarblue_pressed.png", @"button-highlight-image", @"blue-divider.png", @"divider-image", [NSNumber numberWithFloat:14.0], @"cap-width", nil],
-                nil] retain];
-    NSDictionary* blueSegmentedControlData = [buttons objectAtIndex:0];
-    NSArray* blueSegmentedControlTitles = [blueSegmentedControlData objectForKey:@"titles"];
-    CustomSegmentedControl* blueSegmentedControl = [[[CustomSegmentedControl alloc] initWithSegmentCount:blueSegmentedControlTitles.count segmentsize:[[blueSegmentedControlData objectForKey:@"size"] CGSizeValue] dividerImage:[UIImage imageNamed:[blueSegmentedControlData objectForKey:@"divider-image"]] tag:TAG_VALUE delegate:self] autorelease];
-    [self addView:blueSegmentedControl verticalOffset:0 title:@"Blue segmented control"];
+    
    
     UIButton *resetButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     resetButton.frame = CGRectMake(10, 306, 90, 38);
@@ -600,20 +594,10 @@ typedef enum {
     [curlButton addTarget:self action:@selector(doCurl) forControlEvents:UIControlEventTouchUpInside];
     [mainMapView addSubview:curlButton];
     
-    
-    
     routeView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, mainMapView.frame.size.width, mainMapView.frame.size.height)];
     routeView.userInteractionEnabled = NO;
     [mainMapView addSubview:routeView];
-
-   UISlider  *mapslider = [[[UISlider alloc] initWithFrame:CGRectMake(60, 10, 200, 10)] autorelease];
-    mapslider.maximumValue = 10000;
-    mapslider.minimumValue = 0;
-    mapslider.value = 1000;
-    [mapslider addTarget:self action:@selector(updateMapSlider:) forControlEvents:UIControlEventTouchUpInside];
-    [mainMapView addSubview:mapslider];
-    //[mapslider release];
-   
+    
     MKCoordinateSpan theSpan; 
     theSpan.latitudeDelta = 0.05f; 
     theSpan.longitudeDelta = 0.05f; 
@@ -626,7 +610,35 @@ typedef enum {
     self.lineColor = [UIColor blackColor];
     [mainMapView autorelease];
     isinitArray = NO;
-    HGKOptionPanel *panel = [[HGKOptionPanel alloc] initWithFrame:CGRectMake(0, -120, 320, 140)];
+    panel = [[HGKOptionPanel alloc] initWithFrame:CGRectMake(0, -110, 320, 140)];
+    
+    UILabel *lableft = [[UILabel alloc] initWithFrame:CGRectMake(20, 15, 40, 25)];
+    lableft.text = @"放大";
+    lableft.backgroundColor = [UIColor clearColor];
+    [panel addSubview:lableft];
+    [lableft release];
+    
+    UILabel *labright = [[UILabel alloc] initWithFrame:CGRectMake(270, 15, 40, 25)];
+    labright.text = @"缩小";
+    labright.backgroundColor = [UIColor clearColor];
+    [panel addSubview:labright];
+    [labright release];
+    
+    UISlider  *mapslider = [[[UISlider alloc] initWithFrame:CGRectMake(60, 15, 200, 10)] autorelease];
+    mapslider.maximumValue = 10000;
+    mapslider.minimumValue = 0;
+    mapslider.value = 1000;
+    [mapslider addTarget:self action:@selector(updateMapSlider:) forControlEvents:UIControlEventTouchUpInside];
+    [panel addSubview:mapslider];
+    
+    buttons = [[NSArray arrayWithObjects:
+                [NSDictionary dictionaryWithObjectsAndKeys:[NSArray arrayWithObjects:@"标准", @"卫星", @"混合", nil], @"titles", [NSValue valueWithCGSize:CGSizeMake(100,38)], @"size", @"bottombarblue.png", @"button-image", @"bottombarblue_pressed.png", @"button-highlight-image", @"blue-divider.png", @"divider-image", [NSNumber numberWithFloat:14.0], @"cap-width", nil],
+                nil] retain];
+    NSDictionary* blueSegmentedControlData = [buttons objectAtIndex:0];
+    NSArray* blueSegmentedControlTitles = [blueSegmentedControlData objectForKey:@"titles"];
+    CustomSegmentedControl* blueSegmentedControl = [[[CustomSegmentedControl alloc] initWithSegmentCount:blueSegmentedControlTitles.count segmentsize:[[blueSegmentedControlData objectForKey:@"size"] CGSizeValue] dividerImage:[UIImage imageNamed:[blueSegmentedControlData objectForKey:@"divider-image"]] tag:TAG_VALUE delegate:self] autorelease];
+    [self addView:blueSegmentedControl verticalOffset:0 title:@"Blue segmented control"];
+    
     [self.view addSubview:panel];
     [panel release];
     //[self initnaArray];
@@ -692,17 +704,17 @@ typedef enum {
 #pragma mark Three map types of methods
 - (void) satelliteBu{
     [mainMapView setMapType:(MKMapTypeSatellite)];
-    [self doCurl];
+    //[self doCurl];
     //mainMapView.mapType = MKMapTypeSatellite;
 }
 - (void) standardBu{
     [mainMapView setMapType:MKMapTypeStandard];
-    [self doCurl];
+    //[self doCurl];
     //mainMapView.mapType = MKMapTypeStandard;
 }
 - (void) hybridBu{
     [mainMapView setMapType:MKMapTypeHybrid];
-    [self doCurl];
+    //[self doCurl];
     //mainMapView.mapType = MKMapTypeHybrid;
 }
 #pragma mark -
@@ -723,8 +735,8 @@ typedef enum {
     
     // Adjust location of new subView and add it
     //  subView.frame = CGRectMake(HORIZONTAL_OFFSET, elementVerticalLocation + 5 + VERTICAL_OFFSET, subView.frame.size.width, subView.frame.size.height);
-    subView.frame = CGRectMake(10, 364, subView.frame.size.width, subView.frame.size.height);
-    [firstView addSubview:subView];
+    subView.frame = CGRectMake(10, 58, subView.frame.size.width, subView.frame.size.height);
+    [panel addSubview:subView];
 }
 
 -(UIImage*)image:(UIImage*)image withCap:(CapLocation)location capWidth:(NSUInteger)capWidth buttonWidth:(NSUInteger)buttonWidth
