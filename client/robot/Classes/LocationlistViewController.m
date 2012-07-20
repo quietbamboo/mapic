@@ -205,25 +205,27 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     [self initNStableArray];
-    UITableView *tableview= [[UITableView alloc] initWithFrame:CGRectMake(0,0, 320, 421) style:UITableViewStylePlain];
+    
+    UITableView *tableview= [[UITableView alloc] initWithFrame:CGRectMake(0,60, 320, 371) style:UITableViewStylePlain];
     tableview.separatorStyle = UITableViewStyleGrouped;
     //tableview.separatorColor = [UIColor blackColor];
     tableview.tag = TableViewTag;
     [tableview setDelegate:self];
     [tableview setDataSource:self];
+    [self.view addSubview: tableview];
     
-    JMTabView *tabHeaderView = [[[JMTabView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 60.)] autorelease];
+    JMTabView *tabHeaderView = [[[JMTabView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 60.0f)] autorelease];
     [tabHeaderView setDelegate:self];
     [tabHeaderView addTabItemWithTitle:@"newest" icon:[UIImage imageNamed:@"icon1.png"]];
-    [tabHeaderView addTabItemWithTitle:@"hot" icon:[UIImage imageNamed:@"icon2.png"]];
-    [tabHeaderView addTabItemWithTitle:@"popular" icon:[UIImage imageNamed:@"icon3.png"]];
+    [tabHeaderView addTabItemWithTitle:@"closest" icon:[UIImage imageNamed:@"icon2.png"]];
+    [tabHeaderView addTabItemWithTitle:@"nearby" icon:[UIImage imageNamed:@"icon3.png"]];
     //    You can run blocks by specifiying an executeBlock: paremeter
     //    #if NS_BLOCKS_AVAILABLE
     //    [tabView addTabItemWithTitle:@"One" icon:nil executeBlock:^{NSLog(@"abc");}];
     //    #endif
     [tabHeaderView setSelectedIndex:0];
-    tableview.tableHeaderView = tabHeaderView;
-    [self.view addSubview: tableview];
+    [self.view addSubview:tabHeaderView];
+    
     isloading = NO;
     if (_refreshHeaderView == nil) {
         

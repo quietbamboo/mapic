@@ -38,12 +38,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
-    UITableView *tableview= [[UITableView alloc] initWithFrame:CGRectMake(0,0, 320, 421) style:UITableViewStylePlain];
-    tableview.separatorStyle = UITableViewStyleGrouped;
-    //tableview.separatorColor = [UIColor blackColor];
-    [tableview setDelegate:self];
-    [tableview setDataSource:self];
     JMTabView *tabHeaderView = [[[JMTabView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 60.)] autorelease];
     [tabHeaderView setDelegate:self];
     [tabHeaderView addTabItemWithTitle:@"Following" icon:[UIImage imageNamed:@"icon1.png"]];
@@ -54,10 +48,15 @@
     //    [tabView addTabItemWithTitle:@"One" icon:nil executeBlock:^{NSLog(@"abc");}];
     //    #endif
     [tabHeaderView setSelectedIndex:0];
-    tableview.tableHeaderView = tabHeaderView;
-
-    [self.view addSubview: tableview];
+    [self.view addSubview:tabHeaderView];
     
+	// Do any additional setup after loading the view.
+    UITableView *tableview= [[UITableView alloc] initWithFrame:CGRectMake(0,60, 320, 371) style:UITableViewStylePlain];
+    tableview.separatorStyle = UITableViewStyleGrouped;
+    //tableview.separatorColor = [UIColor blackColor];
+    [tableview setDelegate:self];
+    [tableview setDataSource:self];
+    [self.view addSubview: tableview];  
     [tableview release];
 }
 
