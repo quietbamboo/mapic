@@ -15,6 +15,7 @@
 #import "UploadViewController.h"
 #import "HjxPhotoViewController.h"
 #import "CustomSegmentedControl.h"
+#import "HGKOptionPanel.h"
 @interface FirstViewController : UIViewController <MKMapViewDelegate,CLLocationManagerDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate,DirectionsViewControllerDelegate,CustomSegmentedControlDelegate>{
     BOOL canChangeMap;
     UIImageView *routeView;

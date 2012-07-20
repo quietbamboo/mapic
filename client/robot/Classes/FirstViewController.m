@@ -626,6 +626,9 @@ typedef enum {
     self.lineColor = [UIColor blackColor];
     [mainMapView autorelease];
     isinitArray = NO;
+    HGKOptionPanel *panel = [[HGKOptionPanel alloc] initWithFrame:CGRectMake(0, -120, 320, 140)];
+    [self.view addSubview:panel];
+    [panel release];
     //[self initnaArray];
 
    	// Do any additional setup after loading the view.
