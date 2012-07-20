@@ -58,6 +58,13 @@
     [tableview setDataSource:self];
     [self.view addSubview: tableview];  
     [tableview release];
+    
+    notificationView = [[NotificationView alloc] initWithFrame:CGRectMake(154, 385, 140, 47)];
+    notificationView.userLabel.text =@"1";
+    notificationView.followerLabel.text = @"2";
+    notificationView.likeLabel.text = @"3";
+    [self.view addSubview:notificationView];
+    [notificationView release];
 }
 
 - (void) viewWillAppear:(BOOL)animated{
@@ -144,7 +151,18 @@
 #pragma mark JMTabViewDelegate Method
 -(void)tabView:(JMTabView *)tabView didSelectTabAtIndex:(NSUInteger)itemIndex;
 {
-    NSLog(@"Selected Tab Index: %d", itemIndex);
+    switch (itemIndex) {
+        case 0:
+            notificationView.hidden = NO;
+            break;
+           
+         case 1:
+            notificationView.hidden = YES;
+            break;
+            
+        default:
+            break;
+    }
 }
 
 @end

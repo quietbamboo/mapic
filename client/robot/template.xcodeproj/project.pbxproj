@@ -69,6 +69,15 @@
 		18ED81C514AC00D10092CAC8 /* grayArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18ED81BD14AC00D10092CAC8 /* grayArrow@2x.png */; };
 		18ED81C614AC00D10092CAC8 /* whiteArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 18ED81BE14AC00D10092CAC8 /* whiteArrow.png */; };
 		18ED81C714AC00D10092CAC8 /* whiteArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18ED81BF14AC00D10092CAC8 /* whiteArrow@2x.png */; };
+		18FE213415B963AC008B2A05 /* notificationToast.png in Resources */ = {isa = PBXBuildFile; fileRef = 18FE212C15B963AC008B2A05 /* notificationToast.png */; };
+		18FE213515B963AC008B2A05 /* notificationToast@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18FE212D15B963AC008B2A05 /* notificationToast@2x.png */; };
+		18FE213615B963AC008B2A05 /* notificationToastCommentIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 18FE212E15B963AC008B2A05 /* notificationToastCommentIcon.png */; };
+		18FE213715B963AC008B2A05 /* notificationToastCommentIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18FE212F15B963AC008B2A05 /* notificationToastCommentIcon@2x.png */; };
+		18FE213815B963AC008B2A05 /* notificationToastFollowerIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 18FE213015B963AC008B2A05 /* notificationToastFollowerIcon.png */; };
+		18FE213915B963AC008B2A05 /* notificationToastFollowerIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18FE213115B963AC008B2A05 /* notificationToastFollowerIcon@2x.png */; };
+		18FE213A15B963AC008B2A05 /* notificationToastLikeIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 18FE213215B963AC008B2A05 /* notificationToastLikeIcon.png */; };
+		18FE213B15B963AC008B2A05 /* notificationToastLikeIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18FE213315B963AC008B2A05 /* notificationToastLikeIcon@2x.png */; };
+		18FE213E15B9658E008B2A05 /* NotificationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FE213D15B9658E008B2A05 /* NotificationView.m */; };
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		2715BDCE15B8F03700B0A5B1 /* UIColor+Hex.m in Sources */ = {isa = PBXBuildFile; fileRef = 2715BDB115B8F03700B0A5B1 /* UIColor+Hex.m */; };
@@ -349,6 +358,16 @@
 		18ED81BD14AC00D10092CAC8 /* grayArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "grayArrow@2x.png"; sourceTree = "<group>"; };
 		18ED81BE14AC00D10092CAC8 /* whiteArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = whiteArrow.png; sourceTree = "<group>"; };
 		18ED81BF14AC00D10092CAC8 /* whiteArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "whiteArrow@2x.png"; sourceTree = "<group>"; };
+		18FE212C15B963AC008B2A05 /* notificationToast.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = notificationToast.png; sourceTree = "<group>"; };
+		18FE212D15B963AC008B2A05 /* notificationToast@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "notificationToast@2x.png"; sourceTree = "<group>"; };
+		18FE212E15B963AC008B2A05 /* notificationToastCommentIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = notificationToastCommentIcon.png; sourceTree = "<group>"; };
+		18FE212F15B963AC008B2A05 /* notificationToastCommentIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "notificationToastCommentIcon@2x.png"; sourceTree = "<group>"; };
+		18FE213015B963AC008B2A05 /* notificationToastFollowerIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = notificationToastFollowerIcon.png; sourceTree = "<group>"; };
+		18FE213115B963AC008B2A05 /* notificationToastFollowerIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "notificationToastFollowerIcon@2x.png"; sourceTree = "<group>"; };
+		18FE213215B963AC008B2A05 /* notificationToastLikeIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = notificationToastLikeIcon.png; sourceTree = "<group>"; };
+		18FE213315B963AC008B2A05 /* notificationToastLikeIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "notificationToastLikeIcon@2x.png"; sourceTree = "<group>"; };
+		18FE213C15B9658D008B2A05 /* NotificationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotificationView.h; sourceTree = "<group>"; };
+		18FE213D15B9658E008B2A05 /* NotificationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotificationView.m; sourceTree = "<group>"; };
 		1D6058910D05DD3D006BFB54 /* DaiDai.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DaiDai.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		2715BDB015B8F03700B0A5B1 /* UIColor+Hex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Hex.h"; sourceTree = "<group>"; };
@@ -507,6 +526,8 @@
 				186DFF5015AE6250005AE621 /* HjxPhotoViewController.m */,
 				18E36A7215AD4253006E62AA /* DeatilViewController.h */,
 				18E36A6615AD4253006E62AA /* DeatilViewController.m */,
+				18FE213C15B9658D008B2A05 /* NotificationView.h */,
+				18FE213D15B9658E008B2A05 /* NotificationView.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -632,6 +653,14 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				18FE212C15B963AC008B2A05 /* notificationToast.png */,
+				18FE212D15B963AC008B2A05 /* notificationToast@2x.png */,
+				18FE212E15B963AC008B2A05 /* notificationToastCommentIcon.png */,
+				18FE212F15B963AC008B2A05 /* notificationToastCommentIcon@2x.png */,
+				18FE213015B963AC008B2A05 /* notificationToastFollowerIcon.png */,
+				18FE213115B963AC008B2A05 /* notificationToastFollowerIcon@2x.png */,
+				18FE213215B963AC008B2A05 /* notificationToastLikeIcon.png */,
+				18FE213315B963AC008B2A05 /* notificationToastLikeIcon@2x.png */,
 				2715BDDB15B8F3B300B0A5B1 /* icon1.png */,
 				2715BDDC15B8F3B300B0A5B1 /* icon1@2x.png */,
 				2715BDED15B930B000B0A5B1 /* iconCollapse.png */,
@@ -1100,6 +1129,14 @@
 				2715BDE615B8F3B300B0A5B1 /* icon3@2x.png in Resources */,
 				2715BDF015B930B000B0A5B1 /* iconCollapse.png in Resources */,
 				2715BDF115B930B000B0A5B1 /* iconExpand.png in Resources */,
+				18FE213415B963AC008B2A05 /* notificationToast.png in Resources */,
+				18FE213515B963AC008B2A05 /* notificationToast@2x.png in Resources */,
+				18FE213615B963AC008B2A05 /* notificationToastCommentIcon.png in Resources */,
+				18FE213715B963AC008B2A05 /* notificationToastCommentIcon@2x.png in Resources */,
+				18FE213815B963AC008B2A05 /* notificationToastFollowerIcon.png in Resources */,
+				18FE213915B963AC008B2A05 /* notificationToastFollowerIcon@2x.png in Resources */,
+				18FE213A15B963AC008B2A05 /* notificationToastLikeIcon.png in Resources */,
+				18FE213B15B963AC008B2A05 /* notificationToastLikeIcon@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1136,6 +1173,7 @@
 				2715BDD915B8F03700B0A5B1 /* JMTabView.m in Sources */,
 				2715BDDA15B8F03700B0A5B1 /* BarBackgroundLayer.m in Sources */,
 				2715BDEF15B930B000B0A5B1 /* HGKOptionPanel.m in Sources */,
+				18FE213E15B9658E008B2A05 /* NotificationView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

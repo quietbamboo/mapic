@@ -10,6 +10,10 @@
 #import "HjxPhotoViewController.h"
 #import "AppDelegate.h"
 #import "JMTabView.h"
-@interface UserViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,JMTabViewDelegate>
+#import "NotificationView.h"
+@interface UserViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,JMTabViewDelegate>{
+
+     NotificationView *notificationView;
+}
 
 @end
