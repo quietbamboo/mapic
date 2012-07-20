@@ -170,6 +170,9 @@
     [place release];
 }
 
+
+#pragma mark
+#pragma mark default Methods
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -208,6 +211,18 @@
     tableview.tag = TableViewTag;
     [tableview setDelegate:self];
     [tableview setDataSource:self];
+    
+    JMTabView *tabHeaderView = [[[JMTabView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 60.)] autorelease];
+    [tabHeaderView setDelegate:self];
+    [tabHeaderView addTabItemWithTitle:@"newest" icon:[UIImage imageNamed:@"icon1.png"]];
+    [tabHeaderView addTabItemWithTitle:@"hot" icon:[UIImage imageNamed:@"icon2.png"]];
+    [tabHeaderView addTabItemWithTitle:@"popular" icon:[UIImage imageNamed:@"icon3.png"]];
+    //    You can run blocks by specifiying an executeBlock: paremeter
+    //    #if NS_BLOCKS_AVAILABLE
+    //    [tabView addTabItemWithTitle:@"One" icon:nil executeBlock:^{NSLog(@"abc");}];
+    //    #endif
+    [tabHeaderView setSelectedIndex:0];
+    tableview.tableHeaderView = tabHeaderView;
     [self.view addSubview: tableview];
     isloading = NO;
     if (_refreshHeaderView == nil) {
@@ -282,6 +297,13 @@
 
 - (NSDate*) egoRefreshTableHeaderDataSourceLastUpdated:(EGORefreshTableHeaderView*) view {
 	return [NSDate date]; // should return date data source was last changed
+}
+
+#pragma mark
+#pragma mark JMTabViewDelegate Method
+-(void)tabView:(JMTabView *)tabView didSelectTabAtIndex:(NSUInteger)itemIndex;
+{
+    NSLog(@"Selected Tab Index: %d", itemIndex);
 }
 
 @end

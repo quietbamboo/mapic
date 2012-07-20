@@ -62,3 +62,7 @@ http://code4app.com/ios/QuickDialog/4f6d92e76803fa9044000000
 http://code4app.com/ios/Signup-ViewController/4f704ae46803fa0135000001
 注册验证的功能
 http://code4app.com/ios/Form-Validator/4fbe4c6c6803fafb2c000000
+
+
+在地图功能页面添加 朝向的功能 代码实例：
+http://www.cocoacontrols.com/platforms/ios/controls/mtlocation 
