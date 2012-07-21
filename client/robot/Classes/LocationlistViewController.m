@@ -178,12 +178,14 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        isloading = NO;
     }
     return self;
 }
 
 - (id)init {
     self = [super init];
+    isloading = NO;
     return self;
 }
 
@@ -205,15 +207,6 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     [self initNStableArray];
-    
-    UITableView *tableview= [[UITableView alloc] initWithFrame:CGRectMake(0,60, 320, 371) style:UITableViewStylePlain];
-    tableview.separatorStyle = UITableViewStyleGrouped;
-    //tableview.separatorColor = [UIColor blackColor];
-    tableview.tag = TableViewTag;
-    [tableview setDelegate:self];
-    [tableview setDataSource:self];
-    [self.view addSubview: tableview];
-    
     JMTabView *tabHeaderView = [[[JMTabView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 60.0f)] autorelease];
     [tabHeaderView setDelegate:self];
     [tabHeaderView addTabItemWithTitle:@"newest" icon:[UIImage imageNamed:@"icon1.png"]];
@@ -224,22 +217,18 @@
     //    [tabView addTabItemWithTitle:@"One" icon:nil executeBlock:^{NSLog(@"abc");}];
     //    #endif
     [tabHeaderView setSelectedIndex:0];
+    
+    UITableView *tableview= [[UITableView alloc] initWithFrame:CGRectMake(0,60, 320, 371) style:UITableViewStylePlain];
+    tableview.separatorStyle = UITableViewStyleGrouped;
+    //tableview.separatorColor = [UIColor blackColor];
+    tableview.tag = TableViewTag;
+    [tableview setDelegate:self];
+    [tableview setDataSource:self];
+    [self.view addSubview: tableview];
+    
+    ODRefreshControl *refreshControl = [[ODRefreshControl alloc] initInScrollView:tableview];
+    [refreshControl addTarget:self action:@selector(dropViewDidBeginRefreshing:) forControlEvents:UIControlEventValueChanged];
     [self.view addSubview:tabHeaderView];
-    
-    isloading = NO;
-    if (_refreshHeaderView == nil) {
-        
-        EGORefreshTableHeaderView *view = [[EGORefreshTableHeaderView alloc] initWithFrame:CGRectMake(0.0f, 0.0f - tableview.bounds.size.height, self.view.frame.size.width, tableview.bounds.size.height)];
-        view.delegate = self;
-        [tableview addSubview:view];
-        _refreshHeaderView = view;
-        [view release];
-        
-    }
-    
-    //  update the last update date
-    [_refreshHeaderView refreshLastUpdatedDate];
-    
     [tableview release];
 }
 - (void)viewDidUnload
@@ -248,57 +237,9 @@
     // Release any retained subviews of the main view.
 }
 
-
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
-
-#pragma mark -
-#pragma mark UIScrollViewDelegate Methods
-
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView{	
-    [_refreshHeaderView egoRefreshScrollViewDidScroll:scrollView];
-}
-
-- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{
-    
-	[_refreshHeaderView egoRefreshScrollViewDidEndDragging:scrollView];
-}
-#pragma mark -
-#pragma mark Data Source Loading / Reloading Methods
-
-- (void)reloadTableViewDataSource{
-	isloading = YES;
-    [self initNStableArray];
-}
-
-- (void)doneLoadingTableViewData{
-	//  model should call this when its done loading
-	isloading = NO;
-    UITableView *tableView = (UITableView *)[self.view viewWithTag:TableViewTag];
-	[_refreshHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:tableView];
-    [tableView reloadData];
-	
-}
-#pragma mark -
-#pragma mark EGORefreshTableHeaderDelegate Methods
-
-- (void) egoRefreshTableHeaderDidTriggerRefresh:(EGORefreshTableHeaderView*) view {
-	
-	[self reloadTableViewDataSource];
-	[self performSelector:@selector(doneLoadingTableViewData) withObject:nil afterDelay:3.0];
-	
-}
-
-- (BOOL) egoRefreshTableHeaderDataSourceIsLoading:(EGORefreshTableHeaderView*) view {
-	
-	return isloading; // should return if data source model is reloading
-	
-}
-
-- (NSDate*) egoRefreshTableHeaderDataSourceLastUpdated:(EGORefreshTableHeaderView*) view {
-	return [NSDate date]; // should return date data source was last changed
 }
 
 #pragma mark
@@ -306,6 +247,17 @@
 -(void)tabView:(JMTabView *)tabView didSelectTabAtIndex:(NSUInteger)itemIndex;
 {
     NSLog(@"Selected Tab Index: %d", itemIndex);
+}
+
+#pragma mark
+#pragma mark ODRefreshControl Method
+- (void)dropViewDidBeginRefreshing:(ODRefreshControl *)refreshControl
+{
+    double delayInSeconds = 3.0;
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
+    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+        [refreshControl endRefreshing];
+    });
 }
 
 @end

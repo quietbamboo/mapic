@@ -100,6 +100,7 @@
 		2715BDF115B930B000B0A5B1 /* iconExpand.png in Resources */ = {isa = PBXBuildFile; fileRef = 2715BDEE15B930B000B0A5B1 /* iconExpand.png */; };
 		2782827F1541645500326471 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2782827E1541645500326471 /* AVFoundation.framework */; };
 		278483BC15886EBA00732AD9 /* cross.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 278483BB15886EBA00732AD9 /* cross.jpg */; };
+		27D4172B15BA3EF30044C478 /* ODRefreshControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 27D4172A15BA3EF30044C478 /* ODRefreshControl.m */; };
 		27F85C751548F2AF0053FBEC /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27F85C741548F2AF0053FBEC /* StoreKit.framework */; };
 		288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
 		6E3796DA11B9BD740011C497 /* libThree20Core.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E3796B611B9BD630011C497 /* libThree20Core.a */; };
@@ -401,6 +402,8 @@
 		2715BDEE15B930B000B0A5B1 /* iconExpand.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = iconExpand.png; path = Classes/iconExpand.png; sourceTree = "<group>"; };
 		2782827E1541645500326471 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		278483BB15886EBA00732AD9 /* cross.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = cross.jpg; sourceTree = "<group>"; };
+		27D4172915BA3EF30044C478 /* ODRefreshControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODRefreshControl.h; sourceTree = "<group>"; };
+		27D4172A15BA3EF30044C478 /* ODRefreshControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ODRefreshControl.m; sourceTree = "<group>"; };
 		27F85C741548F2AF0053FBEC /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		288765FC0DF74451002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -490,6 +493,7 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				27D4172815BA3EF30044C478 /* ODRefreshControl */,
 				2715BDAF15B8F03700B0A5B1 /* Categories */,
 				2715BDC115B8F03700B0A5B1 /* Subviews */,
 				18E36A8A15AD4AA0006E62AA /* include */,
@@ -626,6 +630,15 @@
 				2715BDCD15B8F03700B0A5B1 /* BarBackgroundLayer.m */,
 			);
 			path = Layers;
+			sourceTree = "<group>";
+		};
+		27D4172815BA3EF30044C478 /* ODRefreshControl */ = {
+			isa = PBXGroup;
+			children = (
+				27D4172915BA3EF30044C478 /* ODRefreshControl.h */,
+				27D4172A15BA3EF30044C478 /* ODRefreshControl.m */,
+			);
+			path = ODRefreshControl;
 			sourceTree = "<group>";
 		};
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
@@ -1174,6 +1187,7 @@
 				2715BDDA15B8F03700B0A5B1 /* BarBackgroundLayer.m in Sources */,
 				2715BDEF15B930B000B0A5B1 /* HGKOptionPanel.m in Sources */,
 				18FE213E15B9658E008B2A05 /* NotificationView.m in Sources */,
+				27D4172B15BA3EF30044C478 /* ODRefreshControl.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
