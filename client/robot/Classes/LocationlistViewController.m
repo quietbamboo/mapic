@@ -226,7 +226,7 @@
     [tableview setDataSource:self];
     [self.view addSubview: tableview];
     
-    ODRefreshControl *refreshControl = [[ODRefreshControl alloc] initInScrollView:tableview];
+    refreshControl = [[ODRefreshControl alloc] initInScrollView:tableview];
     [refreshControl addTarget:self action:@selector(dropViewDidBeginRefreshing:) forControlEvents:UIControlEventValueChanged];
     [self.view addSubview:tabHeaderView];
     [tableview release];
@@ -256,8 +256,11 @@
     double delayInSeconds = 3.0;
     dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
     dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-        [refreshControl endRefreshing];
+        [self doSomeThing];
     });
 }
 
+- (void)doSomeThing{
+    [refreshControl endRefreshing];
+}
 @end

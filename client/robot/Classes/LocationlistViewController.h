@@ -15,6 +15,7 @@
 
     NSMutableArray *nsArray;
     BOOL isloading;
+    ODRefreshControl *refreshControl;
 }
 
 @end
