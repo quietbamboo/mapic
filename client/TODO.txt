@@ -52,8 +52,10 @@ http://instagramers.com/wp-content/uploads/2011/07/dimitriskarathanos-profile1.j
 
 你关注的那些人的动向.
 
-
-
+滤镜的样例:
+http://code4app.com/ios/Image-Filter/4f76d7b26803fac05f000000
+https://github.com/azamsharp/TCam
+http://code4app.com/ios/Image-Filters-for-IOS/4f8ccb4206f6e7b86f000000
 
 登陆注册功能
 登陆页面如下
@@ -63,6 +65,8 @@ http://code4app.com/ios/Signup-ViewController/4f704ae46803fa0135000001
 注册验证的功能
 http://code4app.com/ios/Form-Validator/4fbe4c6c6803fafb2c000000
 
+MD5加密Demo
+http://code4app.com/ios/MD5加密Demo/5003839b6803fa8e5b000001
 
 在地图功能页面添加 朝向的功能 代码实例：
 http://www.cocoacontrols.com/platforms/ios/controls/mtlocation 
