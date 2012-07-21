@@ -402,15 +402,15 @@ typedef enum {
 
 - (MKAnnotationView *)mapView:(MKMapView *)theMapView viewForAnnotation:(id <MKAnnotation>)annotation
 {
-//    // if it's the user location, just return nil.
-//    if ([annotation isKindOfClass:[MKUserLocation class]])
-//        return nil;
+    // if it's the user location, just return nil.
+    if ([annotation isKindOfClass:[MKUserLocation class]])
+        return nil;
     
     // handle our two custom annotations
     //
-//
-//    if ([annotation isKindOfClass:[PlaceMark class]])   // for City of San Francisco
-//    {
+
+    if ([annotation isKindOfClass:[PlaceMark class]])   // for City of San Francisco
+    {
         static NSString* SFAnnotationIdentifier = @"SFAnnotationIdentifier";
         MKPinAnnotationView* pinView =
         (MKPinAnnotationView *)[mainMapView dequeueReusableAnnotationViewWithIdentifier:SFAnnotationIdentifier];
@@ -420,14 +420,14 @@ typedef enum {
                                                                              reuseIdentifier:SFAnnotationIdentifier] autorelease];
             annotationView.canShowCallout = YES;
             
-            if ([annotation isKindOfClass:[MKUserLocation class]]){
-                if ([mainMapView mapType] == MKMapTypeStandard) {
-                    annotationView.image = [UIImage imageNamed:@"searchtitle_map.png"];
-                }else {
-                    annotationView.image = [UIImage imageNamed:@"corpus_map_pressed.png"];
-                }
-                annotationView.opaque = NO;
-            }else {
+//            if ([annotation isKindOfClass:[MKUserLocation class]]){
+//                if ([mainMapView mapType] == MKMapTypeStandard) {
+//                    annotationView.image = [UIImage imageNamed:@"searchtitle_map.png"];
+//                }else {
+//                    annotationView.image = [UIImage imageNamed:@"corpus_map_pressed.png"];
+//                }
+//                annotationView.opaque = NO;
+//            }else {
                 PlaceMark *placeMark = annotation;
                 UIImage *flagImage = placeMark.place.image;
             
@@ -457,15 +457,15 @@ typedef enum {
                          forControlEvents:UIControlEventTouchUpInside];
                 accesbutton.tag = placeMark.place.btnTag;
                 [annotationView setRightCalloutAccessoryView:accesbutton];
-            }
+            
             return annotationView;
         }
-//        else
-//        {
-//            pinView.annotation = annotation;
-//        }
-//        return pinView;
-//    }
+        else
+        {
+            pinView.annotation = annotation;
+        }
+        return pinView;
+    }
     
     return nil;
 }
