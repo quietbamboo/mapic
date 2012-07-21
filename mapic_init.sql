@@ -46,6 +46,8 @@ CREATE TABLE `picture` (
   `likes` int(255) DEFAULT NULL,
   `dislikes` int(255) DEFAULT NULL,
   `report` int(255) DEFAULT NULL,
+  `creationTime` datetime DEFAULT NULL,
+  `generateTime` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -63,6 +65,7 @@ CREATE TABLE `picturegroup` (
   `title` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `description` mediumtext COLLATE utf8_unicode_ci,
   `creationTime` datetime DEFAULT NULL,
+  `deleteFlag` int(4) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
