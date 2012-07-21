@@ -9,13 +9,13 @@
 #import <UIKit/UIKit.h>
 #import "JMTabView.h"
 #import "AppDelegate.h"
-#import "EGORefreshTableHeaderView.h"
+#import "ODRefreshControl.h"
 #import "HjxPhotoViewController.h"
-@interface LocationlistViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,DirectionsViewControllerDelegate,EGORefreshTableHeaderDelegate,JMTabViewDelegate>{
+@interface LocationlistViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,DirectionsViewControllerDelegate,JMTabViewDelegate>{
 
     NSMutableArray *nsArray;
-    EGORefreshTableHeaderView *_refreshHeaderView;
-    BOOL                isloading;
+    BOOL isloading;
+    ODRefreshControl *refreshControl;
 }
 
 @end
