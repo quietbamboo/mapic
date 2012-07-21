@@ -24,8 +24,6 @@
     NSMutableArray *nsArray;
     BOOL                isinitArray;
     NSArray* buttons;
-    BOOL isCurl;
-    UIView *firstView;
     UIView *secondView;
     HGKOptionPanel *panel;
 }

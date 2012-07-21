@@ -45,14 +45,14 @@
     CGRect frame = self.frame;
     
     [UIView beginAnimations:nil context:nil];
-    [UIView setAnimationDuration:0.7];
+    [UIView setAnimationDuration:0.4];
     if (!self.isExpanded)
     {
         self.isExpanded = YES;
         
         frame.origin.y -= (self.frame.size.height - 30);
         self.frame = frame;
-        NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:0.65f target:self selector:@selector(changebackgroundColor:) userInfo:nil repeats:NO];
+        [NSTimer scheduledTimerWithTimeInterval:0.35f target:self selector:@selector(changebackgroundColor:) userInfo:nil repeats:NO];
 
         [self.btnShowHide setImage:[UIImage imageNamed:@"iconCollapse.png"] forState:UIControlStateNormal];
     } else {
@@ -60,7 +60,7 @@
    
         frame.origin.y += (self.frame.size.height - 30);
         self.frame = frame;
-        self.backgroundColor = [UIColor lightGrayColor];
+        self.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.35];
                [self.btnShowHide setImage:[UIImage imageNamed:@"iconExpand.png"] forState:UIControlStateNormal];
     }
     [UIView commitAnimations];

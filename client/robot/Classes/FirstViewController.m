@@ -102,11 +102,9 @@ typedef enum {
     [self moveToCurrentLocation];
     mainMapView.showsUserLocation = YES;
     //[self initnaArray]; 
-    [self doCurl];
    }
 - (void) originBu{
     [mainMapView setCenterCoordinate:[mainMapView.userLocation coordinate] animated:YES];
-    [self doCurl];
 }
 - (void)toSettingViewController {
     SettingViewController *setting = [[SettingViewController alloc] init];
@@ -404,15 +402,15 @@ typedef enum {
 
 - (MKAnnotationView *)mapView:(MKMapView *)theMapView viewForAnnotation:(id <MKAnnotation>)annotation
 {
-    // if it's the user location, just return nil.
-    if ([annotation isKindOfClass:[MKUserLocation class]])
-        return nil;
+//    // if it's the user location, just return nil.
+//    if ([annotation isKindOfClass:[MKUserLocation class]])
+//        return nil;
     
     // handle our two custom annotations
     //
-
-    if ([annotation isKindOfClass:[PlaceMark class]])   // for City of San Francisco
-    {
+//
+//    if ([annotation isKindOfClass:[PlaceMark class]])   // for City of San Francisco
+//    {
         static NSString* SFAnnotationIdentifier = @"SFAnnotationIdentifier";
         MKPinAnnotationView* pinView =
         (MKPinAnnotationView *)[mainMapView dequeueReusableAnnotationViewWithIdentifier:SFAnnotationIdentifier];
@@ -422,43 +420,52 @@ typedef enum {
                                                                              reuseIdentifier:SFAnnotationIdentifier] autorelease];
             annotationView.canShowCallout = YES;
             
-            PlaceMark *placeMark = annotation;
-            UIImage *flagImage = placeMark.place.image;
+            if ([annotation isKindOfClass:[MKUserLocation class]]){
+                if ([mainMapView mapType] == MKMapTypeStandard) {
+                    annotationView.image = [UIImage imageNamed:@"searchtitle_map.png"];
+                }else {
+                    annotationView.image = [UIImage imageNamed:@"corpus_map_pressed.png"];
+                }
+                annotationView.opaque = NO;
+            }else {
+                PlaceMark *placeMark = annotation;
+                UIImage *flagImage = placeMark.place.image;
             
-            CGRect resizeRect;
+//            CGRect resizeRect;
+//            
+//            resizeRect.size = flagImage.size;
+//            CGSize maxSize = CGRectInset(self.view.bounds,
+//                                         [FirstViewController annotationPadding],
+//                                         [FirstViewController annotationPadding]).size;
+//            maxSize.height -= self.navigationController.navigationBar.frame.size.height + [FirstViewController calloutHeight];
+//            if (resizeRect.size.width > maxSize.width)
+//                resizeRect.size = CGSizeMake(maxSize.width - 200, resizeRect.size.height / resizeRect.size.width * maxSize.width - 300);
+//            if (resizeRect.size.height > maxSize.height)
+//                resizeRect.size = CGSizeMake(resizeRect.size.width / resizeRect.size.height * maxSize.height - 200, maxSize.height - 300);
+//            
+//            resizeRect.origin = (CGPoint){0.0f, 0.0f};
+//            UIGraphicsBeginImageContext(resizeRect.size);
+//            [flagImage drawInRect:resizeRect];
+//            UIImage *resizedImage = UIGraphicsGetImageFromCurrentImageContext();
+//            UIGraphicsEndImageContext();
             
-            resizeRect.size = flagImage.size;
-            CGSize maxSize = CGRectInset(self.view.bounds,
-                                         [FirstViewController annotationPadding],
-                                         [FirstViewController annotationPadding]).size;
-            maxSize.height -= self.navigationController.navigationBar.frame.size.height + [FirstViewController calloutHeight];
-            if (resizeRect.size.width > maxSize.width)
-                resizeRect.size = CGSizeMake(maxSize.width - 200, resizeRect.size.height / resizeRect.size.width * maxSize.width - 300);
-            if (resizeRect.size.height > maxSize.height)
-                resizeRect.size = CGSizeMake(resizeRect.size.width / resizeRect.size.height * maxSize.height - 200, maxSize.height - 300);
+                annotationView.image = flagImage;
+                annotationView.opaque = NO;
             
-            resizeRect.origin = (CGPoint){0.0f, 0.0f};
-            UIGraphicsBeginImageContext(resizeRect.size);
-            [flagImage drawInRect:resizeRect];
-            UIImage *resizedImage = UIGraphicsGetImageFromCurrentImageContext();
-            UIGraphicsEndImageContext();
-            
-            annotationView.image = resizedImage;
-            annotationView.opaque = NO;
-            
-            UIButton *accesbutton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
-            [accesbutton addTarget:self action:@selector(toDetailView:) 
+                UIButton *accesbutton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
+                [accesbutton addTarget:self action:@selector(toDetailView:) 
                          forControlEvents:UIControlEventTouchUpInside];
-            accesbutton.tag = placeMark.place.btnTag;
-            [annotationView setRightCalloutAccessoryView:accesbutton];
+                accesbutton.tag = placeMark.place.btnTag;
+                [annotationView setRightCalloutAccessoryView:accesbutton];
+            }
             return annotationView;
         }
-        else
-        {
-            pinView.annotation = annotation;
-        }
-        return pinView;
-    }
+//        else
+//        {
+//            pinView.annotation = annotation;
+//        }
+//        return pinView;
+//    }
     
     return nil;
 }
@@ -484,27 +491,21 @@ typedef enum {
 }
 #pragma mark
 #pragma mark showTaBar
--(void) showTabBar:(UITabBarController*) tabbarcontroller {
-    
+-(void) showTabBar:(UITabBarController*) tabbarcontroller
+{    
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationDuration:0.5];
     for(UIView*view in tabbarcontroller.view.subviews)
     {
-        NSLog(@"%@", view);
-        
         if([view isKindOfClass:[UITabBar class]])
         {
             [view setFrame:CGRectMake(view.frame.origin.x,431, view.frame.size.width, view.frame.size.height)];
-            
         }
         else
         {
             [view setFrame:CGRectMake(view.frame.origin.x, view.frame.origin.y, view.frame.size.width,431)];
         }
-        
-        
     }
-    
     [UIView commitAnimations];
 }
 #pragma mark
@@ -534,34 +535,10 @@ typedef enum {
 } 
 
 - (void) loadView {
-    UIView *contentView = [[UIView alloc] initWithFrame:[[UIScreen mainScreen] applicationFrame]];
+    UIView *contentView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 480)];
     contentView.backgroundColor = [UIColor whiteColor];
     self.view = contentView;
     [contentView release];
-    
-    firstView = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 320.0f, 431.0f)];
-	firstView.backgroundColor = [UIColor lightGrayColor];
-    [self.view addSubview:firstView];
-    
-   
-    UIButton *resetButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    resetButton.frame = CGRectMake(10, 306, 90, 38);
-    [resetButton setTitle:@"重置" forState:UIControlStateNormal];
-    //[resetButton setImage:[UIImage imageNamed:@"reset.png"] forState:UIControlStateNormal];
-    [resetButton addTarget:self action:@selector(removePins) forControlEvents:UIControlEventTouchUpInside];
-    [firstView addSubview:resetButton];
-    
-    UIButton *originButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    originButton.frame = CGRectMake(110, 306, 100, 38);
-    [originButton setTitle:@"当前位置" forState:UIControlStateNormal];
-    [originButton addTarget:self action:@selector(originBu) forControlEvents:UIControlEventTouchUpInside];
-    [firstView addSubview:originButton];
-    
-    UIButton *curlButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    curlButton.frame = CGRectMake(220, 306, 90, 38);
-    [curlButton setTitle:@"关闭" forState:UIControlStateNormal];
-    [curlButton addTarget:self action:@selector(doCurl) forControlEvents:UIControlEventTouchUpInside];
-    [firstView addSubview:curlButton];
 }
 
 - (void)viewDidLoad
@@ -573,26 +550,13 @@ typedef enum {
 	locationManager.distanceFilter = 1000.0f;
     [locationManager startUpdatingLocation];
     
-
-	secondView = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 320.0f, 431.0f)];
-	secondView.backgroundColor = [UIColor whiteColor];
     mainMapView = [[MKMapView alloc] initWithFrame:CGRectMake(0, 0, 320, 431)];  
     mainMapView.mapType = MKMapTypeStandard;   
     mainMapView.zoomEnabled = YES; 
     mainMapView.scrollEnabled = YES;
     mainMapView.showsUserLocation = YES;
     mainMapView.delegate = self;
-    [secondView  addSubview:mainMapView];
-    [self.view addSubview:secondView];
-
-    isCurl=NO;
-
-    UIButton *curlButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    curlButton.frame = CGRectMake(260, 386, 50, 30);
-    [curlButton setTitle:@"翻页" forState:UIControlStateNormal];
-    //[curlButton setImage:[UIImage imageNamed:@"reset.png"] forState:UIControlStateNormal];
-    [curlButton addTarget:self action:@selector(doCurl) forControlEvents:UIControlEventTouchUpInside];
-    [mainMapView addSubview:curlButton];
+    [self.view addSubview:mainMapView];
     
     routeView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, mainMapView.frame.size.width, mainMapView.frame.size.height)];
     routeView.userInteractionEnabled = NO;
@@ -610,19 +574,17 @@ typedef enum {
     self.lineColor = [UIColor blackColor];
     [mainMapView autorelease];
     isinitArray = NO;
-    panel = [[HGKOptionPanel alloc] initWithFrame:CGRectMake(0, -110, 320, 140)];
+    panel = [[HGKOptionPanel alloc] initWithFrame:CGRectMake(0, -160, 320, 190)];
     
-    UILabel *lableft = [[UILabel alloc] initWithFrame:CGRectMake(20, 15, 40, 25)];
-    lableft.text = @"放大";
-    lableft.backgroundColor = [UIColor clearColor];
-    [panel addSubview:lableft];
-    [lableft release];
+    UIImageView  *leftimage = [[UIImageView alloc] initWithFrame:CGRectMake(20, 15, 40, 25)];
+    leftimage.image = [UIImage imageNamed:@"readmode_panel_cache_decrease_pressed.png"];
+    [panel addSubview:leftimage];
+    [leftimage release];
     
-    UILabel *labright = [[UILabel alloc] initWithFrame:CGRectMake(270, 15, 40, 25)];
-    labright.text = @"缩小";
-    labright.backgroundColor = [UIColor clearColor];
-    [panel addSubview:labright];
-    [labright release];
+    UIImageView  *rightimage = [[UIImageView alloc] initWithFrame:CGRectMake(270, 15, 40, 25)];
+    rightimage.image = [UIImage imageNamed:@"readmode_panel_cache_increase_pressed.png"];
+    [panel addSubview:rightimage];
+    [rightimage release];
     
     UISlider  *mapslider = [[[UISlider alloc] initWithFrame:CGRectMake(60, 15, 200, 10)] autorelease];
     mapslider.maximumValue = 10000;
@@ -632,7 +594,7 @@ typedef enum {
     [panel addSubview:mapslider];
     
     buttons = [[NSArray arrayWithObjects:
-                [NSDictionary dictionaryWithObjectsAndKeys:[NSArray arrayWithObjects:@"标准", @"卫星", @"混合", nil], @"titles", [NSValue valueWithCGSize:CGSizeMake(100,38)], @"size", @"bottombarblue.png", @"button-image", @"bottombarblue_pressed.png", @"button-highlight-image", @"blue-divider.png", @"divider-image", [NSNumber numberWithFloat:14.0], @"cap-width", nil],
+                [NSDictionary dictionaryWithObjectsAndKeys:[NSArray arrayWithObjects:@"标准", @"卫星", @"混合", nil], @"titles", [NSValue valueWithCGSize:CGSizeMake(100,38)], @"size", @"bottombarblue_pressed.png", @"button-image", @"bottombarblue.png", @"button-highlight-image", @"blue-divider.png", @"divider-image", [NSNumber numberWithFloat:14.0], @"cap-width", nil],
                 nil] retain];
     NSDictionary* blueSegmentedControlData = [buttons objectAtIndex:0];
     NSArray* blueSegmentedControlTitles = [blueSegmentedControlData objectForKey:@"titles"];
@@ -640,6 +602,20 @@ typedef enum {
     [self addView:blueSegmentedControl verticalOffset:0 title:@"Blue segmented control"];
     
     [self.view addSubview:panel];
+    
+    UIButton *resetButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    resetButton.frame = CGRectMake(10, 110, 140, 38);
+    [resetButton setTitle:@"重置" forState:UIControlStateNormal];
+    //[resetButton setImage:[UIImage imageNamed:@"reset.png"] forState:UIControlStateNormal];
+    [resetButton addTarget:self action:@selector(removePins) forControlEvents:UIControlEventTouchUpInside];
+    [panel addSubview:resetButton];
+    
+    UIButton *originButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    originButton.frame = CGRectMake(170, 110, 140, 38);
+    [originButton setTitle:@"当前位置" forState:UIControlStateNormal];
+    [originButton addTarget:self action:@selector(originBu) forControlEvents:UIControlEventTouchUpInside];
+    [panel addSubview:originButton];
+    
     [panel release];
     //[self initnaArray];
 
@@ -665,56 +641,19 @@ typedef enum {
 	[routeView release];
     [super dealloc];
 }
-#pragma mark -
-#pragma mark PageCurl method
-- (void) doCurl
-{
-	//创建CATransition对象
-	CATransition *animation = [CATransition animation];
-	//相关参数设置
-	[animation setDelegate:self];
-	[animation setDuration:0.5f];
-	[animation setTimingFunction:UIViewAnimationCurveEaseInOut];
-	//向上卷的参数
-	if(!isCurl)
-	{
-		//设置动画类型为pageCurl，并只卷一半
-		[animation setType:@"pageCurl"];   
-		animation.endProgress=0.6;
-	}
-	//向下卷的参数
-	else
-	{
-		//设置动画类型为pageUnCurl，并从一半开始向下卷
-		[animation setType:@"pageUnCurl"];
-		animation.startProgress=0.4;
-	}
-	//卷的过程完成后停止，并且不从层中移除动画
-	[animation setFillMode:kCAFillModeForwards];
-	[animation setSubtype:kCATransitionFromBottom];
-	[animation setRemovedOnCompletion:NO];
-    
-	isCurl=!isCurl;
-	
-	[self.view exchangeSubviewAtIndex:0 withSubviewAtIndex:1];
-	[[self.view layer] addAnimation:animation forKey:@"pageCurlAnimation"];
 
-}
 #pragma mark -
 #pragma mark Three map types of methods
 - (void) satelliteBu{
     [mainMapView setMapType:(MKMapTypeSatellite)];
-    //[self doCurl];
     //mainMapView.mapType = MKMapTypeSatellite;
 }
 - (void) standardBu{
     [mainMapView setMapType:MKMapTypeStandard];
-    //[self doCurl];
     //mainMapView.mapType = MKMapTypeStandard;
 }
 - (void) hybridBu{
     [mainMapView setMapType:MKMapTypeHybrid];
-    //[self doCurl];
     //mainMapView.mapType = MKMapTypeHybrid;
 }
 #pragma mark -
