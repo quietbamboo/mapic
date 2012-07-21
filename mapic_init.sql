@@ -96,11 +96,11 @@ CREATE TABLE `user` (
 
 /*Data for the table `user` */
 
-/*Table structure for table `userinfo_basic` */
+/*Table structure for table `userinfo` */
 
-DROP TABLE IF EXISTS `userinfo_basic`;
+DROP TABLE IF EXISTS `userinfo`;
 
-CREATE TABLE `userinfo_basic` (
+CREATE TABLE `userinfo` (
   `id` int(18) NOT NULL AUTO_INCREMENT,
   `userId` int(18) DEFAULT NULL,
   `name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
@@ -117,7 +117,7 @@ CREATE TABLE `userinfo_basic` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-/*Data for the table `userinfo_basic` */
+/*Data for the table `userinfo` */
 
 /*Table structure for table `userinfohistory` */
 
