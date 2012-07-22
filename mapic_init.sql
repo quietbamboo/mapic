@@ -38,7 +38,6 @@ DROP TABLE IF EXISTS `picture`;
 
 CREATE TABLE `picture` (
   `id` int(18) NOT NULL AUTO_INCREMENT,
-  `groupId` int(18) DEFAULT NULL,
   `url` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `title` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `description` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
@@ -48,28 +47,12 @@ CREATE TABLE `picture` (
   `report` int(255) DEFAULT NULL,
   `creationTime` datetime DEFAULT NULL,
   `generateTime` datetime DEFAULT NULL,
+  `lagitude` float DEFAULT NULL,
+  `longitude` float DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `picture` */
-
-/*Table structure for table `picturegroup` */
-
-DROP TABLE IF EXISTS `picturegroup`;
-
-CREATE TABLE `picturegroup` (
-  `id` int(18) NOT NULL AUTO_INCREMENT,
-  `userId` int(18) DEFAULT NULL,
-  `latitude` float DEFAULT NULL,
-  `longitude` float DEFAULT NULL,
-  `title` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `description` mediumtext COLLATE utf8_unicode_ci,
-  `creationTime` datetime DEFAULT NULL,
-  `deleteFlag` int(4) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
-/*Data for the table `picturegroup` */
 
 /*Table structure for table `relationship` */
 
