@@ -101,17 +101,43 @@ static const NSTimeInterval kSlideshowInterval = 6;
 
 - (void)stopActivity{
 	[listlabel setHidden:YES];
-    if (self.endPlace != nil) {
-        UIBarButtonItem *btnRoute = [[UIBarButtonItem alloc] 
-                                     initWithTitle:@"路线"                                            
-                                     style:UIBarButtonItemStyleBordered 
-                                     target:self 
-                                     action:@selector(toWriteRoute)];
-        self.navigationItem.rightBarButtonItem = btnRoute;
-        //self.navigationItem.leftBarButtonItem = btnRoute;
-        [btnRoute release];
-    }
 }
+
+
+- (void)updateChrome {
+    if (_photoSource.numberOfPhoto < 2) {
+        self.title = _photoSource.title;
+        
+    } else {
+        self.title = [NSString stringWithFormat:
+                      TTLocalizedString(@"%d of %d", @"Current page in photo browser (1 of 10)"),
+                      _centerPhotoIndex+1, _photoSource.numberOfPhoto];
+    }
+    
+    if (![self.presentedViewController isKindOfClass:[TTThumbsViewController class]]) {
+        if (_photoSource.numberOfPhoto > 1) {
+            self.navigationItem.rightBarButtonItem =
+            [[[UIBarButtonItem alloc] initWithTitle:TTLocalizedString(@"See All",
+                                                                      @"See all photo thumbnails")
+                                              style:UIBarButtonItemStyleBordered
+                                             target:self
+                                             action:@selector(seeAllAction)]
+             autorelease];
+            
+        } else {
+            self.navigationItem.rightBarButtonItem = nil;
+        }
+        
+    } else {
+        self.navigationItem.rightBarButtonItem = nil;
+    }
+    
+//    UIBarButtonItem* playButton = [_toolbar itemWithTag:1];
+//    playButton.enabled = _photoSource.numberOfPhoto > 1;
+//    _previousButton.enabled = _centerPhotoIndex > 0;
+//    _nextButton.enabled = _centerPhotoIndex >= 0 && _centerPhotoIndex < _photoSource.numberOfPhoto-1;
+}
+
 
 #pragma mark
 #pragma mark Timer
@@ -231,12 +257,29 @@ static const NSTimeInterval kSlideshowInterval = 6;
 						 ] autorelease];
 	
 	[self stopActivity];
-    
-    
 }
 
 #pragma mark
 #pragma mark Seven methods About UIBarButtonItem
+
+- (void)seeAllAction {
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"see all success!"
+                          //message:[NSString stringWithFormat:@"Photo size: %iX%i\nView it in your photo album", [self centerPhotoView].image.size.width, img.size.height]
+                          //0X1081212928 ??
+                                                    message:[NSString stringWithFormat:@"see all"]
+                                                   delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+	[alert show];
+	[alert release];
+}
+- (void)messageAction {
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"message success!"
+                          //message:[NSString stringWithFormat:@"Photo size: %iX%i\nView it in your photo album", [self centerPhotoView].image.size.width, img.size.height]
+                          //0X1081212928 ??
+                                                    message:[NSString stringWithFormat:@"message"]
+                                                   delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+	[alert show];
+	[alert release];
+}
 - (void)saveAction {
 	UIImage *img = [self centerPhotoView].image;
     //UIImageWriteToSavedPhotosAlbum(img, self, @selector(image:didFinishSavingWithError:contextInfo:), self);
@@ -361,42 +404,42 @@ static const NSTimeInterval kSlideshowInterval = 6;
 	[alert release];
 }
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)nextAction {
-	[self pauseAction];
-	if (_centerPhotoIndex < _photoSource.numberOfPhoto - 1) {
-		_scrollView.centerPageIndex = _centerPhotoIndex+1;
-	}
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)previousAction {
-    
-	[self pauseAction];
-	if (_centerPhotoIndex > 0) {
-		_scrollView.centerPageIndex = _centerPhotoIndex-1;
-	}
-}
-
-- (void)playAction {
-    if (!_slideshowTimer) {
-        UIBarButtonItem* pauseButton =
-        [[[UIBarButtonItem alloc] initWithBarButtonSystemItem: UIBarButtonSystemItemPause
-                                                       target: self
-                                                       action: @selector(pauseAction)]
-         autorelease];
-        pauseButton.tag = 1;
-        
-        [_toolbar replaceItemWithTag:1 withItem:pauseButton];
-        
-        _slideshowTimer = [NSTimer scheduledTimerWithTimeInterval:kSlideshowInterval
-                                                           target:self
-                                                         selector:@selector(slideshowTimer)
-                                                         userInfo:nil
-                                                          repeats:YES];
-    }
-}
+/////////////////////////////////////////////////////////////////////////////////////////////////////
+//- (void)nextAction {
+//	[self pauseAction];
+//	if (_centerPhotoIndex < _photoSource.numberOfPhoto - 1) {
+//		_scrollView.centerPageIndex = _centerPhotoIndex+1;
+//	}
+//}
+//
+//
+/////////////////////////////////////////////////////////////////////////////////////////////////////
+//- (void)previousAction {
+//    
+//	[self pauseAction];
+//	if (_centerPhotoIndex > 0) {
+//		_scrollView.centerPageIndex = _centerPhotoIndex-1;
+//	}
+//}
+//
+//- (void)playAction {
+//    if (!_slideshowTimer) {
+//        UIBarButtonItem* pauseButton =
+//        [[[UIBarButtonItem alloc] initWithBarButtonSystemItem: UIBarButtonSystemItemPause
+//                                                       target: self
+//                                                       action: @selector(pauseAction)]
+//         autorelease];
+//        pauseButton.tag = 1;
+//        
+//        [_toolbar replaceItemWithTag:1 withItem:pauseButton];
+//        
+//        _slideshowTimer = [NSTimer scheduledTimerWithTimeInterval:kSlideshowInterval
+//                                                           target:self
+//                                                         selector:@selector(slideshowTimer)
+//                                                         userInfo:nil
+//                                                          repeats:YES];
+//    }
+//}
 #pragma mark
 #pragma mark DirectionsViewControllerDelegate
 - (void)toWriteRoute{
@@ -473,6 +516,7 @@ static const NSTimeInterval kSlideshowInterval = 6;
 	[_innerView addSubview:_scrollView];
 	
 	
+    _routeButton = [[UIBarButtonItem alloc] initWithTitle:@"路线" style:UIBarButtonItemStyleBordered target:self action:@selector(toWriteRoute)];
 	_saveButton = [[UIBarButtonItem alloc] initWithImage:
 				   TTIMAGE(@"bundle://Three20.bundle/images/download.png")
 												   style:UIBarButtonItemStylePlain target:self action:@selector(saveAction)];
@@ -491,20 +535,19 @@ static const NSTimeInterval kSlideshowInterval = 6;
 				  //[UIImage imageNamed:@"bad.png"]
 				  TTIMAGE(@"bundle://Three20.bundle/images/bad.png")
 												  style:UIBarButtonItemStylePlain target:self action:@selector(badAction)];
+    
+//	_previousButton = [[UIBarButtonItem alloc] initWithImage:
+//					   TTIMAGE(@"bundle://Three20.bundle/images/previousIcon.png")
+//													   style:UIBarButtonItemStylePlain target:self action:@selector(previousAction)];
+//	_nextButton = [[UIBarButtonItem alloc] initWithImage:
+//				   TTIMAGE(@"bundle://Three20.bundle/images/nextIcon.png")
+//												   style:UIBarButtonItemStylePlain target:self action:@selector(nextAction)];
+//	_playButton = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:
+//                    UIBarButtonSystemItemPlay target:self action:@selector(playAction)] autorelease];
+//	_playButton.tag = 1;
 	
-	
-	
-	_nextButton = [[UIBarButtonItem alloc] initWithImage:
-				   TTIMAGE(@"bundle://Three20.bundle/images/nextIcon.png")
-												   style:UIBarButtonItemStylePlain target:self action:@selector(nextAction)];
-	_previousButton = [[UIBarButtonItem alloc] initWithImage:
-					   TTIMAGE(@"bundle://Three20.bundle/images/previousIcon.png")
-													   style:UIBarButtonItemStylePlain target:self action:@selector(previousAction)];
-	
-	_playButton = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:
-                    UIBarButtonSystemItemPlay target:self action:@selector(playAction)] autorelease];
-	_playButton.tag = 1;
-	
+    _messageButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"notificationToastCommentIcon.png"] style:UIBarButtonItemStylePlain target:self action:@selector(messageAction)];
+    
 	UIBarItem* space = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:
 						 UIBarButtonSystemItemFlexibleSpace target:nil action:nil] autorelease];
 	
@@ -517,9 +560,9 @@ static const NSTimeInterval kSlideshowInterval = 6;
 	
 	_toolbar.barStyle = UIBarStyleBlackTranslucent;//self.navigationBarStyle;
 	_toolbar.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleTopMargin;
-	_toolbar.items = [NSArray arrayWithObjects: 
-					  _badButton, space, _previousButton, space, _saveButton, space, _playButton, 
-					  space, _nextButton, space, _goodButton, space, _reportButton, nil];
+	_toolbar.items = [NSArray arrayWithObjects: _routeButton, space,
+					  _badButton, space, _saveButton, space, _goodButton, space,_messageButton,
+                      space, _reportButton, nil];
 	
 	[_innerView addSubview:_toolbar];
     
@@ -576,7 +619,8 @@ static const NSTimeInterval kSlideshowInterval = 6;
 	TT_RELEASE_SAFELY(_goodButton);
 	TT_RELEASE_SAFELY(_badButton);
 	TT_RELEASE_SAFELY(_reportButton);
-    TT_RELEASE_SAFELY(_playButton);
+    TT_RELEASE_SAFELY(_routeButton);
+       TT_RELEASE_SAFELY(_messageButton);
 	TT_RELEASE_SAFELY(_toolbar);
 	
 	

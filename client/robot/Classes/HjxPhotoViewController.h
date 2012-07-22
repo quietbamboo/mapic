@@ -32,7 +32,8 @@ NSString* photoList;
 	UIBarButtonItem* _badButton;
 	UIBarButtonItem* _saveButton;
 	UIBarButtonItem* _reportButton;
-    UIBarButtonItem* _playButton;
+    UIBarButtonItem* _messageButton;
+    UIBarButtonItem* _routeButton;
 }
 
 
