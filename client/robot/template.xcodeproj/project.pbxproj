@@ -126,6 +126,9 @@
 		27CBE2DB15BE4939007D6AEC /* MGButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 27CBE2D415BE4939007D6AEC /* MGButton.m */; };
 		27CBE2DC15BE4939007D6AEC /* MGScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 27CBE2D615BE4939007D6AEC /* MGScrollView.m */; };
 		27CBE2DD15BE4939007D6AEC /* MGStyledBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 27CBE2D815BE4939007D6AEC /* MGStyledBox.m */; };
+		27CBE2F015BE4CF1007D6AEC /* BDDynamicGridCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 27CBE2EA15BE4CF1007D6AEC /* BDDynamicGridCell.m */; };
+		27CBE2F115BE4CF1007D6AEC /* BDDynamicGridViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27CBE2EC15BE4CF1007D6AEC /* BDDynamicGridViewController.m */; };
+		27CBE2F215BE4CF1007D6AEC /* BDRowInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 27CBE2EF15BE4CF1007D6AEC /* BDRowInfo.m */; };
 		27D4172B15BA3EF30044C478 /* ODRefreshControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 27D4172A15BA3EF30044C478 /* ODRefreshControl.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		27F85C751548F2AF0053FBEC /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27F85C741548F2AF0053FBEC /* StoreKit.framework */; };
 		288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
@@ -471,6 +474,13 @@
 		27CBE2D615BE4939007D6AEC /* MGScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGScrollView.m; sourceTree = "<group>"; };
 		27CBE2D715BE4939007D6AEC /* MGStyledBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGStyledBox.h; sourceTree = "<group>"; };
 		27CBE2D815BE4939007D6AEC /* MGStyledBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGStyledBox.m; sourceTree = "<group>"; };
+		27CBE2E915BE4CF1007D6AEC /* BDDynamicGridCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDDynamicGridCell.h; sourceTree = "<group>"; };
+		27CBE2EA15BE4CF1007D6AEC /* BDDynamicGridCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDDynamicGridCell.m; sourceTree = "<group>"; };
+		27CBE2EB15BE4CF1007D6AEC /* BDDynamicGridViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDDynamicGridViewController.h; sourceTree = "<group>"; };
+		27CBE2EC15BE4CF1007D6AEC /* BDDynamicGridViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDDynamicGridViewController.m; sourceTree = "<group>"; };
+		27CBE2ED15BE4CF1007D6AEC /* BDDynamicGridViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDDynamicGridViewDelegate.h; sourceTree = "<group>"; };
+		27CBE2EE15BE4CF1007D6AEC /* BDRowInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDRowInfo.h; sourceTree = "<group>"; };
+		27CBE2EF15BE4CF1007D6AEC /* BDRowInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDRowInfo.m; sourceTree = "<group>"; };
 		27D4172915BA3EF30044C478 /* ODRefreshControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODRefreshControl.h; sourceTree = "<group>"; };
 		27D4172A15BA3EF30044C478 /* ODRefreshControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ODRefreshControl.m; sourceTree = "<group>"; };
 		27F85C741548F2AF0053FBEC /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
@@ -562,6 +572,7 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				27CBE2E815BE4CF1007D6AEC /* BDDynamicGridView */,
 				27CBE2CD15BE4939007D6AEC /* MGBox */,
 				1802BAAD15BA982900E2AC4C /* MtLocation */,
 				27D4172815BA3EF30044C478 /* ODRefreshControl */,
@@ -746,6 +757,20 @@
 				27CBE2D815BE4939007D6AEC /* MGStyledBox.m */,
 			);
 			path = MGBox;
+			sourceTree = "<group>";
+		};
+		27CBE2E815BE4CF1007D6AEC /* BDDynamicGridView */ = {
+			isa = PBXGroup;
+			children = (
+				27CBE2E915BE4CF1007D6AEC /* BDDynamicGridCell.h */,
+				27CBE2EA15BE4CF1007D6AEC /* BDDynamicGridCell.m */,
+				27CBE2EB15BE4CF1007D6AEC /* BDDynamicGridViewController.h */,
+				27CBE2EC15BE4CF1007D6AEC /* BDDynamicGridViewController.m */,
+				27CBE2ED15BE4CF1007D6AEC /* BDDynamicGridViewDelegate.h */,
+				27CBE2EE15BE4CF1007D6AEC /* BDRowInfo.h */,
+				27CBE2EF15BE4CF1007D6AEC /* BDRowInfo.m */,
+			);
+			path = BDDynamicGridView;
 			sourceTree = "<group>";
 		};
 		27D4172815BA3EF30044C478 /* ODRefreshControl */ = {
@@ -1342,6 +1367,9 @@
 				27CBE2DB15BE4939007D6AEC /* MGButton.m in Sources */,
 				27CBE2DC15BE4939007D6AEC /* MGScrollView.m in Sources */,
 				27CBE2DD15BE4939007D6AEC /* MGStyledBox.m in Sources */,
+				27CBE2F015BE4CF1007D6AEC /* BDDynamicGridCell.m in Sources */,
+				27CBE2F115BE4CF1007D6AEC /* BDDynamicGridViewController.m in Sources */,
+				27CBE2F215BE4CF1007D6AEC /* BDRowInfo.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
