@@ -86,6 +86,28 @@ typedef enum {
     MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(mainMapView.userLocation.location.coordinate,sender.value, sender.value); 
     [mainMapView setRegion:viewRegion animated:YES];
 }
+
+- (UIImage *)ImageOverlay: (UIImage *) senderimage{
+
+    UIImage *bottomImage = [UIImage imageNamed:@"reset.png"]; //background image
+    UIImage *image       = senderimage;// //foreground image
+    
+    CGSize newSize = CGSizeMake(50, 50);
+    UIGraphicsBeginImageContext( newSize );
+    
+    // Use existing opacity as is
+    [bottomImage drawInRect:CGRectMake(0,0,newSize.width,newSize.height)];
+    
+    // Apply supplied opacity if applicable
+    [image drawInRect:CGRectMake(5,0,newSize.width-10,newSize.height-10) blendMode:kCGBlendModeNormal alpha:0.8];
+    
+    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+    
+    UIGraphicsEndImageContext();
+    
+    return newImage;
+
+}
 #pragma mark
 #pragma mark to other view Methods
 - (void)removePins {
@@ -450,7 +472,7 @@ typedef enum {
 //            UIImage *resizedImage = UIGraphicsGetImageFromCurrentImageContext();
 //            UIGraphicsEndImageContext();
             
-                annotationView.image = flagImage;
+            annotationView.image = [self ImageOverlay:flagImage];//flagImage;
                 annotationView.opaque = NO;
             
                 UIButton *accesbutton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
@@ -530,7 +552,7 @@ typedef enum {
 
 - (void) viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    //self.navigationController.navigationBarHidden = YES;
+    self.navigationController.navigationBarHidden = NO;
     [self showTabBar:self.tabBarController];
     [AppDelegate getAppDelegate].centerButton.hidden = NO;
     
