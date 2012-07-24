@@ -11,9 +11,22 @@
 #import "AppDelegate.h"
 #import "JMTabView.h"
 #import "NotificationView.h"
-@interface UserViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,JMTabViewDelegate>{
+#import "MGScrollView.h"
+#import "MGStyledBox.h"
+#import "MGBoxLine.h"
+
+
+@interface UserViewController : UIViewController<UIScrollViewDelegate,JMTabViewDelegate>{
 
      NotificationView *notificationView;
+     MGScrollView *scroller;
 }
+- (void)addBox:(UIButton *)sender;
+- (void)removeBox:(UIButton *)sender;
+- (void)moveUp:(UIButton *)sender;
+- (void)moveDown:(UIButton *)sender;
+- (void)shuffle;
 
+- (MGBox *)parentBoxOf:(UIView *)view;
+- (UIButton *)button:(NSString *)title for:(SEL)selector;
 @end

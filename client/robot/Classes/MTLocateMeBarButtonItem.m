@@ -94,7 +94,6 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self name:kMTLocationManagerDidFailWithError object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:kMTLocationManagerDidStopUpdatingServices object:nil];
     
-	locateMeButton_ = nil;
     
 }
 

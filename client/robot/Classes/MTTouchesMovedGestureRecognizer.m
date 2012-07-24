@@ -39,7 +39,6 @@
 
 - (void)dealloc {
     touchesMovedCallback_ = nil;
-	touchesBeganTimestamp_ = nil;
 
 }
 

@@ -145,9 +145,6 @@
 
 - (void)dealloc {
     _delegate = nil;
-    _activityIndicator = nil;
-	_buttonImageView = nil;
-	_locationManager = nil;
     
 }
 
