@@ -11,6 +11,7 @@
 #import "AppDelegate.h"
 #import "ODRefreshControl.h"
 #import "HjxPhotoViewController.h"
+#import "CellView.h"
 @interface LocationlistViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,DirectionsViewControllerDelegate,JMTabViewDelegate>{
 
     NSMutableArray *nsArray;

@@ -31,7 +31,7 @@
 #pragma mark initNSMUtable
 -(void)initNStableArray{
 
-    NSDictionary *dic1 = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:1500],@"Distance",@"weibo.png",@"image",[NSNumber numberWithDouble:39.946996],@"lat",[NSNumber numberWithDouble:116.339281],@"lon",@"Yale University",@"name",@"Yale University is a private research university in New Haven, Connecticut, and a member of the Ivy League. Founded in 1701 in the Colony of Connecticut, the university is the third-oldest institution of higher education in the United States. Yale has produced many notable alumni, including five U.S. presidents, seventeen U.S. Supreme Court Justices, and several foreign heads of state.",@"dec",nil];
+    NSDictionary *dic1 = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:1500],@"Distance",@"andong.jpg",@"image",[NSNumber numberWithDouble:39.946996],@"lat",[NSNumber numberWithDouble:116.339281],@"lon",@"Yale University",@"name",@"Yale University is a private research university in New Haven, Connecticut, and a member of the Ivy League. Founded in 1701 in the Colony of Connecticut, the university is the third-oldest institution of higher education in the United States. Yale has produced many notable alumni, including five U.S. presidents, seventeen U.S. Supreme Court Justices, and several foreign heads of state.",@"dec",nil];
     NSDictionary *dic2 = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:1200],@"Distance",@"logo.png",@"image",[NSNumber numberWithDouble:39.966996],@"lat",[NSNumber numberWithDouble:116.329281],@"lon",@"Harvard University",@"name",@"Harvard University (Harvard University) is the longest in U.S. history one of the first-class academic institution, is located in Cambridge, Massachusetts, and at Boston and across the Charles River. Harvard University has two colleges to recruit students, Harvard College and Radcliffe College, which recruited the students about half of all students at Harvard University. Ivy Harvard University is one of the school.",@"dec",nil];
     
     NSDictionary *dic3 = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:1100],@"Distance",@"reset.png",@"image",[NSNumber numberWithDouble:39.976996],@"lat",[NSNumber numberWithDouble:116.359281],@"lon",@"University of Cambridge",@"name",@"The University of Cambridge (informally Cambridge University, or simply Cambridge) is the second oldest university in England and the fourth oldest in the world. In post-nominals the university's name is abbreviated as Cantab, a shortened form of Cantabrigiensis (an adjective derived from Cantabrigia, the Latinised form of Cambridge).",@"dec",nil];
@@ -88,38 +88,47 @@
 //    [self.mainMapView addAnnotation:placeMark];
 //    [place release];
 //    [placeMark release];
-    cell.imageView.image = [UIImage imageNamed:[nsdic objectForKey:@"image"]];
-    // cell.imageView.highlightedImage = [UIImage imageNamed:@"flag.png"];//选中cell后的图片 
-    //cell.textLabel.font =  [UIFont boldSystemFontOfSize:10];
-    cell.textLabel.text = @" ";//[nsdic objectForKey:@"name"];
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"距离:%d%@",[(NSNumber *)[nsdic objectForKey:@"Distance"] intValue],@"米"];
-    UILabel *namelable = [[UILabel alloc] initWithFrame:CGRectMake(60, 2.0, 130, 30.0)];
-    namelable.text = [nsdic objectForKey:@"name"];
-    namelable.font = [UIFont boldSystemFontOfSize:15];     
-    namelable.textColor = [UIColor blackColor];         
-    namelable.textAlignment = UITextAlignmentLeft; 
-    namelable.numberOfLines = 1;
-    namelable.lineBreakMode = UILineBreakModeTailTruncation;
-    [cell.contentView addSubview:namelable];
-    [namelable release];
 
-    UILabel *desclabel = [[UILabel alloc]initWithFrame:CGRectMake(195.0, 2.0, 80.0, 56.0)];
-    desclabel.text = [nsdic objectForKey:@"dec"];   
+//    cell.imageView.image = [UIImage imageNamed:[nsdic objectForKey:@"image"]];
+//    // cell.imageView.highlightedImage = [UIImage imageNamed:@"flag.png"];//选中cell后的图片 
+//    //cell.textLabel.font =  [UIFont boldSystemFontOfSize:10];-
+//    cell.textLabel.text = @" ";//[nsdic objectForKey:@"name"];
+//    cell.detailTextLabel.text = [NSString stringWithFormat:@"距离:%d%@",[(NSNumber *)[nsdic objectForKey:@"Distance"] intValue],@"米"];
+//    UILabel *namelable = [[UILabel alloc] initWithFrame:CGRectMake(60, 2.0, 130, 30.0)];
+//    namelable.text = [nsdic objectForKey:@"name"];
+//    namelable.font = [UIFont boldSystemFontOfSize:15];     
+//    namelable.textColor = [UIColor blackColor];         
+//    namelable.textAlignment = UITextAlignmentLeft; 
+//    namelable.numberOfLines = 1;
+//    namelable.lineBreakMode = UILineBreakModeTailTruncation;
+//    [cell.contentView addSubview:namelable];
+//    [namelable release];
+//
+//    UILabel *desclabel = [[UILabel alloc]initWithFrame:CGRectMake(195.0, 2.0, 80.0, 56.0)];
+//    desclabel.text = [nsdic objectForKey:@"dec"];   
+//    
+//    desclabel.font = [UIFont boldSystemFontOfSize:10];     
+//    desclabel.textColor = [UIColor purpleColor];         
+//    desclabel.textAlignment = UITextAlignmentLeft; 
+//    desclabel.numberOfLines = 3;
+//    desclabel.lineBreakMode = UILineBreakModeTailTruncation;
+//    [cell.contentView addSubview:desclabel];
+//    [desclabel release];
     
-    desclabel.font = [UIFont boldSystemFontOfSize:10];     
-    desclabel.textColor = [UIColor purpleColor];         
-    desclabel.textAlignment = UITextAlignmentLeft; 
-    desclabel.numberOfLines = 3;
-    desclabel.lineBreakMode = UILineBreakModeTailTruncation;
-    [cell.contentView addSubview:desclabel];
-    [desclabel release];
+    CellView *cellview = [[CellView alloc] initWithFrame:CGRectMake(0, 2, 285,62)];
+    cellview.imageView.image = [UIImage imageNamed:[nsdic objectForKey:@"image"]];
+    cellview.namelabel.text = [nsdic objectForKey:@"name"];
+    cellview.distancelabel.text = [NSString stringWithFormat:@"距离:%d%@",[(NSNumber *)[nsdic objectForKey:@"Distance"] intValue],@"米"];
+    cellview.desclabel.text = [nsdic objectForKey:@"dec"];
+    [cell.contentView addSubview:cellview];
+    [cellview release];
     
     return cell;  
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    return 60;
+    return 66;
 }
 #pragma mark
 #pragma mark UITableViewDelegate Methods
