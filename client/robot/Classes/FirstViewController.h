@@ -16,6 +16,8 @@
 #import "HjxPhotoViewController.h"
 #import "CustomSegmentedControl.h"
 #import "HGKOptionPanel.h"
+#import "MTLocateMeBarButtonItem.h"
+#import "MTLocationManager.h"
 @interface FirstViewController : UIViewController <MKMapViewDelegate,CLLocationManagerDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate,DirectionsViewControllerDelegate,CustomSegmentedControlDelegate>{
     BOOL canChangeMap;
     UIImageView *routeView;
@@ -27,7 +29,7 @@
     UIView *secondView;
     HGKOptionPanel *panel;
 }
-
+@property (nonatomic, retain) UIBarButtonItem *locationItem;
 @property (retain, nonatomic) MKMapView *mainMapView;
 @property (nonatomic, retain) UIColor *lineColor;
 -(void) showRouteFrom: (Place *) start to:(Place *) end;

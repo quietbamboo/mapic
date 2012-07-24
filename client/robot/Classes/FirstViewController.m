@@ -25,6 +25,7 @@ typedef enum {
 @implementation FirstViewController
 @synthesize mainMapView;
 @synthesize lineColor;
+@synthesize locationItem;
 
 #pragma mark
 #pragma mark get some annotaion size
@@ -529,10 +530,30 @@ typedef enum {
 
 - (void) viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    self.navigationController.navigationBarHidden = YES;
+    //self.navigationController.navigationBarHidden = YES;
     [self showTabBar:self.tabBarController];
     [AppDelegate getAppDelegate].centerButton.hidden = NO;
+    
+    [self.locationItem startListeningToLocationUpdates];
+    
+    
+	// begin listening to end-heading notifications
+	[[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(locationManagerDidStopUpdatingHeading:)											    
+                                                 name:kMTLocationManagerDidStopUpdatingHeading
+                                               object:nil];
 } 
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    
+    [[MTLocationManager sharedInstance] stopAllServices];
+    [self.locationItem stopListeningToLocationUpdates];
+    mainMapView.showsUserLocation = NO;
+    
+    // end listening to location update notifications
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:kMTLocationManagerDidStopUpdatingHeading object:nil];
+}
 
 - (void) loadView {
     UIView *contentView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 480)];
@@ -540,7 +561,10 @@ typedef enum {
     self.view = contentView;
     [contentView release];
 }
-
+- (void)locationManagerDidStopUpdatingHeading:(NSNotification *)notification {
+	// rotate map back to Identity-Transformation
+    [self.mainMapView resetHeadingRotationAnimated:YES];
+}
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -550,17 +574,17 @@ typedef enum {
 	locationManager.distanceFilter = 1000.0f;
     [locationManager startUpdatingLocation];
     
-    mainMapView = [[MKMapView alloc] initWithFrame:CGRectMake(0, 0, 320, 431)];  
-    mainMapView.mapType = MKMapTypeStandard;   
-    mainMapView.zoomEnabled = YES; 
-    mainMapView.scrollEnabled = YES;
-    mainMapView.showsUserLocation = YES;
-    mainMapView.delegate = self;
-    [self.view addSubview:mainMapView];
+    self.mainMapView = [MKMapView mapViewInSuperview:self.view];
+    self.mainMapView.mapType = MKMapTypeStandard;   
+    self.mainMapView.zoomEnabled = YES; 
+    self.mainMapView.scrollEnabled = YES;
+    self.mainMapView.showsUserLocation = YES;
+    self.mainMapView.delegate = self;
+    [self.view addSubview:self.mainMapView];
     
     routeView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, mainMapView.frame.size.width, mainMapView.frame.size.height)];
     routeView.userInteractionEnabled = NO;
-    [mainMapView addSubview:routeView];
+    [self.mainMapView addSubview:routeView];
     
     MKCoordinateSpan theSpan; 
     theSpan.latitudeDelta = 0.05f; 
@@ -569,10 +593,10 @@ typedef enum {
 	CLLocationCoordinate2D cr  = locationManager.location.coordinate;
     theRegion.center = cr; //[[locationManager location] coordinate]; 
     theRegion.span = theSpan; 
-    [mainMapView setRegion:theRegion]; 
+    [self.mainMapView setRegion:theRegion]; 
     
     self.lineColor = [UIColor blackColor];
-    [mainMapView autorelease];
+   // [mainMapView autorelease];
     isinitArray = NO;
     panel = [[HGKOptionPanel alloc] initWithFrame:CGRectMake(0, -160, 320, 190)];
     
@@ -618,7 +642,13 @@ typedef enum {
     
     [panel release];
     //[self initnaArray];
-
+    
+    self.locationItem = [MTLocateMeBarButtonItem userTrackingBarButtonItemForMapView:self.mainMapView]; 
+    // @property (nonatomic, strong) UIBarButtonItem *locationItem;
+    self.navigationItem.leftBarButtonItem = self.locationItem;
+    
+    // 3. Configure MTLocationDelegate
+    [MTLocationManager sharedInstance].mapView = self.mainMapView;
    	// Do any additional setup after loading the view.
 }
 
@@ -631,6 +661,7 @@ typedef enum {
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
+    [self.locationItem setFrameForInterfaceOrientation:interfaceOrientation];
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
