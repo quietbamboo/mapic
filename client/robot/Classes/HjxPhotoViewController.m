@@ -10,12 +10,13 @@
 
 @implementation HjxPhotoViewController
 
-@synthesize listlabel;
+//@synthesize listlabel;
 //@synthesize adMobAd;
 //@synthesize adTimer;
 @synthesize clicked;
 @synthesize delegate = _delegate;
 @synthesize endPlace;
+//@synthesize MBProgress;
 static const NSTimeInterval kSlideshowInterval = 6;
 #pragma mark
 #pragma mark BarAnimation
@@ -89,18 +90,21 @@ static const NSTimeInterval kSlideshowInterval = 6;
 #pragma mark
 #pragma mark Activity
 - (void)showActivity{
-    
-	CGRect screenFrame = [UIScreen mainScreen].bounds;
-	listlabel = [[[TTActivityLabel alloc] initWithStyle:TTActivityLabelStyleWhiteBox] autorelease];
-	listlabel.text = @"Downloading photo list ...";
-	[listlabel sizeToFit];
-	listlabel.frame = CGRectMake(0, screenFrame.size.height / 2.2,  screenFrame.size.width, screenFrame.size.height / 12);
-	[self.view addSubview:listlabel];
-	
+//    
+//	CGRect screenFrame = [UIScreen mainScreen].bounds;
+//	listlabel = [[[TTActivityLabel alloc] initWithStyle:TTActivityLabelStyleWhiteBox] autorelease];
+//	listlabel.text = @"Downloading photo list ...";
+//	[listlabel sizeToFit];
+//	listlabel.frame = CGRectMake(0, screenFrame.size.height / 2.2,  screenFrame.size.width, screenFrame.size.height / 12);
+//	[self.view addSubview:listlabel];
+    _MBProgress = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    _MBProgress.labelText = @"正在下载请稍后！";
+    [_MBProgress show:YES];
 }
 
 - (void)stopActivity{
-	[listlabel setHidden:YES];
+	//[listlabel setHidden:YES];
+    [_MBProgress hide:YES];
 }
 
 
@@ -462,7 +466,6 @@ static const NSTimeInterval kSlideshowInterval = 6;
 								   selector: @selector(handleTimer:)
 								   userInfo: nil
 									repeats: NO];
-    
     ////init ads anyway, but default not shown
     //[self initAds];
     
@@ -633,6 +636,10 @@ static const NSTimeInterval kSlideshowInterval = 6;
     
 }
 
+- (void)dealloc {
+    [super release];
+    [_MBProgress release];
+}
 #pragma mark
 #pragma mark UIAlertViewDelegate
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {

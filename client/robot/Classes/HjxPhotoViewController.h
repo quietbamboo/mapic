@@ -14,7 +14,7 @@
 #import "GADBannerView.h"
 #import "InneractiveAd.h"
 #import "Place.h"
-
+#import "MBProgressHUD.h"
 
 //@class AdMobView;
 
@@ -27,7 +27,8 @@ NSString* photoList;
 //    UIView *adBanner;
 //    UIImageView* crossButton;
     
-	TTActivityLabel *listlabel;
+	//TTActivityLabel *listlabel;
+    MBProgressHUD  * _MBProgress;
 	UIBarButtonItem* _goodButton;
 	UIBarButtonItem* _badButton;
 	UIBarButtonItem* _saveButton;
@@ -41,7 +42,8 @@ NSString* photoList;
 
 //@property (nonatomic, retain) NSTimer *adTimer;
 //@property (nonatomic, retain) GADBannerView *adMobAd;
-@property (nonatomic, retain) TTActivityLabel *listlabel;
+//@property (nonatomic, retain) TTActivityLabel *listlabel;
+//@property (nonatomic, retain) MBProgressHUD *MBProgress;
 @property (nonatomic, retain) NSString* clicked;
 @property (nonatomic, assign) id<DirectionsViewControllerDelegate> delegate;
 @property (nonatomic, retain) Place *endPlace;
