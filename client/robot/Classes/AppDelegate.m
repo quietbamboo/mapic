@@ -41,7 +41,6 @@
     _centerButton = [UIButton buttonWithType:UIButtonTypeCustom];
     _centerButton.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleLeftMargin |UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleTopMargin;
     _centerButton.frame = CGRectMake((self.window.frame.size.width - buttonImage.size.width)/2 , (self.window.frame.size.height - buttonImage.size.height), buttonImage.size.width, buttonImage.size.height);
-    
     [_centerButton setBackgroundImage:buttonImage forState:UIControlStateNormal];
     [_centerButton setBackgroundImage:highlightImage forState:UIControlStateHighlighted];
     [_centerButton addTarget:self action:@selector(alertActionSheet) forControlEvents:UIControlEventTouchUpInside];
@@ -59,8 +58,8 @@
 }
 
 - (void)initTarBarController {
-    myTabBarController = [[UITabBarController alloc]init];
-	_firstview = [[FirstViewController alloc]init];
+    myTabBarController = [[UITabBarController alloc] init];
+	_firstview = [[FirstViewController alloc] init];
 	UINavigationController* firstviewNav = [[UINavigationController alloc] initWithRootViewController:_firstview];
     firstviewNav.tabBarItem = [[[UITabBarItem alloc] initWithTitle:@"first" image:[UIImage imageNamed:@"tab-explore"] tag:0] autorelease];
     

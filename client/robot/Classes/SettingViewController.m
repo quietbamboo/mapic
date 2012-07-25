@@ -144,6 +144,10 @@ enum {
     FKImagePickerController *imagePicker = [[FKImagePickerController alloc] init];
     //imagePicker.delegate = self;
     [self presentModalViewController:imagePicker animated:YES];
+    
+    //TODO: move this line to the didShow delegate function of the imagePicker
+    [AppDelegate getAppDelegate].centerButton.hidden = YES;
+    //TODO: after user cancel or select a picture, set the hidden to NO back
 }
 
 - (void)didSelectTweetsQuadrant {
