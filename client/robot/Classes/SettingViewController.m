@@ -35,14 +35,15 @@ enum {
     }
     return self;
 }
+
 - (void) loadView {
     UIView *contentView = [[UIView alloc] initWithFrame:CGRectMake(0,0, 320, 480)];
     contentView.backgroundColor = [UIColor whiteColor];
     self.view = contentView;
     [contentView release];
 }
-- (void)viewDidLoad
-{
+
+- (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"setting";
     UITableView *tableview= [[UITableView alloc] initWithFrame:CGRectMake(0,0, 320, 436) style:UITableViewStyleGrouped];

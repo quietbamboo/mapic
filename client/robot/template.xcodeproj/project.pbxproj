@@ -131,7 +131,6 @@
 		27CBE2F015BE4CF1007D6AEC /* BDDynamicGridCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 27CBE2EA15BE4CF1007D6AEC /* BDDynamicGridCell.m */; };
 		27CBE2F115BE4CF1007D6AEC /* BDDynamicGridViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27CBE2EC15BE4CF1007D6AEC /* BDDynamicGridViewController.m */; };
 		27CBE2F215BE4CF1007D6AEC /* BDRowInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 27CBE2EF15BE4CF1007D6AEC /* BDRowInfo.m */; };
-		27CCB4CE15BFD30200A38922 /* libFilterKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 27CCB4CD15BFD30200A38922 /* libFilterKit.a */; };
 		27CCB4D015BFD36600A38922 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27CCB4CF15BFD36600A38922 /* OpenGLES.framework */; };
 		27CCB4D315BFD3DB00A38922 /* ImagePickeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27CCB4D215BFD3DB00A38922 /* ImagePickeViewController.m */; };
 		27CCB4DF15BFDE9200A38922 /* bottomBar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 27CCB4D815BFDE9200A38922 /* bottomBar@2x.png */; };
@@ -152,6 +151,7 @@
 		6E3796DF11B9BD760011C497 /* libThree20UINavigator.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E3796CE11B9BD630011C497 /* libThree20UINavigator.a */; };
 		6EF962BA118E955A003902E7 /* libThree20.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EF962B7118E9553003902E7 /* libThree20.a */; };
 		7A0346B11546604F00BB2432 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A0346B01546604F00BB2432 /* Accelerate.framework */; };
+		7A2585A115C0422F0098CAAE /* libFilterKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A25859E15C041380098CAAE /* libFilterKit.a */; };
 		7AAE40DC14C01F22004DB168 /* speaker_22.png in Resources */ = {isa = PBXBuildFile; fileRef = 7AAE40DA14C01F22004DB168 /* speaker_22.png */; };
 		7AAE40DD14C01F22004DB168 /* speaker_22@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7AAE40DB14C01F22004DB168 /* speaker_22@2x.png */; };
 		7ACDBC44154112EF004ABDFF /* libGoogleAdMobAds.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7ACDBC3B154112EF004ABDFF /* libGoogleAdMobAds.a */; };
@@ -308,6 +308,20 @@
 			proxyType = 1;
 			remoteGlobalIDString = BEF31F390F352DF5000DE5D2;
 			remoteInfo = Three20;
+		};
+		7A25859D15C041380098CAAE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 27CCB4C715BFD2DA00A38922 /* FilterKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = A4E703E615BB18120036C98D;
+			remoteInfo = FilterKit;
+		};
+		7A25859F15C042190098CAAE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 27CCB4C715BFD2DA00A38922 /* FilterKit.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = A4E703E515BB18120036C98D;
+			remoteInfo = FilterKit;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -498,7 +512,6 @@
 		27CBE2EE15BE4CF1007D6AEC /* BDRowInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDRowInfo.h; sourceTree = "<group>"; };
 		27CBE2EF15BE4CF1007D6AEC /* BDRowInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDRowInfo.m; sourceTree = "<group>"; };
 		27CCB4C715BFD2DA00A38922 /* FilterKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = FilterKit.xcodeproj; path = ../FilterKit/FilterKit.xcodeproj; sourceTree = "<group>"; };
-		27CCB4CD15BFD30200A38922 /* libFilterKit.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libFilterKit.a; path = "../../../../../Library/Developer/Xcode/DerivedData/template-dcotaoukesjhyharxyvhpacauskq/Build/Products/Debug-iphoneos/libFilterKit.a"; sourceTree = "<group>"; };
 		27CCB4CF15BFD36600A38922 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		27CCB4D115BFD3DB00A38922 /* ImagePickeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImagePickeViewController.h; sourceTree = "<group>"; };
 		27CCB4D215BFD3DB00A38922 /* ImagePickeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImagePickeViewController.m; sourceTree = "<group>"; };
@@ -563,7 +576,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				27CCB4CE15BFD30200A38922 /* libFilterKit.a in Frameworks */,
+				7A2585A115C0422F0098CAAE /* libFilterKit.a in Frameworks */,
 				18E36BF615AD5605006E62AA /* libicucore.dylib in Frameworks */,
 				18E36A8915AD450A006E62AA /* MapKit.framework in Frameworks */,
 				18E3C9E41576FFAB000418D7 /* AssetsLibrary.framework in Frameworks */,
@@ -606,7 +619,6 @@
 			children = (
 				27CCB4D415BFD50B00A38922 /* FKImagePickerController.h */,
 				27CCB4D515BFD51800A38922 /* FKFilterPickerController.h */,
-				27CCB4CD15BFD30200A38922 /* libFilterKit.a */,
 				27CBE2E815BE4CF1007D6AEC /* BDDynamicGridView */,
 				27CBE2CD15BE4939007D6AEC /* MGBox */,
 				1802BAAD15BA982900E2AC4C /* MtLocation */,
@@ -930,7 +942,6 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				27CCB4C715BFD2DA00A38922 /* FilterKit.xcodeproj */,
 				27CCB4CF15BFD36600A38922 /* OpenGLES.framework */,
 				18E36BF515AD5605006E62AA /* libicucore.dylib */,
 				18E36A8815AD450A006E62AA /* MapKit.framework */,
@@ -1035,6 +1046,7 @@
 		6EF96274118E9502003902E7 /* Dependencies */ = {
 			isa = PBXGroup;
 			children = (
+				27CCB4C715BFD2DA00A38922 /* FilterKit.xcodeproj */,
 				6E3796D811B9BD650011C497 /* Three20 */,
 				6E3796D911B9BD6C0011C497 /* Three20 Extensions */,
 			);
@@ -1046,6 +1058,14 @@
 			children = (
 				6EF962B7118E9553003902E7 /* libThree20.a */,
 				6EF962B9118E9553003902E7 /* Three20UnitTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		7A25859A15C041380098CAAE /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				7A25859E15C041380098CAAE /* libFilterKit.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1123,6 +1143,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				7A2585A015C042190098CAAE /* PBXTargetDependency */,
 				6EF962BC118E955F003902E7 /* PBXTargetDependency */,
 				6E3796EB11B9BD800011C497 /* PBXTargetDependency */,
 				6E3796ED11B9BD800011C497 /* PBXTargetDependency */,
@@ -1159,6 +1180,10 @@
 			mainGroup = 29B97314FDCFA39411CA2CEA /* CustomTemplate */;
 			projectDirPath = "";
 			projectReferences = (
+				{
+					ProductGroup = 7A25859A15C041380098CAAE /* Products */;
+					ProjectRef = 27CCB4C715BFD2DA00A38922 /* FilterKit.xcodeproj */;
+				},
 				{
 					ProductGroup = 6EF9628C118E9552003902E7 /* Products */;
 					ProjectRef = 6EF9628B118E9552003902E7 /* Three20.xcodeproj */;
@@ -1292,6 +1317,13 @@
 			fileType = wrapper.cfbundle;
 			path = Three20UnitTests.octest;
 			remoteRef = 6EF962B8118E9553003902E7 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		7A25859E15C041380098CAAE /* libFilterKit.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libFilterKit.a;
+			remoteRef = 7A25859D15C041380098CAAE /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -1474,6 +1506,11 @@
 			name = Three20;
 			targetProxy = 6EF962BB118E955F003902E7 /* PBXContainerItemProxy */;
 		};
+		7A2585A015C042190098CAAE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = FilterKit;
+			targetProxy = 7A25859F15C042190098CAAE /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
@@ -1545,7 +1582,7 @@
 				GCC_THUMB_SUPPORT = NO;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.1;
 				PROVISIONING_PROFILE = "F216C572-A1E8-407D-A0F0-184027909661";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
