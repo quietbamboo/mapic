@@ -9,7 +9,7 @@
 #import "SettingViewController.h"
 #import <QuartzCore/QuartzCore.h>
 #import "TTTQuadrantControl.h"
-
+#import "ImagePickeViewController.h"
 enum {
 	InformationSectionIndex,
 } ProfileSectionIndicies;
@@ -141,6 +141,9 @@ enum {
 
 - (void)didSelectFollowingQuadrant {
 	NSLog(@"Following");
+    ImagePickeViewController *imagePickeView = [[ImagePickeViewController alloc] init];
+    [self presentModalViewController:imagePickeView animated:YES];
+    
 }
 
 - (void)didSelectTweetsQuadrant {

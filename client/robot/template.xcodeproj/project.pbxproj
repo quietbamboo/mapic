@@ -131,6 +131,16 @@
 		27CBE2F015BE4CF1007D6AEC /* BDDynamicGridCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 27CBE2EA15BE4CF1007D6AEC /* BDDynamicGridCell.m */; };
 		27CBE2F115BE4CF1007D6AEC /* BDDynamicGridViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27CBE2EC15BE4CF1007D6AEC /* BDDynamicGridViewController.m */; };
 		27CBE2F215BE4CF1007D6AEC /* BDRowInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 27CBE2EF15BE4CF1007D6AEC /* BDRowInfo.m */; };
+		27CCB4CE15BFD30200A38922 /* libFilterKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 27CCB4CD15BFD30200A38922 /* libFilterKit.a */; };
+		27CCB4D015BFD36600A38922 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27CCB4CF15BFD36600A38922 /* OpenGLES.framework */; };
+		27CCB4D315BFD3DB00A38922 /* ImagePickeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27CCB4D215BFD3DB00A38922 /* ImagePickeViewController.m */; };
+		27CCB4DF15BFDE9200A38922 /* bottomBar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 27CCB4D815BFDE9200A38922 /* bottomBar@2x.png */; };
+		27CCB4E015BFDE9200A38922 /* cameraViewPort@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 27CCB4D915BFDE9200A38922 /* cameraViewPort@2x.png */; };
+		27CCB4E115BFDE9200A38922 /* disk@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 27CCB4DA15BFDE9200A38922 /* disk@2x.png */; };
+		27CCB4E215BFDE9200A38922 /* donePickingButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 27CCB4DB15BFDE9200A38922 /* donePickingButton@2x.png */; };
+		27CCB4E315BFDE9200A38922 /* navBar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 27CCB4DC15BFDE9200A38922 /* navBar@2x.png */; };
+		27CCB4E415BFDE9200A38922 /* navBarButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 27CCB4DD15BFDE9200A38922 /* navBarButton@2x.png */; };
+		27CCB4E515BFDE9200A38922 /* navBarShadow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 27CCB4DE15BFDE9200A38922 /* navBarShadow@2x.png */; };
 		27D4172B15BA3EF30044C478 /* ODRefreshControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 27D4172A15BA3EF30044C478 /* ODRefreshControl.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		27F85C751548F2AF0053FBEC /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27F85C741548F2AF0053FBEC /* StoreKit.framework */; };
 		288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
@@ -487,6 +497,20 @@
 		27CBE2ED15BE4CF1007D6AEC /* BDDynamicGridViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDDynamicGridViewDelegate.h; sourceTree = "<group>"; };
 		27CBE2EE15BE4CF1007D6AEC /* BDRowInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDRowInfo.h; sourceTree = "<group>"; };
 		27CBE2EF15BE4CF1007D6AEC /* BDRowInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDRowInfo.m; sourceTree = "<group>"; };
+		27CCB4C715BFD2DA00A38922 /* FilterKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = FilterKit.xcodeproj; path = ../FilterKit/FilterKit.xcodeproj; sourceTree = "<group>"; };
+		27CCB4CD15BFD30200A38922 /* libFilterKit.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libFilterKit.a; path = "../../../../../Library/Developer/Xcode/DerivedData/template-dcotaoukesjhyharxyvhpacauskq/Build/Products/Debug-iphoneos/libFilterKit.a"; sourceTree = "<group>"; };
+		27CCB4CF15BFD36600A38922 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		27CCB4D115BFD3DB00A38922 /* ImagePickeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImagePickeViewController.h; sourceTree = "<group>"; };
+		27CCB4D215BFD3DB00A38922 /* ImagePickeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImagePickeViewController.m; sourceTree = "<group>"; };
+		27CCB4D415BFD50B00A38922 /* FKImagePickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FKImagePickerController.h; sourceTree = "<group>"; };
+		27CCB4D515BFD51800A38922 /* FKFilterPickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FKFilterPickerController.h; sourceTree = "<group>"; };
+		27CCB4D815BFDE9200A38922 /* bottomBar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bottomBar@2x.png"; sourceTree = "<group>"; };
+		27CCB4D915BFDE9200A38922 /* cameraViewPort@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cameraViewPort@2x.png"; sourceTree = "<group>"; };
+		27CCB4DA15BFDE9200A38922 /* disk@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "disk@2x.png"; sourceTree = "<group>"; };
+		27CCB4DB15BFDE9200A38922 /* donePickingButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "donePickingButton@2x.png"; sourceTree = "<group>"; };
+		27CCB4DC15BFDE9200A38922 /* navBar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "navBar@2x.png"; sourceTree = "<group>"; };
+		27CCB4DD15BFDE9200A38922 /* navBarButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "navBarButton@2x.png"; sourceTree = "<group>"; };
+		27CCB4DE15BFDE9200A38922 /* navBarShadow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "navBarShadow@2x.png"; sourceTree = "<group>"; };
 		27D4172915BA3EF30044C478 /* ODRefreshControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODRefreshControl.h; sourceTree = "<group>"; };
 		27D4172A15BA3EF30044C478 /* ODRefreshControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ODRefreshControl.m; sourceTree = "<group>"; };
 		27F85C741548F2AF0053FBEC /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
@@ -539,9 +563,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				27CCB4CE15BFD30200A38922 /* libFilterKit.a in Frameworks */,
 				18E36BF615AD5605006E62AA /* libicucore.dylib in Frameworks */,
 				18E36A8915AD450A006E62AA /* MapKit.framework in Frameworks */,
 				18E3C9E41576FFAB000418D7 /* AssetsLibrary.framework in Frameworks */,
+				27CCB4D015BFD36600A38922 /* OpenGLES.framework in Frameworks */,
 				18E3C9E21576FF86000418D7 /* MobileCoreServices.framework in Frameworks */,
 				18E3C9E01576FF56000418D7 /* CoreVideo.framework in Frameworks */,
 				18E3C9DE1576FF40000418D7 /* CoreMedia.framework in Frameworks */,
@@ -578,6 +604,9 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				27CCB4D415BFD50B00A38922 /* FKImagePickerController.h */,
+				27CCB4D515BFD51800A38922 /* FKFilterPickerController.h */,
+				27CCB4CD15BFD30200A38922 /* libFilterKit.a */,
 				27CBE2E815BE4CF1007D6AEC /* BDDynamicGridView */,
 				27CBE2CD15BE4939007D6AEC /* MGBox */,
 				1802BAAD15BA982900E2AC4C /* MtLocation */,
@@ -624,6 +653,8 @@
 				18FE213D15B9658E008B2A05 /* NotificationView.m */,
 				18EAFF1815BE762900869982 /* CellView.h */,
 				18EAFF1915BE762900869982 /* CellView.m */,
+				27CCB4D115BFD3DB00A38922 /* ImagePickeViewController.h */,
+				27CCB4D215BFD3DB00A38922 /* ImagePickeViewController.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -783,6 +814,20 @@
 			path = BDDynamicGridView;
 			sourceTree = "<group>";
 		};
+		27CCB4D715BFDE9200A38922 /* images */ = {
+			isa = PBXGroup;
+			children = (
+				27CCB4D815BFDE9200A38922 /* bottomBar@2x.png */,
+				27CCB4D915BFDE9200A38922 /* cameraViewPort@2x.png */,
+				27CCB4DA15BFDE9200A38922 /* disk@2x.png */,
+				27CCB4DB15BFDE9200A38922 /* donePickingButton@2x.png */,
+				27CCB4DC15BFDE9200A38922 /* navBar@2x.png */,
+				27CCB4DD15BFDE9200A38922 /* navBarButton@2x.png */,
+				27CCB4DE15BFDE9200A38922 /* navBarShadow@2x.png */,
+			);
+			path = images;
+			sourceTree = "<group>";
+		};
 		27D4172815BA3EF30044C478 /* ODRefreshControl */ = {
 			isa = PBXGroup;
 			children = (
@@ -817,6 +862,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				27CCB4D715BFDE9200A38922 /* images */,
 				1802BACB15BAAB8800E2AC4C /* MTLocation.bundle */,
 				1802BA5A15BA530100E2AC4C /* corpus_map_normal.png */,
 				1802BA5B15BA530100E2AC4C /* corpus_map_pressed.png */,
@@ -884,6 +930,8 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				27CCB4C715BFD2DA00A38922 /* FilterKit.xcodeproj */,
+				27CCB4CF15BFD36600A38922 /* OpenGLES.framework */,
 				18E36BF515AD5605006E62AA /* libicucore.dylib */,
 				18E36A8815AD450A006E62AA /* MapKit.framework */,
 				18E3C9E31576FFAB000418D7 /* AssetsLibrary.framework */,
@@ -1325,6 +1373,13 @@
 				1802BA6E15BA530100E2AC4C /* readmode_panel_cache_increase_normal.png in Resources */,
 				1802BA6F15BA530100E2AC4C /* readmode_panel_cache_increase_pressed.png in Resources */,
 				1802BACC15BAAB8800E2AC4C /* MTLocation.bundle in Resources */,
+				27CCB4DF15BFDE9200A38922 /* bottomBar@2x.png in Resources */,
+				27CCB4E015BFDE9200A38922 /* cameraViewPort@2x.png in Resources */,
+				27CCB4E115BFDE9200A38922 /* disk@2x.png in Resources */,
+				27CCB4E215BFDE9200A38922 /* donePickingButton@2x.png in Resources */,
+				27CCB4E315BFDE9200A38922 /* navBar@2x.png in Resources */,
+				27CCB4E415BFDE9200A38922 /* navBarButton@2x.png in Resources */,
+				27CCB4E515BFDE9200A38922 /* navBarShadow@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1382,6 +1437,7 @@
 				27CBE2F215BE4CF1007D6AEC /* BDRowInfo.m in Sources */,
 				18EAFF1A15BE762A00869982 /* CellView.m in Sources */,
 				186240B915BFB76E00EC605B /* MBProgressHUD.m in Sources */,
+				27CCB4D315BFD3DB00A38922 /* ImagePickeViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1462,6 +1518,7 @@
 					"\"$(SRCROOT)\"",
 					"\"$(SRCROOT)/Classes/Dirac\"",
 					"\"$(SRCROOT)/Classes\"",
+					"\"$(SRCROOT)/../../../../Library/Developer/Xcode/DerivedData/template-dcotaoukesjhyharxyvhpacauskq/Build/Products/Debug-iphoneos\"",
 				);
 				OTHER_LDFLAGS = (
 					"-all_load",
