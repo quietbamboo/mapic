@@ -27,8 +27,7 @@ enum {
 
 @synthesize quadrantControl = _quadrantControl;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
@@ -142,9 +141,9 @@ enum {
 
 - (void)didSelectFollowingQuadrant {
 	NSLog(@"Following");
-    ImagePickeViewController *imagePickeView = [[ImagePickeViewController alloc] init];
-    [self presentModalViewController:imagePickeView animated:YES];
-    
+    FKImagePickerController *imagePicker = [[FKImagePickerController alloc] init];
+    //imagePicker.delegate = self;
+    [self presentModalViewController:imagePicker animated:YES];
 }
 
 - (void)didSelectTweetsQuadrant {

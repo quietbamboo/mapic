@@ -62,6 +62,7 @@
     }
 }
 
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -77,10 +78,9 @@
     UIImage *image = [info objectForKey:UIImagePickerControllerEditedImage];
     
     _filterPicker = [[FKFilterPickerController alloc] initWithImage:image];
-    _filterPicker.view.frame = CGRectOffset(_filterPicker.view.frame, 0, -20);
+    _filterPicker.view.frame = CGRectOffset(_filterPicker.view.frame, 0, 0);
     _filterPicker.delegate = self;
     [self.view addSubview:_filterPicker.view];
-    
     [self dismissModalViewControllerAnimated:YES];
 }
 

@@ -22,33 +22,33 @@
 @synthesize window = _window;
 @synthesize firstview = _firstview;
 @synthesize centerButton = _centerButton;
-- (void)dealloc
-{
+
+- (void)dealloc {
     [myTabBarController release];
     [_firstview release];
     [_centerButton release];
     [_window release];
     [super dealloc];
 }
-- (void) alertActionSheet{  
-    UIActionSheet *actionsheet= [[UIActionSheet alloc] initWithTitle:@"分享照片" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"照相",@"图片库", nil];
+
+- (void) alertActionSheet {
+    UIActionSheet *actionsheet= [[UIActionSheet alloc] initWithTitle:@"分享照片" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"照相", @"图片库", nil];
     [actionsheet showInView:myTabBarController.view];
     [actionsheet release];
 }
 
--(void) addCenterButtonWithImage:(UIImage*)buttonImage highlightImage:(UIImage*)highlightImage
-{
+-(void) addCenterButtonWithImage:(UIImage*)buttonImage highlightImage:(UIImage*)highlightImage {
     _centerButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    _centerButton.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleTopMargin;
+    _centerButton.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleLeftMargin |UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleTopMargin;
     _centerButton.frame = CGRectMake((self.window.frame.size.width - buttonImage.size.width)/2 , (self.window.frame.size.height - buttonImage.size.height), buttonImage.size.width, buttonImage.size.height);
+    
     [_centerButton setBackgroundImage:buttonImage forState:UIControlStateNormal];
     [_centerButton setBackgroundImage:highlightImage forState:UIControlStateHighlighted];
     [_centerButton addTarget:self action:@selector(alertActionSheet) forControlEvents:UIControlEventTouchUpInside];
     [self.window addSubview:_centerButton];
 }
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
-{
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
     [self initTarBarController];
     [self.window addSubview:myTabBarController.view];
@@ -57,7 +57,8 @@
     [self.window makeKeyAndVisible];
     return YES;
 }
-- (void)initTarBarController{
+
+- (void)initTarBarController {
     myTabBarController = [[UITabBarController alloc]init];
 	_firstview = [[FirstViewController alloc]init];
 	UINavigationController* firstviewNav = [[UINavigationController alloc] initWithRootViewController:_firstview];
@@ -68,7 +69,6 @@
     locaviewNav.tabBarItem = [[[UITabBarItem alloc] initWithTitle:@"详细" image:[UIImage imageNamed:@"tab_live"] tag:1]autorelease];
     
     UIViewController *centerview = [[UIViewController alloc]init];
-
 	centerview.tabBarItem = [[[UITabBarItem alloc] initWithTitle:nil image:nil tag:2] autorelease];
     
     UserViewController *userview = [[UserViewController alloc] init];
@@ -82,13 +82,13 @@
 	
 	myTabBarController.viewControllers = Controllers;
 	
+    [firstviewNav release];
+    [locaview release];
+    [locaviewNav release];
 	[centerview release];
     [userview release];
 	[userviewNav release];
     [settingview release];
-	[locaview release];
-    [firstviewNav release];
-    [locaviewNav release];
 }
 
 
@@ -100,37 +100,32 @@
     }else if (buttonIndex == 1) {
         [_firstview showPhotos];
     }
-
+    
 }
 
 + (AppDelegate *)getAppDelegate {
 	return (AppDelegate *)[[UIApplication sharedApplication] delegate];
 }
 
-- (void)applicationWillResignActive:(UIApplication *)application
-{
+- (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
     // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
 }
 
-- (void)applicationDidEnterBackground:(UIApplication *)application
-{
+- (void)applicationDidEnterBackground:(UIApplication *)application {
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
 }
 
-- (void)applicationWillEnterForeground:(UIApplication *)application
-{
+- (void)applicationWillEnterForeground:(UIApplication *)application {
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
 }
 
-- (void)applicationDidBecomeActive:(UIApplication *)application
-{
+- (void)applicationDidBecomeActive:(UIApplication *)application {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
 }
 
-- (void)applicationWillTerminate:(UIApplication *)application
-{
+- (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 @end

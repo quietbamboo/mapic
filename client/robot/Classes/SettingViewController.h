@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AppDelegate.h"
 @class TTTQuadrantControl;
 @interface SettingViewController : UITableViewController{
     

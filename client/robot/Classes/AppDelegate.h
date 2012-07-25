@@ -12,7 +12,7 @@
 @class FirstViewController;
 
 @interface AppDelegate : NSObject <UIApplicationDelegate,UIActionSheetDelegate> {
-   UITabBarController* myTabBarController;
+    UITabBarController* myTabBarController;
     FirstViewController *firstview;
     UIButton *centerButton;
 }
