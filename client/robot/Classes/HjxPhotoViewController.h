@@ -15,12 +15,15 @@
 #import "InneractiveAd.h"
 #import "Place.h"
 #import "MBProgressHUD.h"
-
+#import "ASIHTTPRequest.h"
+#import "ASIFormDataRequest.h"
+#import "ASIHTTPRequestDelegate.h"
+#import "ASIProgressDelegate.h"
 //@class AdMobView;
 
 NSString* photoList;
 @protocol DirectionsViewControllerDelegate;
-@interface HjxPhotoViewController : TTPhotoViewController<UIAlertViewDelegate, GADBannerViewDelegate> {
+@interface HjxPhotoViewController : TTPhotoViewController<UIAlertViewDelegate, GADBannerViewDelegate,ASIHTTPRequestDelegate,ASIProgressDelegate> {
 
 //    GADBannerView *adMobAd;
 //    NSTimer *adTimer;
@@ -35,6 +38,7 @@ NSString* photoList;
 	UIBarButtonItem* _reportButton;
     UIBarButtonItem* _messageButton;
     UIBarButtonItem* _routeButton;
+    UIProgressView *progressIndicator;
 }
 
 
