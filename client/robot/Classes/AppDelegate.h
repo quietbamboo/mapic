@@ -9,8 +9,8 @@
 
 #import <UIKit/UIKit.h>
 #import "Place.h"
-#import "CenterPhotoViewController.h"
 @class FirstViewController;
+@class CenterPhotoViewController;
 
 @interface AppDelegate : NSObject <UIApplicationDelegate,UIActionSheetDelegate> {
     UITabBarController* myTabBarController;

@@ -15,6 +15,7 @@
 #import "SecondViewController.h"
 #import "ThirdViewController.h"
 #import "FourthViewController.h"
+#import "CenterPhotoViewController.h"
 #define kSDK_KEY @"fbd22af151f7a5f25abb5ecd23664315"
 
 
