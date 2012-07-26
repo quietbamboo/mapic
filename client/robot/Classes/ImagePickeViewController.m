@@ -71,9 +71,9 @@
     NSLog(@"this is good");
 }
 
-//- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker{
-//    NSLog(@"this is picker");
-//    [picker dismissModalViewControllerAnimated:YES];
-//    //[[[AppDelegate getAppDelegate] centerButton] setHidden:NO];
-//}
+/*- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
+    NSLog(@"this is picker");
+    [self dismissModalViewControllerAnimated:YES];
+    [[[AppDelegate getAppDelegate] centerButton] setHidden:NO];
+}*/
 @end

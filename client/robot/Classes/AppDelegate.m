@@ -67,7 +67,7 @@
     UINavigationController* locaviewNav = [[UINavigationController alloc] initWithRootViewController:locaview];
     locaviewNav.tabBarItem = [[[UITabBarItem alloc] initWithTitle:@"详细" image:[UIImage imageNamed:@"tab_live"] tag:1]autorelease];
     
-    UIViewController *centerview = [[UIViewController alloc]init];
+    UIViewController *centerview = [[UIViewController alloc] init];
 	centerview.tabBarItem = [[[UITabBarItem alloc] initWithTitle:nil image:nil tag:2] autorelease];
     
     UserViewController *userview = [[UserViewController alloc] init];

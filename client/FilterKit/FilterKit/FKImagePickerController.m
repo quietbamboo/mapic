@@ -23,13 +23,11 @@
 
 @synthesize delegate = _delegate;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     return [self init];
 }
 
-- (id)init
-{
+- (id)init {
     self = [super initWithNibName:nil bundle:nil];
     if (!self)
         return nil;
@@ -42,20 +40,17 @@
     return self;
 }
 
-- (void)loadView
-{
+- (void)loadView {
     self.view = [[UIView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.view.opaque = NO;
-    self.view.backgroundColor = [UIColor clearColor];
+    self.view.backgroundColor = [UIColor redColor];
 }
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
 }
 
-- (void)viewDidAppear:(BOOL)animated
-{
+- (void)viewDidAppear:(BOOL)animated {
     if (!_showPicker) {
         [self presentModalViewController:_imagePicker animated:YES];
         _showPicker = YES;
@@ -63,13 +58,11 @@
 }
 
 
-- (void)didReceiveMemoryWarning
-{
+- (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
 
-- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
-{
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
 //    FKCropAction *crop = [[FKCropAction alloc] init];
 //    CGRect cropRect = [[info objectForKey:UIImagePickerControllerCropRect] CGRectValue];
 //    crop.origin = cropRect.origin;
@@ -86,9 +79,11 @@
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
 {
+    NSLog(@"did cancel 2");
     [self dismissModalViewControllerAnimated:YES];
     
     if (_delegate && [_delegate respondsToSelector:@selector(imagePickerControllerDidCancel:)]) {
+        NSLog(@"did cancel delegate 2");
         [_delegate imagePickerControllerDidCancel:self];
     }
 }
@@ -102,9 +97,11 @@
 
 - (void)filterPickerDidCancel:(FKFilterPickerController *)picker
 {
+    NSLog(@"did cancel");
     [self dismissModalViewControllerAnimated:YES];
     
     if (_delegate && [_delegate respondsToSelector:@selector(imagePickerControllerDidCancel:)]) {
+        NSLog(@"did cancel delegate");
         [_delegate imagePickerControllerDidCancel:self];
     }
 }
