@@ -103,7 +103,7 @@ static const NSTimeInterval kSlideshowInterval = 6;
     _MBProgress.xOffset = 0;
     _MBProgress.yOffset = 0;
     //_MBProgress.color = [UIColor blueColor];
-    _MBProgress.progress = 0.6;
+    _MBProgress.progress = 0.0;
     [_MBProgress show:YES];
 }
 
@@ -214,23 +214,34 @@ static const NSTimeInterval kSlideshowInterval = 6;
     #if __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_4_0
         [request setShouldContinueWhenAppEntersBackground:YES];
     #endif
-	[request setUploadProgressDelegate:progressIndicator];
+	[request setDownloadProgressDelegate:progressIndicator];
 	[request setDelegate:self];
 	[request setDidFailSelector:@selector(uploadFailed:)];
 	[request setDidFinishSelector:@selector(uploadFinished:)];
     [request startAsynchronous];
+    
+    [NSTimer scheduledTimerWithTimeInterval:1 target:self
+                                                selector:@selector(changeProgress:) userInfo:nil repeats:YES];
+
 }       
-	
+- (void)changeProgress:(NSTimer *)timer{
+    _MBProgress.progress = _MBProgress.progress + 0.03;
+    NSLog(@"this is progress %f",progressIndicator.progress);
+    if (progressIndicator.progress == 1) {
+        [timer invalidate];
+        NSLog(@"this is timer not work");
+    }
+}	
 
-- (void)uploadFailed:(ASIHTTPRequest *)theRequest
+- (void)uploadFailed:(ASIFormDataRequest *)theRequest
 {
-
+    [self stopActivity];
 }
 
-- (void)uploadFinished:(ASIHTTPRequest *)theRequest
+- (void)uploadFinished:(ASIFormDataRequest *)theRequest
 {
     NSString* titleString;
-    NSString *returnString = [[NSString alloc] initWithData: theRequest.responseData encoding:NSUTF8StringEncoding];
+    NSString *returnString =[theRequest responseString]; 
     photoList = returnString;
 	
 	//split _-_-_

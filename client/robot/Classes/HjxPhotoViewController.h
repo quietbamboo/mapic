@@ -23,7 +23,7 @@
 
 NSString* photoList;
 @protocol DirectionsViewControllerDelegate;
-@interface HjxPhotoViewController : TTPhotoViewController<UIAlertViewDelegate, GADBannerViewDelegate,ASIHTTPRequestDelegate,ASIProgressDelegate> {
+@interface HjxPhotoViewController : TTPhotoViewController<UIAlertViewDelegate, GADBannerViewDelegate,ASIHTTPRequestDelegate> {
 
 //    GADBannerView *adMobAd;
 //    NSTimer *adTimer;
