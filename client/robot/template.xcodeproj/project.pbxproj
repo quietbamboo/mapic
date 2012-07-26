@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		0A91069C148A09F4008FA0D6 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A91069B148A09F4008FA0D6 /* Icon@2x.png */; };
+		1802339515C1168100AE7436 /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1802339415C1168100AE7436 /* SecondViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		1802339815C1185600AE7436 /* ThirdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1802339715C1185600AE7436 /* ThirdViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		1802339B15C1191300AE7436 /* FourthViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1802339A15C1191300AE7436 /* FourthViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		1802339E15C11DCC00AE7436 /* CenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1802339D15C11DCB00AE7436 /* CenterViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		1802BA6515BA530100E2AC4C /* corpus_map_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 1802BA5A15BA530100E2AC4C /* corpus_map_normal.png */; };
 		1802BA6615BA530100E2AC4C /* corpus_map_pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 1802BA5B15BA530100E2AC4C /* corpus_map_pressed.png */; };
 		1802BA6715BA530100E2AC4C /* ic_menu_refresh_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 1802BA5C15BA530100E2AC4C /* ic_menu_refresh_normal.png */; };
@@ -343,6 +347,14 @@
 
 /* Begin PBXFileReference section */
 		0A91069B148A09F4008FA0D6 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
+		1802339315C1168100AE7436 /* SecondViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SecondViewController.h; sourceTree = "<group>"; };
+		1802339415C1168100AE7436 /* SecondViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SecondViewController.m; sourceTree = "<group>"; };
+		1802339615C1185600AE7436 /* ThirdViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThirdViewController.h; sourceTree = "<group>"; };
+		1802339715C1185600AE7436 /* ThirdViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThirdViewController.m; sourceTree = "<group>"; };
+		1802339915C1191300AE7436 /* FourthViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FourthViewController.h; sourceTree = "<group>"; };
+		1802339A15C1191300AE7436 /* FourthViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FourthViewController.m; sourceTree = "<group>"; };
+		1802339C15C11DCB00AE7436 /* CenterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CenterViewController.h; sourceTree = "<group>"; };
+		1802339D15C11DCB00AE7436 /* CenterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CenterViewController.m; sourceTree = "<group>"; };
 		1802BA5A15BA530100E2AC4C /* corpus_map_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = corpus_map_normal.png; sourceTree = "<group>"; };
 		1802BA5B15BA530100E2AC4C /* corpus_map_pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = corpus_map_pressed.png; sourceTree = "<group>"; };
 		1802BA5C15BA530100E2AC4C /* ic_menu_refresh_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_menu_refresh_normal.png; sourceTree = "<group>"; };
@@ -718,6 +730,14 @@
 				18EAFF1915BE762900869982 /* CellView.m */,
 				27CCB4D115BFD3DB00A38922 /* ImagePickeViewController.h */,
 				27CCB4D215BFD3DB00A38922 /* ImagePickeViewController.m */,
+				1802339315C1168100AE7436 /* SecondViewController.h */,
+				1802339415C1168100AE7436 /* SecondViewController.m */,
+				1802339615C1185600AE7436 /* ThirdViewController.h */,
+				1802339715C1185600AE7436 /* ThirdViewController.m */,
+				1802339915C1191300AE7436 /* FourthViewController.h */,
+				1802339A15C1191300AE7436 /* FourthViewController.m */,
+				1802339C15C11DCB00AE7436 /* CenterViewController.h */,
+				1802339D15C11DCB00AE7436 /* CenterViewController.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -1578,6 +1598,10 @@
 				27C8545B15C0EB690037F842 /* ASIInputStream.m in Sources */,
 				27C8545C15C0EB690037F842 /* ASINetworkQueue.m in Sources */,
 				27C8547D15C0ECF00037F842 /* Reachability.m in Sources */,
+				1802339515C1168100AE7436 /* SecondViewController.m in Sources */,
+				1802339815C1185600AE7436 /* ThirdViewController.m in Sources */,
+				1802339B15C1191300AE7436 /* FourthViewController.m in Sources */,
+				1802339E15C11DCC00AE7436 /* CenterViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

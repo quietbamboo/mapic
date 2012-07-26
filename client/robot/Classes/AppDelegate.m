@@ -8,10 +8,13 @@
 
 #import "AppDelegate.h"
 #import "FirstViewController.h"
-#import "SettingViewController.h"
+//#import "SettingViewController.h"
 #import "DeatilViewController.h"
-#import "LocationlistViewController.h"
-#import "UserViewController.h"
+//#import "LocationlistViewController.h"
+//#import "UserViewController.h"
+#import "SecondViewController.h"
+#import "ThirdViewController.h"
+#import "FourthViewController.h"
 #define kSDK_KEY @"fbd22af151f7a5f25abb5ecd23664315"
 
 
@@ -63,31 +66,34 @@
 	UINavigationController* firstviewNav = [[UINavigationController alloc] initWithRootViewController:_firstview];
     firstviewNav.tabBarItem = [[[UITabBarItem alloc] initWithTitle:@"first" image:[UIImage imageNamed:@"tab-explore"] tag:0] autorelease];
     
-	LocationlistViewController* locaview = [[LocationlistViewController alloc]init];
-    UINavigationController* locaviewNav = [[UINavigationController alloc] initWithRootViewController:locaview];
-    locaviewNav.tabBarItem = [[[UITabBarItem alloc] initWithTitle:@"详细" image:[UIImage imageNamed:@"tab_live"] tag:1]autorelease];
+//	LocationlistViewController* locaview = [[LocationlistViewController alloc]init];
+    SecondViewController *secondView = [[SecondViewController alloc] init];
+    UINavigationController* secondViewNav = [[UINavigationController alloc] initWithRootViewController:secondView];
+    secondViewNav.tabBarItem = [[[UITabBarItem alloc] initWithTitle:@"详细" image:[UIImage imageNamed:@"tab_live"] tag:1]autorelease];
     
     UIViewController *centerview = [[UIViewController alloc] init];
 	centerview.tabBarItem = [[[UITabBarItem alloc] initWithTitle:nil image:nil tag:2] autorelease];
     
-    UserViewController *userview = [[UserViewController alloc] init];
-    UINavigationController* userviewNav = [[UINavigationController alloc] initWithRootViewController:userview];
-    userviewNav.tabBarItem = [[[UITabBarItem alloc] initWithTitle:@"four" image:[UIImage imageNamed:@"tab-explore"] tag:3] autorelease];
+    //UserViewController *userview = [[UserViewController alloc] init];
+    ThirdViewController *thirdView = [[ThirdViewController alloc] init];
+    UINavigationController* thirdViewNav = [[UINavigationController alloc] initWithRootViewController:thirdView];
+    thirdViewNav.tabBarItem = [[[UITabBarItem alloc] initWithTitle:@"four" image:[UIImage imageNamed:@"tab-explore"] tag:3] autorelease];
     
-    SettingViewController* settingview = [[SettingViewController alloc]init];
-	settingview.tabBarItem = [[[UITabBarItem alloc] initWithTitle:@"User" image:[UIImage imageNamed:@"tab_feed_profile.png"] tag:4] autorelease];
+    //SettingViewController* settingview = [[SettingViewController alloc]init];
+	FourthViewController *fourthView = [[FourthViewController alloc] init];
+    fourthView.tabBarItem = [[[UITabBarItem alloc] initWithTitle:@"User" image:[UIImage imageNamed:@"tab_feed_profile.png"] tag:4] autorelease];
     
-	NSArray* Controllers = [NSArray arrayWithObjects:firstviewNav,locaviewNav,centerview,userviewNav,settingview,nil];
+	NSArray* Controllers = [NSArray arrayWithObjects:firstviewNav,secondViewNav,centerview,thirdViewNav,fourthView,nil];
 	
 	myTabBarController.viewControllers = Controllers;
 	
     [firstviewNav release];
-    [locaview release];
-    [locaviewNav release];
+    [secondView release];
+    [secondViewNav release];
 	[centerview release];
-    [userview release];
-	[userviewNav release];
-    [settingview release];
+    [thirdView release];
+	[thirdViewNav release];
+    [fourthView release];
 }
 
 
