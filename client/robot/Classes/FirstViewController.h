@@ -18,6 +18,8 @@
 #import "HGKOptionPanel.h"
 #import "MTLocateMeBarButtonItem.h"
 #import "MTLocationManager.h"
+#import "FKFilterPickerController.h"
+#import "FKImagePickerController.h"
 @interface FirstViewController : UIViewController <MKMapViewDelegate,CLLocationManagerDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate,DirectionsViewControllerDelegate,CustomSegmentedControlDelegate>{
     BOOL canChangeMap;
     UIImageView *routeView;

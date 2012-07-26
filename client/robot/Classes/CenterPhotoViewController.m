@@ -6,13 +6,13 @@
 //  Copyright (c) 2012年 __MyCompanyName__. All rights reserved.
 //
 
-#import "CenterViewController.h"
+#import "CenterPhotoViewController.h"
 
-@interface CenterViewController ()
+@interface CenterPhotoViewController ()
 
 @end
 
-@implementation CenterViewController
+@implementation CenterPhotoViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -53,7 +53,7 @@
     self.tabBarController.selectedIndex = 2;
     [[[AppDelegate getAppDelegate] centerButton] setHidden:YES];
     UIImagePickerController *imagePickerController = [[UIImagePickerController alloc]init];
-    imagePickerController.delegate = self;
+    //imagePickerController.delegate = self;
     imagePickerController.allowsImageEditing = YES;
     imagePickerController.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
     [self presentModalViewController:imagePickerController animated:YES];
@@ -61,15 +61,15 @@
 }
 
 -(void)showCamera{
-//    self.tabBarController.selectedIndex = 0;
-//    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
-//        [[[AppDelegate getAppDelegate] centerButton] setHidden:YES];
-//        UIImagePickerController *imagePickerController = [[UIImagePickerController alloc]init];
-//        imagePickerController.delegate = self;
-//        imagePickerController.sourceType = UIImagePickerControllerSourceTypeCamera;
-//        [self presentModalViewController:imagePickerController animated:YES];
-//        [imagePickerController release];
-//    }
+    //    self.tabBarController.selectedIndex = 0;
+    //    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+    //        [[[AppDelegate getAppDelegate] centerButton] setHidden:YES];
+    //        UIImagePickerController *imagePickerController = [[UIImagePickerController alloc]init];
+    //        imagePickerController.delegate = self;
+    //        imagePickerController.sourceType = UIImagePickerControllerSourceTypeCamera;
+    //        [self presentModalViewController:imagePickerController animated:YES];
+    //        [imagePickerController release];
+    //    }
     FKImagePickerController *imagePicker = [[FKImagePickerController alloc] init];
     //imagePicker.delegate = self;
     [self presentModalViewController:imagePicker animated:YES];
@@ -116,4 +116,5 @@
     [picker dismissModalViewControllerAnimated:YES];
     [[[AppDelegate getAppDelegate] centerButton] setHidden:NO];
 }
+
 @end

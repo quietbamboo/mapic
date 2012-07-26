@@ -38,6 +38,7 @@
 		183D4CD515B5521900DC3D6A /* blue-divider.png in Resources */ = {isa = PBXBuildFile; fileRef = 183D4CD215B5521900DC3D6A /* blue-divider.png */; };
 		183D4CD615B5521900DC3D6A /* bottombarblue_pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 183D4CD315B5521900DC3D6A /* bottombarblue_pressed.png */; };
 		183D4CD715B5521900DC3D6A /* bottombarblue.png in Resources */ = {isa = PBXBuildFile; fileRef = 183D4CD415B5521900DC3D6A /* bottombarblue.png */; };
+		18519D9D15C138F5003EF40D /* CenterPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18519D9C15C138F5003EF40D /* CenterPhotoViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		186240B915BFB76E00EC605B /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 186240B815BFB76E00EC605B /* MBProgressHUD.m */; };
 		186DFF5215AE6250005AE621 /* HjxPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 186DFF5015AE6250005AE621 /* HjxPhotoViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		186DFF5515AE663B005AE621 /* MockPhotoSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 186DFF5315AE663B005AE621 /* MockPhotoSource.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -390,6 +391,8 @@
 		183D4CD215B5521900DC3D6A /* blue-divider.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "blue-divider.png"; sourceTree = "<group>"; };
 		183D4CD315B5521900DC3D6A /* bottombarblue_pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bottombarblue_pressed.png; sourceTree = "<group>"; };
 		183D4CD415B5521900DC3D6A /* bottombarblue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bottombarblue.png; sourceTree = "<group>"; };
+		18519D9B15C138F5003EF40D /* CenterPhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CenterPhotoViewController.h; sourceTree = "<group>"; };
+		18519D9C15C138F5003EF40D /* CenterPhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CenterPhotoViewController.m; sourceTree = "<group>"; };
 		186240B715BFB76E00EC605B /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		186240B815BFB76E00EC605B /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		186DFF5015AE6250005AE621 /* HjxPhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HjxPhotoViewController.m; sourceTree = "<group>"; };
@@ -723,6 +726,8 @@
 				18E36A6615AD4253006E62AA /* DeatilViewController.m */,
 				27CCB4D115BFD3DB00A38922 /* ImagePickeViewController.h */,
 				27CCB4D215BFD3DB00A38922 /* ImagePickeViewController.m */,
+				18519D9B15C138F5003EF40D /* CenterPhotoViewController.h */,
+				18519D9C15C138F5003EF40D /* CenterPhotoViewController.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -1584,6 +1589,7 @@
 				1802339815C1185600AE7436 /* ThirdViewController.m in Sources */,
 				1802339B15C1191300AE7436 /* FourthViewController.m in Sources */,
 				1802339E15C11DCC00AE7436 /* CenterViewController.m in Sources */,
+				18519D9D15C138F5003EF40D /* CenterPhotoViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

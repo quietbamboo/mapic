@@ -11,7 +11,7 @@
 #import "UploadViewController.h"
 #import "FKFilterPickerController.h"
 #import "FKImagePickerController.h"
-@interface CenterViewController : UIViewController{
+@interface CenterPhotoViewController : UIViewController{
 }
 -(void)showPhotos;
 -(void)showCamera;

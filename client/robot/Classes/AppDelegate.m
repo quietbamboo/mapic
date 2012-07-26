@@ -31,6 +31,7 @@
     [_firstview release];
     [_centerButton release];
     [_window release];
+    [centerViewController release];
     [super dealloc];
 }
 
@@ -71,8 +72,9 @@
     UINavigationController* secondViewNav = [[UINavigationController alloc] initWithRootViewController:secondView];
     secondViewNav.tabBarItem = [[[UITabBarItem alloc] initWithTitle:@"详细" image:[UIImage imageNamed:@"tab_live"] tag:1]autorelease];
     
-    UIViewController *centerview = [[UIViewController alloc] init];
-	centerview.tabBarItem = [[[UITabBarItem alloc] initWithTitle:nil image:nil tag:2] autorelease];
+    //UIViewController *centerview = [[UIViewController alloc] init];
+	centerViewController = [[CenterPhotoViewController alloc] init];
+    centerViewController.tabBarItem = [[[UITabBarItem alloc] initWithTitle:nil image:nil tag:2] autorelease];
     
     //UserViewController *userview = [[UserViewController alloc] init];
     ThirdViewController *thirdView = [[ThirdViewController alloc] init];
@@ -83,14 +85,14 @@
 	FourthViewController *fourthView = [[FourthViewController alloc] init];
     fourthView.tabBarItem = [[[UITabBarItem alloc] initWithTitle:@"User" image:[UIImage imageNamed:@"tab_feed_profile.png"] tag:4] autorelease];
     
-	NSArray* Controllers = [NSArray arrayWithObjects:firstviewNav,secondViewNav,centerview,thirdViewNav,fourthView,nil];
+	NSArray* Controllers = [NSArray arrayWithObjects:firstviewNav,secondViewNav,centerViewController,thirdViewNav,fourthView,nil];
 	
 	myTabBarController.viewControllers = Controllers;
 	
     [firstviewNav release];
     [secondView release];
     [secondViewNav release];
-	[centerview release];
+	//[centerview release];
     [thirdView release];
 	[thirdViewNav release];
     [fourthView release];
@@ -100,10 +102,11 @@
 #pragma mark
 #pragma mark UIActionSheetDelegate Methods
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+    //CenterViewController *centerView = [[CenterViewController alloc] init];
     if (buttonIndex == 0) {
-        [_firstview showCamera];
+        [centerViewController showCamera];
     }else if (buttonIndex == 1) {
-        [_firstview showPhotos];
+        [centerViewController showPhotos];
     }
     
 }
