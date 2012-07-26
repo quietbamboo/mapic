@@ -51,7 +51,7 @@
 }
 
 - (void)viewDidAppear:(BOOL)animated {
-    if (!_showPicker) {
+    if (!_showPicker) { 
         [self presentModalViewController:_imagePicker animated:YES];
         _showPicker = YES;
     }
