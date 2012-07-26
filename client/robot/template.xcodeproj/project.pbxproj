@@ -668,6 +668,7 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				7A427C2F15C1880F002C873B /* MainTabViews */,
 				27C8540215C0EB690037F842 /* ASIHTTPRequest */,
 				27CBE2E815BE4CF1007D6AEC /* BDDynamicGridView */,
 				27CBE2CD15BE4939007D6AEC /* MGBox */,
@@ -703,14 +704,6 @@
 				183D4CD015B5520200DC3D6A /* CustomSegmentedControl.h */,
 				18E36A7015AD4253006E62AA /* AppDelegate.h */,
 				18E36A6415AD4253006E62AA /* AppDelegate.m */,
-				18E36A7315AD4253006E62AA /* FirstViewController.h */,
-				18E36A6715AD4253006E62AA /* FirstViewController.m */,
-				1802339315C1168100AE7436 /* SecondViewController.h */,
-				1802339415C1168100AE7436 /* SecondViewController.m */,
-				1802339615C1185600AE7436 /* ThirdViewController.h */,
-				1802339715C1185600AE7436 /* ThirdViewController.m */,
-				1802339915C1191300AE7436 /* FourthViewController.h */,
-				1802339A15C1191300AE7436 /* FourthViewController.m */,
 				18E36A8715AD4275006E62AA /* UploadViewController.h */,
 				18E36A6F15AD4253006E62AA /* UploadViewController.m */,
 				186DFF5115AE6250005AE621 /* HjxPhotoViewController.h */,
@@ -721,8 +714,6 @@
 				18E36A6615AD4253006E62AA /* DeatilViewController.m */,
 				27CCB4D115BFD3DB00A38922 /* ImagePickeViewController.h */,
 				27CCB4D215BFD3DB00A38922 /* ImagePickeViewController.m */,
-				18519D9B15C138F5003EF40D /* CenterPhotoViewController.h */,
-				18519D9C15C138F5003EF40D /* CenterPhotoViewController.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -1167,6 +1158,23 @@
 				7A25859E15C041380098CAAE /* libFilterKit.a */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		7A427C2F15C1880F002C873B /* MainTabViews */ = {
+			isa = PBXGroup;
+			children = (
+				18519D9B15C138F5003EF40D /* CenterPhotoViewController.h */,
+				18519D9C15C138F5003EF40D /* CenterPhotoViewController.m */,
+				18E36A7315AD4253006E62AA /* FirstViewController.h */,
+				18E36A6715AD4253006E62AA /* FirstViewController.m */,
+				1802339315C1168100AE7436 /* SecondViewController.h */,
+				1802339415C1168100AE7436 /* SecondViewController.m */,
+				1802339615C1185600AE7436 /* ThirdViewController.h */,
+				1802339715C1185600AE7436 /* ThirdViewController.m */,
+				1802339915C1191300AE7436 /* FourthViewController.h */,
+				1802339A15C1191300AE7436 /* FourthViewController.m */,
+			);
+			name = MainTabViews;
 			sourceTree = "<group>";
 		};
 		7ACDBC3C154112EF004ABDFF /* Mediation */ = {
