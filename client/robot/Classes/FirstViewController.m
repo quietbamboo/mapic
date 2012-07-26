@@ -7,7 +7,6 @@
 //
 
 #import "FirstViewController.h"
-#import "SettingViewController.h"
 #define ButtonTag 1000
 #define TAG_VALUE 9000
 
@@ -128,11 +127,6 @@ typedef enum {
    }
 - (void) originBu{
     [mainMapView setCenterCoordinate:[mainMapView.userLocation coordinate] animated:YES];
-}
-- (void)toSettingViewController {
-    SettingViewController *setting = [[SettingViewController alloc] init];
-    [self.navigationController pushViewController:setting animated:YES];
-    [setting release];
 }
 
 - (void)toDetailView:(UIButton *)sender {

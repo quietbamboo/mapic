@@ -41,7 +41,6 @@
 		186240B915BFB76E00EC605B /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 186240B815BFB76E00EC605B /* MBProgressHUD.m */; };
 		186DFF5215AE6250005AE621 /* HjxPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 186DFF5015AE6250005AE621 /* HjxPhotoViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		186DFF5515AE663B005AE621 /* MockPhotoSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 186DFF5315AE663B005AE621 /* MockPhotoSource.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		186DFF5815AE692E005AE621 /* UserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 186DFF5715AE692E005AE621 /* UserViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		18833AB9155BC05E0028F497 /* weibo.png in Resources */ = {isa = PBXBuildFile; fileRef = 18833AB5155BC05E0028F497 /* weibo.png */; };
 		18833ABA155BC05E0028F497 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 18833AB6155BC05E0028F497 /* logo.png */; };
 		18924A1A15B7F49200B7434C /* TTTQuadrantControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 18924A1915B7F49200B7434C /* TTTQuadrantControl.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -61,11 +60,9 @@
 		18E36A7415AD4253006E62AA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E36A6415AD4253006E62AA /* AppDelegate.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		18E36A7615AD4253006E62AA /* DeatilViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E36A6615AD4253006E62AA /* DeatilViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		18E36A7715AD4253006E62AA /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E36A6715AD4253006E62AA /* FirstViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		18E36A7915AD4253006E62AA /* LocationlistViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E36A6915AD4253006E62AA /* LocationlistViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		18E36A7A15AD4253006E62AA /* Place.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E36A6A15AD4253006E62AA /* Place.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		18E36A7C15AD4253006E62AA /* PlaceMark.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E36A6C15AD4253006E62AA /* PlaceMark.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		18E36A7D15AD4253006E62AA /* RegexKitLite.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E36A6D15AD4253006E62AA /* RegexKitLite.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		18E36A7E15AD4253006E62AA /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E36A6E15AD4253006E62AA /* SettingViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		18E36A7F15AD4253006E62AA /* UploadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E36A6F15AD4253006E62AA /* UploadViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		18E36A8915AD450A006E62AA /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18E36A8815AD450A006E62AA /* MapKit.framework */; };
 		18E36BF615AD5605006E62AA /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 18E36BF515AD5605006E62AA /* libicucore.dylib */; };
@@ -399,8 +396,6 @@
 		186DFF5115AE6250005AE621 /* HjxPhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HjxPhotoViewController.h; sourceTree = "<group>"; };
 		186DFF5315AE663B005AE621 /* MockPhotoSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MockPhotoSource.m; sourceTree = "<group>"; };
 		186DFF5415AE663B005AE621 /* MockPhotoSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MockPhotoSource.h; sourceTree = "<group>"; };
-		186DFF5615AE692E005AE621 /* UserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserViewController.h; sourceTree = "<group>"; };
-		186DFF5715AE692E005AE621 /* UserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserViewController.m; sourceTree = "<group>"; };
 		18833AB5155BC05E0028F497 /* weibo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = weibo.png; sourceTree = "<group>"; };
 		18833AB6155BC05E0028F497 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
 		18924A1815B7F49200B7434C /* TTTQuadrantControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTTQuadrantControl.h; sourceTree = "<group>"; };
@@ -423,20 +418,16 @@
 		18E36A6415AD4253006E62AA /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		18E36A6615AD4253006E62AA /* DeatilViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeatilViewController.m; sourceTree = "<group>"; };
 		18E36A6715AD4253006E62AA /* FirstViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirstViewController.m; sourceTree = "<group>"; };
-		18E36A6915AD4253006E62AA /* LocationlistViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationlistViewController.m; sourceTree = "<group>"; };
 		18E36A6A15AD4253006E62AA /* Place.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Place.m; sourceTree = "<group>"; };
 		18E36A6C15AD4253006E62AA /* PlaceMark.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaceMark.m; sourceTree = "<group>"; };
 		18E36A6D15AD4253006E62AA /* RegexKitLite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegexKitLite.m; sourceTree = "<group>"; };
-		18E36A6E15AD4253006E62AA /* SettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingViewController.m; sourceTree = "<group>"; };
 		18E36A6F15AD4253006E62AA /* UploadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UploadViewController.m; sourceTree = "<group>"; };
 		18E36A7015AD4253006E62AA /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		18E36A7215AD4253006E62AA /* DeatilViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeatilViewController.h; sourceTree = "<group>"; };
 		18E36A7315AD4253006E62AA /* FirstViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirstViewController.h; sourceTree = "<group>"; };
-		18E36A8115AD4275006E62AA /* LocationlistViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationlistViewController.h; sourceTree = "<group>"; };
 		18E36A8215AD4275006E62AA /* Place.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Place.h; sourceTree = "<group>"; };
 		18E36A8415AD4275006E62AA /* PlaceMark.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaceMark.h; sourceTree = "<group>"; };
 		18E36A8515AD4275006E62AA /* RegexKitLite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegexKitLite.h; sourceTree = "<group>"; };
-		18E36A8615AD4275006E62AA /* SettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingViewController.h; sourceTree = "<group>"; };
 		18E36A8715AD4275006E62AA /* UploadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UploadViewController.h; sourceTree = "<group>"; };
 		18E36A8815AD450A006E62AA /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		18E36A8B15AD4AA0006E62AA /* EXF.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EXF.h; sourceTree = "<group>"; };
@@ -696,40 +687,24 @@
 				18E36A6A15AD4253006E62AA /* Place.m */,
 				18E36A8415AD4275006E62AA /* PlaceMark.h */,
 				18E36A6C15AD4253006E62AA /* PlaceMark.m */,
-				186240B715BFB76E00EC605B /* MBProgressHUD.h */,
-				186240B815BFB76E00EC605B /* MBProgressHUD.m */,
 				186DFF5415AE663B005AE621 /* MockPhotoSource.h */,
 				186DFF5315AE663B005AE621 /* MockPhotoSource.m */,
-				18924A1815B7F49200B7434C /* TTTQuadrantControl.h */,
-				18924A1915B7F49200B7434C /* TTTQuadrantControl.m */,
+				18EAFF1815BE762900869982 /* CellView.h */,
+				18EAFF1915BE762900869982 /* CellView.m */,
+				18FE213C15B9658D008B2A05 /* NotificationView.h */,
+				18FE213D15B9658E008B2A05 /* NotificationView.m */,
 				2715BDEB15B930AF00B0A5B1 /* HGKOptionPanel.h */,
 				2715BDEC15B930AF00B0A5B1 /* HGKOptionPanel.m */,
+				186240B715BFB76E00EC605B /* MBProgressHUD.h */,
+				186240B815BFB76E00EC605B /* MBProgressHUD.m */,
+				18924A1815B7F49200B7434C /* TTTQuadrantControl.h */,
+				18924A1915B7F49200B7434C /* TTTQuadrantControl.m */,
 				183D4CCF15B5520200DC3D6A /* CustomSegmentedControl.m */,
 				183D4CD015B5520200DC3D6A /* CustomSegmentedControl.h */,
 				18E36A7015AD4253006E62AA /* AppDelegate.h */,
 				18E36A6415AD4253006E62AA /* AppDelegate.m */,
 				18E36A7315AD4253006E62AA /* FirstViewController.h */,
 				18E36A6715AD4253006E62AA /* FirstViewController.m */,
-				18E36A8115AD4275006E62AA /* LocationlistViewController.h */,
-				18E36A6915AD4253006E62AA /* LocationlistViewController.m */,
-				186DFF5615AE692E005AE621 /* UserViewController.h */,
-				186DFF5715AE692E005AE621 /* UserViewController.m */,
-				18E36A8615AD4275006E62AA /* SettingViewController.h */,
-				18E36A6E15AD4253006E62AA /* SettingViewController.m */,
-				18E36A8715AD4275006E62AA /* UploadViewController.h */,
-				18E36A6F15AD4253006E62AA /* UploadViewController.m */,
-				186DFF5115AE6250005AE621 /* HjxPhotoViewController.h */,
-				186DFF5015AE6250005AE621 /* HjxPhotoViewController.m */,
-				189977D315C0DFBB00811264 /* DBSignupViewController.m */,
-				189977D415C0DFBB00811264 /* DBSignupViewController.h */,
-				18E36A7215AD4253006E62AA /* DeatilViewController.h */,
-				18E36A6615AD4253006E62AA /* DeatilViewController.m */,
-				18FE213C15B9658D008B2A05 /* NotificationView.h */,
-				18FE213D15B9658E008B2A05 /* NotificationView.m */,
-				18EAFF1815BE762900869982 /* CellView.h */,
-				18EAFF1915BE762900869982 /* CellView.m */,
-				27CCB4D115BFD3DB00A38922 /* ImagePickeViewController.h */,
-				27CCB4D215BFD3DB00A38922 /* ImagePickeViewController.m */,
 				1802339315C1168100AE7436 /* SecondViewController.h */,
 				1802339415C1168100AE7436 /* SecondViewController.m */,
 				1802339615C1185600AE7436 /* ThirdViewController.h */,
@@ -738,6 +713,16 @@
 				1802339A15C1191300AE7436 /* FourthViewController.m */,
 				1802339C15C11DCB00AE7436 /* CenterViewController.h */,
 				1802339D15C11DCB00AE7436 /* CenterViewController.m */,
+				18E36A8715AD4275006E62AA /* UploadViewController.h */,
+				18E36A6F15AD4253006E62AA /* UploadViewController.m */,
+				186DFF5115AE6250005AE621 /* HjxPhotoViewController.h */,
+				186DFF5015AE6250005AE621 /* HjxPhotoViewController.m */,
+				189977D315C0DFBB00811264 /* DBSignupViewController.m */,
+				189977D415C0DFBB00811264 /* DBSignupViewController.h */,
+				18E36A7215AD4253006E62AA /* DeatilViewController.h */,
+				18E36A6615AD4253006E62AA /* DeatilViewController.m */,
+				27CCB4D115BFD3DB00A38922 /* ImagePickeViewController.h */,
+				27CCB4D215BFD3DB00A38922 /* ImagePickeViewController.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -1545,15 +1530,12 @@
 				18E36A7415AD4253006E62AA /* AppDelegate.m in Sources */,
 				18E36A7615AD4253006E62AA /* DeatilViewController.m in Sources */,
 				18E36A7715AD4253006E62AA /* FirstViewController.m in Sources */,
-				18E36A7915AD4253006E62AA /* LocationlistViewController.m in Sources */,
 				18E36A7A15AD4253006E62AA /* Place.m in Sources */,
 				18E36A7C15AD4253006E62AA /* PlaceMark.m in Sources */,
 				18E36A7D15AD4253006E62AA /* RegexKitLite.m in Sources */,
-				18E36A7E15AD4253006E62AA /* SettingViewController.m in Sources */,
 				18E36A7F15AD4253006E62AA /* UploadViewController.m in Sources */,
 				186DFF5215AE6250005AE621 /* HjxPhotoViewController.m in Sources */,
 				186DFF5515AE663B005AE621 /* MockPhotoSource.m in Sources */,
-				186DFF5815AE692E005AE621 /* UserViewController.m in Sources */,
 				183D4CD115B5520200DC3D6A /* CustomSegmentedControl.m in Sources */,
 				18924A1A15B7F49200B7434C /* TTTQuadrantControl.m in Sources */,
 				2715BDCE15B8F03700B0A5B1 /* UIColor+Hex.m in Sources */,
