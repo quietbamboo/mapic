@@ -59,7 +59,6 @@
 		18D132FA156F484200257F4B /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18D132F9156F484200257F4B /* CFNetwork.framework */; };
 		18E009C615C2588A003B4358 /* MyProjectValidatorName.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E009C515C2588A003B4358 /* MyProjectValidatorName.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		18E009C915C258DC003B4358 /* MyProjectConditionName.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E009C815C258DC003B4358 /* MyProjectConditionName.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		18E00A2E15C25A45003B4358 /* libUS2FormValidationFrameworkStaticLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 18E00A2B15C25A3A003B4358 /* libUS2FormValidationFrameworkStaticLibrary.a */; };
 		18E00A5315C26665003B4358 /* image_icon_validation_invalid.png in Resources */ = {isa = PBXBuildFile; fileRef = 18E00A4915C26665003B4358 /* image_icon_validation_invalid.png */; };
 		18E00A5415C26665003B4358 /* image_icon_validation_invalid@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18E00A4A15C26665003B4358 /* image_icon_validation_invalid@2x.png */; };
 		18E00A5515C26665003B4358 /* image_icon_validation_valid.png in Resources */ = {isa = PBXBuildFile; fileRef = 18E00A4B15C26665003B4358 /* image_icon_validation_valid.png */; };
@@ -186,6 +185,7 @@
 		6EF962BA118E955A003902E7 /* libThree20.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EF962B7118E9553003902E7 /* libThree20.a */; };
 		7A0346B11546604F00BB2432 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A0346B01546604F00BB2432 /* Accelerate.framework */; };
 		7A2585A115C0422F0098CAAE /* libFilterKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A25859E15C041380098CAAE /* libFilterKit.a */; };
+		7A74945415C2CF0B0097C410 /* libUS2FormValidationFrameworkStaticLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 18E00A2B15C25A3A003B4358 /* libUS2FormValidationFrameworkStaticLibrary.a */; };
 		7AAE40DC14C01F22004DB168 /* speaker_22.png in Resources */ = {isa = PBXBuildFile; fileRef = 7AAE40DA14C01F22004DB168 /* speaker_22.png */; };
 		7AAE40DD14C01F22004DB168 /* speaker_22@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7AAE40DB14C01F22004DB168 /* speaker_22@2x.png */; };
 		7ACDBC44154112EF004ABDFF /* libGoogleAdMobAds.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7ACDBC3B154112EF004ABDFF /* libGoogleAdMobAds.a */; };
@@ -710,7 +710,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				18E00A2E15C25A45003B4358 /* libUS2FormValidationFrameworkStaticLibrary.a in Frameworks */,
+				7A74945415C2CF0B0097C410 /* libUS2FormValidationFrameworkStaticLibrary.a in Frameworks */,
 				27C8548115C0ED8B0037F842 /* libz.dylib in Frameworks */,
 				27C8547F15C0ED4A0037F842 /* libxml2.dylib in Frameworks */,
 				7A2585A115C0422F0098CAAE /* libFilterKit.a in Frameworks */,

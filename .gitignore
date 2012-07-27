@@ -7,9 +7,12 @@ client/FilterKit/FilterKit.xcodeproj/xcuserdata/
 client/FilterKit/FilterKit.xcodeproj/project.xcworkspace/xcuserdata/
 client/FilterKit/FilterKit.xcodeproj/project.xcworkspace/contents.xcworkspacedata
 client/lib/GPUImage/framework/GPUImage.xcodeproj/xcuserdata/
+client/US2FormValidationFramework/US2FormValidationFramework.xcodeproj/xcuserdata/
 
 #System hidden files
 *.DS_Store
+
+
 
 
 
