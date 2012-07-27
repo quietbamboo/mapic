@@ -8,7 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "AppDelegate.h"
-@interface DBSignupViewController : UIViewController <UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate, UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate> {
+#import "US2ValidatorUIDelegate.h"
+#import "US2ValidatorUIProtocol.h"
+#import "US2ValidatorTextField.h"
+#import "TooltipView.h"
+@interface DBSignupViewController : UIViewController <UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate, UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate,US2ValidatorUIDelegate,UITextViewDelegate> {
     UIView *contentView;
     UITextField *nameTextField_;
     UITextField *lastNameTextField_;
@@ -33,6 +37,9 @@
     NSDate *birthday_;
     NSString *gender_;
     UIImage *photo_;
+    US2ValidatorTextField *firstNameTextField;
+    id <US2ValidatorUIProtocol> _tooltipConnectedTextUI;
+    TooltipView    *_tooltipView;
 }
 
 @property(nonatomic, retain) UITextField *nameTextField;

@@ -7,7 +7,10 @@
 //
 
 #import "DBSignupViewController.h"
-
+#import "MyProjectValidatorName.h"
+#import "ValidTooltipView.h"
+#import "FormTableViewCell.h"
+#import "US2ValidatorEmail.h"
 // Safe releases
 #define RELEASE_SAFELY(__POINTER) { [__POINTER release]; __POINTER = nil; }
 
@@ -112,13 +115,29 @@
     [photoButton_ addTarget:self action:@selector(choosePhoto:) forControlEvents:UIControlEventTouchUpInside];
     [contentView addSubview:photoButton_];
     
-    nameTextField_ = [[UITextField alloc] initWithFrame:CGRectMake(116, 18, 185, 31)];
-    nameTextField_.delegate = self;
-    nameTextField_.placeholder = @"Name";
-    nameTextField_.textAlignment = UITextAlignmentLeft;
-    nameTextField_.font = [UIFont boldSystemFontOfSize:15];
-    nameTextField_.tag = 1;
-    [contentView addSubview:nameTextField_];
+//    nameTextField_ = [[UITextField alloc] initWithFrame:CGRectMake(116, 18, 185, 31)];
+//    nameTextField_.delegate = self;
+//    nameTextField_.placeholder = @"Name";
+//    nameTextField_.textAlignment = UITextAlignmentLeft;
+//    nameTextField_.font = [UIFont boldSystemFontOfSize:15];
+//    nameTextField_.tag = 1;
+//    [contentView addSubview:nameTextField_];
+    
+    firstNameTextField  = [[US2ValidatorTextField alloc] initWithFrame:CGRectMake(116, 18, 185, 31)];
+    firstNameTextField.validator               = [[MyProjectValidatorName alloc] init];
+    firstNameTextField.shouldAllowViolation    = YES;
+    firstNameTextField.validateOnFocusLossOnly = YES;
+    firstNameTextField.text                    = @"";
+    firstNameTextField.placeholder             = @"Todd";
+    firstNameTextField.validatorUIDelegate     = self;
+    firstNameTextField.delegate = self;
+    
+    [contentView addSubview: firstNameTextField];
+    
+    _tooltipView       = [[ValidTooltipView alloc] initWithFrame:CGRectMake(0, 30, 309, 30)];
+    //_tooltipView.backgroundColor = [UIColor blueColor];
+    _tooltipView.text = @"sfdf";
+    [self.view addSubview:_tooltipView];
     
     lastNameTextField_ = [[UITextField alloc] initWithFrame:CGRectMake(116, 61, 185, 31)];
     lastNameTextField_.delegate = self;
@@ -128,14 +147,24 @@
     lastNameTextField_.tag = 2;
     [contentView addSubview:lastNameTextField_];
     
-    emailTextField_ = [[UITextField alloc] initWithFrame:CGRectMake(117, 122, 189, 31)];
-    emailTextField_.delegate = self;
-    emailTextField_.placeholder = @"";
-    emailTextField_.textAlignment = UITextAlignmentLeft;
-    emailTextField_.font = [UIFont boldSystemFontOfSize:15];
-    emailTextField_.keyboardType = UIKeyboardTypeEmailAddress;
-    emailTextField_.tag = 3;
-    [contentView addSubview:emailTextField_];
+//    emailTextField_ = [[UITextField alloc] initWithFrame:CGRectMake(117, 122, 189, 31)];
+//    emailTextField_.delegate = self;
+//    emailTextField_.placeholder = @"";
+//    emailTextField_.textAlignment = UITextAlignmentLeft;
+//    emailTextField_.font = [UIFont boldSystemFontOfSize:15];
+//    emailTextField_.keyboardType = UIKeyboardTypeEmailAddress;
+//    emailTextField_.tag = 3;
+//    [contentView addSubview:emailTextField_];
+    
+    US2ValidatorTextField *emailTextField  = [[US2ValidatorTextField alloc] initWithFrame:CGRectMake(117, 122, 189, 31)];
+    emailTextField.validator               = [[US2ValidatorEmail alloc] init];
+    emailTextField.shouldAllowViolation    = YES;
+    emailTextField.validateOnFocusLossOnly = YES;
+    emailTextField.text                    = @"";
+    emailTextField.placeholder             = @"example@example.com";
+    emailTextField.validatorUIDelegate     = self;
+    emailTextField.delegate = self;
+    [contentView addSubview: emailTextField];
     
     passwordTextField_ = [[UITextField alloc] initWithFrame:CGRectMake(117, 166, 189, 31)];
     passwordTextField_.placeholder = @"";
@@ -404,6 +433,7 @@
     while (index <= FIELDS_COUNT) {
         UITextField *textField = (UITextField *)[self.view viewWithTag:index];
         if ([textField isFirstResponder]) {
+            textField.text = @"asdfgh";
             return textField;
         }
         index++;
@@ -519,28 +549,28 @@
 
 #pragma mark - UITextFieldDelegate
 
-- (void)textFieldDidBeginEditing:(UITextField *)textField
-{
-    NSUInteger tag = [textField tag];
-    [self animateView:tag];
-    [self checkBarButton:tag];
-    [self checkSpecialFields:tag];
-    UILabel *label = (UILabel *)[self.view viewWithTag:tag + 10];
-    if (label) {
-        [self resetLabelsColors];
-        [label setTextColor:[DBSignupViewController labelSelectedColor]];
-    }
-}
-
-- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
-{
-    NSUInteger tag = [textField tag];
-    if (tag == BIRTHDAY_FIELD_TAG || tag == GENDER_FIELD_TAG) {
-        return NO;
-    }
-    
-    return YES;
-}
+//- (void)textFieldDidBeginEditing:(UITextField *)textField
+//{
+//    NSUInteger tag = [textField tag];
+//    [self animateView:tag];
+//    [self checkBarButton:tag];
+//    [self checkSpecialFields:tag];
+//    UILabel *label = (UILabel *)[self.view viewWithTag:tag + 10];
+//    if (label) {
+//        [self resetLabelsColors];
+//        [label setTextColor:[DBSignupViewController labelSelectedColor]];
+//    }
+//}
+//
+//- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+//{
+//    NSUInteger tag = [textField tag];
+//    if (tag == BIRTHDAY_FIELD_TAG || tag == GENDER_FIELD_TAG) {
+//        return NO;
+//    }
+//    
+//    return YES;
+//}
 
 
 #pragma mark - UIPickerViewDataSource
@@ -584,6 +614,112 @@
     [self setGenderData];
 }
 
+#pragma mark - US2ValidatorUIDelegate
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
+{
+    // Hide tooltip 
+    if (nil != _tooltipView
+        && ![_tooltipConnectedTextUI isEqual:textField])
+    {
+        [_tooltipView removeFromSuperview];
+        _tooltipView = nil;
+    }
+    
+    _tooltipConnectedTextUI = nil;
+    
+    return YES;
+}
+
+- (BOOL)textViewShouldBeginEditing:(UITextView *)textView
+{
+    // Hide tooltip 
+    if (nil != _tooltipView
+        && ![_tooltipConnectedTextUI isEqual:textView])
+    {
+        [_tooltipView removeFromSuperview];
+        _tooltipView = nil;
+    }
+    
+    _tooltipConnectedTextUI = nil;
+    
+    return YES;
+}
+/**
+ Called for every valid or violated state change
+ React to this information by showing up warnings or disabling a 'send' button e.g.
+ */
+- (void)validatorUI:(id <US2ValidatorUIProtocol>)validatorUI changedValidState:(BOOL)isValid
+{
+    
+    NSLog(@"validatorUI changedValidState: %d", isValid);
+    
+    // 1st super view UITableViewCellContentView
+    // 2nd super view FormTextFieldTableViewCell
+//    id cell = ((UIView *)validatorUI).superview.superview;
+//    if ([cell isKindOfClass:[FormTableViewCell class]])
+//    {
+//        FormTableViewCell *formTableViewCell = (FormTableViewCell *)cell;
+//        kFormTableViewCellStatus status = isValid == YES ? kFormTableViewCellStatusValid : kFormTableViewCellStatusInvalid;
+//        status = validatorUI.text.length == 0 ? kFormTableViewCellStatusWaiting : status;
+//        [formTableViewCell updateValidationIconByValidStatus:status];
+//    }
+    NSLog(@"aaaaaaa");
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Invalid Text"
+                                                        message:@"message"
+                                                       delegate:self
+                                              cancelButtonTitle:@"Continue"
+                                              otherButtonTitles:nil, nil];
+    [alertView show];
+    // Hide tooltip 
+//    if (isValid)
+//    {
+//        [self dismissTooltip];
+//    }
+}
+
+- (void)textFieldDidEndEditing:(US2ValidatorTextField *)validatorTextField
+{
+//    id cell = validatorTextField.superview.superview;
+//    if ([cell isKindOfClass:[FormTextFieldTableViewCell class]])
+//    {
+//        FormTextFieldTableViewCell *formTextFieldTableViewCell = (FormTextFieldTableViewCell *)cell;
+//        kFormTableViewCellStatus status = validatorTextField.isValid == YES ? kFormTableViewCellStatusValid : kFormTableViewCellStatusInvalid;
+//        
+//        if (_didSubmit == NO)
+//        {
+//            status = validatorTextField.text.length == 0 ? kFormTableViewCellStatusWaiting : status;
+//        }
+//        
+//        [formTextFieldTableViewCell updateValidationIconByValidStatus:status];
+//    }
+}
+
+- (void)validatorUIDidChange:(id <US2ValidatorUIProtocol>)validatorUI{
+
+    NSLog(@"ccc");
+    
+}
+/**
+ Called on every violation of the highest prioritised validator condition.
+ Update UI like showing alert messages or disabling buttons.
+ */
+- (void)validatorUI:(id <US2ValidatorUIProtocol>)validatorUI violatedConditions:(US2ConditionCollection *)conditions
+{
+    NSLog(@"validatorUI violatedConditions: \n%@", conditions);
+    NSLog(@"bbb");
+    
+}
+
+- (void)dismissTooltip
+{
+    if (nil != _tooltipView)
+    {
+        [_tooltipView removeFromSuperview];
+        _tooltipView = nil;
+    }
+    
+   // _tooltipConnectedTextUI = nil;
+}
 
 #pragma mark - UIActionSheetDelegate
 
