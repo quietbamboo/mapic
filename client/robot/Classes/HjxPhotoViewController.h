@@ -19,6 +19,7 @@
 #import "ASIFormDataRequest.h"
 #import "ASIHTTPRequestDelegate.h"
 #import "ASIProgressDelegate.h"
+#import "BDViewController.h"
 //@class AdMobView;
 
 NSString* photoList;

@@ -240,13 +240,13 @@ static const NSTimeInterval kSlideshowInterval = 6;
 
 - (void)uploadFinished:(ASIFormDataRequest *)theRequest
 {
+    NSString *returnString = [theRequest responseString]; 
+    photoList = [returnString retain];
     NSString* titleString;
-    NSString *returnString =[theRequest responseString]; 
-    photoList = returnString;
-	
+
 	//split _-_-_
 	NSArray *arrayOfLines = [returnString componentsSeparatedByString:@"_-_-_"];
-	NSArray *photoArray = [NSArray array];
+	 NSArray *photoArray = [NSArray array];
 	int i;
 	
 	for(i = 0 ; i < [arrayOfLines count] ; i++){
@@ -284,13 +284,9 @@ static const NSTimeInterval kSlideshowInterval = 6;
 #pragma mark Seven methods About UIBarButtonItem
 
 - (void)seeAllAction {
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"see all success!"
-                          //message:[NSString stringWithFormat:@"Photo size: %iX%i\nView it in your photo album", [self centerPhotoView].image.size.width, img.size.height]
-                          //0X1081212928 ??
-                                                    message:[NSString stringWithFormat:@"see all"]
-                                                   delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
-	[alert show];
-	[alert release];
+    BDViewController *bdviewcontroller = [[BDViewController alloc] initWithImageArray:photoList];
+    
+    [self.navigationController pushViewController:bdviewcontroller animated:YES];
 }
 - (void)messageAction {
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"message success!"
