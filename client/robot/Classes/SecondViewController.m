@@ -75,7 +75,7 @@
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle 
                                        reuseIdentifier:SimpleTableIdentifier] autorelease];  
     }
-    cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     //    Place *place = [[Place alloc] init];
     NSDictionary *nsdic = [nsArray objectAtIndex:indexPath.row];
     //    place.btnTag = i;

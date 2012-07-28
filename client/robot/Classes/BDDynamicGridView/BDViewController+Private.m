@@ -141,19 +141,19 @@
 - (void)queueComplete:(ASINetworkQueue *)queue
 {   
     NSLog(@"progres is %f", [myProgressIndicator progress]);
-    [self reloadData];
     
-    
-    for (int i = 0; i < [imagemuarray count]; i++) {
-        UIImageView *imageView = [_items objectAtIndex:i];
-        UIImage *image = [imagemuarray objectAtIndex:i];
-        imageView.frame = CGRectMake(0, 0, image.size.width, image.size.height);
+    if ((myProgressIndicator.progress > 0.62 && myProgressIndicator.progress < 0.68) || myProgressIndicator.progress == 1) {
+        [self reloadData];
+        for (int i = 0; i < [imagemuarray count]; i++) {
+            UIImageView *imageView = [_items objectAtIndex:i];
+            UIImage *image = [imagemuarray objectAtIndex:i];
+            imageView.frame = CGRectMake(0, 0, image.size.width, image.size.height);
         
-        [self performSelector:@selector(animateUpdate:) 
+            [self performSelector:@selector(animateUpdate:) 
                    withObject:[NSArray arrayWithObjects:imageView, image, nil]
                    afterDelay:0.2 + (arc4random()%3) + (arc4random() %10 * 0.1)];
+        }
     }
-
 }
 
 
