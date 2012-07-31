@@ -46,7 +46,7 @@ typedef kFormTableViewCellStatus;
 
 #pragma mark - Form table view cell interface
 
-@interface FormTableViewCell : UITableViewCell
+@interface FormTableViewCell : UIView
 {
 @protected
     id <FormTableViewCellDelegate> _delegate;
@@ -60,7 +60,7 @@ typedef kFormTableViewCellStatus;
 @property (nonatomic, retain) id <US2ValidatorUIProtocol>    textUI;
 @property (nonatomic, retain) UIImage                        *icon;
 
-- (id)initWithReuseIdentifier:(NSString *)reuseIdentifier;
+//- (id)initWithReuseIdentifier:(NSString *)reuseIdentifier;
 - (void)updateValidationIconByValidStatus:(kFormTableViewCellStatus)status;
 
 @end

@@ -12,15 +12,16 @@
 #import "US2ValidatorUIProtocol.h"
 #import "US2ValidatorTextField.h"
 #import "TooltipView.h"
-@interface DBSignupViewController : UIViewController <UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate, UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate,US2ValidatorUIDelegate,UITextViewDelegate> {
+#import "FormTableViewCell.h"
+@interface DBSignupViewController : UIViewController <UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate, UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate,US2ValidatorUIDelegate,UITextViewDelegate,FormTableViewCellDelegate> {
     UIView *contentView;
-    UITextField *nameTextField_;
-    UITextField *lastNameTextField_;
-    UITextField *emailTextField_;
-    UITextField *passwordTextField_;
+    US2ValidatorTextField *nameTextField_;
+    US2ValidatorTextField *lastNameTextField_;
+    US2ValidatorTextField *emailTextField_;
+    US2ValidatorTextField *passwordTextField_;
     UITextField *birthdayTextField_;
     UITextField *genderTextField_;
-    UITextField *phoneTextField_;
+    US2ValidatorTextField *phoneTextField_;
     UIButton *photoButton_;
     UITextView *termsTextView_;
     
@@ -37,7 +38,7 @@
     NSDate *birthday_;
     NSString *gender_;
     UIImage *photo_;
-    US2ValidatorTextField *firstNameTextField;
+    BOOL           _didSubmit;
     id <US2ValidatorUIProtocol> _tooltipConnectedTextUI;
     TooltipView    *_tooltipView;
 }

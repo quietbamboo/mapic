@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0A1BD08615C7C6EE0011B81A /* FormTextFieldTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A1BD08315C7C6EE0011B81A /* FormTextFieldTableViewCell.m */; };
+		0A1BD08715C7C6EE0011B81A /* FormTextViewTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A1BD08515C7C6EE0011B81A /* FormTextViewTableViewCell.m */; };
 		0A91069C148A09F4008FA0D6 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A91069B148A09F4008FA0D6 /* Icon@2x.png */; };
 		1802339515C1168100AE7436 /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1802339415C1168100AE7436 /* SecondViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		1802339815C1185600AE7436 /* ThirdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1802339715C1185600AE7436 /* ThirdViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -376,6 +378,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0A1BD08215C7C6EE0011B81A /* FormTextFieldTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FormTextFieldTableViewCell.h; sourceTree = "<group>"; };
+		0A1BD08315C7C6EE0011B81A /* FormTextFieldTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormTextFieldTableViewCell.m; sourceTree = "<group>"; };
+		0A1BD08415C7C6EE0011B81A /* FormTextViewTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FormTextViewTableViewCell.h; sourceTree = "<group>"; };
+		0A1BD08515C7C6EE0011B81A /* FormTextViewTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormTextViewTableViewCell.m; sourceTree = "<group>"; };
 		0A91069B148A09F4008FA0D6 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
 		1802339315C1168100AE7436 /* SecondViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SecondViewController.h; sourceTree = "<group>"; };
 		1802339415C1168100AE7436 /* SecondViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SecondViewController.m; sourceTree = "<group>"; };
@@ -760,6 +766,10 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				0A1BD08215C7C6EE0011B81A /* FormTextFieldTableViewCell.h */,
+				0A1BD08315C7C6EE0011B81A /* FormTextFieldTableViewCell.m */,
+				0A1BD08415C7C6EE0011B81A /* FormTextViewTableViewCell.h */,
+				0A1BD08515C7C6EE0011B81A /* FormTextViewTableViewCell.m */,
 				18E00A6115C27613003B4358 /* InvalidTooltipView.h */,
 				18E00A6215C27613003B4358 /* InvalidTooltipView.m */,
 				18E00A6315C27614003B4358 /* TooltipView.h */,
@@ -815,8 +825,8 @@
 				18E36A6F15AD4253006E62AA /* UploadViewController.m */,
 				186DFF5115AE6250005AE621 /* HjxPhotoViewController.h */,
 				186DFF5015AE6250005AE621 /* HjxPhotoViewController.m */,
-				189977D315C0DFBB00811264 /* DBSignupViewController.m */,
 				189977D415C0DFBB00811264 /* DBSignupViewController.h */,
+				189977D315C0DFBB00811264 /* DBSignupViewController.m */,
 				18E36A7215AD4253006E62AA /* DeatilViewController.h */,
 				18E36A6615AD4253006E62AA /* DeatilViewController.m */,
 				27CCB4D115BFD3DB00A38922 /* ImagePickeViewController.h */,
@@ -1795,6 +1805,8 @@
 				18E00A6A15C27615003B4358 /* ValidTooltipView.m in Sources */,
 				2761E02915C375FC007CE4F5 /* BDViewController.m in Sources */,
 				2761E02A15C375FC007CE4F5 /* BDViewController+Private.m in Sources */,
+				0A1BD08615C7C6EE0011B81A /* FormTextFieldTableViewCell.m in Sources */,
+				0A1BD08715C7C6EE0011B81A /* FormTextViewTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

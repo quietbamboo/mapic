@@ -37,14 +37,23 @@ const CGRect kIconButtonFrame = {{0.0, 0.0}, {44.0, 44.0}};
 @dynamic    textUI;
 
 
-- (id)initWithReuseIdentifier:(NSString *)reuseIdentifier
-{
-    self = [super initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:reuseIdentifier];
-    if (self)
-    {
+//- (id)initWithReuseIdentifier:(NSString *)reuseIdentifier
+//{
+//    self = [super initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:reuseIdentifier];
+//    if (self)
+//    {
+//        [self _initUserInterface];
+//    }
+//    
+//    return self;
+//}
+
+- (id) initWithFrame:(CGRect)frame{
+
+    self = [super initWithFrame:frame];
+    if (self) {
         [self _initUserInterface];
     }
-    
     return self;
 }
 
@@ -65,12 +74,12 @@ const CGRect kIconButtonFrame = {{0.0, 0.0}, {44.0, 44.0}};
     _iconButton            = [UIButton buttonWithType:UIButtonTypeCustom];
     _iconButton.frame      = iconButtonFrame;
     [_iconButton addTarget:self action:@selector(iconButtonTouched:) forControlEvents:UIControlEventTouchUpInside];
-    [self.contentView addSubview:_iconButton];
+    [self addSubview:_iconButton];
     
     // Set waiting icon to cell
     self.icon = [UIImage imageNamed:@"image_icon_validation_waiting.png"];
     
-    self.selectionStyle = UITableViewCellSelectionStyleNone;
+   // self = UITableViewCell Selection Style None;
 }
 
 
@@ -134,7 +143,7 @@ const CGRect kIconButtonFrame = {{0.0, 0.0}, {44.0, 44.0}};
 {
     ((UIView *)_textUI).backgroundColor = [UIColor clearColor];
     
-    [self.contentView addSubview:((UIView *)_textUI)];
+    [self addSubview:((UIView *)_textUI)];
     [_textUI release];
 }
 
