@@ -37,6 +37,7 @@
     NSDate *birthday_;
     NSString *gender_;
     UIImage *photo_;
+    NSMutableArray *_textUICollection;
     BOOL           _didSubmit;
     id <US2ValidatorUIProtocol> _tooltipConnectedTextUI;
     TooltipView    *_tooltipView;

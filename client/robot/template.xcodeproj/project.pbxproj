@@ -10,6 +10,7 @@
 		0A1BD08615C7C6EE0011B81A /* FormTextFieldTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A1BD08315C7C6EE0011B81A /* FormTextFieldTableViewCell.m */; };
 		0A1BD08715C7C6EE0011B81A /* FormTextViewTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A1BD08515C7C6EE0011B81A /* FormTextViewTableViewCell.m */; };
 		0A91069C148A09F4008FA0D6 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A91069B148A09F4008FA0D6 /* Icon@2x.png */; };
+		0AA5F2BC15C90D3A00D775A8 /* Localization.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0AA5F2BB15C90D3A00D775A8 /* Localization.bundle */; };
 		1802339515C1168100AE7436 /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1802339415C1168100AE7436 /* SecondViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		1802339815C1185600AE7436 /* ThirdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1802339715C1185600AE7436 /* ThirdViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		1802339B15C1191300AE7436 /* FourthViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1802339A15C1191300AE7436 /* FourthViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -383,6 +384,7 @@
 		0A1BD08415C7C6EE0011B81A /* FormTextViewTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FormTextViewTableViewCell.h; sourceTree = "<group>"; };
 		0A1BD08515C7C6EE0011B81A /* FormTextViewTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormTextViewTableViewCell.m; sourceTree = "<group>"; };
 		0A91069B148A09F4008FA0D6 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
+		0AA5F2BB15C90D3A00D775A8 /* Localization.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Localization.bundle; sourceTree = "<group>"; };
 		1802339315C1168100AE7436 /* SecondViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SecondViewController.h; sourceTree = "<group>"; };
 		1802339415C1168100AE7436 /* SecondViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SecondViewController.m; sourceTree = "<group>"; };
 		1802339615C1185600AE7436 /* ThirdViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThirdViewController.h; sourceTree = "<group>"; };
@@ -1205,6 +1207,7 @@
 				ECD51B0812E56D5300CDEE3D /* Info.plist */,
 				0A91069B148A09F4008FA0D6 /* Icon@2x.png */,
 				EC3CC93912429DC500DCEDF1 /* Icon.png */,
+				0AA5F2BB15C90D3A00D775A8 /* Localization.bundle */,
 				EB383B6C10BBF6360000B2D2 /* Three20.bundle */,
 				189DE6871530388C0048B949 /* Localizable.strings */,
 			);
@@ -1736,6 +1739,7 @@
 				18E00A5A15C26665003B4358 /* image_tooltip_invalid@2x.png in Resources */,
 				18E00A5B15C26665003B4358 /* image_tooltip_valid.png in Resources */,
 				18E00A5C15C26665003B4358 /* image_tooltip_valid@2x.png in Resources */,
+				0AA5F2BC15C90D3A00D775A8 /* Localization.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

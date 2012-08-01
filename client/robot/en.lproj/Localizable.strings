@@ -5,3 +5,11 @@
   Created by apple on 12-4-7.
   Copyright (c) 2012年 __MyCompanyName__. All rights reserved.
 */
+"US2KeyConditionViolationRange"             = "Enter minimum %d, maximum %d characters";
+"US2KeyConditionViolationNumeric"           = "Enter numbers only";
+"US2KeyConditionViolationAlphanumeric"      = "Enter numbers and letters only";
+"US2KeyConditionViolationAlphabetic"        = "Enter letters only";
+"US2KeyConditionViolationEmail"             = "Enter valid email address in the format example@example.com";
+"US2KeyConditionViolationURL"               = "Enter a valid URL in the format http(s)://www.example.com";
+"US2KeyConditionViolationShorthandURL"      = "Enter a valid URL in the format www.example.com";
+"US2KeyConditionViolationPasswordStrength"  = "Enter a stronger password";

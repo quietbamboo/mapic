@@ -1,5 +1,4 @@
 //
-//  US2ConditionEmail.m
 //  US2FormValidator
 //
 //  Copyright (C) 2012 ustwo™
@@ -23,48 +22,11 @@
 //  SOFTWARE.
 //  
 
-#import "US2ConditionEmail.h"
-
-
-@implementation US2ConditionEmail
-
-
-- (BOOL)check:(NSString *)string
-{
-    if (nil == string)
-        string = [NSString string];
-    
-    NSError *error             = NULL;
-    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"^[+\\w\\.\\-']+@[a-zA-Z0-9-]+(\\.[a-zA-Z]{2,})+$" options:NSRegularExpressionCaseInsensitive error:&error];
-    NSUInteger numberOfMatches = [regex numberOfMatchesInString:string options:0 range:NSMakeRange(0, string.length)];
-    
-    return numberOfMatches == 1;
-}
-
-
-#pragma mark - Allow violation
-
-- (BOOL)shouldAllowViolation
-{
-    return YES;
-}
-
-
-#pragma mark - Localization
-
-- (NSString *)localizedViolationString
-{
-    NSString *key = @"US2KeyConditionViolationEmail";
-    
-    NSString *path = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"Localization.bundle"];
-    NSBundle *bundle = [NSBundle bundleWithPath:path];
-    
-    if (bundle)
-    {
-        return [bundle localizedStringForKey:key value:key table:nil];
-    }
-    
-    return key;
-}
-
-@end
+"US2KeyConditionViolationRange"             = "Minimum %d, maximal %d Zeichen eingeben";
+"US2KeyConditionViolationNumeric"           = "Nur Zahlen eingeben";
+"US2KeyConditionViolationAlphanumeric"      = "Nur Zahlen und Buchstaben eingeben";
+"US2KeyConditionViolationAlphabetic"        = "Nur Buchstaben eingeben";
+"US2KeyConditionViolationEmail"             = "Gültige E-Mail-Adresse im Format beispiel@domain.com eingeben";
+"US2KeyConditionViolationURL"               = "Gültige URL im Format http(s)://www.example.com eingeben";
+"US2KeyConditionViolationShorthandURL"      = "Gültige URL im Format www.example.com eingeben";
+"US2KeyConditionViolationPasswordStrength"  = "Ein stärkeres Passwort wird benötigt";
