@@ -608,8 +608,10 @@ static const NSTimeInterval kSlideshowInterval = 6;
 //	[super viewDidUnload];
 - (void) viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
-    if (_MBhideTimer) {
-        [_MBhideTimer invalidate];
+    if (_MBhideTimer ) {
+        if ([_MBhideTimer isValid]) {
+               [_MBhideTimer invalidate];
+        }
     }
     
     NSLog(@"release timer in viewWillDisappear");
