@@ -239,7 +239,6 @@ static const NSTimeInterval kSlideshowInterval = 6;
         NSLog(@"this is timer not work");
     }
 }	
-
 - (void)uploadFailed:(ASIFormDataRequest *)theRequest
 {
     [self stopActivity];
@@ -249,42 +248,37 @@ static const NSTimeInterval kSlideshowInterval = 6;
 {
     NSString *returnString = [theRequest responseString]; 
     photoList = [returnString retain];
-    NSString* titleString;
+    NSString *titleString = @"good";
 
 	//split _-_-_
 	NSArray *arrayOfLines = [returnString componentsSeparatedByString:@"_-_-_"];
-	 NSArray *photoArray = [NSArray array];
-	int i;
-	
-	for(i = 0 ; i < [arrayOfLines count] ; i++){
+    NSArray *photoArray = [NSArray array];
+    
+    for(int i = 0 ; i < [arrayOfLines count] ; i++){
 		//NSLog([arrayOfLines objectAtIndex:i]);
-		NSArray *lineparts = [[arrayOfLines objectAtIndex:i] componentsSeparatedByString:@"-----"];
-		if([lineparts count] <= 1){
-			continue;
-		}
+        NSArray *lineparts = [[arrayOfLines objectAtIndex:i] componentsSeparatedByString:@"-----"];
+        if([lineparts count] <= 1){
+            continue;
+        }
 		
 		//there is a bug for in review pictures/banned pictures
-		MockPhoto *newPhoto = 
-		[[[MockPhoto alloc]
-		  initWithURL:[lineparts objectAtIndex:0]
-		  smallURL:[[lineparts objectAtIndex:0] stringByReplacingOccurrencesOfString:@"upload" withString:@"thumbnail"]
-		  size:CGSizeMake(320, 480)
-		  caption:[NSString stringWithFormat:@"From %@", [lineparts objectAtIndex:1]]
-		  ] autorelease];
+		MockPhoto *newPhoto = [[[MockPhoto alloc]
+		                        initWithURL:[lineparts objectAtIndex:0]
+                                smallURL:[[lineparts objectAtIndex:0] stringByReplacingOccurrencesOfString:@"upload" withString:@"thumbnail"]
+		                        size:CGSizeMake(320, 480)
+		                        caption:[NSString stringWithFormat:@"From %@", [lineparts objectAtIndex:1]]
+                                ] autorelease];
 		
 		photoArray = [photoArray arrayByAddingObject:newPhoto];
         self.photoSource = [[[MockPhotoSource alloc]
                              initWithType:MockPhotoSourceNormal
-                             //initWithType:MockPhotoSourceDelayed
-                             // initWithType:MockPhotoSourceLoadError
-                             // initWithType:MockPhotoSourceDelayed|MockPhotoSourceLoadError
                              title:titleString
                              photos:photoArray
                              photos2:nil
                              ] autorelease];
-        
-        [self stopActivity];
     }
+    
+    [self stopActivity];
 }
 
 #pragma mark

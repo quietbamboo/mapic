@@ -32,6 +32,7 @@ NSString* photoList;
 //    UIImageView* crossButton;
     
 	//TTActivityLabel *listlabel;
+    NSTimer* _MBhideTimer;
     MBProgressHUD  * _MBProgress;
 	UIBarButtonItem* _goodButton;
 	UIBarButtonItem* _badButton;
@@ -40,7 +41,6 @@ NSString* photoList;
     UIBarButtonItem* _messageButton;
     UIBarButtonItem* _routeButton;
     UIProgressView *progressIndicator;
-    NSTimer* _MBhideTimer;
 }
 
 
