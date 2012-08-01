@@ -68,7 +68,7 @@
     
     
     //load the placeholder image
-    for (int i=0; i < kNumberOfPhotos; i++) {
+    for (int i = indextemp; i < (indextemp + 12); i++) {
         UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"placeholder.png"]];
         imageView.frame = CGRectMake(0, 0, 44, 44);
         imageView.clipsToBounds = YES;
@@ -82,17 +82,21 @@
     
 }       
 - (void)changeProgress:(NSTimer *)timer{
-    _MBProgress.progress = myProgressIndicator.progress*2;
-    if (myProgressIndicator.progress > 0.5) {
+    _MBProgress.progress = myProgressIndicator.progress;
+    if (myProgressIndicator.progress == 1) {
         [_MBProgress setHidden:YES];
         [timer invalidate];
         NSLog(@"this is timer not work");
     }
 }	
 - (void)uploadSomethingFiveTimes
-{     
-    myProgressIndicator = [[UIProgressView alloc] initWithFrame:CGRectZero];
-    
+{    
+    if (myProgressIndicator != nil) {
+        myProgressIndicator.progress = 0.0f;
+    }else {
+        myProgressIndicator = [[UIProgressView alloc] initWithFrame:CGRectZero];
+    }
+       
     ASINetworkQueue *myQueue = [ASINetworkQueue queue];
     [myQueue cancelAllOperations];
     [myQueue setDownloadProgressDelegate:myProgressIndicator];
@@ -100,11 +104,11 @@
     [myQueue setRequestDidFinishSelector:@selector(queueComplete:)];
     
     NSArray *arrayOfLines = [imagearray componentsSeparatedByString:@"_-_-_"];
-	int photonum = 25;
-    if (kNumberOfPhotos >= [arrayOfLines count] ) {
-        photonum = [arrayOfLines count];
+//	int photonum = 25;
+    if ((indextemp + 12) >= [arrayOfLines count] ) {
+        indextemp = [arrayOfLines count] - 12;
     }
-    for (int i = 0; i < photonum; i++) {
+    for (int i = indextemp; i < (indextemp + 12); i++) {
         NSArray *lineparts = [[arrayOfLines objectAtIndex:i] componentsSeparatedByString:@"-----"];
         NSString *path = [[lineparts objectAtIndex:0] stringByReplacingOccurrencesOfString:@"upload" withString:@"thumbnail"];
         NSLog(@"this is %@",path);
@@ -140,6 +144,7 @@
 {   
    // NSLog(@"this is data %@",[[theRequest responseData] description]);
     [imagemuarray addObject:[UIImage imageWithData:[theRequest responseData]]];
+    indextemp ++;
  
 }
 
@@ -148,7 +153,7 @@
 {   
     NSLog(@"progres is %f", [myProgressIndicator progress]);
     
-    if ((myProgressIndicator.progress > 0.62 && myProgressIndicator.progress < 0.68) || myProgressIndicator.progress == 1) {
+    if (myProgressIndicator.progress == 1) {
         [self reloadData];
         for (int i = 0; i < [imagemuarray count]; i++) {
             UIImageView *imageView = [_items objectAtIndex:i];
@@ -158,6 +163,7 @@
             [self performSelector:@selector(animateUpdate:) 
                    withObject:[NSArray arrayWithObjects:imageView, image, nil]
                    afterDelay:0.2 + (arc4random()%3) + (arc4random() %10 * 0.1)];
+            isloading = NO;
         }
     }
 }

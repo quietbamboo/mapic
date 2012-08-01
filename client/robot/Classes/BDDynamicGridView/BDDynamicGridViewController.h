@@ -41,7 +41,9 @@
  
  */
 @interface BDDynamicGridViewController : UIViewController 
-
+{
+ UITableView *_tableView;
+}
 /**
  @name Tasks
  */

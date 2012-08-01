@@ -40,6 +40,7 @@ NSString* photoList;
     UIBarButtonItem* _messageButton;
     UIBarButtonItem* _routeButton;
     UIProgressView *progressIndicator;
+    NSTimer* _MBhideTimer;
 }
 
 

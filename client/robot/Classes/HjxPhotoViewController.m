@@ -220,14 +220,18 @@ static const NSTimeInterval kSlideshowInterval = 6;
 	[request setDidFinishSelector:@selector(uploadFinished:)];
     [request startAsynchronous];
     
-    [NSTimer scheduledTimerWithTimeInterval:1 target:self
+    _MBhideTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self
                                                 selector:@selector(changeProgress:) userInfo:nil repeats:YES];
 
 }       
 - (void)changeProgress:(NSTimer *)timer{
     _MBProgress.progress = _MBProgress.progress + 0.03;
+    if (_MBProgress.progress >= 0.9) {
+        _MBProgress.progress = 0.9;
+    }
     NSLog(@"this is progress %f",progressIndicator.progress);
     if (progressIndicator.progress == 1) {
+        _MBProgress.progress = 1;
         [timer invalidate];
         NSLog(@"this is timer not work");
     }
@@ -604,7 +608,9 @@ static const NSTimeInterval kSlideshowInterval = 6;
 //	[super viewDidUnload];
 - (void) viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
-	
+    if (_MBhideTimer) {
+        [_MBhideTimer invalidate];
+    }
     
     NSLog(@"release timer in viewWillDisappear");
     
@@ -650,8 +656,8 @@ static const NSTimeInterval kSlideshowInterval = 6;
 }
 
 - (void)dealloc {
-    [super release];
     [_MBProgress release];
+    [super dealloc];
 }
 #pragma mark
 #pragma mark UIAlertViewDelegate

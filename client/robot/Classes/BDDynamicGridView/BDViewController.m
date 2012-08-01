@@ -22,6 +22,9 @@
         imagearray = imageNSArray;
         imagemuarray = [[NSMutableArray alloc] initWithCapacity:0];
         [self uploadSomethingFiveTimes];
+        indextemp = 0;
+        end = 0;
+        isloading = NO;
     }
     
     return self;
@@ -36,6 +39,9 @@
         NSLog(@"Long press on %@, at %d", view, viewIndex);
     };
 
+    self.onSingleTap = ^ (UIView *view,NSInteger viewIndex){
+        NSLog(@"SingleTap meshtods ");
+    };
     self.onDoubleTap = ^(UIView* view, NSInteger viewIndex){
         NSLog(@"Double tap on %@, at %d", view, viewIndex);
     };
@@ -44,8 +50,14 @@
 }
 
 - (void)animateReload
-{
-    _items = [[NSMutableArray alloc] initWithCapacity:0];
+{   
+    if (_items != nil) {
+        [_items removeAllObjects];
+        [imagemuarray removeAllObjects];
+    }
+    indextemp = 0;
+    isloading = YES;
+    [self uploadSomethingFiveTimes];
     [self _demoAsyncDataLoading];
 }
 
@@ -80,6 +92,19 @@
 //        return 100;
 //    }
     return 55 + (arc4random() % 125);
+}
+
+#pragma  mark UIscrollerDelegateMethods
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    CGPoint pt = [scrollView contentOffset];
+    if ( (pt.y - 60) > (_tableView.contentSize.height - _tableView.bounds.size.height) && !isloading && scrollView.isDragging){
+        isloading = YES;
+        NSLog(@"woyao jiazai ");
+        [self uploadSomethingFiveTimes];
+        [self _demoAsyncDataLoading];
+    }
+   
 }
 
 @end

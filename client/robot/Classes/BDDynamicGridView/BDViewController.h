@@ -12,12 +12,15 @@
 #import "ASIHTTPRequest.h"
 #import "ASINetworkQueue.h"
 #import "MBProgressHUD.h"
-@interface BDViewController : BDDynamicGridViewController <BDDynamicGridViewDelegate>{
+@interface BDViewController : BDDynamicGridViewController <BDDynamicGridViewDelegate,UIScrollViewDelegate>{
     NSMutableArray * _items;
     NSString *imagearray;
     UIProgressView *myProgressIndicator;
     NSMutableArray *imagemuarray;
     MBProgressHUD *_MBProgress;
+    int indextemp;
+    int end;
+    BOOL isloading;
 }
-- (id) initWithImageArray:(NSArray *)imageNSArray;
+- (id) initWithImageArray:(NSString *)imageNSArray;
 @end

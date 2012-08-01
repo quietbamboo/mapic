@@ -40,7 +40,6 @@
 
 
 @interface BDDynamicGridViewController  () <UITableViewDelegate, UITableViewDataSource>{
-    UITableView *_tableView;
     NSArray *_rowInfos;
 }
 @end
