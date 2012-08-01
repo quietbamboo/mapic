@@ -766,24 +766,7 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				0A1BD08215C7C6EE0011B81A /* FormTextFieldTableViewCell.h */,
-				0A1BD08315C7C6EE0011B81A /* FormTextFieldTableViewCell.m */,
-				0A1BD08415C7C6EE0011B81A /* FormTextViewTableViewCell.h */,
-				0A1BD08515C7C6EE0011B81A /* FormTextViewTableViewCell.m */,
-				18E00A6115C27613003B4358 /* InvalidTooltipView.h */,
-				18E00A6215C27613003B4358 /* InvalidTooltipView.m */,
-				18E00A6315C27614003B4358 /* TooltipView.h */,
-				18E00A6415C27614003B4358 /* TooltipView.m */,
-				18E00A6515C27614003B4358 /* TooltipViewPrivate.h */,
-				18E00A6615C27615003B4358 /* ValidTooltipView.h */,
-				18E00A6715C27615003B4358 /* ValidTooltipView.m */,
-				18E00A6015C2698F003B4358 /* FormTableViewCellPrivate.h */,
-				18E00A5D15C26953003B4358 /* FormTableViewCell.h */,
-				18E00A5E15C26953003B4358 /* FormTableViewCell.m */,
-				18E009C715C258DC003B4358 /* MyProjectConditionName.h */,
-				18E009C815C258DC003B4358 /* MyProjectConditionName.m */,
-				18E009C415C2588A003B4358 /* MyProjectValidatorName.h */,
-				18E009C515C2588A003B4358 /* MyProjectValidatorName.m */,
+				0AA5F2A915C8BDE400D775A8 /* FormsAuthentication */,
 				18E0094815C242A9003B4358 /* US2FormValidationFramework */,
 				7A427C2F15C1880F002C873B /* MainTabViews */,
 				27C8540215C0EB690037F842 /* ASIHTTPRequest */,
@@ -833,6 +816,31 @@
 				27CCB4D215BFD3DB00A38922 /* ImagePickeViewController.m */,
 			);
 			path = Classes;
+			sourceTree = "<group>";
+		};
+		0AA5F2A915C8BDE400D775A8 /* FormsAuthentication */ = {
+			isa = PBXGroup;
+			children = (
+				0A1BD08215C7C6EE0011B81A /* FormTextFieldTableViewCell.h */,
+				0A1BD08315C7C6EE0011B81A /* FormTextFieldTableViewCell.m */,
+				0A1BD08415C7C6EE0011B81A /* FormTextViewTableViewCell.h */,
+				0A1BD08515C7C6EE0011B81A /* FormTextViewTableViewCell.m */,
+				18E00A6115C27613003B4358 /* InvalidTooltipView.h */,
+				18E00A6215C27613003B4358 /* InvalidTooltipView.m */,
+				18E00A6315C27614003B4358 /* TooltipView.h */,
+				18E00A6415C27614003B4358 /* TooltipView.m */,
+				18E00A6515C27614003B4358 /* TooltipViewPrivate.h */,
+				18E00A6615C27615003B4358 /* ValidTooltipView.h */,
+				18E00A6715C27615003B4358 /* ValidTooltipView.m */,
+				18E00A6015C2698F003B4358 /* FormTableViewCellPrivate.h */,
+				18E00A5D15C26953003B4358 /* FormTableViewCell.h */,
+				18E00A5E15C26953003B4358 /* FormTableViewCell.m */,
+				18E009C715C258DC003B4358 /* MyProjectConditionName.h */,
+				18E009C815C258DC003B4358 /* MyProjectConditionName.m */,
+				18E009C415C2588A003B4358 /* MyProjectValidatorName.h */,
+				18E009C515C2588A003B4358 /* MyProjectValidatorName.m */,
+			);
+			name = FormsAuthentication;
 			sourceTree = "<group>";
 		};
 		1802BAAD15BA982900E2AC4C /* MtLocation */ = {

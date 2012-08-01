@@ -132,7 +132,7 @@
     nameTextField_.shouldAllowViolation    = YES;
     nameTextField_.validateOnFocusLossOnly = YES;
     nameTextField_.text                    = @"";
-    nameTextField_.placeholder             = @"Todd";
+    nameTextField_.placeholder             = @"name";
     nameTextField_.validatorUIDelegate     = self;
     nameTextField_.tag = 1;
     //[contentView addSubview: firstNameTextField];
@@ -165,7 +165,7 @@
     lastNameTextField_.shouldAllowViolation    = YES;
     lastNameTextField_.validateOnFocusLossOnly = YES;
     lastNameTextField_.text                    = @"";
-    lastNameTextField_.placeholder             = @"Todd";
+    lastNameTextField_.placeholder             = @"lastName";
     lastNameTextField_.validatorUIDelegate     = self;
     lastNameTextField_.tag = 2;
     id <US2ValidatorUIProtocol> textUIlast = lastNameTextField_;
@@ -209,7 +209,7 @@
     passwordTextField_.shouldAllowViolation    = YES;
     passwordTextField_.validateOnFocusLossOnly = YES;
     passwordTextField_.text                    = @"";
-    passwordTextField_.placeholder             = @"pass";
+    passwordTextField_.placeholder             = @"password";
     passwordTextField_.validatorUIDelegate     = self;
     passwordTextField_.tag = 4;
     id <US2ValidatorUIProtocol> textUIpass = passwordTextField_;
@@ -226,18 +226,18 @@
     cellpass.textUI = textUIpass;
     [contentView addSubview:cellpass];
     
-    birthdayTextField_ = [[UITextField alloc] initWithFrame:CGRectMake(117, 210, 189, 31)];
+    birthdayTextField_ = [[UITextField alloc] initWithFrame:CGRectMake(117, 215, 189, 31)];
     birthdayTextField_.delegate = self;
-    birthdayTextField_.placeholder = @"";
+    birthdayTextField_.placeholder = @"birthday";
     birthdayTextField_.textAlignment = UITextAlignmentLeft;
     birthdayTextField_.font = [UIFont boldSystemFontOfSize:15];
     birthdayTextField_.tag = 5;
     [contentView addSubview:birthdayTextField_];
     
     
-    genderTextField_ = [[UITextField alloc] initWithFrame:CGRectMake(117, 254, 189, 31)];
+    genderTextField_ = [[UITextField alloc] initWithFrame:CGRectMake(117, 260, 189, 31)];
     genderTextField_.delegate = self;
-    genderTextField_.placeholder = @"";
+    genderTextField_.placeholder = @"gender";
     genderTextField_.textAlignment = UITextAlignmentLeft;
     genderTextField_.font = [UIFont boldSystemFontOfSize:15];
     genderTextField_.tag = 6;
@@ -248,7 +248,7 @@
     phoneTextField_.shouldAllowViolation    = YES;
     phoneTextField_.validateOnFocusLossOnly = YES;
     phoneTextField_.text                    = @"";
-    phoneTextField_.placeholder             = @"pass";
+    phoneTextField_.placeholder             = @"phone";
     phoneTextField_.validatorUIDelegate     = self;
     phoneTextField_.tag = 7;
     phoneTextField_.keyboardType = UIKeyboardTypePhonePad;
@@ -270,6 +270,7 @@
     emailLabel_.text = @"EMAIL";
     emailLabel_.textAlignment = UITextAlignmentLeft;
     emailLabel_.font = [UIFont boldSystemFontOfSize:13];
+    emailLabel_.backgroundColor = [UIColor clearColor];
     emailLabel_.tag = 13;
     [contentView addSubview:emailLabel_];
     
@@ -277,6 +278,7 @@
     passwordLabel_.text = @"PASSWORD";
     passwordLabel_.textAlignment = UITextAlignmentLeft;
     passwordLabel_.font = [UIFont boldSystemFontOfSize:13];
+    passwordLabel_.backgroundColor = [UIColor clearColor];
     passwordLabel_.tag = 14;
     [contentView addSubview:passwordLabel_];
     
@@ -284,6 +286,7 @@
     birthdayLabel_.text = @"BIRTHDAY";
     birthdayLabel_.textAlignment = UITextAlignmentLeft;
     birthdayLabel_.font = [UIFont boldSystemFontOfSize:13];
+    birthdayLabel_.backgroundColor = [UIColor clearColor];
     birthdayLabel_.tag = 15;
     [contentView addSubview:birthdayLabel_];
     
@@ -291,6 +294,7 @@
     genderLabel_.text = @"GENDER";
     genderLabel_.textAlignment = UITextAlignmentLeft;
     genderLabel_.font = [UIFont boldSystemFontOfSize:13];
+    genderLabel_.backgroundColor = [UIColor clearColor];
     genderLabel_.tag = 16;
     [contentView addSubview:genderLabel_];
     
@@ -298,15 +302,9 @@
     phoneLabel_.text = @"PHONE";
     phoneLabel_.textAlignment = UITextAlignmentLeft;
     phoneLabel_.font = [UIFont boldSystemFontOfSize:13];
+    phoneLabel_.backgroundColor = [UIColor clearColor];
     phoneLabel_.tag = 17;
     [contentView addSubview:phoneLabel_];
-    
-    termsTextView_ = [[UITextView alloc] initWithFrame:CGRectMake(10, 348, 301, 58)];
-    termsTextView_.text = @"terms";
-    termsTextView_.textAlignment = UITextAlignmentCenter;
-    termsTextView_.font = [UIFont boldSystemFontOfSize:11];
-    
-    [contentView addSubview:termsTextView_];
     
     _didSubmit = NO;
 }
@@ -543,6 +541,9 @@
             break;
         case 7:
             rect.origin.y = -160.0f;
+            break;
+        case 8:
+            rect.origin.y = -200.0f;
             break;
         default:
             rect.origin.y = 0.0f;

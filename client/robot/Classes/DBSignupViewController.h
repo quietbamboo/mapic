@@ -23,7 +23,6 @@
     UITextField *genderTextField_;
     US2ValidatorTextField *phoneTextField_;
     UIButton *photoButton_;
-    UITextView *termsTextView_;
     
     UILabel *emailLabel_;
     UILabel *passwordLabel_;
