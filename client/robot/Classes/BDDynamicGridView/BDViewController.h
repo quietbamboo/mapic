@@ -13,7 +13,7 @@
 #import "ASINetworkQueue.h"
 #import "MBProgressHUD.h"
 @interface BDViewController : BDDynamicGridViewController <BDDynamicGridViewDelegate>{
-    NSArray * _items;
+    NSMutableArray * _items;
     NSString *imagearray;
     UIProgressView *myProgressIndicator;
     NSMutableArray *imagemuarray;

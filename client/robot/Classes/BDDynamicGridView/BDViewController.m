@@ -45,7 +45,7 @@
 
 - (void)animateReload
 {
-    _items = [NSArray new];
+    _items = [[NSMutableArray alloc] initWithCapacity:0];
     [self _demoAsyncDataLoading];
 }
 

@@ -60,14 +60,20 @@
     //_MBProgress.color = [UIColor blueColor];
     _MBProgress.progress = 0.0;
     [_MBProgress show:YES];
-
-    _items = [NSArray array];
+    
+    if (_items ==nil) {
+         _items = [[NSMutableArray alloc] initWithCapacity:0];
+    }
+       
+    
+    
     //load the placeholder image
     for (int i=0; i < kNumberOfPhotos; i++) {
         UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"placeholder.png"]];
         imageView.frame = CGRectMake(0, 0, 44, 44);
         imageView.clipsToBounds = YES;
-        _items = [_items arrayByAddingObject:imageView];
+        [_items addObject:imageView];
+       // _items = [_items arrayByAddingObject:imageView];
     }
     
     [self reloadData];
