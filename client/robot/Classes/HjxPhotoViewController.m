@@ -220,8 +220,8 @@ static const NSTimeInterval kSlideshowInterval = 6;
 	[request setDidFinishSelector:@selector(uploadFinished:)];
     [request startAsynchronous];
     
-    _MBhideTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self
-                                                selector:@selector(changeProgress:) userInfo:nil repeats:YES];
+    _MBhideTimer = [[NSTimer scheduledTimerWithTimeInterval:1 target:self
+                                                selector:@selector(changeProgress:) userInfo:nil repeats:YES] retain];
 
 }       
 - (void)changeProgress:(NSTimer *)timer{
@@ -232,7 +232,10 @@ static const NSTimeInterval kSlideshowInterval = 6;
     NSLog(@"this is progress %f",progressIndicator.progress);
     if (progressIndicator.progress == 1) {
         _MBProgress.progress = 1;
-        [timer invalidate];
+        if ([_MBhideTimer isValid]) {
+            [_MBhideTimer invalidate];
+        }
+     
         NSLog(@"this is timer not work");
     }
 }	
@@ -608,7 +611,7 @@ static const NSTimeInterval kSlideshowInterval = 6;
 //	[super viewDidUnload];
 - (void) viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
-    if (_MBhideTimer ) {
+    if (_MBhideTimer != nil) {
         if ([_MBhideTimer isValid]) {
                [_MBhideTimer invalidate];
         }
