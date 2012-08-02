@@ -17,6 +17,7 @@
 #import "FourthViewController.h"
 #import "CenterPhotoViewController.h"
 #import "DBSignupViewController.h"
+#import "LoginViewController.h"
 #define kSDK_KEY @"fbd22af151f7a5f25abb5ecd23664315"
 
 
@@ -66,7 +67,7 @@
 - (void)initTarBarController {
     myTabBarController = [[UITabBarController alloc] init];
 	//_firstview = [[FirstViewController alloc] init];
-	_firstview = [[DBSignupViewController alloc] init];
+	_firstview = [[LoginViewController alloc] init];
     UINavigationController* firstviewNav = [[UINavigationController alloc] initWithRootViewController:_firstview];
     firstviewNav.tabBarItem = [[[UITabBarItem alloc] initWithTitle:@"first" image:[UIImage imageNamed:@"tab-explore"] tag:0] autorelease];
     
