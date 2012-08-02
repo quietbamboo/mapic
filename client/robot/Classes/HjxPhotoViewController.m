@@ -234,6 +234,7 @@ static const NSTimeInterval kSlideshowInterval = 6;
         _MBProgress.progress = 1;
         if ([_MBhideTimer isValid]) {
             [_MBhideTimer invalidate];
+            _MBhideTimer = nil;
         }
      
         NSLog(@"this is timer not work");
@@ -655,7 +656,7 @@ static const NSTimeInterval kSlideshowInterval = 6;
 }
 
 - (void)dealloc {
-    [_MBProgress release];
+   // [_MBProgress release];
     [super dealloc];
 }
 #pragma mark

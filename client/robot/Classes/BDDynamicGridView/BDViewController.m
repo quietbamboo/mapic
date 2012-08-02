@@ -16,6 +16,8 @@
 
 @implementation BDViewController
 
+#pragma mark default Methods
+
 - (id) initWithImageArray:(NSString *)imageNSArray{
     self =  [super init];
     if (self) {
@@ -23,12 +25,12 @@
         imagemuarray = [[NSMutableArray alloc] initWithCapacity:0];
         [self uploadSomethingFiveTimes];
         indextemp = 0;
-        end = 0;
+        endProgress = 1;
         isloading = NO;
     }
-    
     return self;
 }
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -49,6 +51,15 @@
     [self buildBarButtons];
 }
 
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
+{
+    //Call super when overriding this method, in order to benefit from auto layout.
+    [super shouldAutorotateToInterfaceOrientation:toInterfaceOrientation];
+    return YES;
+}
+
+#pragma mark reload image methods
+
 - (void)animateReload
 {   
     if (_items != nil) {
@@ -56,11 +67,13 @@
         [imagemuarray removeAllObjects];
     }
     indextemp = 0;
+    endProgress = 1;
     isloading = YES;
     [self uploadSomethingFiveTimes];
     [self _demoAsyncDataLoading];
 }
 
+#pragma mark BDDynamicGridViewDelegate Methods
 - (NSUInteger)numberOfViews
 {
     return _items.count;
@@ -68,20 +81,11 @@
 
 -(NSUInteger)maximumViewsPerCell
 {
-    return 5;
+    return 4;
 }
 
-- (UIView *)viewAtIndex:(NSUInteger)index rowInfo:(BDRowInfo *)rowInfo
-{
-    UIImageView * imageView = [_items objectAtIndex:index];
-    return imageView;
-}
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
-{
-    //Call super when overriding this method, in order to benefit from auto layout.
-    [super shouldAutorotateToInterfaceOrientation:toInterfaceOrientation];
-    return YES;
+- (NSUInteger)minimumViewsPerCell{
+    return 2;
 }
 
 - (CGFloat)rowHeightForRowInfo:(BDRowInfo *)rowInfo
@@ -91,20 +95,26 @@
 //    }else {
 //        return 100;
 //    }
-    return 55 + (arc4random() % 125);
+    return 65 + (arc4random() % 125);
+}
+
+- (UIView *)viewAtIndex:(NSUInteger)index rowInfo:(BDRowInfo *)rowInfo
+{
+    UIImageView * imageView = [_items objectAtIndex:index];
+    return imageView;
 }
 
 #pragma  mark UIscrollerDelegateMethods
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     CGPoint pt = [scrollView contentOffset];
-    if ( (pt.y - 60) > (_tableView.contentSize.height - _tableView.bounds.size.height) && !isloading && scrollView.isDragging){
+    if ( (pt.y - 40) > (_tableView.contentSize.height - _tableView.bounds.size.height) && !isloading && scrollView.isDragging){
         isloading = YES;
         NSLog(@"woyao jiazai ");
+        endProgress = 1;
         [self uploadSomethingFiveTimes];
         [self _demoAsyncDataLoading];
     }
-   
 }
 
 @end

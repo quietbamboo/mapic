@@ -19,7 +19,7 @@
     NSMutableArray *imagemuarray;
     MBProgressHUD *_MBProgress;
     int indextemp;
-    int end;
+    float endProgress;
     BOOL isloading;
 }
 - (id) initWithImageArray:(NSString *)imageNSArray;

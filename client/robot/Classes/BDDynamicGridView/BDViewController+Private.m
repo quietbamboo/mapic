@@ -17,10 +17,10 @@
                                                                      target:self 
                                                                      action:@selector(animateReload)];
 
-    
     self.navigationItem.rightBarButtonItems = [NSArray arrayWithObjects: reloadButton, nil];
-
 }
+
+#pragma mark load image Methods
 
 -(NSArray*)_imagesFromBundle
 {   
@@ -35,23 +35,14 @@
             images = [images arrayByAddingObject:image];
         }
     }
-   // NSLog(@"this is :::::*:*:%@:*:*:::::",imagearray);
-    
-//    NSBundle *bundle = [NSBundle mainBundle];
-//    for (int i=0; i< kNumberOfPhotos; i++) {
-//        NSString *path = [bundle pathForResource:[NSString stringWithFormat:@"%d", i + 1] ofType:@"jpg"];
-//        UIImage *image = [UIImage imageWithContentsOfFile:path];
-//        if (image) {
-//            images = [images arrayByAddingObject:image];
-//        }
-//    }
-    
-       return images;
+    return images;
 }
-
 
 - (void)_demoAsyncDataLoading
 {
+    if (_MBProgress != nil) {
+        [_MBProgress setHidden:YES];
+    }
     _MBProgress = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     _MBProgress.labelText = @"正在下载请稍后！";
     _MBProgress.mode = MBProgressHUDModeDeterminate;
@@ -60,13 +51,9 @@
     //_MBProgress.color = [UIColor blueColor];
     _MBProgress.progress = 0.0;
     [_MBProgress show:YES];
-    
     if (_items ==nil) {
          _items = [[NSMutableArray alloc] initWithCapacity:0];
     }
-       
-    
-    
     //load the placeholder image
     for (int i = indextemp; i < (indextemp + 12); i++) {
         UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"placeholder.png"]];
@@ -75,20 +62,20 @@
         [_items addObject:imageView];
        // _items = [_items arrayByAddingObject:imageView];
     }
-    
     [self reloadData];
     [NSTimer scheduledTimerWithTimeInterval:1 target:self
             selector:@selector(changeProgress:) userInfo:nil repeats:YES];
-    
 }       
+
 - (void)changeProgress:(NSTimer *)timer{
     _MBProgress.progress = myProgressIndicator.progress;
-    if (myProgressIndicator.progress == 1) {
+    if (myProgressIndicator.progress >= (endProgress - 0.001)) {
         [_MBProgress setHidden:YES];
         [timer invalidate];
         NSLog(@"this is timer not work");
     }
 }	
+
 - (void)uploadSomethingFiveTimes
 {    
     if (myProgressIndicator != nil) {
@@ -119,25 +106,59 @@
         [request setDidFinishSelector:@selector(uploadFinished:)];
         [myQueue addOperation:request];
     }
-
-//    int i;
-//    for (i=0; i<5; i++) {
-//        ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:url];
-//        [request setDownloadDestinationPath:NSTemporaryDirectory()];
-//    	[request setDidFailSelector:@selector(uploadFailed:)];
-//        [request setDidFinishSelector:@selector(uploadFinished:)];
-//        [myQueue addOperation:request];
-//    }
     [myQueue go];
 }
--(NSString *)GetTempPath:(NSString*)filename{  
-    NSString *tempPath = NSTemporaryDirectory();  
-    return [tempPath stringByAppendingPathComponent:filename];  
-} 
 
+#pragma mark ASIHTTPRequestDelegate Methods
+
+- (void)queueComplete:(ASINetworkQueue *)queue
+{   
+    NSLog(@"progres is pro %f", [myProgressIndicator progress]);
+    NSLog(@"progres is end  %f", endProgress);
+    if (myProgressIndicator.progress >= (endProgress - 0.001) ) {
+        [self reloadData];
+        int begin = 0;
+        if ((indextemp - 12) <= 0 ) {
+            begin = 0;
+        }else {
+            begin = indextemp - 12;
+        }
+        for (int i = begin; i < indextemp; i++) {
+            UIImageView *imageView = [_items objectAtIndex:i];
+            UIImage *image = [imagemuarray objectAtIndex:i];
+            imageView.frame = CGRectMake(0, 0, image.size.width, image.size.height);
+            
+            [self performSelector:@selector(animateUpdate:) 
+                       withObject:[NSArray arrayWithObjects:imageView, image, nil]
+                       afterDelay:0.2 + (arc4random()%3) + (arc4random() %10 * 0.1)];
+            isloading = NO;
+        }
+    }
+}
 - (void)uploadFailed:(ASIHTTPRequest *)theRequest
 {
     NSLog(@"this is filedd");
+    endProgress = endProgress - (float)1.0/12.0;
+    NSLog(@"this is filed progres end is  %f", endProgress);
+    if (myProgressIndicator.progress >= (endProgress - 0.001) ) {
+        [self reloadData];
+        int begin = 0;
+        if ((indextemp - 12) <= 0 ) {
+            begin = 0;
+        }else {
+            begin = indextemp - 12;
+        }
+        for (int i = begin; i < indextemp; i++) {
+            UIImageView *imageView = [_items objectAtIndex:i];
+            UIImage *image = [imagemuarray objectAtIndex:i];
+            imageView.frame = CGRectMake(0, 0, image.size.width, image.size.height);
+            
+            [self performSelector:@selector(animateUpdate:) 
+                       withObject:[NSArray arrayWithObjects:imageView, image, nil]
+                       afterDelay:0.2 + (arc4random()%3) + (arc4random() %10 * 0.1)];
+            isloading = NO;
+        }
+    }
 }
 
 - (void)uploadFinished:(ASIHTTPRequest *)theRequest
@@ -145,30 +166,9 @@
    // NSLog(@"this is data %@",[[theRequest responseData] description]);
     [imagemuarray addObject:[UIImage imageWithData:[theRequest responseData]]];
     indextemp ++;
- 
 }
 
-
-- (void)queueComplete:(ASINetworkQueue *)queue
-{   
-    NSLog(@"progres is %f", [myProgressIndicator progress]);
-    
-    if (myProgressIndicator.progress == 1) {
-        [self reloadData];
-        for (int i = 0; i < [imagemuarray count]; i++) {
-            UIImageView *imageView = [_items objectAtIndex:i];
-            UIImage *image = [imagemuarray objectAtIndex:i];
-            imageView.frame = CGRectMake(0, 0, image.size.width, image.size.height);
-        
-            [self performSelector:@selector(animateUpdate:) 
-                   withObject:[NSArray arrayWithObjects:imageView, image, nil]
-                   afterDelay:0.2 + (arc4random()%3) + (arc4random() %10 * 0.1)];
-            isloading = NO;
-        }
-    }
-}
-
-
+#pragma mark update ItemsArray To imageMuArray Methods
 - (void) animateUpdate:(NSArray*)objects
 {
     UIImageView *imageView = [objects objectAtIndex:0];
