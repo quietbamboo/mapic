@@ -547,7 +547,7 @@ typedef enum {
 
 - (void) viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    self.navigationController.navigationBarHidden = NO;
+    self.navigationController.navigationBarHidden = YES;
     [self showTabBar:self.tabBarController];
     [AppDelegate getAppDelegate].centerButton.hidden = NO;
    // self.navigationController.tabBarItem.title = @"登录";
@@ -670,11 +670,21 @@ typedef enum {
     
     self.locationItem = [MTLocateMeBarButtonItem userTrackingBarButtonItemForMapView:self.mainMapView]; 
     // @property (nonatomic, strong) UIBarButtonItem *locationItem;
-    self.navigationItem.leftBarButtonItem = self.locationItem;
+   // self.navigationItem.leftBarButtonItem = self.locationItem;
     
     // 3. Configure MTLocationDelegate
     [MTLocationManager sharedInstance].mapView = self.mainMapView;
    	// Do any additional setup after loading the view.
+    
+    UIToolbar *myToolBar = [[UIToolbar alloc] initWithFrame:
+                            CGRectMake(-12.0f, 401.0f, 43.0f, 29.0f)];
+    [myToolBar setBackgroundColor:[UIColor clearColor]];
+    [myToolBar setBarStyle:UIBarStyleBlackTranslucent];
+    NSMutableArray *myToolBarItems = [NSMutableArray array];
+    [myToolBarItems addObject:self.locationItem];
+    [myToolBar setItems:myToolBarItems animated:YES];
+    [myToolBar release];
+    [self.view addSubview:myToolBar];
 }
 
 
