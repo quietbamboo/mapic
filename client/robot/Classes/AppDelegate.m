@@ -28,10 +28,11 @@
 @synthesize window = _window;
 @synthesize firstview = _firstview;
 @synthesize centerButton = _centerButton;
-
+@synthesize loginview = _loginview;
 - (void)dealloc {
     [myTabBarController release];
     [_firstview release];
+    [_loginview release];
     [_centerButton release];
     [_window release];
     [centerViewController release];
@@ -66,26 +67,23 @@
 
 - (void)initTarBarController {
     myTabBarController = [[UITabBarController alloc] init];
-	//_firstview = [[FirstViewController alloc] init];
-	_firstview = [[LoginViewController alloc] init];
-    UINavigationController* firstviewNav = [[UINavigationController alloc] initWithRootViewController:_firstview];
+	_loginview = [[LoginViewController alloc] init];
+    
+    _firstview = [[FirstViewController alloc] init];
+    UINavigationController* firstviewNav = [[UINavigationController alloc] initWithRootViewController:_loginview];
     firstviewNav.tabBarItem = [[[UITabBarItem alloc] initWithTitle:@"first" image:[UIImage imageNamed:@"tab-explore"] tag:0] autorelease];
     
-//	LocationlistViewController* locaview = [[LocationlistViewController alloc]init];
     SecondViewController *secondView = [[SecondViewController alloc] init];
     UINavigationController* secondViewNav = [[UINavigationController alloc] initWithRootViewController:secondView];
     secondViewNav.tabBarItem = [[[UITabBarItem alloc] initWithTitle:@"详细" image:[UIImage imageNamed:@"tab_live"] tag:1]autorelease];
     
-    //UIViewController *centerview = [[UIViewController alloc] init];
 	centerViewController = [[CenterPhotoViewController alloc] init];
     centerViewController.tabBarItem = [[[UITabBarItem alloc] initWithTitle:nil image:nil tag:2] autorelease];
     
-    //UserViewController *userview = [[UserViewController alloc] init];
     ThirdViewController *thirdView = [[ThirdViewController alloc] init];
     UINavigationController* thirdViewNav = [[UINavigationController alloc] initWithRootViewController:thirdView];
     thirdViewNav.tabBarItem = [[[UITabBarItem alloc] initWithTitle:@"four" image:[UIImage imageNamed:@"tab-explore"] tag:3] autorelease];
     
-    //SettingViewController* settingview = [[SettingViewController alloc]init];
 	FourthViewController *fourthView = [[FourthViewController alloc] init];
     fourthView.tabBarItem = [[[UITabBarItem alloc] initWithTitle:@"User" image:[UIImage imageNamed:@"tab_feed_profile.png"] tag:4] autorelease];
     
@@ -96,7 +94,6 @@
     [firstviewNav release];
     [secondView release];
     [secondViewNav release];
-	//[centerview release];
     [thirdView release];
 	[thirdViewNav release];
     [fourthView release];
@@ -106,7 +103,6 @@
 #pragma mark
 #pragma mark UIActionSheetDelegate Methods
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
-    //CenterViewController *centerView = [[CenterViewController alloc] init];
     if (buttonIndex == 0) {
         [centerViewController showCamera];
     }else if (buttonIndex == 1) {

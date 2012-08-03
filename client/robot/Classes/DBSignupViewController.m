@@ -843,6 +843,15 @@
                                                   cancelButtonTitle:@"Continue"
                                                   otherButtonTitles:nil, nil];
         [alertView show];
+    }else {
+        NSLog(@"this is name : %@",nameTextField_.text);
+        NSLog(@"this is lastname : %@",lastNameTextField_.text);
+        NSLog(@"this is email : %@",emailTextField_.text);
+        NSLog(@"this is password : %@ ",passwordTextField_.text);
+        NSLog(@"this is birthday : %@",birthdayTextField_.text);
+        NSLog(@"this is gender : %@",genderTextField_.text);
+        NSLog(@"this is phone : %@",phoneTextField_.text);
+        [self.navigationController popViewControllerAnimated:YES];
     }
 }
 

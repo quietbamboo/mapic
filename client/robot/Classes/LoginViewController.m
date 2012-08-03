@@ -100,7 +100,7 @@
 	if (indexPath.section == 1) {
         switch (indexPath.row) {
             case 0:
-                NSLog(@"aaaaa");
+                [self.navigationController pushViewController:[AppDelegate getAppDelegate].firstview animated:YES];
                 break;
                 
             default:
@@ -114,7 +114,6 @@
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
     NSUInteger tag = [textField tag];
-    NSLog(@"this is %d",tag);
     CGRect rect = self.view.frame;
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationDuration:0.3];
@@ -140,8 +139,7 @@
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField;{
     [textField resignFirstResponder];
-    NSUInteger tag = [textField tag];
-    NSLog(@"this is %d",tag);
+    //NSUInteger tag = textField.tag;
     CGRect rect = self.view.frame;
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationDuration:0.3];
@@ -151,6 +149,42 @@
     return YES;
 }
 
+- (void)textFieldDidEndEditing:(UITextField *)textField
+{
+    NSUInteger tag = [textField tag];
+    if (tag == 1  && [[textField text] length] > 1) {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"password MD5"
+                                                            message:[MyMD5 md5:textField.text]
+                                                           delegate:self
+                                                  cancelButtonTitle:@"cancel"
+                                                  otherButtonTitles:nil, nil];
+        [alertView show];
+    }
+    
+}
+#pragma mark hideTabBar and showTabBar
+-(void) hideTabBar:(UITabBarController*) tabbarcontroller {
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationDuration:0];
+    for(UIView*view in tabbarcontroller.view.subviews)
+    {
+        if([view isKindOfClass:[UITabBar class]])
+        {
+            [view setFrame:CGRectMake(view.frame.origin.x,480, view.frame.size.width, view.frame.size.height)];
+        }
+        else
+        {
+            [view setFrame:CGRectMake(view.frame.origin.x, view.frame.origin.y, view.frame.size.width,480)];
+        }
+        
+    }
+    [UIView commitAnimations];
+}
+
+- (void)toDBSignupViewController{
+    DBSignupViewController *dbsignup = [[DBSignupViewController alloc] init];
+    [self.navigationController pushViewController:dbsignup animated:YES];
+}
 #pragma mark default Mthods
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -163,8 +197,9 @@
 
 - (void) viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    self.navigationController.navigationBarHidden = YES;
-    
+    self.navigationController.navigationBarHidden = NO;
+    [self hideTabBar:self.tabBarController];
+    [AppDelegate getAppDelegate].centerButton.hidden = YES;
 }
 
 - (void)loadView {
@@ -176,9 +211,16 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.title = @"登录";
+    UIBarButtonItem *btnDBSignupView = [[UIBarButtonItem alloc] 
+                                  initWithTitle:@"注册"                                            
+                                  style:UIBarButtonItemStyleBordered 
+                                  target:self 
+                                  action:@selector(toDBSignupViewController)];
+    self.navigationItem.rightBarButtonItem = btnDBSignupView;
+    
 	// Do any additional setup after loading the view.
     UITableView *tableview= [[UITableView alloc] initWithFrame:CGRectMake(5,0, 310, 421) style:UITableViewStyleGrouped];
-    //tableview.separatorStyle = UITableViewStyleGrouped;
     tableview.separatorStyle = UITableViewStylePlain;
     //tableview.separatorColor = [UIColor blackColor];
     tableview.backgroundColor = [UIColor lightGrayColor];
