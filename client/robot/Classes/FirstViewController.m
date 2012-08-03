@@ -540,6 +540,7 @@ typedef enum {
     self = [super init];
     if (self) {
         canChangeMap = YES;
+        showlogin = YES;
     }
     return self;
 }
@@ -549,7 +550,7 @@ typedef enum {
     self.navigationController.navigationBarHidden = NO;
     [self showTabBar:self.tabBarController];
     [AppDelegate getAppDelegate].centerButton.hidden = NO;
-    
+   // self.navigationController.tabBarItem.title = @"登录";
     [self.locationItem startListeningToLocationUpdates];
     
     
@@ -558,6 +559,14 @@ typedef enum {
                                              selector:@selector(locationManagerDidStopUpdatingHeading:)											    
                                                  name:kMTLocationManagerDidStopUpdatingHeading
                                                object:nil];
+    if (showlogin) {
+        LoginViewController * _loginview = [[LoginViewController alloc] init];
+        UINavigationController* loginviewNav = [[UINavigationController alloc] initWithRootViewController:_loginview];
+        [self presentModalViewController:loginviewNav animated:YES];
+        [loginviewNav release];
+        [_loginview release];
+        showlogin = NO;
+    }
 } 
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -566,7 +575,7 @@ typedef enum {
     [[MTLocationManager sharedInstance] stopAllServices];
     [self.locationItem stopListeningToLocationUpdates];
     mainMapView.showsUserLocation = NO;
-    
+    self.navigationController.tabBarItem.title = @"地图";
     // end listening to location update notifications
     [[NSNotificationCenter defaultCenter] removeObserver:self name:kMTLocationManagerDidStopUpdatingHeading object:nil];
 }

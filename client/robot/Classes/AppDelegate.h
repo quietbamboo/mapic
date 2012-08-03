@@ -16,13 +16,11 @@
 @interface AppDelegate : NSObject <UIApplicationDelegate,UIActionSheetDelegate> {
     UITabBarController* myTabBarController;
     FirstViewController *firstview;
-    LoginViewController *loginview;
     UIButton *centerButton;
     CenterPhotoViewController *centerViewController;
 }
 @property (nonatomic, retain) UIWindow *window;
 @property (nonatomic, retain) FirstViewController *firstview;
-@property (nonatomic, retain) LoginViewController *loginview;
 @property (nonatomic, retain) UIButton *centerButton;
 + (AppDelegate *)getAppDelegate;
 @end

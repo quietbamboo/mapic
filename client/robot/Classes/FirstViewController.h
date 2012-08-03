@@ -30,6 +30,7 @@
     NSArray* buttons;
     UIView *secondView;
     HGKOptionPanel *panel;
+    BOOL showlogin;
 }
 @property (nonatomic, retain) UIBarButtonItem *locationItem;
 @property (retain, nonatomic) MKMapView *mainMapView;

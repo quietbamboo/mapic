@@ -28,11 +28,9 @@
 @synthesize window = _window;
 @synthesize firstview = _firstview;
 @synthesize centerButton = _centerButton;
-@synthesize loginview = _loginview;
 - (void)dealloc {
     [myTabBarController release];
     [_firstview release];
-    [_loginview release];
     [_centerButton release];
     [_window release];
     [centerViewController release];
@@ -67,10 +65,8 @@
 
 - (void)initTarBarController {
     myTabBarController = [[UITabBarController alloc] init];
-	_loginview = [[LoginViewController alloc] init];
-    
     _firstview = [[FirstViewController alloc] init];
-    UINavigationController* firstviewNav = [[UINavigationController alloc] initWithRootViewController:_loginview];
+    UINavigationController* firstviewNav = [[UINavigationController alloc] initWithRootViewController:_firstview];
     firstviewNav.tabBarItem = [[[UITabBarItem alloc] initWithTitle:@"first" image:[UIImage imageNamed:@"tab-explore"] tag:0] autorelease];
     
     SecondViewController *secondView = [[SecondViewController alloc] init];

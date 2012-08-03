@@ -100,7 +100,8 @@
 	if (indexPath.section == 1) {
         switch (indexPath.row) {
             case 0:
-                [self.navigationController pushViewController:[AppDelegate getAppDelegate].firstview animated:YES];
+                [self dismissModalViewControllerAnimated:YES];
+//                [self.navigationController pushViewController:[AppDelegate getAppDelegate].firstview animated:YES];
                 break;
                 
             default:
@@ -119,10 +120,10 @@
     [UIView setAnimationDuration:0.3];
     switch (tag) {
         case 0:
-            rect.origin.y = -130.0f;
+            rect.origin.y = -120.0f;
             break;
         case 1:
-            rect.origin.y = -120.0f;
+            rect.origin.y = -135.0f;
             break;
         default:
             rect.origin.y = 0.0f;
@@ -197,7 +198,7 @@
 
 - (void) viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    self.navigationController.navigationBarHidden = NO;
+    //self.navigationController.navigationBarHidden = NO;
     [self hideTabBar:self.tabBarController];
     [AppDelegate getAppDelegate].centerButton.hidden = YES;
 }
@@ -234,8 +235,9 @@
     [header addSubview:imageview];
     [imageview release];
     
-    UILabel *label1 = [[UILabel alloc]initWithFrame:CGRectMake(120.0, 180.0, 200.0, 20.0)];
+    UILabel *label1 = [[UILabel alloc]initWithFrame:CGRectMake(0.0f, 180.0, 320.0, 20.0)];
     label1.text = @"Mapic";
+    label1.textAlignment = UITextAlignmentCenter;
     label1.backgroundColor = [UIColor clearColor];
     label1.font = [UIFont systemFontOfSize:15];
     [header addSubview:label1];
