@@ -19,5 +19,6 @@
 @interface FKImagePickerController : UIViewController
 
 @property (assign, nonatomic) id <FKImagePickerDelegate> delegate;
-
+@property (assign, nonatomic) UIImagePickerControllerSourceType sourceType;
+- (id) initWithSourceType:(UIImagePickerControllerSourceType) sourceType;
 @end

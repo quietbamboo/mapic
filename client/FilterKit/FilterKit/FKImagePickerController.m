@@ -22,28 +22,36 @@
 }
 
 @synthesize delegate = _delegate;
-
+@synthesize sourceType;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     return [self init];
 }
 
-- (id)init {
+- (id)init{
     self = [super initWithNibName:nil bundle:nil];
     if (!self)
         return nil;
     
-    _imagePicker = [[UIImagePickerController alloc] init];
-    _imagePicker.delegate = self;
-    _imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-    _imagePicker.allowsEditing = YES;
-    
     return self;
 }
 
+- (id) initWithSourceType:(UIImagePickerControllerSourceType) pickesSourceType{
+    id reslut = [self init];
+    
+    _imagePicker = [[UIImagePickerController alloc] init];
+    _imagePicker.delegate = self;
+    self.sourceType = pickesSourceType;
+    _imagePicker.sourceType = pickesSourceType;
+    if (self.sourceType == UIImagePickerControllerSourceTypePhotoLibrary) {
+        _imagePicker.allowsEditing = YES;
+    }
+
+    return reslut;
+}
 - (void)loadView {
     self.view = [[UIView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.view.opaque = NO;
-    self.view.backgroundColor = [UIColor redColor];
+    self.view.backgroundColor = [UIColor clearColor];
 }
 
 - (void)viewDidLoad {
@@ -79,11 +87,9 @@
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
 {
-    NSLog(@"did cancel 2");
     [self dismissModalViewControllerAnimated:YES];
     
     if (_delegate && [_delegate respondsToSelector:@selector(imagePickerControllerDidCancel:)]) {
-        NSLog(@"did cancel delegate 2");
         [_delegate imagePickerControllerDidCancel:self];
     }
 }
@@ -91,17 +97,14 @@
 - (void)filterPicker:(FKFilterPickerController *)picker didFinishPickingFilterWithInfo:(NSDictionary *)info
 {
     if (_delegate && [_delegate respondsToSelector:@selector(imagePickerController:didFinishPickingMediaWithInfo:)]) {
-        [_delegate imagePickerController:self didFinishPickingMediaWithInfo:nil];
+        [_delegate imagePickerController:self didFinishPickingMediaWithInfo:info];
     }
 }
 
 - (void)filterPickerDidCancel:(FKFilterPickerController *)picker
 {
-    NSLog(@"did cancel");
     [self dismissModalViewControllerAnimated:YES];
-    
     if (_delegate && [_delegate respondsToSelector:@selector(imagePickerControllerDidCancel:)]) {
-        NSLog(@"did cancel delegate");
         [_delegate imagePickerControllerDidCancel:self];
     }
 }
