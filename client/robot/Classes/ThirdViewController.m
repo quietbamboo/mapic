@@ -73,59 +73,77 @@
     // add a moveable box
     [self addBox:nil];
     
-    // add a new MGBox to the MGScrollView
+//    // add a new MGBox to the MGScrollView
     MGStyledBox *box1 = [MGStyledBox box];
     [scroller.boxes addObject:box1];
     
-    // add some MGBoxLines to the box
-    MGBoxLine *head1 =
-    [MGBoxLine lineWithLeft:@"Left And Right Content" right:nil];
-    head1.font = headerFont;
-    [box1.topLines addObject:head1];
-    
-    UISwitch *toggle = [[UISwitch alloc] initWithFrame:CGRectZero];
-    toggle.on = YES;
-    MGBoxLine *line1 =
-    [MGBoxLine lineWithLeft:@"NSString and UISwitch" right:toggle];
-    [box1.topLines addObject:line1];
+    NewsMessageView* news = [[NewsMessageView alloc] initWithFrame:CGRectMake(10, 150, 300, 80) headString:@"User" footString:@"stared following you"];
+    news.headimageView.image = [UIImage imageNamed:@"andong.jpg"];
+    news.footimageView.image = [UIImage imageNamed:@"andong.jpg"];
+    news.footlabel.text = @"18 minutes ago";
+    [box1.topLines addObject:news];
+//    
+//    // add some MGBoxLines to the box
+//    MGBoxLine *head1 =
+//    [MGBoxLine lineWithLeft:@"Left And Right Content" right:nil];
+//    head1.font = headerFont;
+//    [box1.topLines addObject:head1];
+//    
+//    UISwitch *toggle = [[UISwitch alloc] initWithFrame:CGRectZero];
+//    toggle.on = YES;
+//    MGBoxLine *line1 =
+//    [MGBoxLine lineWithLeft:@"NSString and UISwitch" right:toggle];
+//    [box1.topLines addObject:line1];
     
     MGStyledBox *box2 = [MGStyledBox box];
     [scroller.boxes addObject:box2];
+//    
+//    MGBoxLine *head2 = [MGBoxLine lineWithLeft:@"Multiline Content" right:nil];
+//    head2.font = headerFont;
+//    [box2.topLines addObject:head2];
+//    
+//    NSString *blah = @"Multiline content is automatically sized and formatted "
+//    "given an NSString, UIFont, and desired padding.";
+//    MGBoxLine *multi = [MGBoxLine multilineWithText:blah font:nil padding:24];
+    NewsMessageView* newsmess = [[NewsMessageView alloc] initWithFrame:CGRectMake(10, 150, 300, 80) headString:@"User" footString:@"stared following you"];
+    newsmess.headimageView.image = [UIImage imageNamed:@"andong.jpg"];
+    newsmess.footimageView.image = [UIImage imageNamed:@"andong.jpg"];
+    newsmess.footlabel.text = @"18 minutes ago";
     
-    MGBoxLine *head2 = [MGBoxLine lineWithLeft:@"Multiline Content" right:nil];
-    head2.font = headerFont;
-    [box2.topLines addObject:head2];
-    
-    NSString *blah = @"Multiline content is automatically sized and formatted "
-    "given an NSString, UIFont, and desired padding.";
-    MGBoxLine *multi = [MGBoxLine multilineWithText:blah font:nil padding:24];
-    [box2.topLines addObject:multi];
+    [box2.topLines addObject:newsmess];
+//    [box2.topLines addObject:multi];
     
     MGStyledBox *box3 = [MGStyledBox box];
     [scroller.boxes addObject:box3];
     
-    MGBoxLine *head3 =
-    [MGBoxLine lineWithLeft:@"NSStrings, UIImages, and UIViews"
-                      right:nil];
-    head3.font = headerFont;
-    [box3.topLines addObject:head3];
+//    MGBoxLine *head3 =
+//    [MGBoxLine lineWithLeft:@"NSStrings, UIImages, and UIViews"
+//                      right:nil];
+//    head3.font = headerFont;
+//    [box3.topLines addObject:head3];
+//    
+//    NSString *lineContentWords =
+//    @"Content can be arbitrary arrays of elements.\n\n"
+//    "UIImages are automatically wrapped in UIImageViews and "
+//    "NSStrings are automatically wrapped in UILabels.\n\n"
+//    "Content elements are automatically laid out "
+//    "according to the line's itemPadding and "
+//    "linePadding property values.";
+//    MGBoxLine *wordsLine =
+//    [MGBoxLine multilineWithText:lineContentWords font:nil padding:24];
+//    [box3.topLines addObject:wordsLine];
+//    
+//    UIImage *img = [UIImage imageNamed:@"home"];
+//    NSArray *imgLineLeft =
+//    [NSArray arrayWithObjects:img, @"An NSString after a UIImage", nil];
+//    MGBoxLine *imgLine = [MGBoxLine lineWithLeft:imgLineLeft right:nil];
+//    [box3.topLines addObject:imgLine];
     
-    NSString *lineContentWords =
-    @"Content can be arbitrary arrays of elements.\n\n"
-    "UIImages are automatically wrapped in UIImageViews and "
-    "NSStrings are automatically wrapped in UILabels.\n\n"
-    "Content elements are automatically laid out "
-    "according to the line's itemPadding and "
-    "linePadding property values.";
-    MGBoxLine *wordsLine =
-    [MGBoxLine multilineWithText:lineContentWords font:nil padding:24];
-    [box3.topLines addObject:wordsLine];
-    
-    UIImage *img = [UIImage imageNamed:@"home"];
-    NSArray *imgLineLeft =
-    [NSArray arrayWithObjects:img, @"An NSString after a UIImage", nil];
-    MGBoxLine *imgLine = [MGBoxLine lineWithLeft:imgLineLeft right:nil];
-    [box3.topLines addObject:imgLine];
+    NewsMessageView* newsmessage = [[NewsMessageView alloc] initWithFrame:CGRectMake(10, 150, 300, 80) headString:@"User" footString:@"stared following you"];
+    newsmessage.headimageView.image = [UIImage imageNamed:@"andong.jpg"];
+    newsmessage.footimageView.image = [UIImage imageNamed:@"andong.jpg"];
+    newsmessage.footlabel.text = @"18 minutes ago";
+    [box3.topLines addObject:newsmessage];
     
     // draw all the boxes and animate as appropriate
     [scroller drawBoxesWithSpeed:ANIM_SPEED];

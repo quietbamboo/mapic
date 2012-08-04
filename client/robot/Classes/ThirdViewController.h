@@ -14,7 +14,7 @@
 #import "MGScrollView.h"
 #import "MGStyledBox.h"
 #import "MGBoxLine.h"
-
+#import "NewsMessageView.h"
 
 @interface ThirdViewController : UIViewController<UIScrollViewDelegate,JMTabViewDelegate>{
     
