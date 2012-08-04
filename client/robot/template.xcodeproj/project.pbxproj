@@ -151,6 +151,7 @@
 		2715BDEF15B930B000B0A5B1 /* HGKOptionPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2715BDEC15B930AF00B0A5B1 /* HGKOptionPanel.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		2715BDF015B930B000B0A5B1 /* iconCollapse.png in Resources */ = {isa = PBXBuildFile; fileRef = 2715BDED15B930B000B0A5B1 /* iconCollapse.png */; };
 		2715BDF115B930B000B0A5B1 /* iconExpand.png in Resources */ = {isa = PBXBuildFile; fileRef = 2715BDEE15B930B000B0A5B1 /* iconExpand.png */; };
+		2722822315CCF7F4002C0942 /* PhotoMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2722822215CCF7F4002C0942 /* PhotoMessageViewController.m */; };
 		2761E02915C375FC007CE4F5 /* BDViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2761E02615C375FC007CE4F5 /* BDViewController.m */; };
 		2761E02A15C375FC007CE4F5 /* BDViewController+Private.m in Sources */ = {isa = PBXBuildFile; fileRef = 2761E02815C375FC007CE4F5 /* BDViewController+Private.m */; };
 		2782827F1541645500326471 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2782827E1541645500326471 /* AVFoundation.framework */; };
@@ -166,6 +167,14 @@
 		27C8547D15C0ECF00037F842 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 27C8547C15C0ECF00037F842 /* Reachability.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		27C8547F15C0ED4A0037F842 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 27C8547E15C0ED4A0037F842 /* libxml2.dylib */; };
 		27C8548115C0ED8B0037F842 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 27C8548015C0ED8B0037F842 /* libz.dylib */; };
+		27CABB8B15CCFE81006326BA /* ClothTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 27CABB7C15CCFE81006326BA /* ClothTransition.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		27CABB8C15CCFE81006326BA /* DoorsTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 27CABB7E15CCFE81006326BA /* DoorsTransition.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		27CABB8D15CCFE81006326BA /* FlipTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 27CABB8015CCFE81006326BA /* FlipTransition.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		27CABB8E15CCFE81006326BA /* HMGLTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 27CABB8215CCFE81006326BA /* HMGLTransition.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		27CABB8F15CCFE81006326BA /* HMGLTransitionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 27CABB8415CCFE81006326BA /* HMGLTransitionManager.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		27CABB9015CCFE81006326BA /* HMGLTransitionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 27CABB8615CCFE81006326BA /* HMGLTransitionView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		27CABB9115CCFE81006326BA /* RotateTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 27CABB8815CCFE81006326BA /* RotateTransition.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		27CABB9215CCFE81006326BA /* Switch3DTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 27CABB8A15CCFE81006326BA /* Switch3DTransition.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		27CBE2D915BE4939007D6AEC /* MGBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 27CBE2CF15BE4939007D6AEC /* MGBox.m */; };
 		27CBE2DA15BE4939007D6AEC /* MGBoxLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 27CBE2D115BE4939007D6AEC /* MGBoxLine.m */; };
 		27CBE2DB15BE4939007D6AEC /* MGButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 27CBE2D415BE4939007D6AEC /* MGButton.m */; };
@@ -625,6 +634,8 @@
 		2715BDEC15B930AF00B0A5B1 /* HGKOptionPanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HGKOptionPanel.m; sourceTree = "<group>"; };
 		2715BDED15B930B000B0A5B1 /* iconCollapse.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = iconCollapse.png; path = Classes/iconCollapse.png; sourceTree = "<group>"; };
 		2715BDEE15B930B000B0A5B1 /* iconExpand.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = iconExpand.png; path = Classes/iconExpand.png; sourceTree = "<group>"; };
+		2722822115CCF7F4002C0942 /* PhotoMessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoMessageViewController.h; sourceTree = "<group>"; };
+		2722822215CCF7F4002C0942 /* PhotoMessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoMessageViewController.m; sourceTree = "<group>"; };
 		2761E02515C375FC007CE4F5 /* BDViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDViewController.h; sourceTree = "<group>"; };
 		2761E02615C375FC007CE4F5 /* BDViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDViewController.m; sourceTree = "<group>"; };
 		2761E02715C375FC007CE4F5 /* BDViewController+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BDViewController+Private.h"; sourceTree = "<group>"; };
@@ -655,6 +666,22 @@
 		27C8547C15C0ECF00037F842 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		27C8547E15C0ED4A0037F842 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		27C8548015C0ED8B0037F842 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		27CABB7B15CCFE81006326BA /* ClothTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClothTransition.h; sourceTree = "<group>"; };
+		27CABB7C15CCFE81006326BA /* ClothTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClothTransition.m; sourceTree = "<group>"; };
+		27CABB7D15CCFE81006326BA /* DoorsTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DoorsTransition.h; sourceTree = "<group>"; };
+		27CABB7E15CCFE81006326BA /* DoorsTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DoorsTransition.m; sourceTree = "<group>"; };
+		27CABB7F15CCFE81006326BA /* FlipTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlipTransition.h; sourceTree = "<group>"; };
+		27CABB8015CCFE81006326BA /* FlipTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlipTransition.m; sourceTree = "<group>"; };
+		27CABB8115CCFE81006326BA /* HMGLTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMGLTransition.h; sourceTree = "<group>"; };
+		27CABB8215CCFE81006326BA /* HMGLTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMGLTransition.m; sourceTree = "<group>"; };
+		27CABB8315CCFE81006326BA /* HMGLTransitionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMGLTransitionManager.h; sourceTree = "<group>"; };
+		27CABB8415CCFE81006326BA /* HMGLTransitionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMGLTransitionManager.m; sourceTree = "<group>"; };
+		27CABB8515CCFE81006326BA /* HMGLTransitionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMGLTransitionView.h; sourceTree = "<group>"; };
+		27CABB8615CCFE81006326BA /* HMGLTransitionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMGLTransitionView.m; sourceTree = "<group>"; };
+		27CABB8715CCFE81006326BA /* RotateTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RotateTransition.h; sourceTree = "<group>"; };
+		27CABB8815CCFE81006326BA /* RotateTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RotateTransition.m; sourceTree = "<group>"; };
+		27CABB8915CCFE81006326BA /* Switch3DTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Switch3DTransition.h; sourceTree = "<group>"; };
+		27CABB8A15CCFE81006326BA /* Switch3DTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Switch3DTransition.m; sourceTree = "<group>"; };
 		27CBE2CE15BE4939007D6AEC /* MGBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGBox.h; sourceTree = "<group>"; };
 		27CBE2CF15BE4939007D6AEC /* MGBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGBox.m; sourceTree = "<group>"; };
 		27CBE2D015BE4939007D6AEC /* MGBoxLine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGBoxLine.h; sourceTree = "<group>"; };
@@ -783,6 +810,7 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				27CABB7A15CCFE81006326BA /* HMGLTransitions */,
 				0AA5F2A915C8BDE400D775A8 /* FormsAuthentication */,
 				18E0094815C242A9003B4358 /* US2FormValidationFramework */,
 				7A427C2F15C1880F002C873B /* MainTabViews */,
@@ -839,6 +867,8 @@
 				0A979C7315CA170500BE4CED /* LoginViewController.m */,
 				0A9CC0A515CCE44C00F5D03E /* NewsMessageView.h */,
 				0A9CC0A615CCE44C00F5D03E /* NewsMessageView.m */,
+				2722822115CCF7F4002C0942 /* PhotoMessageViewController.h */,
+				2722822215CCF7F4002C0942 /* PhotoMessageViewController.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -1071,6 +1101,29 @@
 				27C8547C15C0ECF00037F842 /* Reachability.m */,
 			);
 			path = Reachability;
+			sourceTree = "<group>";
+		};
+		27CABB7A15CCFE81006326BA /* HMGLTransitions */ = {
+			isa = PBXGroup;
+			children = (
+				27CABB7B15CCFE81006326BA /* ClothTransition.h */,
+				27CABB7C15CCFE81006326BA /* ClothTransition.m */,
+				27CABB7D15CCFE81006326BA /* DoorsTransition.h */,
+				27CABB7E15CCFE81006326BA /* DoorsTransition.m */,
+				27CABB7F15CCFE81006326BA /* FlipTransition.h */,
+				27CABB8015CCFE81006326BA /* FlipTransition.m */,
+				27CABB8115CCFE81006326BA /* HMGLTransition.h */,
+				27CABB8215CCFE81006326BA /* HMGLTransition.m */,
+				27CABB8315CCFE81006326BA /* HMGLTransitionManager.h */,
+				27CABB8415CCFE81006326BA /* HMGLTransitionManager.m */,
+				27CABB8515CCFE81006326BA /* HMGLTransitionView.h */,
+				27CABB8615CCFE81006326BA /* HMGLTransitionView.m */,
+				27CABB8715CCFE81006326BA /* RotateTransition.h */,
+				27CABB8815CCFE81006326BA /* RotateTransition.m */,
+				27CABB8915CCFE81006326BA /* Switch3DTransition.h */,
+				27CABB8A15CCFE81006326BA /* Switch3DTransition.m */,
+			);
+			path = HMGLTransitions;
 			sourceTree = "<group>";
 		};
 		27CBE2CD15BE4939007D6AEC /* MGBox */ = {
@@ -1847,6 +1900,15 @@
 				0A633C7015CB709100CD0294 /* MyMD5.m in Sources */,
 				0A9CC0A715CCE44D00F5D03E /* NewsMessageView.m in Sources */,
 				0A9CC0F315CD216100F5D03E /* DetailTextView.m in Sources */,
+				2722822315CCF7F4002C0942 /* PhotoMessageViewController.m in Sources */,
+				27CABB8B15CCFE81006326BA /* ClothTransition.m in Sources */,
+				27CABB8C15CCFE81006326BA /* DoorsTransition.m in Sources */,
+				27CABB8D15CCFE81006326BA /* FlipTransition.m in Sources */,
+				27CABB8E15CCFE81006326BA /* HMGLTransition.m in Sources */,
+				27CABB8F15CCFE81006326BA /* HMGLTransitionManager.m in Sources */,
+				27CABB9015CCFE81006326BA /* HMGLTransitionView.m in Sources */,
+				27CABB9115CCFE81006326BA /* RotateTransition.m in Sources */,
+				27CABB9215CCFE81006326BA /* Switch3DTransition.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
