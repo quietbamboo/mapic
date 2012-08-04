@@ -148,6 +148,16 @@
 		2715BDEF15B930B000B0A5B1 /* HGKOptionPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2715BDEC15B930AF00B0A5B1 /* HGKOptionPanel.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		2715BDF015B930B000B0A5B1 /* iconCollapse.png in Resources */ = {isa = PBXBuildFile; fileRef = 2715BDED15B930B000B0A5B1 /* iconCollapse.png */; };
 		2715BDF115B930B000B0A5B1 /* iconExpand.png in Resources */ = {isa = PBXBuildFile; fileRef = 2715BDEE15B930B000B0A5B1 /* iconExpand.png */; };
+		2722821615CCF69F002C0942 /* ClothTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 2722820715CCF69F002C0942 /* ClothTransition.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		2722821715CCF69F002C0942 /* DoorsTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 2722820915CCF69F002C0942 /* DoorsTransition.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		2722821815CCF69F002C0942 /* FlipTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 2722820B15CCF69F002C0942 /* FlipTransition.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		2722821915CCF69F002C0942 /* HMGLTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 2722820D15CCF69F002C0942 /* HMGLTransition.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		2722821A15CCF69F002C0942 /* HMGLTransitionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2722820F15CCF69F002C0942 /* HMGLTransitionManager.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		2722821B15CCF69F002C0942 /* HMGLTransitionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2722821115CCF69F002C0942 /* HMGLTransitionView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		2722821C15CCF69F002C0942 /* RotateTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 2722821315CCF69F002C0942 /* RotateTransition.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		2722821D15CCF69F002C0942 /* Switch3DTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 2722821515CCF69F002C0942 /* Switch3DTransition.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		2722822015CCF77E002C0942 /* ModalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2722821F15CCF77E002C0942 /* ModalViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		2722822315CCF7F4002C0942 /* PhotoMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2722822215CCF7F4002C0942 /* PhotoMessageViewController.m */; };
 		2761E02915C375FC007CE4F5 /* BDViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2761E02615C375FC007CE4F5 /* BDViewController.m */; };
 		2761E02A15C375FC007CE4F5 /* BDViewController+Private.m in Sources */ = {isa = PBXBuildFile; fileRef = 2761E02815C375FC007CE4F5 /* BDViewController+Private.m */; };
 		2782827F1541645500326471 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2782827E1541645500326471 /* AVFoundation.framework */; };
@@ -617,6 +627,26 @@
 		2715BDEC15B930AF00B0A5B1 /* HGKOptionPanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HGKOptionPanel.m; sourceTree = "<group>"; };
 		2715BDED15B930B000B0A5B1 /* iconCollapse.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = iconCollapse.png; path = Classes/iconCollapse.png; sourceTree = "<group>"; };
 		2715BDEE15B930B000B0A5B1 /* iconExpand.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = iconExpand.png; path = Classes/iconExpand.png; sourceTree = "<group>"; };
+		2722820615CCF69F002C0942 /* ClothTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClothTransition.h; sourceTree = "<group>"; };
+		2722820715CCF69F002C0942 /* ClothTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClothTransition.m; sourceTree = "<group>"; };
+		2722820815CCF69F002C0942 /* DoorsTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DoorsTransition.h; sourceTree = "<group>"; };
+		2722820915CCF69F002C0942 /* DoorsTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DoorsTransition.m; sourceTree = "<group>"; };
+		2722820A15CCF69F002C0942 /* FlipTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlipTransition.h; sourceTree = "<group>"; };
+		2722820B15CCF69F002C0942 /* FlipTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlipTransition.m; sourceTree = "<group>"; };
+		2722820C15CCF69F002C0942 /* HMGLTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMGLTransition.h; sourceTree = "<group>"; };
+		2722820D15CCF69F002C0942 /* HMGLTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMGLTransition.m; sourceTree = "<group>"; };
+		2722820E15CCF69F002C0942 /* HMGLTransitionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMGLTransitionManager.h; sourceTree = "<group>"; };
+		2722820F15CCF69F002C0942 /* HMGLTransitionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMGLTransitionManager.m; sourceTree = "<group>"; };
+		2722821015CCF69F002C0942 /* HMGLTransitionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMGLTransitionView.h; sourceTree = "<group>"; };
+		2722821115CCF69F002C0942 /* HMGLTransitionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMGLTransitionView.m; sourceTree = "<group>"; };
+		2722821215CCF69F002C0942 /* RotateTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RotateTransition.h; sourceTree = "<group>"; };
+		2722821315CCF69F002C0942 /* RotateTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RotateTransition.m; sourceTree = "<group>"; };
+		2722821415CCF69F002C0942 /* Switch3DTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Switch3DTransition.h; sourceTree = "<group>"; };
+		2722821515CCF69F002C0942 /* Switch3DTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Switch3DTransition.m; sourceTree = "<group>"; };
+		2722821E15CCF77E002C0942 /* ModalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModalViewController.h; sourceTree = "<group>"; };
+		2722821F15CCF77E002C0942 /* ModalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModalViewController.m; sourceTree = "<group>"; };
+		2722822115CCF7F4002C0942 /* PhotoMessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoMessageViewController.h; sourceTree = "<group>"; };
+		2722822215CCF7F4002C0942 /* PhotoMessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoMessageViewController.m; sourceTree = "<group>"; };
 		2761E02515C375FC007CE4F5 /* BDViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDViewController.h; sourceTree = "<group>"; };
 		2761E02615C375FC007CE4F5 /* BDViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDViewController.m; sourceTree = "<group>"; };
 		2761E02715C375FC007CE4F5 /* BDViewController+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BDViewController+Private.h"; sourceTree = "<group>"; };
@@ -774,6 +804,9 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				2722821E15CCF77E002C0942 /* ModalViewController.h */,
+				2722821F15CCF77E002C0942 /* ModalViewController.m */,
+				2722820515CCF69F002C0942 /* HMGLTransitions */,
 				0AA5F2A915C8BDE400D775A8 /* FormsAuthentication */,
 				18E0094815C242A9003B4358 /* US2FormValidationFramework */,
 				7A427C2F15C1880F002C873B /* MainTabViews */,
@@ -826,6 +859,8 @@
 				27CCB4D215BFD3DB00A38922 /* ImagePickeViewController.m */,
 				0A979C7215CA170500BE4CED /* LoginViewController.h */,
 				0A979C7315CA170500BE4CED /* LoginViewController.m */,
+				2722822115CCF7F4002C0942 /* PhotoMessageViewController.h */,
+				2722822215CCF7F4002C0942 /* PhotoMessageViewController.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -1021,6 +1056,30 @@
 				2715BDCD15B8F03700B0A5B1 /* BarBackgroundLayer.m */,
 			);
 			path = Layers;
+			sourceTree = "<group>";
+		};
+		2722820515CCF69F002C0942 /* HMGLTransitions */ = {
+			isa = PBXGroup;
+			children = (
+				2722820615CCF69F002C0942 /* ClothTransition.h */,
+				2722820715CCF69F002C0942 /* ClothTransition.m */,
+				2722820815CCF69F002C0942 /* DoorsTransition.h */,
+				2722820915CCF69F002C0942 /* DoorsTransition.m */,
+				2722820A15CCF69F002C0942 /* FlipTransition.h */,
+				2722820B15CCF69F002C0942 /* FlipTransition.m */,
+				2722820C15CCF69F002C0942 /* HMGLTransition.h */,
+				2722820D15CCF69F002C0942 /* HMGLTransition.m */,
+				2722820E15CCF69F002C0942 /* HMGLTransitionManager.h */,
+				2722820F15CCF69F002C0942 /* HMGLTransitionManager.m */,
+				2722821015CCF69F002C0942 /* HMGLTransitionView.h */,
+				2722821115CCF69F002C0942 /* HMGLTransitionView.m */,
+				2722821215CCF69F002C0942 /* RotateTransition.h */,
+				2722821315CCF69F002C0942 /* RotateTransition.m */,
+				2722821415CCF69F002C0942 /* Switch3DTransition.h */,
+				2722821515CCF69F002C0942 /* Switch3DTransition.m */,
+			);
+			name = HMGLTransitions;
+			path = ../HMGLTransitions;
 			sourceTree = "<group>";
 		};
 		27C8540215C0EB690037F842 /* ASIHTTPRequest */ = {
@@ -1831,6 +1890,16 @@
 				0A1BD08715C7C6EE0011B81A /* FormTextViewTableViewCell.m in Sources */,
 				0A979C7415CA170500BE4CED /* LoginViewController.m in Sources */,
 				0A633C7015CB709100CD0294 /* MyMD5.m in Sources */,
+				2722821615CCF69F002C0942 /* ClothTransition.m in Sources */,
+				2722821715CCF69F002C0942 /* DoorsTransition.m in Sources */,
+				2722821815CCF69F002C0942 /* FlipTransition.m in Sources */,
+				2722821915CCF69F002C0942 /* HMGLTransition.m in Sources */,
+				2722821A15CCF69F002C0942 /* HMGLTransitionManager.m in Sources */,
+				2722821B15CCF69F002C0942 /* HMGLTransitionView.m in Sources */,
+				2722821C15CCF69F002C0942 /* RotateTransition.m in Sources */,
+				2722821D15CCF69F002C0942 /* Switch3DTransition.m in Sources */,
+				2722822015CCF77E002C0942 /* ModalViewController.m in Sources */,
+				2722822315CCF7F4002C0942 /* PhotoMessageViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -468,13 +468,40 @@ static const NSTimeInterval kSlideshowInterval = 6;
     [_delegate directionsViewControllerDidCancel:self];
 }
 
+
+- (void)modalPresentationButtonPressed:(id)sender {
+	
+	[[HMGLTransitionManager sharedTransitionManager] setTransition:[[[Switch3DTransition alloc] init] autorelease]];	
+	
+	 PhotoMessageViewController *newController;
+	if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+		newController = [[PhotoMessageViewController alloc] init];
+	}
+	else {
+		newController = [[PhotoMessageViewController alloc] init];
+	}
+	newController.delegate = self;
+	 UINavigationController* phtotmessageViewNav = [[UINavigationController alloc] initWithRootViewController:newController];
+	[[HMGLTransitionManager sharedTransitionManager] presentModalViewController:phtotmessageViewNav onViewController:self];
+	[phtotmessageViewNav release];
+	[newController release];
+}
+#pragma mark -
+#pragma mark ModalController delegate
+- (void)modalControllerDidFinish:(PhotoMessageViewController *)modalController {
+    
+	[[HMGLTransitionManager sharedTransitionManager] setTransition:[[[Switch3DTransition alloc] init] autorelease]];		
+	[[HMGLTransitionManager sharedTransitionManager] dismissModalViewController:modalController];
+}
+
 #pragma mark
 #pragma mark default Mthods
 - (void)viewDidLoad {
     //only called once when entering the image section
 	
 	[self showActivity];
-    
+
+   
     NSLog(@"View did log");
     [NSTimer scheduledTimerWithTimeInterval: 0.2
 									 target: self
@@ -564,7 +591,7 @@ static const NSTimeInterval kSlideshowInterval = 6;
 //                    UIBarButtonSystemItemPlay target:self action:@selector(playAction)] autorelease];
 //	_playButton.tag = 1;
 	
-    _messageButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"notificationToastCommentIcon.png"] style:UIBarButtonItemStylePlain target:self action:@selector(messageAction)];
+    _messageButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"notificationToastCommentIcon.png"] style:UIBarButtonItemStylePlain target:self action:@selector(modalPresentationButtonPressed:)];
     
 	UIBarItem* space = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:
 						 UIBarButtonSystemItemFlexibleSpace target:nil action:nil] autorelease];

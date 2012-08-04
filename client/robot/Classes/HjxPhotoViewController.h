@@ -20,11 +20,14 @@
 #import "ASIHTTPRequestDelegate.h"
 #import "ASIProgressDelegate.h"
 #import "BDViewController.h"
+#import "PhotoMessageViewController.h"
+#import "HMGLTransitionManager.h"
+#import "Switch3DTransition.h"
 //@class AdMobView;
 
 NSString* photoList;
 @protocol DirectionsViewControllerDelegate;
-@interface HjxPhotoViewController : TTPhotoViewController<UIAlertViewDelegate, GADBannerViewDelegate,ASIHTTPRequestDelegate> {
+@interface HjxPhotoViewController : TTPhotoViewController<UIAlertViewDelegate, GADBannerViewDelegate,ASIHTTPRequestDelegate,ModalControllerDelegate> {
 
 //    GADBannerView *adMobAd;
 //    NSTimer *adTimer;
