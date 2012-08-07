@@ -7,12 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "PhotoMessageView.h"
 @protocol ModalControllerDelegate;
 
-@interface PhotoMessageViewController : UIViewController {
+@interface PhotoMessageViewController : UIViewController <UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate>{
     
 	id <ModalControllerDelegate> delegate;
+    UITextField* sendfield;
 }
 
 @property (nonatomic) id <ModalControllerDelegate> delegate;
