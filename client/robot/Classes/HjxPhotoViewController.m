@@ -471,7 +471,7 @@ static const NSTimeInterval kSlideshowInterval = 6;
 
 - (void)modalPresentationButtonPressed:(id)sender {
 	
-	[[HMGLTransitionManager sharedTransitionManager] setTransition:[[[Switch3DTransition alloc] init] autorelease]];	
+	[[HMGLTransitionManager sharedTransitionManager] setTransition:[[[FlipTransition alloc] init] autorelease]];	
 	
 	 PhotoMessageViewController *newController;
 	if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
@@ -489,8 +489,9 @@ static const NSTimeInterval kSlideshowInterval = 6;
 #pragma mark -
 #pragma mark ModalController delegate
 - (void)modalControllerDidFinish:(PhotoMessageViewController *)modalController {
-    
-	[[HMGLTransitionManager sharedTransitionManager] setTransition:[[[Switch3DTransition alloc] init] autorelease]];		
+  FlipTransition *flipTransitionleft = [[[FlipTransition alloc] init] autorelease];
+    [flipTransitionleft setTransitionType:FlipTransitionRight];
+	[[HMGLTransitionManager sharedTransitionManager] setTransition:flipTransitionleft];		
 	[[HMGLTransitionManager sharedTransitionManager] dismissModalViewController:modalController];
 }
 
