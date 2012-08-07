@@ -178,7 +178,7 @@
     NSValue *keyboardValue = [info objectForKey:UIKeyboardFrameEndUserInfoKey]; 
     [keyboardValue getValue:&keyboardBounds];
     
-    //rect.origin.y = -(keyboardBounds.size.height);	
+    //rect.origin.y = -(key	boardBounds.size.height);	
     UITableView* tableview = (UITableView *)[self.view viewWithTag:TABLEHEIGHT];
     tableview.frame = CGRectMake(0, 0, 320, 392 - keyboardBounds.size.height);
     UIToolbar* toolbar = (UIToolbar *)[self.view viewWithTag:TOOLBAR];
