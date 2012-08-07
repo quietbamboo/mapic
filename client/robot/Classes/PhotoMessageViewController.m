@@ -102,7 +102,6 @@
 
 
 - (void)closeButtonPressed {
-    self.navigationController.navigationBarHidden = YES;
 	[delegate modalControllerDidFinish:self];
 }
 
