@@ -2,7 +2,7 @@
 
 #Remove personal data
 client/robot/template.xcodeproj/project.xcworkspace/xcuserdata/
-#client/robot/template.xcodeproj/xcuserdata/
+client/robot/template.xcodeproj/xcuserdata/
 client/FilterKit/FilterKit.xcodeproj/xcuserdata/
 client/FilterKit/FilterKit.xcodeproj/project.xcworkspace/xcuserdata/
 client/FilterKit/FilterKit.xcodeproj/project.xcworkspace/contents.xcworkspacedata
