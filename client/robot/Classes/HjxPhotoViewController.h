@@ -22,7 +22,7 @@
 #import "BDViewController.h"
 #import "PhotoMessageViewController.h"
 #import "HMGLTransitionManager.h"
-#import "Switch3DTransition.h"
+#import "FlipTransition.h"
 //@class AdMobView;
 
 NSString* photoList;
