@@ -12,6 +12,8 @@
 
 @end
 
+#define TABLEHEIGHT    10
+#define TOOLBAR        20
 @implementation PhotoMessageViewController
 @synthesize delegate;
 
@@ -45,15 +47,18 @@
                                         action:@selector(closeButtonPressed)];
      self.navigationItem.rightBarButtonItem = btnDBSignupView;
     
-    UITableView *tableview= [[UITableView alloc] initWithFrame:CGRectMake(0,0, 320, 376) style:UITableViewStylePlain];
+    UITableView *tableview= [[UITableView alloc] initWithFrame:CGRectMake(0,0, 320, 392) style:UITableViewStylePlain];
     tableview.separatorStyle = UITableViewStyleGrouped;
     tableview.separatorColor = [UIColor blackColor];
+    tableview.tag = TABLEHEIGHT;
     [tableview setDelegate:self];
     [tableview setDataSource:self];
     [self.view addSubview: tableview];
     [tableview release];
     
-    sendfield = [[UITextField alloc] initWithFrame:CGRectMake(-10, 4, 150, 35)];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeLocations:) name:UIKeyboardWillShowNotification object:nil];
+    
+    sendfield = [[UITextField alloc] initWithFrame:CGRectMake(0, 4, 250, 35)];
     sendfield.delegate = self;
     sendfield.tag = 0;
     sendfield.autocorrectionType = UITextAutocorrectionTypeYes;
@@ -68,9 +73,10 @@
     UIButton *sendbutton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     sendbutton.frame = CGRectMake(250, 7, 50, 30);
     [sendbutton setTitle:@"发送" forState:UIControlStateNormal];
-    [sendbutton addTarget:self action:@selector(textFieldDoneEditing:) forControlEvents:UIControlEventTouchUpInside];
+    [sendbutton addTarget:self action:@selector(sendmessage) forControlEvents:UIControlEventTouchUpInside];
     
     UIToolbar *toolBar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 392, 320, 44)];
+    toolBar.tag = TOOLBAR;
     NSMutableArray* allitems = [[NSMutableArray alloc] init];
     [allitems addObject:[[[UIBarButtonItem alloc] initWithCustomView:sendfield] autorelease]];
     [allitems addObject:[[[UIBarButtonItem alloc] initWithCustomView:sendbutton] autorelease]];
@@ -158,36 +164,62 @@
 #pragma mark sendbutton
 - (void) sendmessage{
     [sendfield resignFirstResponder];
-    CGRect rect = self.view.frame;
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationDuration:0.3];
-    rect.origin.y = 0.0f;
-    self.view.frame = rect;
+    UITableView* tableview = (UITableView *)[self.view viewWithTag:TABLEHEIGHT];
+    tableview.frame = CGRectMake(0, 0, 320, 392);
+    UIToolbar* toolbar = (UIToolbar *)[self.view viewWithTag:TOOLBAR];
+    toolbar.frame = CGRectMake(0, 392, 320, 44);
     [UIView commitAnimations];
+}
+
+- (void)changeLocations:(NSNotification *)notification {
+    CGRect keyboardBounds;
+    NSDictionary *info = [notification userInfo]; 
+    NSValue *keyboardValue = [info objectForKey:UIKeyboardFrameEndUserInfoKey]; 
+    [keyboardValue getValue:&keyboardBounds];
     
+    //rect.origin.y = -(key	boardBounds.size.height);	
+    UITableView* tableview = (UITableView *)[self.view viewWithTag:TABLEHEIGHT];
+    tableview.frame = CGRectMake(0, 0, 320, 392 - keyboardBounds.size.height);
+    UIToolbar* toolbar = (UIToolbar *)[self.view viewWithTag:TOOLBAR];
+    toolbar.frame = CGRectMake(0, 392 - keyboardBounds.size.height, 320, 44);
 }
 
 - (void) textFieldDoneEditing:(id)sender{  
     [sender resignFirstResponder];  
-    [self sendmessage];
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationDuration:0.3];
+    UITableView* tableview = (UITableView *)[self.view viewWithTag:TABLEHEIGHT];
+    tableview.frame = CGRectMake(0, 0, 320, 392);
+    UIToolbar* toolbar = (UIToolbar *)[self.view viewWithTag:TOOLBAR];
+    toolbar.frame = CGRectMake(0, 392, 320, 44);
+    [UIView commitAnimations];
 }
 #pragma mark - UITextFieldDelegate
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
-    NSUInteger tag = [textField tag];
-    CGRect rect = self.view.frame;
+//    NSUInteger tag = [textField tag];
+//    CGRect rect = self.view.frame;
+//    [UIView beginAnimations:nil context:NULL];
+//    [UIView setAnimationDuration:0.3];
+//    switch (tag) {
+//        case 0:
+//            rect.origin.y = -250.0f;
+//            break;
+//        default:
+//            rect.origin.y = 0.0f;
+//            break;
+//    }
+//    self.view.frame = rect;
+//    [UIView commitAnimations];
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationDuration:0.3];
-    switch (tag) {
-        case 0:
-            rect.origin.y = -250.0f;
-            break;
-        default:
-            rect.origin.y = 0.0f;
-            break;
-    }
-    self.view.frame = rect;
+    UITableView* tableview = (UITableView *)[self.view viewWithTag:TABLEHEIGHT];
+    tableview.frame = CGRectMake(0, 0, 320, 142);
+    UIToolbar* toolbar = (UIToolbar *)[self.view viewWithTag:TOOLBAR];
+    toolbar.frame = CGRectMake(0, 142, 320, 44);
     [UIView commitAnimations];
 }
 
