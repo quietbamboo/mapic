@@ -10,19 +10,22 @@
 #import "DetailTextView.h"
 @implementation NewsMessageView
 
-@synthesize headimageView = _headimageView;
 @synthesize footimageView = _footimageView;
 @synthesize footlabel = _footlabel;
-
-- (id)initWithFrame:(CGRect)frame headString:(NSString *)headString footString:(NSString *)footString
+@synthesize numimage;
+@synthesize delegate;
+- (id)initWithFrame:(CGRect)frame headString:(NSString *)headString footString:(NSString *)footString headimage:(UIImage *)headimage
 {
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
         self.backgroundColor = [UIColor whiteColor];
-        _headimageView = [[UIImageView alloc] initWithFrame:CGRectMake(5, 10, 50, 50)];
-        _headimageView.image = [UIImage imageNamed:@""];
-        [self addSubview:_headimageView];
+        
+        UIButton *imageButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+        imageButton.frame = CGRectMake(10, 10, 50, 50);
+        [imageButton setImage:headimage forState:UIControlStateNormal];
+        [imageButton addTarget:self action:@selector(onClickImage) forControlEvents:UIControlEventTouchUpInside];
+        [self addSubview:imageButton];
         
         _footimageView = [[UIImageView alloc] initWithFrame:CGRectMake(245, 10, 50, 50)];
         _footimageView.image = [UIImage imageNamed:@""];
@@ -62,8 +65,9 @@
     return self;
 }
 
-
-
+- (void) onClickImage {
+    [delegate clickImage:numimage];
+}
 /*
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.

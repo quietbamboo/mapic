@@ -10,18 +10,21 @@
 #import "DetailTextView.h"
 @implementation PhotoMessageView
 
-@synthesize headimageView = _headimageView;
 @synthesize footlabel = _footlabel;
-
-- (id)initWithFrame:(CGRect)frame headString:(NSString *)headString footString:(NSString *)footString
+@synthesize butnum = _butnum;
+@synthesize delegate;
+- (id)initWithFrame:(CGRect)frame headString:(NSString *)headString footString:(NSString *)footString heimage:(UIImage *)heimage
 {
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
         self.backgroundColor = [UIColor whiteColor];
-        _headimageView = [[UIImageView alloc] initWithFrame:CGRectMake(5, 10, 50, 50)];
-        _headimageView.image = [UIImage imageNamed:@""];
-        [self addSubview:_headimageView];
+        
+        UIButton *imageButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+        imageButton.frame = CGRectMake(5, 10, 50, 50);
+        [imageButton setImage:heimage forState:UIControlStateNormal];
+        [imageButton addTarget:self action:@selector(onClickImage) forControlEvents:UIControlEventTouchUpInside];
+        [self addSubview:imageButton];
         
         DetailTextView *label = [[DetailTextView alloc]initWithFrame:CGRectMake(60, 0, 260, 300)];
         [label setText:[NSString stringWithFormat:@"%@ %@",headString,footString] WithFont:[UIFont systemFontOfSize:15] AndColor:[UIColor blackColor]];
@@ -55,6 +58,10 @@
         [self addSubview:_footlabel];
     }
     return self;
+}
+
+- (void) onClickImage {
+    [delegate clickImage:_butnum];
 }
 
 /*

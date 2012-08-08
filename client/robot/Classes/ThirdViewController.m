@@ -74,14 +74,8 @@
     [self addBox:nil];
     
 //    // add a new MGBox to the MGScrollView
-    MGStyledBox *box1 = [MGStyledBox box];
-    [scroller.boxes addObject:box1];
-    
-    NewsMessageView* news = [[NewsMessageView alloc] initWithFrame:CGRectMake(10, 150, 300, 80) headString:@"User" footString:@"stared following you"];
-    news.headimageView.image = [UIImage imageNamed:@"andong.jpg"];
-    news.footimageView.image = [UIImage imageNamed:@"andong.jpg"];
-    news.footlabel.text = @"18 minutes ago";
-    [box1.topLines addObject:news];
+//    MGStyledBox *box1 = [MGStyledBox box];
+//    [scroller.boxes addObject:box1];
 //    
 //    // add some MGBoxLines to the box
 //    MGBoxLine *head1 =
@@ -95,8 +89,8 @@
 //    [MGBoxLine lineWithLeft:@"NSString and UISwitch" right:toggle];
 //    [box1.topLines addObject:line1];
     
-    MGStyledBox *box2 = [MGStyledBox box];
-    [scroller.boxes addObject:box2];
+//    MGStyledBox *box2 = [MGStyledBox box];
+//    [scroller.boxes addObject:box2];
 //    
 //    MGBoxLine *head2 = [MGBoxLine lineWithLeft:@"Multiline Content" right:nil];
 //    head2.font = headerFont;
@@ -105,16 +99,26 @@
 //    NSString *blah = @"Multiline content is automatically sized and formatted "
 //    "given an NSString, UIFont, and desired padding.";
 //    MGBoxLine *multi = [MGBoxLine multilineWithText:blah font:nil padding:24];
-    NewsMessageView* newsmess = [[NewsMessageView alloc] initWithFrame:CGRectMake(10, 150, 300, 80) headString:@"User" footString:@"stared following you"];
-    newsmess.headimageView.image = [UIImage imageNamed:@"andong.jpg"];
-    newsmess.footimageView.image = [UIImage imageNamed:@"andong.jpg"];
-    newsmess.footlabel.text = @"18 minutes ago";
-    
-    [box2.topLines addObject:newsmess];
 //    [box2.topLines addObject:multi];
     
-    MGStyledBox *box3 = [MGStyledBox box];
-    [scroller.boxes addObject:box3];
+    [self photomessageControllerArray];
+    for (int i = 0;i<photomessageArray.count;i++) {
+        MGStyledBox *box5 = [MGStyledBox box];
+        [scroller.boxes addObject:box5];
+         NSDictionary *nsdic = [photomessageArray objectAtIndex:i];
+        
+        NewsMessageView* new = [[NewsMessageView alloc] initWithFrame:CGRectMake(0, 0, 320, 80) headString:[nsdic objectForKey:@"head"] footString:[nsdic objectForKey:@"foot"] headimage:[UIImage imageNamed:[nsdic objectForKey:@"image"]]];
+                                //initWithFrame:CGRectMake(0, 0, 320, 70) headString:[nsdic objectForKey:@"head"] footString:[nsdic objectForKey:@"foot"] heimage:[UIImage imageNamed:[nsdic objectForKey:@"image"]]];
+        new.footimageView.image = [UIImage imageNamed:@"andong.jpg"];
+        new.footlabel.text = [nsdic objectForKey:@"labeltext"];
+        new.delegate = self;
+        new.numimage = i;
+        [box5.topLines addObject:new];
+    }
+    
+    
+//    MGStyledBox *box3 = [MGStyledBox box];
+//    [scroller.boxes addObject:box3];
     
 //    MGBoxLine *head3 =
 //    [MGBoxLine lineWithLeft:@"NSStrings, UIImages, and UIViews"
@@ -138,12 +142,6 @@
 //    [NSArray arrayWithObjects:img, @"An NSString after a UIImage", nil];
 //    MGBoxLine *imgLine = [MGBoxLine lineWithLeft:imgLineLeft right:nil];
 //    [box3.topLines addObject:imgLine];
-    
-    NewsMessageView* newsmessage = [[NewsMessageView alloc] initWithFrame:CGRectMake(10, 150, 300, 80) headString:@"User" footString:@"stared following you"];
-    newsmessage.headimageView.image = [UIImage imageNamed:@"andong.jpg"];
-    newsmessage.footimageView.image = [UIImage imageNamed:@"andong.jpg"];
-    newsmessage.footlabel.text = @"18 minutes ago";
-    [box3.topLines addObject:newsmessage];
     
     // draw all the boxes and animate as appropriate
     [scroller drawBoxesWithSpeed:ANIM_SPEED];
@@ -273,6 +271,16 @@ return button;
     [scroller drawBoxesWithSpeed:ANIM_SPEED];
 }
 
+- (void)clickImage:(int)imagenum{
+    if (imagenum == 0) {
+        LoginViewController* login = [[LoginViewController alloc] init];
+        [self.navigationController pushViewController:login animated:YES];
+    }else if(imagenum == 1){
+        
+    }else if(imagenum == 2){
+        
+    }
+}
 #pragma mark - UIScrollViewDelegate (for snapping boxes to edges)
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
@@ -303,6 +311,17 @@ return button;
             break;
     }
 }
+#pragma mark - initphotomessage
 
+- (void) photomessageControllerArray{
+    
+    NSDictionary *dic1 = [NSDictionary dictionaryWithObjectsAndKeys:@"All",@"head",@"All of us have read thrilling stories in which the  ",@"foot",@"logo.png",@"image",@"18 minutes ago",@"labeltext",nil];
+    NSDictionary *dic2 = [NSDictionary dictionaryWithObjectsAndKeys:@"hero",@"head",@"hero had only a limited and specified time to live.",@"foot",@"weibo.png",@"image",@"18 minutes ago",@"labeltext",nil];
+    NSDictionary *dic3 = [NSDictionary dictionaryWithObjectsAndKeys:@"How",@"head",@"How are you. I'm go to shopping. I go home.",@"foot",@"andong.jpg",@"image",@"18 minutes ago",@"labeltext",nil];
+    photomessageArray = [[NSMutableArray alloc] initWithCapacity:0];
+    [photomessageArray addObject:dic1];
+    [photomessageArray addObject:dic2];
+    [photomessageArray addObject:dic3];
+}
 @end
 

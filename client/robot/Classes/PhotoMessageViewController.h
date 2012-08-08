@@ -10,8 +10,8 @@
 #import "PhotoMessageView.h"
 @protocol ModalControllerDelegate;
 
-@interface PhotoMessageViewController : UIViewController <UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate>{
-    
+@interface PhotoMessageViewController : UIViewController <UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate,PhotoMessageDelegate>{
+    NSMutableArray *photomessageArray;
 	id <ModalControllerDelegate> delegate;
     UITextField* sendfield;
 }

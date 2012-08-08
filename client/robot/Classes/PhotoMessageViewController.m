@@ -7,7 +7,7 @@
 //
 
 #import "PhotoMessageViewController.h"
-
+#import "LoginViewController.h"
 @interface PhotoMessageViewController ()
 
 @end
@@ -46,7 +46,7 @@
                                         target:self 
                                         action:@selector(closeButtonPressed)];
      self.navigationItem.rightBarButtonItem = btnDBSignupView;
-    
+    [self photomessageArray];
     UITableView *tableview= [[UITableView alloc] initWithFrame:CGRectMake(0,0, 320, 392) style:UITableViewStylePlain];
     tableview.separatorStyle = UITableViewStyleGrouped;
     tableview.separatorColor = [UIColor blackColor];
@@ -104,7 +104,17 @@
 - (void)closeButtonPressed {
 	[delegate modalControllerDidFinish:self];
 }
-
+- (void)clickImage:(int)imagenum{
+    if (imagenum == 0) {
+        LoginViewController* log = [[LoginViewController alloc] init];
+        [self.navigationController pushViewController:log animated:YES];
+    }else if(imagenum == 1){
+        NSLog(@"this sssssssss");
+    }else if(imagenum == 2){
+        NSLog(@"this aaaaaaaa");
+    }
+    
+}
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -129,34 +139,14 @@
     }
     
     cell.selectionStyle = UITableViewCellSelectionStyleBlue;
-    if (indexPath.section == 0) {
-        switch (indexPath.row) {
-            case 0:
-                cell.textLabel.text = @"";
-                PhotoMessageView* photomessage = [[PhotoMessageView alloc]initWithFrame:CGRectMake(0, 0, 320, 70) headString:@"How" footString:@"How are you. I'm go to shopping. I go home."];
-                photomessage.headimageView.image = [UIImage imageNamed:@"andong.jpg"];
-                photomessage.footlabel.text = @"18 minutes ago";
-                [cell.contentView addSubview:photomessage];
-                [photomessage release];
-                break;
-            case 1:
-                cell.textLabel.text = @"";
-                PhotoMessageView* photomessage1 = [[PhotoMessageView alloc]initWithFrame:CGRectMake(0, 0, 320, 70) headString:@"How" footString:@"How are you. I'm go to shopping. I go home."];
-                photomessage1.headimageView.image = [UIImage imageNamed:@"andong.jpg"];
-                photomessage1.footlabel.text = @"18 minutes ago";
-                [cell.contentView addSubview:photomessage1];
-                [photomessage1 release];
-                break;
-            case 2:
-                cell.textLabel.text = @"";
-                PhotoMessageView* photomessage2 = [[PhotoMessageView alloc]initWithFrame:CGRectMake(0, 0, 320, 70) headString:@"How" footString:@"How are you. I'm go to shopping. I go home."];
-                photomessage2.headimageView.image = [UIImage imageNamed:@"andong.jpg"];
-                photomessage2.footlabel.text = @"18 minutes ago";
-                [cell.contentView addSubview:photomessage2];
-                [photomessage2 release];
-                break;
-        }
-    }
+    NSDictionary *nsdic = [photomessageArray objectAtIndex:indexPath.row];
+    cell.textLabel.text = @"";
+    PhotoMessageView* photomessage = [[PhotoMessageView alloc]initWithFrame:CGRectMake(0, 0, 320, 70) headString:[nsdic objectForKey:@"head"] footString:[nsdic objectForKey:@"foot"] heimage:[UIImage imageNamed:[nsdic objectForKey:@"image"]]];
+    photomessage.footlabel.text = [nsdic objectForKey:@"labeltext"];
+    photomessage.delegate = self;
+    photomessage.butnum = indexPath.row;
+    [cell.contentView addSubview:photomessage];
+    [photomessage release];
     
 	return cell;
 }
@@ -178,7 +168,6 @@
     NSValue *keyboardValue = [info objectForKey:UIKeyboardFrameEndUserInfoKey]; 
     [keyboardValue getValue:&keyboardBounds];
     
-    //rect.origin.y = -(key	boardBounds.size.height);	
     UITableView* tableview = (UITableView *)[self.view viewWithTag:TABLEHEIGHT];
     tableview.frame = CGRectMake(0, 0, 320, 392 - keyboardBounds.size.height);
     UIToolbar* toolbar = (UIToolbar *)[self.view viewWithTag:TOOLBAR];
@@ -199,20 +188,6 @@
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
-//    NSUInteger tag = [textField tag];
-//    CGRect rect = self.view.frame;
-//    [UIView beginAnimations:nil context:NULL];
-//    [UIView setAnimationDuration:0.3];
-//    switch (tag) {
-//        case 0:
-//            rect.origin.y = -250.0f;
-//            break;
-//        default:
-//            rect.origin.y = 0.0f;
-//            break;
-//    }
-//    self.view.frame = rect;
-//    [UIView commitAnimations];
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationDuration:0.3];
     UITableView* tableview = (UITableView *)[self.view viewWithTag:TABLEHEIGHT];
@@ -221,6 +196,17 @@
     toolbar.frame = CGRectMake(0, 142, 320, 44);
     [UIView commitAnimations];
 }
+#pragma mark - initphotomessage
 
+- (void) photomessageArray{
+
+    NSDictionary *dic1 = [NSDictionary dictionaryWithObjectsAndKeys:@"All",@"head",@"All of us have read thrilling stories in which the  ",@"foot",@"logo.png",@"image",@"18 minutes ago",@"labeltext",nil];
+    NSDictionary *dic2 = [NSDictionary dictionaryWithObjectsAndKeys:@"hero",@"head",@"hero had only a limited and specified time to live.",@"foot",@"weibo.png",@"image",@"18 minutes ago",@"labeltext",nil];
+    NSDictionary *dic3 = [NSDictionary dictionaryWithObjectsAndKeys:@"How",@"head",@"How are you. I'm go to shopping. I go home.",@"foot",@"andong.jpg",@"image",@"18 minutes ago",@"labeltext",nil];
+    photomessageArray = [[NSMutableArray alloc] initWithCapacity:0];
+    [photomessageArray addObject:dic1];
+    [photomessageArray addObject:dic2];
+    [photomessageArray addObject:dic3];
+}
 
 @end

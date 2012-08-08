@@ -16,8 +16,8 @@
 #import "MGBoxLine.h"
 #import "NewsMessageView.h"
 
-@interface ThirdViewController : UIViewController<UIScrollViewDelegate,JMTabViewDelegate>{
-    
+@interface ThirdViewController : UIViewController<UIScrollViewDelegate,JMTabViewDelegate,NewsMessageDelegate>{
+    NSMutableArray *photomessageArray;
     NotificationView *notificationView;
     MGScrollView *scroller;
 }

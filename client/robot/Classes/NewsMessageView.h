@@ -7,16 +7,23 @@
 //
 
 #import <UIKit/UIKit.h>
-
+@protocol NewsMessageDelegate;
 @interface NewsMessageView : UIView{
     
-    UIImageView* headimageView;
     UIImageView* footimageView;
     UILabel* footlabel;
+    id<NewsMessageDelegate> delegate;
+    int numimage;
 }
 
-@property (retain, nonatomic) UIImageView* headimageView;
 @property (retain, nonatomic) UIImageView* footimageView;
 @property (retain, nonatomic) UILabel* footlabel;
-- (id)initWithFrame:(CGRect)frame headString:(NSString *)headString footString:(NSString *)footString;
+@property (nonatomic) int numimage;
+@property (nonatomic) id <NewsMessageDelegate> delegate;
+
+- (id)initWithFrame:(CGRect)frame headString:(NSString *)headString footString:(NSString *)footString headimage:(UIImage *)headimage;
+@end
+
+@protocol NewsMessageDelegate <NSObject>
+- (void)clickImage:(int)imagenum;
 @end
