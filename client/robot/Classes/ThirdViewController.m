@@ -7,6 +7,12 @@
 //
 
 #import "ThirdViewController.h"
+#import "AttentionView.h"
+#import "PraiseView.h"
+#import "OnTopView.h"
+#import "PraisePhotoView.h"
+#import "FourthViewController.h"
+#import "IFTweetLabel.h"
 #define ANIM_SPEED 0.6
 @interface ThirdViewController ()
 
@@ -39,6 +45,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(attentionNotification:) name:IFTweetLabelURLNotification object:nil];
     JMTabView *tabHeaderView = [[[JMTabView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 60.)] autorelease];
     [tabHeaderView setDelegate:self];
     [tabHeaderView addTabItemWithTitle:@"Following" icon:[UIImage imageNamed:@"icon1.png"]];
@@ -101,22 +108,43 @@
 //    MGBoxLine *multi = [MGBoxLine multilineWithText:blah font:nil padding:24];
 //    [box2.topLines addObject:multi];
     
-    [self photomessageControllerArray];
-    for (int i = 0;i<photomessageArray.count;i++) {
-        MGStyledBox *box5 = [MGStyledBox box];
-        [scroller.boxes addObject:box5];
-         NSDictionary *nsdic = [photomessageArray objectAtIndex:i];
-        
-        NewsMessageView* new = [[NewsMessageView alloc] initWithFrame:CGRectMake(0, 0, 320, 80) headString:[nsdic objectForKey:@"head"] footString:[nsdic objectForKey:@"foot"] headimage:[UIImage imageNamed:[nsdic objectForKey:@"image"]]];
-                                //initWithFrame:CGRectMake(0, 0, 320, 70) headString:[nsdic objectForKey:@"head"] footString:[nsdic objectForKey:@"foot"] heimage:[UIImage imageNamed:[nsdic objectForKey:@"image"]]];
-        new.footimageView.image = [UIImage imageNamed:@"andong.jpg"];
-        new.footlabel.text = [nsdic objectForKey:@"labeltext"];
-        new.delegate = self;
-        new.numimage = i;
-        [box5.topLines addObject:new];
-    }
+//    [self photomessageControllerArray];
+//    for (int i = 0;i<photomessageArray.count;i++) {
+//        MGStyledBox *box5 = [MGStyledBox box];
+//        [scroller.boxes addObject:box5];
+//         NSDictionary *nsdic = [photomessageArray objectAtIndex:i];
+//        
+//        NewsMessageView* new = [[NewsMessageView alloc] initWithFrame:CGRectMake(0, 0, 320, 80) headString:[nsdic objectForKey:@"head"] footString:[nsdic objectForKey:@"foot"] headimage:[UIImage imageNamed:[nsdic objectForKey:@"image"]]];
+//                                //initWithFrame:CGRectMake(0, 0, 320, 70) headString:[nsdic objectForKey:@"head"] footString:[nsdic objectForKey:@"foot"] heimage:[UIImage imageNamed:[nsdic objectForKey:@"image"]]];
+//        new.footimageView.image = [UIImage imageNamed:@"andong.jpg"];
+//        new.footlabel.text = [nsdic objectForKey:@"labeltext"];
+//        new.delegate = self;
+//        new.numimage = i;
+//        [box5.topLines addObject:new];
+//    }
     
+    MGStyledBox *box1 = [MGStyledBox box];
+    [scroller.boxes addObject:box1];
+    AttentionView* attention = [[AttentionView alloc] initWithFrame:CGRectMake(0, 0, 300, 90) firstname:@"this" secondname:@"are"];
+    [box1.topLines addObject:attention];
     
+    MGStyledBox *box2 = [MGStyledBox box];
+    [scroller.boxes addObject:box2];
+    PraiseView* praise = [[PraiseView alloc] initWithFrame:CGRectMake(0, 0, 320, 70) firstname:@"敏敏" secondname:@"小光" headimage:[UIImage imageNamed:@"Icon.png"]];
+    praise.delegate = self;
+    [box2.topLines addObject:praise];
+    
+    MGStyledBox *box3 = [MGStyledBox box];
+    [scroller.boxes addObject:box3];
+    OnTopView* ontop = [[OnTopView alloc] initWithFrame:CGRectMake(0, 0, 320, 80)];
+    ontop.delegate = self;
+    [box3.topLines addObject:ontop];
+    
+    MGStyledBox *box4 = [MGStyledBox box];
+    [scroller.boxes addObject:box4];
+    PraisePhotoView* pp = [[PraisePhotoView alloc] initWithFrame:CGRectMake(0, 0, 320, 80)];
+    pp.delegate = self;
+    [box4.topLines addObject:pp];
 //    MGStyledBox *box3 = [MGStyledBox box];
 //    [scroller.boxes addObject:box3];
     
@@ -273,12 +301,14 @@ return button;
 
 - (void)clickImage:(int)imagenum{
     if (imagenum == 0) {
-        LoginViewController* login = [[LoginViewController alloc] init];
-        [self.navigationController pushViewController:login animated:YES];
+        FourthViewController* four = [[FourthViewController alloc] init];
+        [self.navigationController pushViewController:four animated:YES];
     }else if(imagenum == 1){
-        
+        FourthViewController* four = [[FourthViewController alloc] init];
+        [self.navigationController pushViewController:four animated:YES];
     }else if(imagenum == 2){
-        
+        FourthViewController* four = [[FourthViewController alloc] init];
+        [self.navigationController pushViewController:four animated:YES];
     }
 }
 #pragma mark - UIScrollViewDelegate (for snapping boxes to edges)
@@ -322,6 +352,26 @@ return button;
     [photomessageArray addObject:dic1];
     [photomessageArray addObject:dic2];
     [photomessageArray addObject:dic3];
+}
+- (void)praiseImage:(int)imagenum{
+    FourthViewController* four = [[FourthViewController alloc] init];
+    [self.navigationController pushViewController:four animated:YES];
+}
+
+- (void)ontopImage:(int)imagenum{
+    FourthViewController* four = [[FourthViewController alloc] init];
+    [self.navigationController pushViewController:four animated:YES];
+}
+
+- (void)praisephotoImage:(int)imagenum{
+    FourthViewController* four = [[FourthViewController alloc] init];
+    [self.navigationController pushViewController:four animated:YES];
+}
+
+- (void)attentionNotification:(NSNotification *)notification
+{
+	FourthViewController* four = [[FourthViewController alloc] init];
+    [self.navigationController pushViewController:four animated:YES];
 }
 @end
 

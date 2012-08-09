@@ -34,7 +34,10 @@ enum {
     }
     return self;
 }
-
+- (void) viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    self.navigationController.navigationBarHidden = NO;
+}
 - (void) loadView {
     UIView *contentView = [[UIView alloc] initWithFrame:CGRectMake(0,0, 320, 480)];
     contentView.backgroundColor = [UIColor whiteColor];

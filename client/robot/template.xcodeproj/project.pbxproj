@@ -112,6 +112,12 @@
 		18E3C9E01576FF56000418D7 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18E3C9DF1576FF56000418D7 /* CoreVideo.framework */; };
 		18E3C9E21576FF86000418D7 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18E3C9E11576FF86000418D7 /* MobileCoreServices.framework */; };
 		18E3C9E41576FFAB000418D7 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18E3C9E31576FFAB000418D7 /* AssetsLibrary.framework */; };
+		18E8D11915D3563700CAD030 /* AttentionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E8D11815D3563700CAD030 /* AttentionView.m */; };
+		18E8D11C15D35D3D00CAD030 /* PraiseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E8D11B15D35D3D00CAD030 /* PraiseView.m */; };
+		18E8D11F15D37ACB00CAD030 /* OnTopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E8D11E15D37ACB00CAD030 /* OnTopView.m */; };
+		18E8D12215D37DA000CAD030 /* PraisePhotoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E8D12115D37DA000CAD030 /* PraisePhotoView.m */; };
+		18E8D12915D3A82800CAD030 /* RKLMatchEnumerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E8D12815D3A82800CAD030 /* RKLMatchEnumerator.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		18E8D12C15D3A84F00CAD030 /* IFTweetLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E8D12B15D3A84F00CAD030 /* IFTweetLabel.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		18EAFF1A15BE762A00869982 /* CellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EAFF1915BE762900869982 /* CellView.m */; };
 		18ED81B714AC00800092CAC8 /* EGORefreshTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18ED81B614AC00800092CAC8 /* EGORefreshTableHeaderView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		18ED81C014AC00D10092CAC8 /* blackArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 18ED81B814AC00D10092CAC8 /* blackArrow.png */; };
@@ -582,6 +588,18 @@
 		18E3C9DF1576FF56000418D7 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
 		18E3C9E11576FF86000418D7 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		18E3C9E31576FFAB000418D7 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
+		18E8D11715D3563700CAD030 /* AttentionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AttentionView.h; sourceTree = "<group>"; };
+		18E8D11815D3563700CAD030 /* AttentionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AttentionView.m; sourceTree = "<group>"; };
+		18E8D11A15D35D3D00CAD030 /* PraiseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PraiseView.h; sourceTree = "<group>"; };
+		18E8D11B15D35D3D00CAD030 /* PraiseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PraiseView.m; sourceTree = "<group>"; };
+		18E8D11D15D37ACB00CAD030 /* OnTopView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OnTopView.h; sourceTree = "<group>"; };
+		18E8D11E15D37ACB00CAD030 /* OnTopView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OnTopView.m; sourceTree = "<group>"; };
+		18E8D12015D37DA000CAD030 /* PraisePhotoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PraisePhotoView.h; sourceTree = "<group>"; };
+		18E8D12115D37DA000CAD030 /* PraisePhotoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PraisePhotoView.m; sourceTree = "<group>"; };
+		18E8D12715D3A82800CAD030 /* RKLMatchEnumerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RKLMatchEnumerator.h; sourceTree = "<group>"; };
+		18E8D12815D3A82800CAD030 /* RKLMatchEnumerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RKLMatchEnumerator.m; sourceTree = "<group>"; };
+		18E8D12A15D3A84F00CAD030 /* IFTweetLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IFTweetLabel.h; sourceTree = "<group>"; };
+		18E8D12B15D3A84F00CAD030 /* IFTweetLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IFTweetLabel.m; sourceTree = "<group>"; };
 		18EAFF1815BE762900869982 /* CellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CellView.h; sourceTree = "<group>"; };
 		18EAFF1915BE762900869982 /* CellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CellView.m; sourceTree = "<group>"; };
 		18ED81B514AC00800092CAC8 /* EGORefreshTableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EGORefreshTableHeaderView.h; sourceTree = "<group>"; };
@@ -813,6 +831,7 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				18E8D12D15D3AFBD00CAD030 /* RegexKitLite */,
 				27CABB7A15CCFE81006326BA /* HMGLTransitions */,
 				0AA5F2A915C8BDE400D775A8 /* FormsAuthentication */,
 				18E0094815C242A9003B4358 /* US2FormValidationFramework */,
@@ -830,8 +849,6 @@
 				ECC37D811241950700F97B50 /* AdMob */,
 				27CCB4D415BFD50B00A38922 /* FKImagePickerController.h */,
 				27CCB4D515BFD51800A38922 /* FKFilterPickerController.h */,
-				18E36A8515AD4275006E62AA /* RegexKitLite.h */,
-				18E36A6D15AD4253006E62AA /* RegexKitLite.m */,
 				0A633C6E15CB709100CD0294 /* MyMD5.h */,
 				0A633C6F15CB709100CD0294 /* MyMD5.m */,
 				18E36A8215AD4275006E62AA /* Place.h */,
@@ -842,6 +859,8 @@
 				186DFF5315AE663B005AE621 /* MockPhotoSource.m */,
 				18EAFF1815BE762900869982 /* CellView.h */,
 				18EAFF1915BE762900869982 /* CellView.m */,
+				18E8D12A15D3A84F00CAD030 /* IFTweetLabel.h */,
+				18E8D12B15D3A84F00CAD030 /* IFTweetLabel.m */,
 				0A9CC0F115CD216000F5D03E /* DetailTextView.h */,
 				0A9CC0F215CD216000F5D03E /* DetailTextView.m */,
 				18FE213C15B9658D008B2A05 /* NotificationView.h */,
@@ -874,6 +893,14 @@
 				2722822215CCF7F4002C0942 /* PhotoMessageViewController.m */,
 				27F30FF515D0A4E50083724A /* PhotoMessageView.h */,
 				27F30FF615D0A4E50083724A /* PhotoMessageView.m */,
+				18E8D11715D3563700CAD030 /* AttentionView.h */,
+				18E8D11815D3563700CAD030 /* AttentionView.m */,
+				18E8D11A15D35D3D00CAD030 /* PraiseView.h */,
+				18E8D11B15D35D3D00CAD030 /* PraiseView.m */,
+				18E8D11D15D37ACB00CAD030 /* OnTopView.h */,
+				18E8D11E15D37ACB00CAD030 /* OnTopView.m */,
+				18E8D12015D37DA000CAD030 /* PraisePhotoView.h */,
+				18E8D12115D37DA000CAD030 /* PraisePhotoView.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -1011,6 +1038,17 @@
 				18E36D2B15AD75F3006E62AA /* tabBar_cameraButton_ready_matte@2x.png */,
 			);
 			path = DailyBooth;
+			sourceTree = "<group>";
+		};
+		18E8D12D15D3AFBD00CAD030 /* RegexKitLite */ = {
+			isa = PBXGroup;
+			children = (
+				18E36A8515AD4275006E62AA /* RegexKitLite.h */,
+				18E36A6D15AD4253006E62AA /* RegexKitLite.m */,
+				18E8D12715D3A82800CAD030 /* RKLMatchEnumerator.h */,
+				18E8D12815D3A82800CAD030 /* RKLMatchEnumerator.m */,
+			);
+			name = RegexKitLite;
 			sourceTree = "<group>";
 		};
 		18ED81B414AC00800092CAC8 /* RefreshTableHeaderView */ = {
@@ -1915,6 +1953,12 @@
 				27CABB9115CCFE81006326BA /* RotateTransition.m in Sources */,
 				27CABB9215CCFE81006326BA /* Switch3DTransition.m in Sources */,
 				27F30FF715D0A4E50083724A /* PhotoMessageView.m in Sources */,
+				18E8D11915D3563700CAD030 /* AttentionView.m in Sources */,
+				18E8D11C15D35D3D00CAD030 /* PraiseView.m in Sources */,
+				18E8D11F15D37ACB00CAD030 /* OnTopView.m in Sources */,
+				18E8D12215D37DA000CAD030 /* PraisePhotoView.m in Sources */,
+				18E8D12915D3A82800CAD030 /* RKLMatchEnumerator.m in Sources */,
+				18E8D12C15D3A84F00CAD030 /* IFTweetLabel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -8,6 +8,7 @@
 
 #import "PhotoMessageViewController.h"
 #import "LoginViewController.h"
+#import "FourthViewController.h"
 @interface PhotoMessageViewController ()
 
 @end
@@ -106,12 +107,14 @@
 }
 - (void)clickImage:(int)imagenum{
     if (imagenum == 0) {
-        LoginViewController* log = [[LoginViewController alloc] init];
-        [self.navigationController pushViewController:log animated:YES];
+        FourthViewController* four = [[FourthViewController alloc] init];
+        [self.navigationController pushViewController:four animated:YES];
     }else if(imagenum == 1){
-        NSLog(@"this sssssssss");
+        FourthViewController* four = [[FourthViewController alloc] init];
+        [self.navigationController pushViewController:four animated:YES];
     }else if(imagenum == 2){
-        NSLog(@"this aaaaaaaa");
+        FourthViewController* four = [[FourthViewController alloc] init];
+        [self.navigationController pushViewController:four animated:YES];
     }
     
 }
