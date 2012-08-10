@@ -9,6 +9,7 @@
 #import "PhotoMessageViewController.h"
 #import "LoginViewController.h"
 #import "FourthViewController.h"
+#import "IFTweetLabel.h"
 @interface PhotoMessageViewController ()
 
 @end
@@ -129,7 +130,7 @@
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    return 70;
+    return 81;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *SimpleTableIdentifier = @"SimpleTableIdentifier";  
@@ -150,7 +151,6 @@
     photomessage.butnum = indexPath.row;
     [cell.contentView addSubview:photomessage];
     [photomessage release];
-    
 	return cell;
 }
 #pragma mark sendbutton

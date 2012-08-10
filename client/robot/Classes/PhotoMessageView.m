@@ -7,7 +7,7 @@
 //
 
 #import "PhotoMessageView.h"
-#import "DetailTextView.h"
+#import "IFTweetLabel.h"
 @implementation PhotoMessageView
 
 @synthesize footlabel = _footlabel;
@@ -21,33 +21,26 @@
         self.backgroundColor = [UIColor whiteColor];
         
         UIButton *imageButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-        imageButton.frame = CGRectMake(5, 10, 50, 50);
+        imageButton.frame = CGRectMake(8, 8, 65, 65);
         [imageButton setImage:heimage forState:UIControlStateNormal];
         [imageButton addTarget:self action:@selector(onClickImage) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:imageButton];
         
-        DetailTextView *label = [[DetailTextView alloc]initWithFrame:CGRectMake(60, 0, 260, 300)];
-        [label setText:[NSString stringWithFormat:@"%@ %@",headString,footString] WithFont:[UIFont systemFontOfSize:15] AndColor:[UIColor blackColor]];
-        [label setKeyWordTextString:headString WithFont:[UIFont fontWithName:@"SnellRoundhand" size:18] AndColor:[UIColor redColor]];
-        CGSize ssize = [label.text sizeWithFont:[UIFont systemFontOfSize:18] constrainedToSize:CGSizeMake(260.0f, 1000.0f) lineBreakMode:UILineBreakModeWordWrap];
+        CGSize ssize = [[NSString stringWithFormat:@"%@ %@",headString,footString] sizeWithFont:[UIFont systemFontOfSize:19.0f] constrainedToSize:CGSizeMake(240.0f, 1000.0f) lineBreakMode:UILineBreakModeWordWrap];
+        IFTweetLabel *tweetLabel = [[IFTweetLabel alloc] initWithFrame:CGRectMake(80.0f, 0.0f, ssize.width, ssize.height)];
+        [tweetLabel setFont:[UIFont boldSystemFontOfSize:15.0f]];
+        [tweetLabel setTextColor:[UIColor blackColor]];
+        [tweetLabel setBackgroundColor:[UIColor clearColor]];
+        [tweetLabel setNumberOfLines:0];
+        tweetLabel.expressions = [[NSArray alloc] initWithObjects:
+                                  headString,
+                                  //@"([hH][tT][tT][pP][sS]?:\\/\\/[^ ,'\">\\]\\)]*[^\\. ,'\">\\]\\)])", // hyperlinks
+                                  nil];
+        [tweetLabel setText:[NSString stringWithFormat:@"%@ %@",headString,footString]];
+        [tweetLabel setLinksEnabled:YES];
+        [self addSubview:tweetLabel];
         
-        float sizeheight = 0;
-        
-        if (ssize.height == 22.0) {
-            CGRect rct = label.frame;
-            rct.size = CGSizeMake(260, 30);
-            label.frame = rct;
-            sizeheight = 32;
-        }else {
-            CGRect rct = label.frame;
-            rct.size = ssize;
-            label.frame = rct;
-            sizeheight = ssize.height;
-        }
-        label.center = CGPointMake(190, sizeheight/2);
-        [self addSubview:label];
-        
-        _footlabel = [[UILabel alloc] initWithFrame:CGRectMake(60, sizeheight -5, 180, 20)];
+        _footlabel = [[UILabel alloc] initWithFrame:CGRectMake(80, tweetLabel.frame.size.height - 5, 180, 20)];
         _footlabel.text = @"";
         _footlabel.font = [UIFont boldSystemFontOfSize:15];     
         _footlabel.textColor = [UIColor lightGrayColor];         
@@ -56,6 +49,7 @@
         _footlabel.numberOfLines = 1;
         _footlabel.lineBreakMode = UILineBreakModeTailTruncation;
         [self addSubview:_footlabel];
+         self.frame = CGRectMake(frame.origin.x, frame.origin.y, frame.size.width, tweetLabel.frame.size.height + 10);
     }
     return self;
 }

@@ -15,11 +15,15 @@
 #import "MGStyledBox.h"
 #import "MGBoxLine.h"
 #import "NewsMessageView.h"
-
-@interface ThirdViewController : UIViewController<UIScrollViewDelegate,JMTabViewDelegate,NewsMessageDelegate>{
+#import "AttentionView.h"
+#import "PraiseView.h"
+#import "OnTopView.h"
+#import "PraisePhotoView.h"
+@interface ThirdViewController : UIViewController<UIScrollViewDelegate,JMTabViewDelegate,NewsMessageDelegate,PraisephotoDelegate,OntopDelegate,PraiseDelegate>{
     NSMutableArray *photomessageArray;
     NotificationView *notificationView;
     MGScrollView *scroller;
+    NSMutableArray* imgArray;
 }
 - (void)addBox:(UIButton *)sender;
 - (void)removeBox:(UIButton *)sender;

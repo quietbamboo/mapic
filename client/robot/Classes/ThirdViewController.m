@@ -7,10 +7,6 @@
 //
 
 #import "ThirdViewController.h"
-#import "AttentionView.h"
-#import "PraiseView.h"
-#import "OnTopView.h"
-#import "PraisePhotoView.h"
 #import "FourthViewController.h"
 #import "IFTweetLabel.h"
 #define ANIM_SPEED 0.6
@@ -114,15 +110,14 @@
 //        [scroller.boxes addObject:box5];
 //         NSDictionary *nsdic = [photomessageArray objectAtIndex:i];
 //        
-//        NewsMessageView* new = [[NewsMessageView alloc] initWithFrame:CGRectMake(0, 0, 320, 80) headString:[nsdic objectForKey:@"head"] footString:[nsdic objectForKey:@"foot"] headimage:[UIImage imageNamed:[nsdic objectForKey:@"image"]]];
-//                                //initWithFrame:CGRectMake(0, 0, 320, 70) headString:[nsdic objectForKey:@"head"] footString:[nsdic objectForKey:@"foot"] heimage:[UIImage imageNamed:[nsdic objectForKey:@"image"]]];
+//        NewsMessageView* new = [[NewsMessageView alloc] initWithFrame:CGRectMake(10, 0, 300, 80) headString:[nsdic objectForKey:@"head"] footString:[nsdic objectForKey:@"foot"] headimage:[UIImage imageNamed:[nsdic objectForKey:@"image"]]];
 //        new.footimageView.image = [UIImage imageNamed:@"andong.jpg"];
 //        new.footlabel.text = [nsdic objectForKey:@"labeltext"];
 //        new.delegate = self;
 //        new.numimage = i;
 //        [box5.topLines addObject:new];
 //    }
-    
+    [self praiseImageArray];
     MGStyledBox *box1 = [MGStyledBox box];
     [scroller.boxes addObject:box1];
     AttentionView* attention = [[AttentionView alloc] initWithFrame:CGRectMake(0, 0, 300, 90) firstname:@"this" secondname:@"are"];
@@ -130,19 +125,19 @@
     
     MGStyledBox *box2 = [MGStyledBox box];
     [scroller.boxes addObject:box2];
-    PraiseView* praise = [[PraiseView alloc] initWithFrame:CGRectMake(0, 0, 320, 70) firstname:@"敏敏" secondname:@"小光" headimage:[UIImage imageNamed:@"Icon.png"]];
+    PraiseView* praise = [[PraiseView alloc] initWithFrame:CGRectMake(0, 0, 300, 70) firstname:@"he" secondname:@"she" headimage:[UIImage imageNamed:@"Icon.png"]];
     praise.delegate = self;
     [box2.topLines addObject:praise];
     
     MGStyledBox *box3 = [MGStyledBox box];
     [scroller.boxes addObject:box3];
-    OnTopView* ontop = [[OnTopView alloc] initWithFrame:CGRectMake(0, 0, 320, 80)];
+    OnTopView* ontop = [[OnTopView alloc] initWithFrame:CGRectMake(0, 0, 300, 80)];
     ontop.delegate = self;
     [box3.topLines addObject:ontop];
     
     MGStyledBox *box4 = [MGStyledBox box];
     [scroller.boxes addObject:box4];
-    PraisePhotoView* pp = [[PraisePhotoView alloc] initWithFrame:CGRectMake(0, 0, 320, 80)];
+    PraisePhotoView* pp = [[PraisePhotoView alloc] initWithFrame:CGRectMake(0, 0, 300, 80)firstname:@"How are you" imagecount:5 imageArray:imgArray];
     pp.delegate = self;
     [box4.topLines addObject:pp];
 //    MGStyledBox *box3 = [MGStyledBox box];
@@ -353,6 +348,21 @@ return button;
     [photomessageArray addObject:dic2];
     [photomessageArray addObject:dic3];
 }
+- (void) praiseImageArray{
+    NSDictionary *dic1 = [NSDictionary dictionaryWithObjectsAndKeys:@"logo.png",@"imag",nil];
+    NSDictionary *dic2 = [NSDictionary dictionaryWithObjectsAndKeys:@"weibo.png",@"imag",nil];
+    NSDictionary *dic3 = [NSDictionary dictionaryWithObjectsAndKeys:@"andong.jpg",@"imag",nil];
+    NSDictionary *dic4 = [NSDictionary dictionaryWithObjectsAndKeys:@"Icon.png",@"imag",nil];
+    NSDictionary *dic5 = [NSDictionary dictionaryWithObjectsAndKeys:@"andong.jpg",@"imag",nil];
+    
+    imgArray = [[NSMutableArray alloc] initWithCapacity:0];
+    [imgArray addObject:dic1];
+    [imgArray addObject:dic2];
+    [imgArray addObject:dic3];
+    [imgArray addObject:dic4];
+    [imgArray addObject:dic5];
+}
+
 - (void)praiseImage:(int)imagenum{
     FourthViewController* four = [[FourthViewController alloc] init];
     [self.navigationController pushViewController:four animated:YES];

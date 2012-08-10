@@ -12,6 +12,8 @@
     id <PraisephotoDelegate> delegate;
 }
 @property (nonatomic) id <PraisephotoDelegate> delegate;
+
+- (id)initWithFrame:(CGRect)frame firstname:(NSString *)firstname imagecount:(int)imagecount imageArray:(NSMutableArray *)imageArray;
 @end
 @protocol PraisephotoDelegate <NSObject>
 - (void)praisephotoImage:(int)imagenum;
