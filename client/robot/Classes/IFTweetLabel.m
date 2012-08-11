@@ -59,6 +59,7 @@ NSString *IFTweetLabelURLNotification = @"IFTweetLabelURLNotification";
 			if ([match hasPrefix:buttonTitle])
 			{
 				[[NSNotificationCenter defaultCenter] postNotificationName:IFTweetLabelURLNotification object:match];
+                return;
 			}
 		}
 	}
