@@ -15,7 +15,7 @@
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
-        imgID = imageURL;
+        imgID = imageID;
         UIButton *imageButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
         imageButton.frame = CGRectMake(8, 8, 65, 65);
         [imageButton setImage:[UIImage imageNamed:imageURL] forState:UIControlStateNormal];
