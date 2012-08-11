@@ -94,24 +94,40 @@ NSString *IFTweetLabelURLNotification = @"IFTweetLabelURLNotification";
 	//NSLog(@"output = '%@', point = %@", text, NSStringFromCGPoint(point));
 
 	UIFont *font = self.label.font;
-
+    
 	for (NSString *expression in self.expressions)
 	{
 		NSString *match;
 		NSEnumerator *enumerator = [text matchEnumeratorWithRegex:expression];
+    
+        int i = 0;
 		while (match = [enumerator nextObject])
 		{
-			CGSize matchSize = [match sizeWithFont:font];
-
-			NSRange matchRange = [text rangeOfString:match];
-			NSRange measureRange = NSMakeRange(0, matchRange.location);
-			NSString *measureText = [text substringWithRange:measureRange];
-			CGSize measureSize = [measureText sizeWithFont:font];
-			
-			CGRect matchFrame = CGRectMake(measureSize.width - 3.0f, point.y, matchSize.width + 6.0f, matchSize.height);
-			[self createButtonWithText:match withFrame:matchFrame];
-			
-			//NSLog(@"match = %@", match);
+            if (i == 0) {
+                CGSize matchSize = [match sizeWithFont:font];
+                
+                NSRange matchRange = [text rangeOfString:match];
+                NSRange measureRange = NSMakeRange(0, matchRange.location);
+                NSString *measureText = [text substringWithRange:measureRange];
+                CGSize measureSize = [measureText sizeWithFont:font];
+                
+                CGRect matchFrame = CGRectMake(measureSize.width - 3.0f, point.y, matchSize.width + 6.0f, matchSize.height);
+                [self createButtonWithText:match withFrame:matchFrame];
+                
+            }else {
+//                - (NSRange)rangeOfString:(NSString *)aString options:(NSStringCompareOptions)mask range:(NSRange)searchRange;
+              
+                CGSize matchSize = [match sizeWithFont:font];
+                 NSRange errorRange = [text rangeOfString:match];
+                NSRange matchRange = [text rangeOfString:match options:NSStringEnumerationByComposedCharacterSequences range:NSMakeRange((errorRange.location + match.length), (text.length - errorRange.location - match.length))];
+                NSRange measureRange = NSMakeRange(0, matchRange.location);
+                NSString *measureText = [text substringWithRange:measureRange];
+                CGSize measureSize = [measureText sizeWithFont:font];
+                
+                CGRect matchFrame = CGRectMake(measureSize.width - 3.0f, point.y, matchSize.width + 6.0f, matchSize.height);
+                [self createButtonWithText:match withFrame:matchFrame];
+            }
+            i++;
 		}
 	}
 }

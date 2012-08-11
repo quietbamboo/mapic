@@ -125,7 +125,7 @@
     
     MGStyledBox *box2 = [MGStyledBox box];
     [scroller.boxes addObject:box2];
-    PraiseView* praise = [[PraiseView alloc] initWithFrame:CGRectMake(0, 0, 300, 70) firstname:@"he" secondname:@"she" headimage:[UIImage imageNamed:@"Icon.png"]];
+    PraiseView* praise = [[PraiseView alloc] initWithFrame:CGRectMake(0, 0, 300, 70) firstname:@"she" secondname:@"he" headimage:[UIImage imageNamed:@"Icon.png"]];
     praise.delegate = self;
     [box2.topLines addObject:praise];
     
