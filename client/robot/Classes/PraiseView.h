@@ -8,17 +8,14 @@
 
 #import <UIKit/UIKit.h>
 #import "IFTweetLabel.h"
-@protocol PraiseDelegate;
+#import "ImageIdAndUserNameProtocol.h"
 @interface PraiseView : UIView<IFLabelDelegate>{
-    id <PraiseDelegate> delegate;
+    id <ImageIdAndUserNameProtocol> delegate;
+    NSString* imgID;
 }
-@property (nonatomic) id <PraiseDelegate> delegate;
+@property (nonatomic) id <ImageIdAndUserNameProtocol> delegate;
 
-- (id)initWithFrame:(CGRect)frame firstname:(NSString *)firstname secondname:(NSString *)secondname headimage:(UIImage *)headimage;
+- (id)initWithFrame:(CGRect)frame firstname:(NSString *)firstname secondname:(NSString *)secondname imageID:(NSString *)imageID;
 
 @end
 
-@protocol PraiseDelegate <NSObject>
-- (void)praiseImage:(int)imagenum;
-- (void)praisematch:(NSString *)match;
-@end

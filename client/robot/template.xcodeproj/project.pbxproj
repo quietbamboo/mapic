@@ -624,6 +624,7 @@
 		18FE213D15B9658E008B2A05 /* NotificationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotificationView.m; sourceTree = "<group>"; };
 		1D6058910D05DD3D006BFB54 /* DaiDai.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DaiDai.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		270A628915D6621B0059A9D4 /* ImageIdAndUserNameProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageIdAndUserNameProtocol.h; sourceTree = "<group>"; };
 		2715BDB015B8F03700B0A5B1 /* UIColor+Hex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Hex.h"; sourceTree = "<group>"; };
 		2715BDB115B8F03700B0A5B1 /* UIColor+Hex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Hex.m"; sourceTree = "<group>"; };
 		2715BDB215B8F03700B0A5B1 /* UIView+InnerShadow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+InnerShadow.h"; sourceTree = "<group>"; };
@@ -901,6 +902,7 @@
 				18E8D11E15D37ACB00CAD030 /* OnTopView.m */,
 				18E8D12015D37DA000CAD030 /* PraisePhotoView.h */,
 				18E8D12115D37DA000CAD030 /* PraisePhotoView.m */,
+				270A628915D6621B0059A9D4 /* ImageIdAndUserNameProtocol.h */,
 			);
 			path = Classes;
 			sourceTree = "<group>";

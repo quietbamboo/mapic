@@ -9,7 +9,6 @@
 #import "AttentionView.h"
 #import "IFTweetLabel.h"
 @implementation AttentionView
-
 @synthesize delegate;
 - (id)initWithFrame:(CGRect)frame firstname:(NSString *)firstname secondname:(NSString *)secondname
 {
@@ -47,8 +46,12 @@
     return self;
 }
 
-- (void)IFLabelmatch:(NSString *)match{
-    [delegate attentionmatch:match];
+- (void) onClickImage:(id)send{
+    [delegate imageID:@"" UIViewType:OnTopViewtype];
+}
+
+- (void)IFLabeluserName:(NSString *)userName{
+    [delegate userName:userName UIViewType:OnTopViewtype];
 }
 //- (void)attentionNotification:(NSNotification *)notification
 //{

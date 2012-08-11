@@ -9,20 +9,21 @@
 #import "OnTopView.h"
 @implementation OnTopView
 @synthesize delegate;
-- (id)initWithFrame:(CGRect)frame
+- (id)initWithFrame:(CGRect)frame userName:(NSString *)userName imageID:(NSString *)imageID
 {
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
+        imgID = imageID;
         UIButton *imageButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
         imageButton.frame = CGRectMake(8, 8, 65, 65);
-        [imageButton setImage:[UIImage imageNamed:@"Icon.png"] forState:UIControlStateNormal];
-        [imageButton addTarget:self action:@selector(onClickImage) forControlEvents:UIControlEventTouchUpInside];
+        [imageButton setImage:[UIImage imageNamed:imageID] forState:UIControlStateNormal];
+        [imageButton addTarget:self action:@selector(onClickImage:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:imageButton];
         
 //        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(ontopNotification:) name:IFTweetLabelURLNotification object:nil];
         
-        CGSize ssize = [[NSString stringWithFormat:@"colorcreative 的照片上热门榜了。"] sizeWithFont:[UIFont systemFontOfSize:19.0f] constrainedToSize:CGSizeMake(220.0f, 1000.0f) lineBreakMode:UILineBreakModeWordWrap];
+        CGSize ssize = [[NSString stringWithFormat:@"%@ 的照片上热门榜了。",userName] sizeWithFont:[UIFont systemFontOfSize:19.0f] constrainedToSize:CGSizeMake(220.0f, 1000.0f) lineBreakMode:UILineBreakModeWordWrap];
         IFTweetLabel *tweetLabel = [[IFTweetLabel alloc] initWithFrame:CGRectMake(80.0f, 8.0f, ssize.width, ssize.height)];
         [tweetLabel setFont:[UIFont boldSystemFontOfSize:15.0f]];
         [tweetLabel setTextColor:[UIColor blackColor]];
@@ -30,10 +31,10 @@
         [tweetLabel setNumberOfLines:0];
         tweetLabel.delegate = self;
         tweetLabel.expressions = [[NSArray alloc] initWithObjects:
-                                  @"colorcreative",
+                                  userName,
                                   //@"([hH][tT][tT][pP][sS]?:\\/\\/[^ ,'\">\\]\\)]*[^\\. ,'\">\\]\\)])", // hyperlinks
                                   nil];
-        [tweetLabel setText:[NSString stringWithFormat:@"colorcreative 的照片上热门榜了。"]];
+        [tweetLabel setText:[NSString stringWithFormat:@"%@ 的照片上热门榜了。",userName]];
         [tweetLabel setLinksEnabled:YES];
         
         [self addSubview:tweetLabel];
@@ -54,12 +55,12 @@
     return self;
 }
 
-- (void) onClickImage {
-    [delegate ontopImage:0];
+- (void) onClickImage:(id)send{
+    [delegate imageID:@"Icon.png" UIViewType:OnTopViewtype];
 }
 
-- (void)IFLabelmatch:(NSString *)match{
-    [delegate ontopmatch:match];
+- (void)IFLabeluserName:(NSString *)userName{
+    [delegate userName:userName UIViewType:OnTopViewtype];
 }
 //- (void)ontopNotification:(NSNotification *)notification
 //{

@@ -107,19 +107,7 @@
 - (void)closeButtonPressed {
 	[delegate modalControllerDidFinish:self];
 }
-- (void)clickImage:(int)imagenum{
-    if (imagenum == 0) {
-        FourthViewController* four = [[FourthViewController alloc] init];
-        [self.navigationController pushViewController:four animated:YES];
-    }else if(imagenum == 1){
-        FourthViewController* four = [[FourthViewController alloc] init];
-        [self.navigationController pushViewController:four animated:YES];
-    }else if(imagenum == 2){
-        FourthViewController* four = [[FourthViewController alloc] init];
-        [self.navigationController pushViewController:four animated:YES];
-    }
-    
-}
+
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -146,7 +134,7 @@
     cell.selectionStyle = UITableViewCellSelectionStyleBlue;
     NSDictionary *nsdic = [photomessageArray objectAtIndex:indexPath.row];
     cell.textLabel.text = @"";
-    PhotoMessageView* photomessage = [[PhotoMessageView alloc]initWithFrame:CGRectMake(0, 0, 320, 70) headString:[nsdic objectForKey:@"head"] footString:[nsdic objectForKey:@"foot"] heimage:[UIImage imageNamed:[nsdic objectForKey:@"image"]]];
+    PhotoMessageView* photomessage = [[PhotoMessageView alloc] initWithFrame:CGRectMake(0, 0, 320, 70) headString:[nsdic objectForKey:@"head"] footString:[nsdic objectForKey:@"foot"] imageID:[nsdic objectForKey:@"image"]];
     photomessage.footlabel.text = [nsdic objectForKey:@"labeltext"];
     photomessage.delegate = self;
     photomessage.butnum = indexPath.row;
@@ -213,8 +201,18 @@
     [photomessageArray addObject:dic2];
     [photomessageArray addObject:dic3];
 }
-- (void)photomessagematch:(NSString *)match{
+- (void) imageID :(NSString *)imageID UIViewType:(ViewType)UIViewType{
     FourthViewController* four = [[FourthViewController alloc] init];
+    if (UIViewType == PhotoMessageViewtype) {
+        four.userName = imageID;
+    }
+    [self.navigationController pushViewController:four animated:YES];
+}
+- (void) userName :(NSString *)userName UIViewType:(ViewType)UIViewType{
+    FourthViewController* four = [[FourthViewController alloc] init];
+    if (UIViewType == PhotoMessageViewtype) {
+        four.userName = userName;
+    }
     [self.navigationController pushViewController:four animated:YES];
 }
 @end

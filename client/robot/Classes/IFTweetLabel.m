@@ -60,7 +60,7 @@ NSString *IFTweetLabelURLNotification = @"IFTweetLabelURLNotification";
 			{
 //				[[NSNotificationCenter defaultCenter] postNotificationName:IFTweetLabelURLNotification object:match];
 //                return;
-                [delegate IFLabelmatch:match];
+                [delegate IFLabeluserName:match];
                 return;
 			}
 		}

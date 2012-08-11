@@ -12,17 +12,17 @@
 @synthesize footlabel = _footlabel;
 @synthesize butnum = _butnum;
 @synthesize delegate;
-- (id)initWithFrame:(CGRect)frame headString:(NSString *)headString footString:(NSString *)footString heimage:(UIImage *)heimage
+- (id)initWithFrame:(CGRect)frame headString:(NSString *)headString footString:(NSString *)footString imageID:(NSString *)imageID
 {
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
         self.backgroundColor = [UIColor whiteColor];
-        
+        imgID = imageID;
         UIButton *imageButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
         imageButton.frame = CGRectMake(8, 8, 65, 65);
-        [imageButton setImage:heimage forState:UIControlStateNormal];
-        [imageButton addTarget:self action:@selector(onClickImage) forControlEvents:UIControlEventTouchUpInside];
+        [imageButton setImage:[UIImage imageNamed:imageID] forState:UIControlStateNormal];
+        [imageButton addTarget:self action:@selector(onClickImage:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:imageButton];
         
         CGSize ssize = [[NSString stringWithFormat:@"%@ %@",headString,footString] sizeWithFont:[UIFont systemFontOfSize:19.0f] constrainedToSize:CGSizeMake(240.0f, 1000.0f) lineBreakMode:UILineBreakModeWordWrap];
@@ -54,13 +54,12 @@
     return self;
 }
 
-- (void) onClickImage {
-    [delegate clickImage:_butnum];
+- (void) onClickImage:(id)send{
+    [delegate imageID:imgID UIViewType:PhotoMessageViewtype];
 }
 
-
-- (void)IFLabelmatch:(NSString *)match{
-    [delegate photomessagematch:match];
+- (void)IFLabeluserName:(NSString *)userName{
+    [delegate userName:userName UIViewType:PhotoMessageViewtype];
 }
 /*
 // Only override drawRect: if you perform custom drawing.

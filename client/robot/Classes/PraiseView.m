@@ -8,17 +8,18 @@
 
 #import "PraiseView.h"
 @implementation PraiseView
-
 @synthesize delegate;
-- (id)initWithFrame:(CGRect)frame firstname:(NSString *)firstname secondname:(NSString *)secondname headimage:(UIImage *)headimage
+
+- (id)initWithFrame:(CGRect)frame firstname:(NSString *)firstname secondname:(NSString *)secondname imageID:(NSString *)imageID
 {
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
+        imgID = imageID;
         UIButton *imageButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
         imageButton.frame = CGRectMake(8, 8, 65, 65);
-        [imageButton setImage:headimage forState:UIControlStateNormal];
-        [imageButton addTarget:self action:@selector(onClickImage) forControlEvents:UIControlEventTouchUpInside];
+        [imageButton setImage:[UIImage imageNamed:imageID] forState:UIControlStateNormal];
+        [imageButton addTarget:self action:@selector(onClickImage:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:imageButton];
         
 //        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(praiseNotification:) name:IFTweetLabelURLNotification object:nil];
@@ -55,12 +56,12 @@
 }
 
 
-- (void) onClickImage {
-    [delegate praiseImage:0];
+- (void) onClickImage:(id)send{
+    [delegate imageID:imgID UIViewType:PraiseViewtype];
 }
 
-- (void)IFLabelmatch:(NSString *)match{
-    [delegate praisematch:match];
+- (void)IFLabeluserName:(NSString *)userName{
+    [delegate userName:userName UIViewType:PraiseViewtype];
 }
 //- (void)praiseNotification:(NSNotification *)notification
 //{

@@ -8,15 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "IFTweetLabel.h"
-@protocol AttentionDelegate;
+#import "ImageIdAndUserNameProtocol.h"
 @interface AttentionView : UIView<IFLabelDelegate>{
-    id <AttentionDelegate> delegate;
+    id <ImageIdAndUserNameProtocol> delegate;
 }
-@property (nonatomic) id <AttentionDelegate> delegate;
+@property (nonatomic) id <ImageIdAndUserNameProtocol> delegate;
 
 - (id)initWithFrame:(CGRect)frame firstname:(NSString *)firstname secondname:(NSString *)secondname;
 @end
 
-@protocol AttentionDelegate <NSObject>
-- (void)attentionmatch:(NSString *)match;
-@end

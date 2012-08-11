@@ -32,7 +32,7 @@ extern NSString *IFTweetLabelURLNotification;
     NSArray *expressions;
     id <IFLabelDelegate> delegate;
 }
-@property (nonatomic) id <IFLabelDelegate> delegate;
+@property (nonatomic, assign) id <IFLabelDelegate> delegate;
 @property (nonatomic, retain) UIColor *normalColor;
 @property (nonatomic, retain) UIColor *highlightColor;
 
@@ -49,7 +49,7 @@ extern NSString *IFTweetLabelURLNotification;
 @end
 
 @protocol IFLabelDelegate <NSObject>
-- (void)IFLabelmatch:(NSString *)match;
+- (void)IFLabeluserName:(NSString *)userName;
 @end
 
 @interface IFTweetLabel (ForwardInvocation)

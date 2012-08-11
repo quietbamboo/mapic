@@ -19,7 +19,8 @@
 #import "PraiseView.h"
 #import "OnTopView.h"
 #import "PraisePhotoView.h"
-@interface ThirdViewController : UIViewController<UIScrollViewDelegate,JMTabViewDelegate,NewsMessageDelegate,PraisephotoDelegate,OntopDelegate,PraiseDelegate,AttentionDelegate>{
+#import "ImageIdAndUserNameProtocol.h"
+@interface ThirdViewController : UIViewController<UIScrollViewDelegate,JMTabViewDelegate,ImageIdAndUserNameProtocol>{
     NSMutableArray *photomessageArray;
     NotificationView *notificationView;
     MGScrollView *scroller;

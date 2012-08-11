@@ -8,24 +8,20 @@
 
 #import <UIKit/UIKit.h>
 #import "IFTweetLabel.h"
-@protocol NewsMessageDelegate;
+#import "ImageIdAndUserNameProtocol.h"
 @interface NewsMessageView : UIView<IFLabelDelegate>{
     
     UIImageView* footimageView;
     UILabel* footlabel;
-    id<NewsMessageDelegate> delegate;
+    id<ImageIdAndUserNameProtocol> delegate;
     int numimage;
+    NSString* imgID;
 }
 
 @property (retain, nonatomic) UIImageView* footimageView;
 @property (retain, nonatomic) UILabel* footlabel;
 @property (nonatomic) int numimage;
-@property (nonatomic) id <NewsMessageDelegate> delegate;
+@property (nonatomic) id <ImageIdAndUserNameProtocol> delegate;
 
-- (id)initWithFrame:(CGRect)frame headString:(NSString *)headString footString:(NSString *)footString headimage:(UIImage *)headimage;
-@end
-
-@protocol NewsMessageDelegate <NSObject>
-- (void)clickImage:(int)imagenum;
-- (void)newsmessagematch:(NSString *)match;
+- (id)initWithFrame:(CGRect)frame headString:(NSString *)headString footString:(NSString *)footString imageID:(NSString *)imageID;
 @end

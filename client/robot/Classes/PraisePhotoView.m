@@ -60,11 +60,11 @@
 
 - (void) onClickImage:(id)send{
     NSDictionary *img = [imagmessageArray objectAtIndex:[send tag]];
-    [delegate praisephotoImage:[img objectForKey:@"username"]];
+    [delegate imageID:[img objectForKey:@"username"] UIViewType:PraisePhotoViewtype];
 }
 
-- (void)IFLabelmatch:(NSString *)match{
-    [delegate praisephotomatch:match];
+- (void)IFLabeluserName:(NSString *)userName{
+    [delegate userName:userName UIViewType:PraisePhotoViewtype];
 }
 
 //- (void)praisephotoNotification:(NSNotification *)notification

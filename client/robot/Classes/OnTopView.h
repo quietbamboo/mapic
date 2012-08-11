@@ -8,13 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "IFTweetLabel.h"
-@protocol OntopDelegate;
+#import "ImageIdAndUserNameProtocol.h"
 @interface OnTopView : UIView<IFLabelDelegate>{
-    id <OntopDelegate> delegate;
+    id <ImageIdAndUserNameProtocol> delegate;
+    NSString* imgID;
 }
-@property (nonatomic) id <OntopDelegate> delegate;
-@end
-@protocol OntopDelegate <NSObject>
-- (void)ontopImage:(int)imagenum;
-- (void)ontopmatch:(NSString *)match;
+@property (nonatomic) id <ImageIdAndUserNameProtocol> delegate;
+- (id)initWithFrame:(CGRect)frame userName:(NSString *)userName imageID:(NSString *)imageID;
 @end

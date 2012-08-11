@@ -102,19 +102,19 @@
     //    MGBoxLine *multi = [MGBoxLine multilineWithText:blah font:nil padding:24];
     //    [box2.topLines addObject:multi];
     
-    //    [self photomessageControllerArray];
-    //    for (int i = 0;i<photomessageArray.count;i++) {
-    //        MGStyledBox *box5 = [MGStyledBox box];
-    //        [scroller.boxes addObject:box5];
-    //         NSDictionary *nsdic = [photomessageArray objectAtIndex:i];
-    //        
-    //        NewsMessageView* new = [[NewsMessageView alloc] initWithFrame:CGRectMake(10, 0, 300, 80) headString:[nsdic objectForKey:@"head"] footString:[nsdic objectForKey:@"foot"] headimage:[UIImage imageNamed:[nsdic objectForKey:@"image"]]];
-    //        new.footimageView.image = [UIImage imageNamed:@"andong.jpg"];
-    //        new.footlabel.text = [nsdic objectForKey:@"labeltext"];
-    //        new.delegate = self;
-    //        new.numimage = i;
-    //        [box5.topLines addObject:new];
-    //    }
+//        [self photomessageControllerArray];
+//        for (int i = 0;i<photomessageArray.count;i++) {
+//            MGStyledBox *box5 = [MGStyledBox box];
+//            [scroller.boxes addObject:box5];
+//             NSDictionary *nsdic = [photomessageArray objectAtIndex:i];
+//            NewsMessageView* new = [[NewsMessageView alloc] initWithFrame:CGRectMake(10, 0, 300, 80) headString:[nsdic objectForKey:@"head"] footString:[nsdic objectForKey:@"foot"] imageID:[nsdic objectForKey:@"image"]];
+//            new.footimageView.image = [UIImage imageNamed:@"andong.jpg"];
+//            new.footlabel.text = [nsdic objectForKey:@"labeltext"];
+//            new.delegate = self;
+//            new.numimage = i;
+//            [box5.topLines addObject:new];
+//       }
+    
     [self praiseImageArray];
     MGStyledBox *box1 = [MGStyledBox box];
     [scroller.boxes addObject:box1];
@@ -124,13 +124,13 @@
     
     MGStyledBox *box2 = [MGStyledBox box];
     [scroller.boxes addObject:box2];
-    PraiseView* praise = [[PraiseView alloc] initWithFrame:CGRectMake(0, 0, 300, 70) firstname:@"she" secondname:@"he" headimage:[UIImage imageNamed:@"Icon.png"]];
+    PraiseView* praise = [[PraiseView alloc] initWithFrame:CGRectMake(0, 0, 300, 70) firstname:@"she" secondname:@"he" imageID:@"Icon.png"];
     praise.delegate = self;
     [box2.topLines addObject:praise];
     
     MGStyledBox *box3 = [MGStyledBox box];
     [scroller.boxes addObject:box3];
-    OnTopView* ontop = [[OnTopView alloc] initWithFrame:CGRectMake(0, 0, 300, 80)];
+    OnTopView* ontop = [[OnTopView alloc] initWithFrame:CGRectMake(0, 0, 300, 80) userName:@"collering" imageID:@"Icon.png"];
     ontop.delegate = self;
     [box3.topLines addObject:ontop];
     
@@ -293,18 +293,6 @@ return button;
     [scroller drawBoxesWithSpeed:ANIM_SPEED];
 }
 
-- (void)clickImage:(int)imagenum{
-    if (imagenum == 0) {
-        FourthViewController* four = [[FourthViewController alloc] init];
-        [self.navigationController pushViewController:four animated:YES];
-    }else if(imagenum == 1){
-        FourthViewController* four = [[FourthViewController alloc] init];
-        [self.navigationController pushViewController:four animated:YES];
-    }else if(imagenum == 2){
-        FourthViewController* four = [[FourthViewController alloc] init];
-        [self.navigationController pushViewController:four animated:YES];
-    }
-}
 #pragma mark - UIScrollViewDelegate (for snapping boxes to edges)
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
@@ -339,9 +327,9 @@ return button;
 
 - (void) photomessageControllerArray{
     
-    NSDictionary *dic1 = [NSDictionary dictionaryWithObjectsAndKeys:@"All",@"head",@"All of us have read thrilling stories in which the  ",@"foot",@"logo.png",@"image",@"18 minutes ago",@"labeltext",nil];
-    NSDictionary *dic2 = [NSDictionary dictionaryWithObjectsAndKeys:@"hero",@"head",@"hero had only a limited and specified time to live.",@"foot",@"weibo.png",@"image",@"18 minutes ago",@"labeltext",nil];
-    NSDictionary *dic3 = [NSDictionary dictionaryWithObjectsAndKeys:@"How",@"head",@"How are you. I'm go to shopping. I go home.",@"foot",@"andong.jpg",@"image",@"18 minutes ago",@"labeltext",nil];
+    NSDictionary *dic1 = [NSDictionary dictionaryWithObjectsAndKeys:@"All",@"head",@" of us have read thrilling stories in which the  ",@"foot",@"logo.png",@"image",@"18 minutes ago",@"labeltext",nil];
+    NSDictionary *dic2 = [NSDictionary dictionaryWithObjectsAndKeys:@"hero",@"head",@" had only a limited and specified time to live.",@"foot",@"weibo.png",@"image",@"18 minutes ago",@"labeltext",nil];
+    NSDictionary *dic3 = [NSDictionary dictionaryWithObjectsAndKeys:@"How",@"head",@" are you. I'm go to shopping. I go home.",@"foot",@"andong.jpg",@"image",@"18 minutes ago",@"labeltext",nil];
     photomessageArray = [[NSMutableArray alloc] initWithCapacity:0];
     [photomessageArray addObject:dic1];
     [photomessageArray addObject:dic2];
@@ -362,50 +350,34 @@ return button;
     [imgArray addObject:dic5];
 }
 
-- (void)praiseImage:(int)imagenum{
+- (void) imageID :(NSString *)imageID UIViewType:(ViewType)UIViewType{
     FourthViewController* four = [[FourthViewController alloc] init];
-   
+    if (UIViewType == PraisePhotoViewtype) {
+        four.userName = imageID;
+    }else if(UIViewType == PraiseViewtype ){
+        four.userName = imageID;
+    }else if(UIViewType == OnTopViewtype){
+        four.userName = imageID;
+    }else if(UIViewType == NewsMessageViewtype){
+        four.userName = imageID;
+    }
+    [self.navigationController pushViewController:four animated:YES];
+}
+- (void) userName :(NSString *)userName UIViewType:(ViewType)UIViewType{
+    FourthViewController* four = [[FourthViewController alloc] init];
+    if (UIViewType == PraisePhotoViewtype) {
+        four.userName = userName;
+    }else if(UIViewType == PraiseViewtype ){
+        four.userName = userName;
+    }else if(UIViewType == OnTopViewtype){
+        four.userName = userName;
+    }else if(UIViewType == AttentionViewtype){
+        four.userName = userName;
+    }else if(UIViewType == NewsMessageViewtype){
+        four.userName = userName;
+    }
     [self.navigationController pushViewController:four animated:YES];
 }
 
-- (void)ontopImage:(int)imagenum{
-    FourthViewController* four = [[FourthViewController alloc] init];
-    [self.navigationController pushViewController:four animated:YES];
-}
-
-- (void)praisephotoImage:(NSString *)imgusername{
-    FourthViewController* four = [[FourthViewController alloc] init];
-    [self.navigationController pushViewController:four animated:YES];
-}
-
-
-
-- (void)praisephotomatch:(NSString *)match{
-    FourthViewController* four = [[FourthViewController alloc] init];
-       four.userName = match;
-    [self.navigationController pushViewController:four animated:YES];
-}
-
-- (void)attentionmatch:(NSString *)match{
-    FourthViewController* four = [[FourthViewController alloc] init];
-       four.userName = match;
-    [self.navigationController pushViewController:four animated:YES];
-}
-- (void)praisematch:(NSString *)match{
-    FourthViewController* four = [[FourthViewController alloc] init];
-       four.userName = match;
-    [self.navigationController pushViewController:four animated:YES];
-}
-
-- (void)ontopmatch:(NSString *)match{
-    FourthViewController* four = [[FourthViewController alloc] init];
-       four.userName = match;
-    [self.navigationController pushViewController:four animated:YES];
-}
-- (void)newsmessagematch:(NSString *)match{
-    FourthViewController* four = [[FourthViewController alloc] init];
-    four.userName = match;
-    [self.navigationController pushViewController:four animated:YES];
-}
 @end
 
