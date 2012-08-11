@@ -24,7 +24,7 @@ enum {
 @end
 
 @implementation FourthViewController
-
+@synthesize userName;
 @synthesize quadrantControl = _quadrantControl;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
@@ -36,6 +36,7 @@ enum {
 }
 - (void) viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    self.title  = self.userName;
     self.navigationController.navigationBarHidden = NO;
 }
 - (void) loadView {

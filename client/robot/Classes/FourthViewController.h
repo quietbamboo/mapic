@@ -12,8 +12,10 @@
 @interface FourthViewController : UITableViewController{
     
     TTTQuadrantControl *_quadrantControl;
+    NSString *userName;
 }
 
 
 @property (nonatomic, retain) TTTQuadrantControl *quadrantControl;
+@property (nonatomic, retain) NSString *userName;
 @end

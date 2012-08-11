@@ -364,6 +364,7 @@ return button;
 
 - (void)praiseImage:(int)imagenum{
     FourthViewController* four = [[FourthViewController alloc] init];
+   
     [self.navigationController pushViewController:four animated:YES];
 }
 
@@ -377,32 +378,33 @@ return button;
     [self.navigationController pushViewController:four animated:YES];
 }
 
-- (void)attentionNotification:(NSNotification *)notification
-{
-	FourthViewController* four = [[FourthViewController alloc] init];
-    [self.navigationController pushViewController:four animated:YES];
-}
+
 
 - (void)praisephotomatch:(NSString *)match{
     FourthViewController* four = [[FourthViewController alloc] init];
+       four.userName = match;
     [self.navigationController pushViewController:four animated:YES];
 }
 
 - (void)attentionmatch:(NSString *)match{
     FourthViewController* four = [[FourthViewController alloc] init];
+       four.userName = match;
     [self.navigationController pushViewController:four animated:YES];
 }
 - (void)praisematch:(NSString *)match{
     FourthViewController* four = [[FourthViewController alloc] init];
+       four.userName = match;
     [self.navigationController pushViewController:four animated:YES];
 }
 
 - (void)ontopmatch:(NSString *)match{
     FourthViewController* four = [[FourthViewController alloc] init];
+       four.userName = match;
     [self.navigationController pushViewController:four animated:YES];
 }
 - (void)newsmessagematch:(NSString *)match{
     FourthViewController* four = [[FourthViewController alloc] init];
+    four.userName = match;
     [self.navigationController pushViewController:four animated:YES];
 }
 @end
