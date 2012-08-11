@@ -8,7 +8,6 @@
 
 #import "ThirdViewController.h"
 #import "FourthViewController.h"
-#import "IFTweetLabel.h"
 #define ANIM_SPEED 0.6
 @interface ThirdViewController ()
 
@@ -41,7 +40,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(attentionNotification:) name:IFTweetLabelURLNotification object:nil];
     JMTabView *tabHeaderView = [[[JMTabView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 60.)] autorelease];
     [tabHeaderView setDelegate:self];
     [tabHeaderView addTabItemWithTitle:@"Following" icon:[UIImage imageNamed:@"icon1.png"]];
@@ -76,51 +74,52 @@
     // add a moveable box
     [self addBox:nil];
     
-//    // add a new MGBox to the MGScrollView
-//    MGStyledBox *box1 = [MGStyledBox box];
-//    [scroller.boxes addObject:box1];
-//    
-//    // add some MGBoxLines to the box
-//    MGBoxLine *head1 =
-//    [MGBoxLine lineWithLeft:@"Left And Right Content" right:nil];
-//    head1.font = headerFont;
-//    [box1.topLines addObject:head1];
-//    
-//    UISwitch *toggle = [[UISwitch alloc] initWithFrame:CGRectZero];
-//    toggle.on = YES;
-//    MGBoxLine *line1 =
-//    [MGBoxLine lineWithLeft:@"NSString and UISwitch" right:toggle];
-//    [box1.topLines addObject:line1];
+    //    // add a new MGBox to the MGScrollView
+    //    MGStyledBox *box1 = [MGStyledBox box];
+    //    [scroller.boxes addObject:box1];
+    //    
+    //    // add some MGBoxLines to the box
+    //    MGBoxLine *head1 =
+    //    [MGBoxLine lineWithLeft:@"Left And Right Content" right:nil];
+    //    head1.font = headerFont;
+    //    [box1.topLines addObject:head1];
+    //    
+    //    UISwitch *toggle = [[UISwitch alloc] initWithFrame:CGRectZero];
+    //    toggle.on = YES;
+    //    MGBoxLine *line1 =
+    //    [MGBoxLine lineWithLeft:@"NSString and UISwitch" right:toggle];
+    //    [box1.topLines addObject:line1];
     
-//    MGStyledBox *box2 = [MGStyledBox box];
-//    [scroller.boxes addObject:box2];
-//    
-//    MGBoxLine *head2 = [MGBoxLine lineWithLeft:@"Multiline Content" right:nil];
-//    head2.font = headerFont;
-//    [box2.topLines addObject:head2];
-//    
-//    NSString *blah = @"Multiline content is automatically sized and formatted "
-//    "given an NSString, UIFont, and desired padding.";
-//    MGBoxLine *multi = [MGBoxLine multilineWithText:blah font:nil padding:24];
-//    [box2.topLines addObject:multi];
+    //    MGStyledBox *box2 = [MGStyledBox box];
+    //    [scroller.boxes addObject:box2];
+    //    
+    //    MGBoxLine *head2 = [MGBoxLine lineWithLeft:@"Multiline Content" right:nil];
+    //    head2.font = headerFont;
+    //    [box2.topLines addObject:head2];
+    //    
+    //    NSString *blah = @"Multiline content is automatically sized and formatted "
+    //    "given an NSString, UIFont, and desired padding.";
+    //    MGBoxLine *multi = [MGBoxLine multilineWithText:blah font:nil padding:24];
+    //    [box2.topLines addObject:multi];
     
-//    [self photomessageControllerArray];
-//    for (int i = 0;i<photomessageArray.count;i++) {
-//        MGStyledBox *box5 = [MGStyledBox box];
-//        [scroller.boxes addObject:box5];
-//         NSDictionary *nsdic = [photomessageArray objectAtIndex:i];
-//        
-//        NewsMessageView* new = [[NewsMessageView alloc] initWithFrame:CGRectMake(10, 0, 300, 80) headString:[nsdic objectForKey:@"head"] footString:[nsdic objectForKey:@"foot"] headimage:[UIImage imageNamed:[nsdic objectForKey:@"image"]]];
-//        new.footimageView.image = [UIImage imageNamed:@"andong.jpg"];
-//        new.footlabel.text = [nsdic objectForKey:@"labeltext"];
-//        new.delegate = self;
-//        new.numimage = i;
-//        [box5.topLines addObject:new];
-//    }
+    //    [self photomessageControllerArray];
+    //    for (int i = 0;i<photomessageArray.count;i++) {
+    //        MGStyledBox *box5 = [MGStyledBox box];
+    //        [scroller.boxes addObject:box5];
+    //         NSDictionary *nsdic = [photomessageArray objectAtIndex:i];
+    //        
+    //        NewsMessageView* new = [[NewsMessageView alloc] initWithFrame:CGRectMake(10, 0, 300, 80) headString:[nsdic objectForKey:@"head"] footString:[nsdic objectForKey:@"foot"] headimage:[UIImage imageNamed:[nsdic objectForKey:@"image"]]];
+    //        new.footimageView.image = [UIImage imageNamed:@"andong.jpg"];
+    //        new.footlabel.text = [nsdic objectForKey:@"labeltext"];
+    //        new.delegate = self;
+    //        new.numimage = i;
+    //        [box5.topLines addObject:new];
+    //    }
     [self praiseImageArray];
     MGStyledBox *box1 = [MGStyledBox box];
     [scroller.boxes addObject:box1];
     AttentionView* attention = [[AttentionView alloc] initWithFrame:CGRectMake(0, 0, 300, 90) firstname:@"this" secondname:@"are"];
+    attention.delegate = self;
     [box1.topLines addObject:attention];
     
     MGStyledBox *box2 = [MGStyledBox box];
@@ -140,31 +139,31 @@
     PraisePhotoView* pp = [[PraisePhotoView alloc] initWithFrame:CGRectMake(0, 0, 300, 80)firstname:@"How are you" imagecount:5 imageArray:imgArray];
     pp.delegate = self;
     [box4.topLines addObject:pp];
-//    MGStyledBox *box3 = [MGStyledBox box];
-//    [scroller.boxes addObject:box3];
+    //    MGStyledBox *box3 = [MGStyledBox box];
+    //    [scroller.boxes addObject:box3];
     
-//    MGBoxLine *head3 =
-//    [MGBoxLine lineWithLeft:@"NSStrings, UIImages, and UIViews"
-//                      right:nil];
-//    head3.font = headerFont;
-//    [box3.topLines addObject:head3];
-//    
-//    NSString *lineContentWords =
-//    @"Content can be arbitrary arrays of elements.\n\n"
-//    "UIImages are automatically wrapped in UIImageViews and "
-//    "NSStrings are automatically wrapped in UILabels.\n\n"
-//    "Content elements are automatically laid out "
-//    "according to the line's itemPadding and "
-//    "linePadding property values.";
-//    MGBoxLine *wordsLine =
-//    [MGBoxLine multilineWithText:lineContentWords font:nil padding:24];
-//    [box3.topLines addObject:wordsLine];
-//    
-//    UIImage *img = [UIImage imageNamed:@"home"];
-//    NSArray *imgLineLeft =
-//    [NSArray arrayWithObjects:img, @"An NSString after a UIImage", nil];
-//    MGBoxLine *imgLine = [MGBoxLine lineWithLeft:imgLineLeft right:nil];
-//    [box3.topLines addObject:imgLine];
+    //    MGBoxLine *head3 =
+    //    [MGBoxLine lineWithLeft:@"NSStrings, UIImages, and UIViews"
+    //                      right:nil];
+    //    head3.font = headerFont;
+    //    [box3.topLines addObject:head3];
+    //    
+    //    NSString *lineContentWords =
+    //    @"Content can be arbitrary arrays of elements.\n\n"
+    //    "UIImages are automatically wrapped in UIImageViews and "
+    //    "NSStrings are automatically wrapped in UILabels.\n\n"
+    //    "Content elements are automatically laid out "
+    //    "according to the line's itemPadding and "
+    //    "linePadding property values.";
+    //    MGBoxLine *wordsLine =
+    //    [MGBoxLine multilineWithText:lineContentWords font:nil padding:24];
+    //    [box3.topLines addObject:wordsLine];
+    //    
+    //    UIImage *img = [UIImage imageNamed:@"home"];
+    //    NSArray *imgLineLeft =
+    //    [NSArray arrayWithObjects:img, @"An NSString after a UIImage", nil];
+    //    MGBoxLine *imgLine = [MGBoxLine lineWithLeft:imgLineLeft right:nil];
+    //    [box3.topLines addObject:imgLine];
     
     // draw all the boxes and animate as appropriate
     [scroller drawBoxesWithSpeed:ANIM_SPEED];
@@ -349,11 +348,11 @@ return button;
     [photomessageArray addObject:dic3];
 }
 - (void) praiseImageArray{
-    NSDictionary *dic1 = [NSDictionary dictionaryWithObjectsAndKeys:@"logo.png",@"imag",nil];
-    NSDictionary *dic2 = [NSDictionary dictionaryWithObjectsAndKeys:@"weibo.png",@"imag",nil];
-    NSDictionary *dic3 = [NSDictionary dictionaryWithObjectsAndKeys:@"andong.jpg",@"imag",nil];
-    NSDictionary *dic4 = [NSDictionary dictionaryWithObjectsAndKeys:@"Icon.png",@"imag",nil];
-    NSDictionary *dic5 = [NSDictionary dictionaryWithObjectsAndKeys:@"andong.jpg",@"imag",nil];
+    NSDictionary *dic1 = [NSDictionary dictionaryWithObjectsAndKeys:@"logo.png",@"imag",@"logo.png",@"username",nil];
+    NSDictionary *dic2 = [NSDictionary dictionaryWithObjectsAndKeys:@"weibo.png",@"imag",@"weibo.png",@"username",nil];
+    NSDictionary *dic3 = [NSDictionary dictionaryWithObjectsAndKeys:@"andong.jpg",@"imag",@"andong.jpg",@"username",nil];
+    NSDictionary *dic4 = [NSDictionary dictionaryWithObjectsAndKeys:@"Icon.png",@"imag",@"Icon.png",@"username",nil];
+    NSDictionary *dic5 = [NSDictionary dictionaryWithObjectsAndKeys:@"andong.jpg",@"imag",@"andong.jpg",@"username",nil];
     
     imgArray = [[NSMutableArray alloc] initWithCapacity:0];
     [imgArray addObject:dic1];
@@ -373,7 +372,7 @@ return button;
     [self.navigationController pushViewController:four animated:YES];
 }
 
-- (void)praisephotoImage:(int)imagenum{
+- (void)praisephotoImage:(NSString *)imgusername{
     FourthViewController* four = [[FourthViewController alloc] init];
     [self.navigationController pushViewController:four animated:YES];
 }
@@ -381,6 +380,29 @@ return button;
 - (void)attentionNotification:(NSNotification *)notification
 {
 	FourthViewController* four = [[FourthViewController alloc] init];
+    [self.navigationController pushViewController:four animated:YES];
+}
+
+- (void)praisephotomatch:(NSString *)match{
+    FourthViewController* four = [[FourthViewController alloc] init];
+    [self.navigationController pushViewController:four animated:YES];
+}
+
+- (void)attentionmatch:(NSString *)match{
+    FourthViewController* four = [[FourthViewController alloc] init];
+    [self.navigationController pushViewController:four animated:YES];
+}
+- (void)praisematch:(NSString *)match{
+    FourthViewController* four = [[FourthViewController alloc] init];
+    [self.navigationController pushViewController:four animated:YES];
+}
+
+- (void)ontopmatch:(NSString *)match{
+    FourthViewController* four = [[FourthViewController alloc] init];
+    [self.navigationController pushViewController:four animated:YES];
+}
+- (void)newsmessagematch:(NSString *)match{
+    FourthViewController* four = [[FourthViewController alloc] init];
     [self.navigationController pushViewController:four animated:YES];
 }
 @end

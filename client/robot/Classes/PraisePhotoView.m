@@ -7,7 +7,6 @@
 //
 
 #import "PraisePhotoView.h"
-#import "IFTweetLabel.h"
 @implementation PraisePhotoView
 @synthesize delegate;
 - (id)initWithFrame:(CGRect)frame firstname:(NSString *)firstname imagecount:(int)imagecount imageArray:(NSMutableArray *)imageArray
@@ -23,6 +22,7 @@
         [tweetLabel setFont:[UIFont boldSystemFontOfSize:15.0f]];
         [tweetLabel setTextColor:[UIColor blackColor]];
         [tweetLabel setBackgroundColor:[UIColor clearColor]];
+        tweetLabel.delegate = self;
         [tweetLabel setNumberOfLines:0];
         tweetLabel.expressions = [[NSArray alloc] initWithObjects:
                                   firstname,
@@ -32,7 +32,7 @@
         [tweetLabel setLinksEnabled:YES];
         
         [self addSubview:tweetLabel];
-        
+        imagmessageArray = imageArray;
         int iby = 0; 
         for (int i = 0; i < imagecount; i++) {
             if (i%4 == 0) {
@@ -41,8 +41,9 @@
             NSDictionary *nsdic = [imageArray objectAtIndex:i];
             UIButton *imageButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
             imageButton.frame = CGRectMake(8 + i%4 * 73, iby, 65, 65);
+            imageButton.tag = i;
             [imageButton setImage:[UIImage imageNamed:[nsdic objectForKey:@"imag"]] forState:UIControlStateNormal];
-            [imageButton addTarget:self action:@selector(onClickImage) forControlEvents:UIControlEventTouchUpInside];
+            [imageButton addTarget:self action:@selector(onClickImage:) forControlEvents:UIControlEventTouchUpInside];
             [self addSubview:imageButton];
         }
         UILabel* timelabel = [[UILabel alloc] initWithFrame:CGRectMake(20, iby + 73, 250, 20)];
@@ -57,8 +58,13 @@
     return self;
 }
 
-- (void) onClickImage {
-    [delegate praisephotoImage:0];
+- (void) onClickImage:(id)send{
+    NSDictionary *img = [imagmessageArray objectAtIndex:[send tag]];
+    [delegate praisephotoImage:[img objectForKey:@"username"]];
+}
+
+- (void)IFLabelmatch:(NSString *)match{
+    [delegate praisephotomatch:match];
 }
 
 //- (void)praisephotoNotification:(NSNotification *)notification

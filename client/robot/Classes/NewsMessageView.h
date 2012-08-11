@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "IFTweetLabel.h"
 @protocol NewsMessageDelegate;
-@interface NewsMessageView : UIView{
+@interface NewsMessageView : UIView<IFLabelDelegate>{
     
     UIImageView* footimageView;
     UILabel* footlabel;
@@ -26,4 +27,5 @@
 
 @protocol NewsMessageDelegate <NSObject>
 - (void)clickImage:(int)imagenum;
+- (void)newsmessagematch:(NSString *)match;
 @end

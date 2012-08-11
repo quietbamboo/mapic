@@ -7,7 +7,6 @@
 //
 
 #import "PhotoMessageView.h"
-#import "IFTweetLabel.h"
 @implementation PhotoMessageView
 
 @synthesize footlabel = _footlabel;
@@ -32,6 +31,7 @@
         [tweetLabel setTextColor:[UIColor blackColor]];
         [tweetLabel setBackgroundColor:[UIColor clearColor]];
         [tweetLabel setNumberOfLines:0];
+        tweetLabel.delegate = self;
         tweetLabel.expressions = [[NSArray alloc] initWithObjects:
                                   headString,
                                   //@"([hH][tT][tT][pP][sS]?:\\/\\/[^ ,'\">\\]\\)]*[^\\. ,'\">\\]\\)])", // hyperlinks
@@ -58,6 +58,10 @@
     [delegate clickImage:_butnum];
 }
 
+
+- (void)IFLabelmatch:(NSString *)match{
+    [delegate photomessagematch:match];
+}
 /*
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.

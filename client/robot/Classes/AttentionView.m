@@ -10,6 +10,7 @@
 #import "IFTweetLabel.h"
 @implementation AttentionView
 
+@synthesize delegate;
 - (id)initWithFrame:(CGRect)frame firstname:(NSString *)firstname secondname:(NSString *)secondname
 {
     self = [super initWithFrame:frame];
@@ -23,6 +24,7 @@
         [tweetLabel setTextColor:[UIColor blackColor]];
         [tweetLabel setBackgroundColor:[UIColor clearColor]];
         [tweetLabel setNumberOfLines:0];
+        tweetLabel.delegate = self;
         tweetLabel.expressions = [[NSArray alloc] initWithObjects:
                                   firstname,
                                   secondname,
@@ -45,7 +47,9 @@
     return self;
 }
 
-
+- (void)IFLabelmatch:(NSString *)match{
+    [delegate attentionmatch:match];
+}
 //- (void)attentionNotification:(NSNotification *)notification
 //{
 //	NSLog(@"attentionNotification: notification = %@", notification.object);

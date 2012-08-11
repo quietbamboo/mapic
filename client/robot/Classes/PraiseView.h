@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "IFTweetLabel.h"
 @protocol PraiseDelegate;
-@interface PraiseView : UIView{
+@interface PraiseView : UIView<IFLabelDelegate>{
     id <PraiseDelegate> delegate;
 }
 @property (nonatomic) id <PraiseDelegate> delegate;
@@ -19,4 +20,5 @@
 
 @protocol PraiseDelegate <NSObject>
 - (void)praiseImage:(int)imagenum;
+- (void)praisematch:(NSString *)match;
 @end

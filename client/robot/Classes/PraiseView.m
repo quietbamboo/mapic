@@ -7,7 +7,6 @@
 //
 
 #import "PraiseView.h"
-#import "IFTweetLabel.h"
 @implementation PraiseView
 
 @synthesize delegate;
@@ -30,6 +29,7 @@
         [tweetLabel setTextColor:[UIColor blackColor]];
         [tweetLabel setBackgroundColor:[UIColor clearColor]];
         [tweetLabel setNumberOfLines:0];
+        tweetLabel.delegate = self;
         tweetLabel.expressions = [[NSArray alloc] initWithObjects:
                                   firstname,
                                   secondname,
@@ -59,6 +59,9 @@
     [delegate praiseImage:0];
 }
 
+- (void)IFLabelmatch:(NSString *)match{
+    [delegate praisematch:match];
+}
 //- (void)praiseNotification:(NSNotification *)notification
 //{
 //	NSLog(@"praiseNotification: notification = %@", notification.object);

@@ -7,7 +7,6 @@
 //
 
 #import "NewsMessageView.h"
-#import "IFTweetLabel.h"
 #import "DetailTextView.h"
 @implementation NewsMessageView
 
@@ -59,6 +58,7 @@
         [tweetLabel setTextColor:[UIColor blackColor]];
         [tweetLabel setBackgroundColor:[UIColor clearColor]];
         [tweetLabel setNumberOfLines:0];
+        tweetLabel.delegate = self;
         tweetLabel.expressions = [[NSArray alloc] initWithObjects:
                                   headString,
                                   //@"([hH][tT][tT][pP][sS]?:\\/\\/[^ ,'\">\\]\\)]*[^\\. ,'\">\\]\\)])", // hyperlinks
@@ -85,6 +85,10 @@
 
 - (void) onClickImage {
     [delegate clickImage:numimage];
+}
+
+- (void)IFLabelmatch:(NSString *)match{
+    [delegate newsmessagematch:match];
 }
 /*
 // Only override drawRect: if you perform custom drawing.

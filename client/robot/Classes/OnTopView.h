@@ -7,12 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "IFTweetLabel.h"
 @protocol OntopDelegate;
-@interface OnTopView : UIView{
+@interface OnTopView : UIView<IFLabelDelegate>{
     id <OntopDelegate> delegate;
 }
 @property (nonatomic) id <OntopDelegate> delegate;
 @end
 @protocol OntopDelegate <NSObject>
 - (void)ontopImage:(int)imagenum;
+- (void)ontopmatch:(NSString *)match;
 @end

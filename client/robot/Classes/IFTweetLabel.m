@@ -26,7 +26,7 @@
 @synthesize label;
 
 @synthesize linksEnabled;
-
+@synthesize delegate;
 
 NSString *IFTweetLabelURLNotification = @"IFTweetLabelURLNotification";
 
@@ -58,7 +58,9 @@ NSString *IFTweetLabelURLNotification = @"IFTweetLabelURLNotification";
 		{
 			if ([match hasPrefix:buttonTitle])
 			{
-				[[NSNotificationCenter defaultCenter] postNotificationName:IFTweetLabelURLNotification object:match];
+//				[[NSNotificationCenter defaultCenter] postNotificationName:IFTweetLabelURLNotification object:match];
+//                return;
+                [delegate IFLabelmatch:match];
                 return;
 			}
 		}

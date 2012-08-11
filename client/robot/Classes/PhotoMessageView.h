@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "IFTweetLabel.h"
 @protocol PhotoMessageDelegate;
-@interface PhotoMessageView : UIView{
+@interface PhotoMessageView : UIView<IFLabelDelegate>{
 
     UILabel* footlabel;
     id <PhotoMessageDelegate> delegate;
@@ -25,4 +26,5 @@
 
 @protocol PhotoMessageDelegate <NSObject>
 - (void)clickImage:(int)imagenum;
+- (void)photomessagematch:(NSString *)match;
 @end

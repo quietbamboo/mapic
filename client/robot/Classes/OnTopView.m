@@ -7,7 +7,6 @@
 //
 
 #import "OnTopView.h"
-#import "IFTweetLabel.h"
 @implementation OnTopView
 @synthesize delegate;
 - (id)initWithFrame:(CGRect)frame
@@ -29,6 +28,7 @@
         [tweetLabel setTextColor:[UIColor blackColor]];
         [tweetLabel setBackgroundColor:[UIColor clearColor]];
         [tweetLabel setNumberOfLines:0];
+        tweetLabel.delegate = self;
         tweetLabel.expressions = [[NSArray alloc] initWithObjects:
                                   @"colorcreative",
                                   //@"([hH][tT][tT][pP][sS]?:\\/\\/[^ ,'\">\\]\\)]*[^\\. ,'\">\\]\\)])", // hyperlinks
@@ -58,6 +58,9 @@
     [delegate ontopImage:0];
 }
 
+- (void)IFLabelmatch:(NSString *)match{
+    [delegate ontopmatch:match];
+}
 //- (void)ontopNotification:(NSNotification *)notification
 //{
 //	NSLog(@"ontopNotification: notification = %@", notification.object);
