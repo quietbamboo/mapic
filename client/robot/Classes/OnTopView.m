@@ -9,15 +9,15 @@
 #import "OnTopView.h"
 @implementation OnTopView
 @synthesize delegate;
-- (id)initWithFrame:(CGRect)frame userName:(NSString *)userName imageID:(NSString *)imageID
+- (id)initWithFrame:(CGRect)frame userName:(NSString *)userName imageID:(NSString *)imageID imageURL:(NSString *)imageURL
 {
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
-        imgID = imageID;
+        imgID = imageURL;
         UIButton *imageButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
         imageButton.frame = CGRectMake(8, 8, 65, 65);
-        [imageButton setImage:[UIImage imageNamed:imageID] forState:UIControlStateNormal];
+        [imageButton setImage:[UIImage imageNamed:imageURL] forState:UIControlStateNormal];
         [imageButton addTarget:self action:@selector(onClickImage:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:imageButton];
         
@@ -56,7 +56,7 @@
 }
 
 - (void) onClickImage:(id)send{
-    [delegate imageID:@"Icon.png" UIViewType:OnTopViewtype];
+    [delegate imageID:imgID UIViewType:OnTopViewtype];
 }
 
 - (void)IFLabeluserName:(NSString *)userName{

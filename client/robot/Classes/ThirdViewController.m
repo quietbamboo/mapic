@@ -124,13 +124,13 @@
     
     MGStyledBox *box2 = [MGStyledBox box];
     [scroller.boxes addObject:box2];
-    PraiseView* praise = [[PraiseView alloc] initWithFrame:CGRectMake(0, 0, 300, 70) firstname:@"she" secondname:@"he" imageID:@"Icon.png"];
+    PraiseView* praise = [[PraiseView alloc] initWithFrame:CGRectMake(0, 0, 300, 70) firstname:@"she" secondname:@"he" imageID:@"" imageURL:@"Icon.png"];
     praise.delegate = self;
     [box2.topLines addObject:praise];
     
     MGStyledBox *box3 = [MGStyledBox box];
     [scroller.boxes addObject:box3];
-    OnTopView* ontop = [[OnTopView alloc] initWithFrame:CGRectMake(0, 0, 300, 80) userName:@"collering" imageID:@"Icon.png"];
+    OnTopView* ontop = [[OnTopView alloc] initWithFrame:CGRectMake(0, 0, 300, 80) userName:@"collering" imageID:@"" imageURL:@"Icon.png"];
     ontop.delegate = self;
     [box3.topLines addObject:ontop];
     
