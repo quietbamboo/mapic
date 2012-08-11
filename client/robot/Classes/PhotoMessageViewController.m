@@ -56,6 +56,7 @@
     [tableview setDelegate:self];
     [tableview setDataSource:self];
     [self.view addSubview: tableview];
+   
     [tableview release];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeLocations:) name:UIKeyboardWillShowNotification object:nil];
@@ -175,6 +176,7 @@
     tableview.frame = CGRectMake(0, 0, 320, 392 - keyboardBounds.size.height);
     UIToolbar* toolbar = (UIToolbar *)[self.view viewWithTag:TOOLBAR];
     toolbar.frame = CGRectMake(0, 392 - keyboardBounds.size.height, 320, 44);
+    [tableview scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:[photomessageArray count]-1 inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:YES];
 }
 
 - (void) textFieldDoneEditing:(id)sender{  

@@ -16,7 +16,7 @@
     UITextField* sendfield;
 }
 
-@property (nonatomic) id <ModalControllerDelegate> delegate;
+@property (nonatomic,assign) id <ModalControllerDelegate> delegate;
 
 - (void)closeButtonPressed;
 
