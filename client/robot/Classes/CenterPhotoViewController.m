@@ -68,25 +68,25 @@
 	// Do any additional setup after loading the view.
 
     
-    UILabel *namelabel=[[UILabel alloc] initWithFrame:CGRectMake(0.0f, 480.0f, 60.0f, 20.0f)];
+    UILabel *namelabel=[[UILabel alloc] initWithFrame:CGRectMake(0.0f, 340.0f, 60.0f, 20.0f)];
     namelabel.font=[UIFont fontWithName:@"HelveticaNeue-Bold" size:18];
     namelabel.textColor=[UIColor blueColor];
-    namelabel.text = NSLocalizedString(@"名称：", nil);
+    namelabel.text = NSLocalizedString(@"景点名称：", nil);
     namelabel.textAlignment = UITextAlignmentCenter;
     namelabel.backgroundColor = [UIColor clearColor];
     [scrollview addSubview:namelabel];
     [namelabel release];
     
-    UITextField* text = [[UITextField alloc] initWithFrame:CGRectMake(65, 480, 220, 30)];
+    UITextField* text = [[UITextField alloc] initWithFrame:CGRectMake(65, 340, 220, 30)];
     text.borderStyle = UITextBorderStyleRoundedRect;//设置文本框边框风格
     text.autocorrectionType = UITextAutocorrectionTypeYes;//启用自动提示更正功能
-    text.placeholder = @"Enter the photo name";//设置默认显示文本
+    text.placeholder = @"Enter the place name";//设置默认显示文本
     text.returnKeyType = UIReturnKeyDone;//设置键盘完成按钮，相应的还有“Return”"Gｏ""Google"等
     text.clearButtonMode = UITextFieldViewModeWhileEditing;
     [text setBackgroundColor:[UIColor whiteColor]];
     [scrollview addSubview:text];
     
-    UILabel *textlabel=[[UILabel alloc] initWithFrame:CGRectMake(0.0f, 520.0f, 60.0f, 20.0f)];
+    UILabel *textlabel=[[UILabel alloc] initWithFrame:CGRectMake(0.0f, 440.0f, 60.0f, 20.0f)];
     textlabel.font=[UIFont fontWithName:@"HelveticaNeue-Bold" size:18];
     textlabel.textColor=[UIColor blueColor];
     textlabel.text = NSLocalizedString(@"简介：", nil);
@@ -95,7 +95,7 @@
     [scrollview addSubview:textlabel];
     [textlabel release];
     
-    UITextView *textView = [[[UITextView  alloc] initWithFrame:CGRectMake(65, 520, 250, 200)] autorelease]; //初始化大小并自动释放
+    UITextView *textView = [[[UITextView  alloc] initWithFrame:CGRectMake(65, 440, 250, 200)] autorelease]; //初始化大小并自动释放
     textView.textColor = [UIColor blackColor];//设置textview里面的字体颜色  
     textView.font = [UIFont fontWithName:@"Arial" size:18.0];//设置字体名字和字体大小  
     //textView.delegate = self;//设置它的委托方法  
@@ -208,7 +208,7 @@
 //    if (saveimage == nil) {
 //        NSLog(@"not get imgesssssss");
 //    }
-    UIImageView *imageview = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 460)];
+    UIImageView *imageview = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 320)];
     imageview.image = saveimage;
     [scrollview addSubview:imageview];
     [imageview release];

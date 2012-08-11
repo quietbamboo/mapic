@@ -176,7 +176,7 @@
 - (void)tappedDone:(id)sender
 {
     if(self.delegate && [self.delegate respondsToSelector:@selector(filterPicker:didFinishPickingFilterWithInfo:)]){
-        NSDictionary *info = [NSDictionary dictionaryWithObject:self.image forKey:UIImagePickerControllerEditedImage];
+        NSDictionary *info = [NSDictionary dictionaryWithObject:self.filteredImageView.image forKey:UIImagePickerControllerEditedImage];
         [self.delegate filterPicker:self didFinishPickingFilterWithInfo:info];
     }
 }
