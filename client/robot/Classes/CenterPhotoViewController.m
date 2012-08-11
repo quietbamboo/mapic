@@ -66,10 +66,7 @@
     scrollview.delegate = self;
     [self.view addSubview:scrollview];
 	// Do any additional setup after loading the view.
-    UIImageView *imageview = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 460)];
-    imageview.image = self.image;//[UIImage imageNamed:@"andong.jpg"];
-    [scrollview addSubview:imageview];
-    [imageview release];
+
     
     UILabel *namelabel=[[UILabel alloc] initWithFrame:CGRectMake(0.0f, 480.0f, 60.0f, 20.0f)];
     namelabel.font=[UIFont fontWithName:@"HelveticaNeue-Bold" size:18];
@@ -203,7 +200,18 @@
     [self dismissModalViewControllerAnimated:YES]; 
     UIImage *saveimage = [info objectForKey:UIImagePickerControllerEditedImage];
     //  self.image = saveimage;
-    imageView.image = saveimage;
+    //imageView.image = saveimage;
+//    
+//    if (info == nil) {
+//        NSLog(@"not get image ");
+//    }
+//    if (saveimage == nil) {
+//        NSLog(@"not get imgesssssss");
+//    }
+    UIImageView *imageview = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 460)];
+    imageview.image = saveimage;
+    [scrollview addSubview:imageview];
+    [imageview release];
     if (picker.sourceType == UIImagePickerControllerSourceTypeCamera) {
         UIImageWriteToSavedPhotosAlbum(saveimage,nil,nil,nil);
     }

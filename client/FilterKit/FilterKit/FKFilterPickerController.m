@@ -175,8 +175,10 @@
 
 - (void)tappedDone:(id)sender
 {
-    if(self.delegate && [self.delegate respondsToSelector:@selector(filterPicker:didFinishPickingFilterWithInfo:)])
-        [self.delegate filterPicker:self didFinishPickingFilterWithInfo:nil];
+    if(self.delegate && [self.delegate respondsToSelector:@selector(filterPicker:didFinishPickingFilterWithInfo:)]){
+        NSDictionary *info = [NSDictionary dictionaryWithObject:self.image forKey:UIImagePickerControllerEditedImage];
+        [self.delegate filterPicker:self didFinishPickingFilterWithInfo:info];
+    }
 }
 
 - (void)didDragDisk:(UIPanGestureRecognizer *)gestureRecognizer
