@@ -72,18 +72,27 @@ void report_memory(NSString *tag)
 }
 
 #pragma mark -
-#pragma mark Status
-
-- (BOOL)isEnabled {
-    return _enabled;
-}
-
-#pragma mark -
 #pragma mark Managing targets
 
 - (void)setInputTextureForTarget:(id<GPUImageInput>)target atIndex:(NSInteger)inputTextureIndex;
 {
-    [target setInputTexture:outputTexture atIndex:inputTextureIndex];
+    [target setInputTexture:[self textureForOutput] atIndex:inputTextureIndex];
+}
+
+- (GLuint)textureForOutput;
+{
+    return outputTexture;
+}
+
+- (void)notifyTargetsAboutNewOutputTexture;
+{
+    for (id<GPUImageInput> currentTarget in targets)
+    {
+        NSInteger indexOfObject = [targets indexOfObject:currentTarget];
+        NSInteger textureIndex = [[targetTextureIndices objectAtIndex:indexOfObject] integerValue];
+        
+        [self setInputTextureForTarget:currentTarget atIndex:textureIndex];
+    }
 }
 
 - (NSArray*)targets;
@@ -132,9 +141,10 @@ void report_memory(NSString *tag)
     NSInteger textureIndexOfTarget = [[targetTextureIndices objectAtIndex:indexOfObject] integerValue];
     [targetToRemove setInputSize:CGSizeZero atIndex:textureIndexOfTarget];
     [targetToRemove setInputTexture:0 atIndex:textureIndexOfTarget];
-    
+
     [targetTextureIndices removeObjectAtIndex:indexOfObject];
     [targets removeObject:targetToRemove];
+    [targetToRemove endProcessing];
 }
 
 - (void)removeAllTargets;
@@ -226,12 +236,58 @@ void report_memory(NSString *tag)
     return [self imageFromCurrentlyProcessedOutputWithOrientation:imageOrientation];
 }
 
+- (CGImageRef)newCGImageFromCurrentlyProcessedOutput;
+{
+	UIDeviceOrientation deviceOrientation = [[UIDevice currentDevice] orientation];
+    UIImageOrientation imageOrientation = UIImageOrientationLeft;
+	switch (deviceOrientation)
+    {
+		case UIDeviceOrientationPortrait:
+			imageOrientation = UIImageOrientationUp;
+			break;
+		case UIDeviceOrientationPortraitUpsideDown:
+			imageOrientation = UIImageOrientationDown;
+			break;
+		case UIDeviceOrientationLandscapeLeft:
+			imageOrientation = UIImageOrientationLeft;
+			break;
+		case UIDeviceOrientationLandscapeRight:
+			imageOrientation = UIImageOrientationRight;
+			break;
+		default:
+			imageOrientation = UIImageOrientationUp;
+			break;
+	}
+    
+    return [self newCGImageFromCurrentlyProcessedOutputWithOrientation:imageOrientation];
+}
+
 - (UIImage *)imageFromCurrentlyProcessedOutputWithOrientation:(UIImageOrientation)imageOrientation;
 {
     return nil;
 }
 
 - (UIImage *)imageByFilteringImage:(UIImage *)imageToFilter;
+{
+    return nil;
+}
+
+- (CGImageRef)newCGImageFromCurrentlyProcessedOutputWithOrientation:(UIImageOrientation)imageOrientation;
+{
+    return nil;
+}
+
+- (CGImageRef)newCGImageByFilteringImage:(UIImage *)imageToFilter;
+{
+    return nil;
+}
+
+- (CGImageRef)newCGImageByFilteringCGImage:(CGImageRef)imageToFilter;
+{
+    return nil;
+}
+
+- (CGImageRef)newCGImageByFilteringCGImage:(CGImageRef)imageToFilter orientation:(UIImageOrientation)orientation;
 {
     return nil;
 }

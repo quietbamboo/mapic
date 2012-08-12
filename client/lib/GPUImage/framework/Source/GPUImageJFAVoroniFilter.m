@@ -338,12 +338,16 @@ NSString *const kGPUImageJFAVoroniFragmentShaderString = SHADER_STRING
         glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
         
         glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, CVOpenGLESTextureGetName(renderTexture), 0);
+        
+        [self notifyTargetsAboutNewOutputTexture];
     }
     else
     {
         glBindTexture(GL_TEXTURE_2D, secondFilterOutputTexture);
         glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, (int)currentFBOSize.width, (int)currentFBOSize.height, 0, GL_RGBA, GL_UNSIGNED_BYTE, 0);
         glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, secondFilterOutputTexture, 0);
+        
+        [self notifyTargetsAboutNewOutputTexture];
     }
 
 	GLenum status = glCheckFramebufferStatus(GL_FRAMEBUFFER);
@@ -377,8 +381,7 @@ NSString *const kGPUImageJFAVoroniFragmentShaderString = SHADER_STRING
 - (void)renderToTextureWithVertices:(const GLfloat *)vertices textureCoordinates:(const GLfloat *)textureCoordinates sourceTexture:(GLuint)sourceTexture;
 {
     // Run the first stage of the two-pass filter
-    [GPUImageOpenGLESContext useImageProcessingContext];
-    [filterProgram use];
+    [GPUImageOpenGLESContext setActiveShaderProgram:filterProgram];
     glUniform1f(sampleStepUniform, 0.5);
     
     glUniform2f(sizeUniform, _sizeInPixels.width, _sizeInPixels.height);
@@ -389,8 +392,7 @@ NSString *const kGPUImageJFAVoroniFragmentShaderString = SHADER_STRING
         
         if (pass % 2 == 0) {
             
-            [GPUImageOpenGLESContext useImageProcessingContext];
-            [filterProgram use];
+            [GPUImageOpenGLESContext setActiveShaderProgram:filterProgram];
             
             float step = pow(2.0, numPasses - pass) / pow(2.0, numPasses);
             glUniform1f(sampleStepUniform, step);
@@ -401,7 +403,7 @@ NSString *const kGPUImageJFAVoroniFragmentShaderString = SHADER_STRING
             // Run the second stage of the two-pass filter
             [self setSecondFilterFBO];
             
-            [filterProgram use];
+            [GPUImageOpenGLESContext setActiveShaderProgram:filterProgram];
             
             glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
             glClear(GL_COLOR_BUFFER_BIT);

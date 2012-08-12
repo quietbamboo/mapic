@@ -33,7 +33,9 @@
     secondFilterInputTextureUniform = [secondFilterProgram uniformIndex:@"inputImageTexture"]; // This does assume a name of "inputImageTexture" for the fragment shader
     secondFilterInputTextureUniform2 = [secondFilterProgram uniformIndex:@"inputImageTexture2"]; // This does assume a name of "inputImageTexture2" for second input texture in the fragment shader
     
-    [secondFilterProgram use];    
+    // REFACTOR: Wrap this in a block on the image processing queue
+    [GPUImageOpenGLESContext setActiveShaderProgram:secondFilterProgram];
+
 	glEnableVertexAttribArray(secondFilterPositionAttribute);
 	glEnableVertexAttribArray(secondFilterTextureCoordinateAttribute);
 
@@ -60,9 +62,9 @@
 #pragma mark -
 #pragma mark Managing targets
 
-- (void)setInputTextureForTarget:(id<GPUImageInput>)target atIndex:(NSInteger)inputTextureIndex;
+- (GLuint)textureForOutput;
 {
-    [target setInputTexture:secondFilterOutputTexture atIndex:inputTextureIndex];
+    return secondFilterOutputTexture;
 }
 
 #pragma mark -
@@ -163,12 +165,16 @@
         glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
         
         glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, CVOpenGLESTextureGetName(renderTexture), 0);
+        
+        [self notifyTargetsAboutNewOutputTexture];
     }
     else
     {
         glBindTexture(GL_TEXTURE_2D, secondFilterOutputTexture);
         glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, (int)currentFBOSize.width, (int)currentFBOSize.height, 0, GL_RGBA, GL_UNSIGNED_BYTE, 0);
         glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, secondFilterOutputTexture, 0);
+        
+        [self notifyTargetsAboutNewOutputTexture];
     }
 	
 	GLenum status = glCheckFramebufferStatus(GL_FRAMEBUFFER);
@@ -218,7 +224,7 @@
     // Run the second stage of the two-pass filter
     [self setSecondFilterFBO];
     
-    [secondFilterProgram use];
+    [GPUImageOpenGLESContext setActiveShaderProgram:secondFilterProgram];
     
     glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT);
