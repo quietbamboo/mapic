@@ -88,6 +88,20 @@ NSString *IFTweetLabelURLNotification = @"IFTweetLabelURLNotification";
 	[button setTitleColor:self.highlightColor forState:UIControlStateHighlighted];
 	[button addTarget:self action:@selector(handleButton:) forControlEvents:UIControlEventTouchUpInside];
 	[self addSubview:button];
+    
+    UIButton *canDelBtn = nil;
+    for (UIView *view in self.subviews) {
+        if ([view isKindOfClass:[UIButton class]]) {
+            UIButton *btn = (UIButton *)view;
+            if ([[[btn titleLabel] text] isEqualToString: [[canDelBtn titleLabel] text]]) {
+                NSLog(@"this is btn title %@",[[btn titleLabel] text]);
+                NSLog(@"this is delbtn title %@",[[canDelBtn titleLabel] text]);
+                canDelBtn.hidden = YES;
+                [canDelBtn removeFromSuperview];
+            }  
+            canDelBtn = btn;
+        }
+    }
 }				
 
 
@@ -363,11 +377,6 @@ NSString *IFTweetLabelURLNotification = @"IFTweetLabelURLNotification";
 {
     [super layoutSubviews];
 
-	[self removeButtons];
-	if (linksEnabled)
-	{
-		[self createButtons];
-	}
 
 #if DRAW_DEBUG_FRAMES
 	[self setNeedsDisplay];
@@ -402,7 +411,13 @@ NSString *IFTweetLabelURLNotification = @"IFTweetLabelURLNotification";
 {
 	[self.label setText:text];
 
-	[self setNeedsLayout];
+	//[self setNeedsLayout];
+    [self removeButtons];
+	//if (linksEnabled)
+	//{
+    [self createButtons];
+	//}
+
 }
 
 - (void)setLinksEnabled:(BOOL)state
