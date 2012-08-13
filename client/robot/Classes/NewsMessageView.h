@@ -9,7 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "IFTweetLabel.h"
 #import "ImageIdAndUserNameProtocol.h"
-@interface NewsMessageView : UIView<IFLabelDelegate>{
+#import "PictureImageview.h"
+@interface NewsMessageView : UIView<IFLabelDelegate,pictureimageDelegate>{
     
     UIImageView* footimageView;
     UILabel* footlabel;
@@ -23,5 +24,5 @@
 @property (nonatomic) int numimage;
 @property (nonatomic) id <ImageIdAndUserNameProtocol> delegate;
 
-- (id)initWithFrame:(CGRect)frame headString:(NSString *)headString footString:(NSString *)footString imageID:(NSString *)imageID;
+- (id)initWithFrame:(CGRect)frame headString:(NSString *)headString footString:(NSString *)footString imageID:(NSString *)imageID imageURL:(NSString *)imageURL;
 @end

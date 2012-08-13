@@ -134,7 +134,7 @@
     cell.selectionStyle = UITableViewCellSelectionStyleBlue;
     NSDictionary *nsdic = [photomessageArray objectAtIndex:indexPath.row];
     cell.textLabel.text = @"";
-    PhotoMessageView* photomessage = [[PhotoMessageView alloc] initWithFrame:CGRectMake(0, 0, 320, 70) headString:[nsdic objectForKey:@"head"] footString:[nsdic objectForKey:@"foot"] imageID:[nsdic objectForKey:@"image"]];
+    PhotoMessageView* photomessage = [[PhotoMessageView alloc] initWithFrame:CGRectMake(0, 0, 320, 70) headString:[nsdic objectForKey:@"head"] footString:[nsdic objectForKey:@"foot"] imageID:[nsdic objectForKey:@"imageID"] imageURL:[nsdic objectForKey:@"imageURL"]];
     photomessage.footlabel.text = [nsdic objectForKey:@"labeltext"];
     photomessage.delegate = self;
     photomessage.butnum = indexPath.row;
@@ -193,9 +193,9 @@
 
 - (void) photomessageArray{
 
-    NSDictionary *dic1 = [NSDictionary dictionaryWithObjectsAndKeys:@"All",@"head",@"of us have read thrilling stories in which the  ",@"foot",@"logo.png",@"image",@"18 minutes ago",@"labeltext",nil];
-    NSDictionary *dic2 = [NSDictionary dictionaryWithObjectsAndKeys:@"hero",@"head",@"had only a limited and specified time to live.",@"foot",@"weibo.png",@"image",@"18 minutes ago",@"labeltext",nil];
-    NSDictionary *dic3 = [NSDictionary dictionaryWithObjectsAndKeys:@"How",@"head",@"are you. I'm go to shopping. I go home.",@"foot",@"andong.jpg",@"image",@"18 minutes ago",@"labeltext",nil];
+    NSDictionary *dic1 = [NSDictionary dictionaryWithObjectsAndKeys:@"All",@"head",@"of us have read thrilling stories in which the  ",@"foot",@"logo.png",@"imageURL",@"18 minutes ago",@"labeltext",@"111",@"imageID",nil];
+    NSDictionary *dic2 = [NSDictionary dictionaryWithObjectsAndKeys:@"hero",@"head",@"had only a limited and specified time to live.",@"foot",@"weibo.png",@"imageURL",@"18 minutes ago",@"labeltext",@"222",@"imageID",nil];
+    NSDictionary *dic3 = [NSDictionary dictionaryWithObjectsAndKeys:@"How",@"head",@"are you. I'm go to shopping. I go home.",@"foot",@"andong.jpg",@"imageURL",@"18 minutes ago",@"labeltext",@"222",@"imageID",nil];
     photomessageArray = [[NSMutableArray alloc] initWithCapacity:0];
     [photomessageArray addObject:dic1];
     [photomessageArray addObject:dic2];

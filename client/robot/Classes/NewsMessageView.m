@@ -14,18 +14,23 @@
 @synthesize footlabel = _footlabel;
 @synthesize numimage;
 @synthesize delegate;
-- (id)initWithFrame:(CGRect)frame headString:(NSString *)headString footString:(NSString *)footString imageID:(NSString *)imageID
+- (id)initWithFrame:(CGRect)frame headString:(NSString *)headString footString:(NSString *)footString imageID:(NSString *)imageID imageURL:(NSString *)imageURL
 {
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
         self.backgroundColor = [UIColor whiteColor];
         imgID = imageID;
-        UIButton *imageButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-        imageButton.frame = CGRectMake(5, 10, 50, 50);
-        [imageButton setImage:[UIImage imageNamed:imageID] forState:UIControlStateNormal];
-        [imageButton addTarget:self action:@selector(onClickImage:) forControlEvents:UIControlEventTouchUpInside];
-        [self addSubview:imageButton];
+        
+        PictureImageview* imageview = [[PictureImageview alloc] initWithFrame:CGRectMake(5, 10, 50, 50)];
+        imageview.userInteractionEnabled=YES;
+        imageview.layer.cornerRadius = 5.0;
+        imageview.layer.masksToBounds = YES;
+        UIImage *icon = [UIImage imageNamed:imageURL];
+        imageview.image = icon;
+        imageview.tag = 0;
+        imageview.delegate = self;
+        [self addSubview:imageview];
         
         _footimageView = [[UIImageView alloc] initWithFrame:CGRectMake(245, 10, 50, 50)];
         _footimageView.image = [UIImage imageNamed:@""];
@@ -83,7 +88,7 @@
     return self;
 }
 
-- (void) onClickImage:(id)send{
+- (void) pictureevent:(NSInteger) imaagetag{
     [delegate imageID:imgID UIViewType:NewsMessageViewtype];
 }
 

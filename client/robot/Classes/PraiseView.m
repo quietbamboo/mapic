@@ -16,13 +16,17 @@
     if (self) {
         // Initialization code
         imgID = imageID;
-        UIButton *imageButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-        imageButton.frame = CGRectMake(8, 8, 65, 65);
-        [imageButton setImage:[UIImage imageNamed:imageURL] forState:UIControlStateNormal];
-        [imageButton addTarget:self action:@selector(onClickImage:) forControlEvents:UIControlEventTouchUpInside];
-        [self addSubview:imageButton];
         
-//        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(praiseNotification:) name:IFTweetLabelURLNotification object:nil];
+        PictureImageview* imageview = [[PictureImageview alloc] initWithFrame:CGRectMake(8, 8, 65, 65)];
+        imageview.userInteractionEnabled=YES;
+        imageview.layer.cornerRadius = 5.0;
+        imageview.layer.masksToBounds = YES;
+        UIImage *icon = [UIImage imageNamed:imageURL];
+        imageview.image = icon;
+        imageview.tag = 0;
+        imageview.delegate = self;
+        [self addSubview:imageview];
+        //        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(praiseNotification:) name:IFTweetLabelURLNotification object:nil];
         
         CGSize ssize = [[NSString stringWithFormat:@"%@ 称赞了 %@ 的照片。",firstname,secondname] sizeWithFont:[UIFont systemFontOfSize:19.0f] constrainedToSize:CGSizeMake(220.0f, 1000.0f) lineBreakMode:UILineBreakModeWordWrap];
         IFTweetLabel *tweetLabel = [[IFTweetLabel alloc] initWithFrame:CGRectMake(80.0f, 8.0f, ssize.width, ssize.height)];
@@ -55,8 +59,7 @@
     return self;
 }
 
-
-- (void) onClickImage:(id)send{
+- (void) pictureevent:(NSInteger) imaagetag{
     [delegate imageID:imgID UIViewType:PraiseViewtype];
 }
 

@@ -9,7 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "IFTweetLabel.h"
 #import "ImageIdAndUserNameProtocol.h"
-@interface OnTopView : UIView<IFLabelDelegate>{
+#import "PictureImageview.h"
+@interface OnTopView : UIView<IFLabelDelegate,pictureimageDelegate>{
     id <ImageIdAndUserNameProtocol> delegate;
     NSString* imgID;
 }

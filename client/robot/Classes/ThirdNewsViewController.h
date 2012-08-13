@@ -1,8 +1,8 @@
 //
-//  UserViewController.h
+//  ThirdNewsViewController.h
 //  template
 //
-//  Created by apple on 12-7-12.
+//  Created by apple on 12-8-13.
 //  Copyright (c) 2012年 __MyCompanyName__. All rights reserved.
 //
 
@@ -20,13 +20,12 @@
 #import "OnTopView.h"
 #import "PraisePhotoView.h"
 #import "ImageIdAndUserNameProtocol.h"
-#import "ThirdNewsViewController.h"
-@interface ThirdViewController : UIViewController<UIScrollViewDelegate,JMTabViewDelegate,ImageIdAndUserNameProtocol>{
+
+@interface ThirdNewsViewController : UIViewController<UIScrollViewDelegate,JMTabViewDelegate,ImageIdAndUserNameProtocol>{
     NSMutableArray *photomessageArray;
     NotificationView *notificationView;
     MGScrollView *scroller;
     NSMutableArray* imgArray;
-    ThirdNewsViewController* thirdnews;
     JMTabView *tabHeaderView;
 }
 - (void)addBox:(UIButton *)sender;
@@ -37,4 +36,5 @@
 
 - (MGBox *)parentBoxOf:(UIView *)view;
 - (UIButton *)button:(NSString *)title for:(SEL)selector;
+
 @end

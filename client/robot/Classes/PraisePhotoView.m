@@ -39,12 +39,15 @@
                 iby = tweetLabel.frame.size.height + (i/4*73); 
             }
             NSDictionary *nsdic = [imageArray objectAtIndex:i];
-            UIButton *imageButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-            imageButton.frame = CGRectMake(8 + i%4 * 73, iby, 65, 65);
-            imageButton.tag = i;
-            [imageButton setImage:[UIImage imageNamed:[nsdic objectForKey:@"imag"]] forState:UIControlStateNormal];
-            [imageButton addTarget:self action:@selector(onClickImage:) forControlEvents:UIControlEventTouchUpInside];
-            [self addSubview:imageButton];
+            PictureImageview* imageview = [[PictureImageview alloc] initWithFrame:CGRectMake(8 + i%4 * 73, iby, 65, 65)];
+            imageview.userInteractionEnabled=YES;
+            imageview.layer.cornerRadius = 5.0;
+            imageview.layer.masksToBounds = YES;
+            UIImage *icon = [UIImage imageNamed:[nsdic objectForKey:@"username"]];
+            imageview.image = icon;
+            imageview.tag = i;
+            imageview.delegate = self;
+            [self addSubview:imageview];
         }
         UILabel* timelabel = [[UILabel alloc] initWithFrame:CGRectMake(20, iby + 73, 250, 20)];
         timelabel.font = [UIFont systemFontOfSize:13];
@@ -58,9 +61,9 @@
     return self;
 }
 
-- (void) onClickImage:(id)send{
-    NSDictionary *img = [imagmessageArray objectAtIndex:[send tag]];
-    [delegate imageID:[img objectForKey:@"username"] UIViewType:PraisePhotoViewtype];
+- (void) pictureevent:(NSInteger) imaagetag{
+    NSDictionary *img = [imagmessageArray objectAtIndex:imaagetag];
+    [delegate imageID:[img objectForKey:@"imagID"] UIViewType:PraisePhotoViewtype];
 }
 
 - (void)IFLabeluserName:(NSString *)userName{

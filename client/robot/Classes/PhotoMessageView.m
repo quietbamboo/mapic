@@ -12,18 +12,23 @@
 @synthesize footlabel = _footlabel;
 @synthesize butnum = _butnum;
 @synthesize delegate;
-- (id)initWithFrame:(CGRect)frame headString:(NSString *)headString footString:(NSString *)footString imageID:(NSString *)imageID
+- (id)initWithFrame:(CGRect)frame headString:(NSString *)headString footString:(NSString *)footString imageID:(NSString *)imageID imageURL:(NSString *)imageURL
 {
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
         self.backgroundColor = [UIColor whiteColor];
         imgID = imageID;
-        UIButton *imageButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-        imageButton.frame = CGRectMake(8, 8, 65, 65);
-        [imageButton setImage:[UIImage imageNamed:imageID] forState:UIControlStateNormal];
-        [imageButton addTarget:self action:@selector(onClickImage:) forControlEvents:UIControlEventTouchUpInside];
-        [self addSubview:imageButton];
+        
+        PictureImageview* imageview = [[PictureImageview alloc] initWithFrame:CGRectMake(8, 8, 65, 65)];
+        imageview.userInteractionEnabled=YES;
+        imageview.layer.cornerRadius = 5.0;
+        imageview.layer.masksToBounds = YES;
+        UIImage *icon = [UIImage imageNamed:imageURL];
+        imageview.image = icon;
+        imageview.tag = 0;
+        imageview.delegate = self;
+        [self addSubview:imageview];
         
         CGSize ssize = [[NSString stringWithFormat:@"%@ %@",headString,footString] sizeWithFont:[UIFont systemFontOfSize:19.0f] constrainedToSize:CGSizeMake(240.0f, 1000.0f) lineBreakMode:UILineBreakModeWordWrap];
         IFTweetLabel *tweetLabel = [[IFTweetLabel alloc] initWithFrame:CGRectMake(80.0f, 0.0f, ssize.width, ssize.height)];
@@ -54,7 +59,7 @@
     return self;
 }
 
-- (void) onClickImage:(id)send{
+- (void) pictureevent:(NSInteger) imaagetag{
     [delegate imageID:imgID UIViewType:PhotoMessageViewtype];
 }
 

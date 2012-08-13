@@ -9,7 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "IFTweetLabel.h"
 #import "ImageIdAndUserNameProtocol.h"
-@interface PraiseView : UIView<IFLabelDelegate>{
+#import "PictureImageview.h"
+@interface PraiseView : UIView<IFLabelDelegate,pictureimageDelegate>{
     id <ImageIdAndUserNameProtocol> delegate;
     NSString* imgID;
 }

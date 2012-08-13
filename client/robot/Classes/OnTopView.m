@@ -15,12 +15,15 @@
     if (self) {
         // Initialization code
         imgID = imageID;
-        UIButton *imageButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-        imageButton.frame = CGRectMake(8, 8, 65, 65);
-        [imageButton setImage:[UIImage imageNamed:imageURL] forState:UIControlStateNormal];
-        [imageButton addTarget:self action:@selector(onClickImage:) forControlEvents:UIControlEventTouchUpInside];
-        [self addSubview:imageButton];
-        
+        PictureImageview* imageview = [[PictureImageview alloc] initWithFrame:CGRectMake(8, 8, 65, 65)];
+        imageview.userInteractionEnabled=YES;
+        imageview.layer.cornerRadius = 5.0;
+        imageview.layer.masksToBounds = YES;
+        UIImage *icon = [UIImage imageNamed:imageURL];
+        imageview.image = icon;
+        imageview.tag = 0;
+        imageview.delegate = self;
+        [self addSubview:imageview];
 //        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(ontopNotification:) name:IFTweetLabelURLNotification object:nil];
         
         CGSize ssize = [[NSString stringWithFormat:@"%@ 的照片上热门榜了。",userName] sizeWithFont:[UIFont systemFontOfSize:19.0f] constrainedToSize:CGSizeMake(220.0f, 1000.0f) lineBreakMode:UILineBreakModeWordWrap];
@@ -55,7 +58,7 @@
     return self;
 }
 
-- (void) onClickImage:(id)send{
+- (void) pictureevent:(NSInteger) imaagetag{
     [delegate imageID:imgID UIViewType:OnTopViewtype];
 }
 

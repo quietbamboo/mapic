@@ -9,7 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "IFTweetLabel.h"
 #import "ImageIdAndUserNameProtocol.h"
-@interface PhotoMessageView : UIView<IFLabelDelegate>{
+#import "PictureImageview.h"
+@interface PhotoMessageView : UIView<IFLabelDelegate,pictureimageDelegate>{
     UILabel* footlabel;
     id <ImageIdAndUserNameProtocol> delegate;
     int butnum;
@@ -20,6 +21,6 @@
 @property (nonatomic) int butnum;
 @property (nonatomic) id <ImageIdAndUserNameProtocol> delegate;
 
-- (id)initWithFrame:(CGRect)frame headString:(NSString *)headString footString:(NSString *)footString imageID:(NSString *)imageID;
+- (id)initWithFrame:(CGRect)frame headString:(NSString *)headString footString:(NSString *)footString imageID:(NSString *)imageID imageURL:(NSString *)imageURL;
 
 @end

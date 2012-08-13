@@ -118,6 +118,8 @@
 		18E8D12215D37DA000CAD030 /* PraisePhotoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E8D12115D37DA000CAD030 /* PraisePhotoView.m */; };
 		18E8D12915D3A82800CAD030 /* RKLMatchEnumerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E8D12815D3A82800CAD030 /* RKLMatchEnumerator.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		18E8D12C15D3A84F00CAD030 /* IFTweetLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E8D12B15D3A84F00CAD030 /* IFTweetLabel.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		18EAA05315D88CAE007D9132 /* ThirdNewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EAA05215D88CAD007D9132 /* ThirdNewsViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		18EAA09015D8C196007D9132 /* PictureImageview.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EAA08F15D8C195007D9132 /* PictureImageview.m */; };
 		18EAFF1A15BE762A00869982 /* CellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EAFF1915BE762900869982 /* CellView.m */; };
 		18ED81B714AC00800092CAC8 /* EGORefreshTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18ED81B614AC00800092CAC8 /* EGORefreshTableHeaderView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		18ED81C014AC00D10092CAC8 /* blackArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 18ED81B814AC00D10092CAC8 /* blackArrow.png */; };
@@ -600,6 +602,10 @@
 		18E8D12815D3A82800CAD030 /* RKLMatchEnumerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RKLMatchEnumerator.m; sourceTree = "<group>"; };
 		18E8D12A15D3A84F00CAD030 /* IFTweetLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IFTweetLabel.h; sourceTree = "<group>"; };
 		18E8D12B15D3A84F00CAD030 /* IFTweetLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IFTweetLabel.m; sourceTree = "<group>"; };
+		18EAA05115D88CAD007D9132 /* ThirdNewsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThirdNewsViewController.h; sourceTree = "<group>"; };
+		18EAA05215D88CAD007D9132 /* ThirdNewsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThirdNewsViewController.m; sourceTree = "<group>"; };
+		18EAA08E15D8C195007D9132 /* PictureImageview.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PictureImageview.h; sourceTree = "<group>"; };
+		18EAA08F15D8C195007D9132 /* PictureImageview.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PictureImageview.m; sourceTree = "<group>"; };
 		18EAFF1815BE762900869982 /* CellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CellView.h; sourceTree = "<group>"; };
 		18EAFF1915BE762900869982 /* CellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CellView.m; sourceTree = "<group>"; };
 		18ED81B514AC00800092CAC8 /* EGORefreshTableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EGORefreshTableHeaderView.h; sourceTree = "<group>"; };
@@ -903,6 +909,10 @@
 				18E8D12015D37DA000CAD030 /* PraisePhotoView.h */,
 				18E8D12115D37DA000CAD030 /* PraisePhotoView.m */,
 				270A628915D6621B0059A9D4 /* ImageIdAndUserNameProtocol.h */,
+				18EAA05115D88CAD007D9132 /* ThirdNewsViewController.h */,
+				18EAA05215D88CAD007D9132 /* ThirdNewsViewController.m */,
+				18EAA08E15D8C195007D9132 /* PictureImageview.h */,
+				18EAA08F15D8C195007D9132 /* PictureImageview.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -1961,6 +1971,8 @@
 				18E8D12215D37DA000CAD030 /* PraisePhotoView.m in Sources */,
 				18E8D12915D3A82800CAD030 /* RKLMatchEnumerator.m in Sources */,
 				18E8D12C15D3A84F00CAD030 /* IFTweetLabel.m in Sources */,
+				18EAA05315D88CAE007D9132 /* ThirdNewsViewController.m in Sources */,
+				18EAA09015D8C196007D9132 /* PictureImageview.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
