@@ -109,12 +109,13 @@
         NSDictionary *nsdic = [photomessageArray objectAtIndex:i];
             //initWithFrame:CGRectMake(10, 0, 300, 80) headString:[nsdic objectForKey:@"head"] footString:[nsdic objectForKey:@"foot"] imageID:[nsdic objectForKey:@"image"]];
            // new.footimageView.image = [UIImage imageNamed:@"andong.jpg"]
-        NewsMessageView* new = [[NewsMessageView alloc] initWithFrame:CGRectMake(10, 0, 300, 80) headString:[nsdic objectForKey:@"head"] footString:[nsdic objectForKey:@"foot"] imageID:[nsdic objectForKey:@"image"] imageURL:[nsdic objectForKey:@"imgURL"]];
+        NewsMessageView* new = [[NewsMessageView alloc] initWithFrame:CGRectMake(10, 0, 300, 80) headString:[nsdic objectForKey:@"head"] footString:[nsdic objectForKey:@"foot"] imageID:[nsdic objectForKey:@"image"] imageURL:[nsdic objectForKey:@"imgURL"] image1ID:[nsdic objectForKey:@"imag1ID"] image1URL:[nsdic objectForKey:@"image1URL"]];
         new.footimageView.image = [UIImage imageNamed:@"andong.jpg"];
         new.footlabel.text = [nsdic objectForKey:@"labeltext"];
         new.delegate = self;
         new.numimage = i;
         [box5.topLines addObject:new];
+            [new release];
     }
     
     //    MGStyledBox *box3 = [MGStyledBox box];
@@ -307,9 +308,9 @@ return button;
 
 - (void) photomessageControllerArray{
     
-    NSDictionary *dic1 = [NSDictionary dictionaryWithObjectsAndKeys:@"All",@"head",@" of us have read thrilling stories in which the  ",@"foot",@"logo.png",@"imgURL",@"18 minutes ago",@"labeltext",@"001",@"image",nil];
-    NSDictionary *dic2 = [NSDictionary dictionaryWithObjectsAndKeys:@"hero",@"head",@" had only a limited and specified time to live.",@"foot",@"weibo.png",@"imgURL",@"18 minutes ago",@"labeltext",@"003",@"image",nil];
-    NSDictionary *dic3 = [NSDictionary dictionaryWithObjectsAndKeys:@"How",@"head",@" are you. I'm go to shopping. I go home.",@"foot",@"andong.jpg",@"imgURL",@"18 minutes ago",@"labeltext",@"002",@"image",nil];
+    NSDictionary *dic1 = [NSDictionary dictionaryWithObjectsAndKeys:@"All",@"head",@" of us have read thrilling stories in which the  ",@"foot",@"logo.png",@"imgURL",@"18 minutes ago",@"labeltext",@"001",@"image",@"andong.jpg",@"image1URL",@"aaa",@"imag1ID",nil];
+    NSDictionary *dic2 = [NSDictionary dictionaryWithObjectsAndKeys:@"hero",@"head",@" had only a limited and specified time to live.",@"foot",@"weibo.png",@"imgURL",@"18 minutes ago",@"labeltext",@"003",@"image",@"",@"image1URL",@"",@"imag1ID",nil];
+    NSDictionary *dic3 = [NSDictionary dictionaryWithObjectsAndKeys:@"How",@"head",@" are you. I'm go to shopping. I go home.",@"foot",@"andong.jpg",@"imgURL",@"18 minutes ago",@"labeltext",@"002",@"image",@"andong.jpg",@"image1URL",@"ccc",@"imag1ID",nil];
     photomessageArray = [[NSMutableArray alloc] initWithCapacity:0];
     [photomessageArray addObject:dic1];
     [photomessageArray addObject:dic2];

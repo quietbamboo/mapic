@@ -12,7 +12,7 @@
 		0A633C7015CB709100CD0294 /* MyMD5.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A633C6F15CB709100CD0294 /* MyMD5.m */; };
 		0A91069C148A09F4008FA0D6 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A91069B148A09F4008FA0D6 /* Icon@2x.png */; };
 		0A979C7415CA170500BE4CED /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A979C7315CA170500BE4CED /* LoginViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		0A9CC0A715CCE44D00F5D03E /* NewsMessageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A9CC0A615CCE44C00F5D03E /* NewsMessageView.m */; };
+		0A9CC0A715CCE44D00F5D03E /* NewsMessageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A9CC0A615CCE44C00F5D03E /* NewsMessageView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		0A9CC0F315CD216100F5D03E /* DetailTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A9CC0F215CD216000F5D03E /* DetailTextView.m */; };
 		0A9CC0F515CD23B800F5D03E /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A9CC0F415CD23B800F5D03E /* CoreText.framework */; };
 		0AA5F2BC15C90D3A00D775A8 /* Localization.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0AA5F2BB15C90D3A00D775A8 /* Localization.bundle */; };

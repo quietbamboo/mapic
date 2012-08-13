@@ -33,8 +33,7 @@
         [tweetLabel setLinksEnabled:YES];
 
         [self addSubview:tweetLabel];
-
-        NSLog(@"this is attention %f",tweetLabel.frame.size.height);
+        
         UILabel* timelabel = [[UILabel alloc] initWithFrame:CGRectMake(10, tweetLabel.frame.size.height, 320, 20)];
         timelabel.textColor = [UIColor lightGrayColor];
         timelabel.font = [UIFont systemFontOfSize:13];

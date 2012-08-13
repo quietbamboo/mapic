@@ -17,6 +17,7 @@
     id<ImageIdAndUserNameProtocol> delegate;
     int numimage;
     NSString* imgID;
+    NSString* img1ID;
 }
 
 @property (retain, nonatomic) UIImageView* footimageView;
@@ -24,5 +25,5 @@
 @property (nonatomic) int numimage;
 @property (nonatomic) id <ImageIdAndUserNameProtocol> delegate;
 
-- (id)initWithFrame:(CGRect)frame headString:(NSString *)headString footString:(NSString *)footString imageID:(NSString *)imageID imageURL:(NSString *)imageURL;
+- (id)initWithFrame:(CGRect)frame headString:(NSString *)headString footString:(NSString *)footString imageID:(NSString *)imageID imageURL:(NSString *)imageURL image1ID:(NSString *)image1ID image1URL:(NSString *)image1URL;
 @end

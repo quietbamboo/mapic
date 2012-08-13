@@ -14,7 +14,7 @@
 @synthesize footlabel = _footlabel;
 @synthesize numimage;
 @synthesize delegate;
-- (id)initWithFrame:(CGRect)frame headString:(NSString *)headString footString:(NSString *)footString imageID:(NSString *)imageID imageURL:(NSString *)imageURL
+- (id)initWithFrame:(CGRect)frame headString:(NSString *)headString footString:(NSString *)footString imageID:(NSString *)imageID imageURL:(NSString *)imageURL image1ID:(NSString *)image1ID image1URL:(NSString *)image1URL
 {
     self = [super initWithFrame:frame];
     if (self) {
@@ -28,13 +28,28 @@
         imageview.layer.masksToBounds = YES;
         UIImage *icon = [UIImage imageNamed:imageURL];
         imageview.image = icon;
+        [icon release];
         imageview.tag = 0;
         imageview.delegate = self;
         [self addSubview:imageview];
+        [imageview release];
         
-        _footimageView = [[UIImageView alloc] initWithFrame:CGRectMake(245, 10, 50, 50)];
-        _footimageView.image = [UIImage imageNamed:@""];
-        [self addSubview:_footimageView];
+        if ([image1ID isEqualToString:@""]) {
+            
+        }else {
+            img1ID = image1ID;
+            PictureImageview* imageview1 = [[PictureImageview alloc] initWithFrame:CGRectMake(245, 10, 50, 50)];
+            imageview1.userInteractionEnabled=YES;
+            imageview1.layer.cornerRadius = 5.0;
+            imageview1.layer.masksToBounds = YES;
+            UIImage *icon1 = [UIImage imageNamed:image1URL];
+            imageview1.image = icon1;
+            [icon1 release];
+            imageview1.tag = 1;
+            imageview1.delegate = self;
+            [self addSubview:imageview1];
+            [imageview1 release];
+        }
         
 //        DetailTextView *label = [[DetailTextView alloc]initWithFrame:CGRectMake(60, 0, 150, 300)];
 //        [label setText:[NSString stringWithFormat:@"%@ %@",headString,footString] WithFont:[UIFont systemFontOfSize:15] AndColor:[UIColor blackColor]];
@@ -72,7 +87,7 @@
         [tweetLabel setLinksEnabled:YES];
         
         [self addSubview:tweetLabel];
-
+        [tweetLabel release];
         
         _footlabel = [[UILabel alloc] initWithFrame:CGRectMake(60, tweetLabel.frame.size.height -5, 180, 20)];
         _footlabel.text = @"";
@@ -83,13 +98,19 @@
         _footlabel.numberOfLines = 1;
         _footlabel.lineBreakMode = UILineBreakModeTailTruncation;
         [self addSubview:_footlabel];
+        [_footlabel release];
         self.frame = CGRectMake(frame.origin.x, frame.origin.y, frame.size.width, tweetLabel.frame.size.height + 15);
     }
     return self;
 }
 
 - (void) pictureevent:(NSInteger) imaagetag{
-    [delegate imageID:imgID UIViewType:NewsMessageViewtype];
+    if (imaagetag == 0) {
+        [delegate imageID:imgID UIViewType:NewsMessageViewtype];
+    }else {
+        [delegate imageID:img1ID UIViewType:NewsMessageViewtype];
+    }
+
 }
 
 - (void)IFLabeluserName:(NSString *)userName{

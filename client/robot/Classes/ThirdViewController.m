@@ -103,19 +103,6 @@
     //    MGBoxLine *multi = [MGBoxLine multilineWithText:blah font:nil padding:24];
     //    [box2.topLines addObject:multi];
     
-//        [self photomessageControllerArray];
-//        for (int i = 0;i<photomessageArray.count;i++) {
-//            MGStyledBox *box5 = [MGStyledBox box];
-//            [scroller.boxes addObject:box5];
-//             NSDictionary *nsdic = [photomessageArray objectAtIndex:i];
-//            NewsMessageView* new = [[NewsMessageView alloc] initWithFrame:CGRectMake(10, 0, 300, 80) headString:[nsdic objectForKey:@"head"] footString:[nsdic objectForKey:@"foot"] imageID:[nsdic objectForKey:@"image"]];
-//            new.footimageView.image = [UIImage imageNamed:@"andong.jpg"];
-//            new.footlabel.text = [nsdic objectForKey:@"labeltext"];
-//            new.delegate = self;
-//            new.numimage = i;
-//            [box5.topLines addObject:new];
-//       }
-    
     [self praiseImageArray];
     MGStyledBox *box1 = [MGStyledBox box];
     [scroller.boxes addObject:box1];
@@ -328,16 +315,6 @@ return button;
 }
 #pragma mark - initphotomessage
 
-- (void) photomessageControllerArray{
-    
-    NSDictionary *dic1 = [NSDictionary dictionaryWithObjectsAndKeys:@"All",@"head",@" of us have read thrilling stories in which the  ",@"foot",@"logo.png",@"image",@"18 minutes ago",@"labeltext",nil];
-    NSDictionary *dic2 = [NSDictionary dictionaryWithObjectsAndKeys:@"hero",@"head",@" had only a limited and specified time to live.",@"foot",@"weibo.png",@"image",@"18 minutes ago",@"labeltext",nil];
-    NSDictionary *dic3 = [NSDictionary dictionaryWithObjectsAndKeys:@"How",@"head",@" are you. I'm go to shopping. I go home.",@"foot",@"andong.jpg",@"image",@"18 minutes ago",@"labeltext",nil];
-    photomessageArray = [[NSMutableArray alloc] initWithCapacity:0];
-    [photomessageArray addObject:dic1];
-    [photomessageArray addObject:dic2];
-    [photomessageArray addObject:dic3];
-}
 - (void) praiseImageArray{
     NSDictionary *dic1 = [NSDictionary dictionaryWithObjectsAndKeys:@"logo.png",@"imagID",@"logo.png",@"username",nil];
     NSDictionary *dic2 = [NSDictionary dictionaryWithObjectsAndKeys:@"weibo.png",@"imagID",@"weibo.png",@"username",nil];
@@ -361,8 +338,6 @@ return button;
         four.userName = imageID;
     }else if(UIViewType == OnTopViewtype){
         four.userName = imageID;
-    }else if(UIViewType == NewsMessageViewtype){
-        four.userName = imageID;
     }
     [self.navigationController pushViewController:four animated:YES];
 }
@@ -375,8 +350,6 @@ return button;
     }else if(UIViewType == OnTopViewtype){
         four.userName = userName;
     }else if(UIViewType == AttentionViewtype){
-        four.userName = userName;
-    }else if(UIViewType == NewsMessageViewtype){
         four.userName = userName;
     }
     [self.navigationController pushViewController:four animated:YES];

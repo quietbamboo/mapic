@@ -16,7 +16,6 @@
     if (self) {
         // Initialization code
         imgID = imageID;
-        
         PictureImageview* imageview = [[PictureImageview alloc] initWithFrame:CGRectMake(8, 8, 65, 65)];
         imageview.userInteractionEnabled=YES;
         imageview.layer.cornerRadius = 5.0;
@@ -44,7 +43,7 @@
         [tweetLabel setLinksEnabled:YES];
         
         [self addSubview:tweetLabel];
-        UILabel* timelabel = [[UILabel alloc] initWithFrame:CGRectMake(80, tweetLabel.frame.size.height + 5, 220, 20)];
+        UILabel* timelabel = [[UILabel alloc] initWithFrame:CGRectMake(80, tweetLabel.frame.size.height + 10, 220, 20)];
         timelabel.font = [UIFont systemFontOfSize:13];
         timelabel.textColor = [UIColor lightGrayColor];
         timelabel.backgroundColor = [UIColor clearColor];

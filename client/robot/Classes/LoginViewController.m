@@ -201,6 +201,7 @@
     //self.navigationController.navigationBarHidden = NO;
     [self hideTabBar:self.tabBarController];
     [AppDelegate getAppDelegate].centerButton.hidden = YES;
+    self.navigationController.navigationBar.tintColor = [UIColor colorWithRed:(1.0/255.0) green:(1.0 / 255.0) blue:(1.0 / 255.0) alpha:1];
 }
 
 - (void)loadView {

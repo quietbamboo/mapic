@@ -131,7 +131,7 @@
                                        reuseIdentifier:SimpleTableIdentifier] autorelease];  
     }
     
-    cell.selectionStyle = UITableViewCellSelectionStyleBlue;
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;//UITableViewCellSelectionStyleBlue;
     NSDictionary *nsdic = [photomessageArray objectAtIndex:indexPath.row];
     cell.textLabel.text = @"";
     PhotoMessageView* photomessage = [[PhotoMessageView alloc] initWithFrame:CGRectMake(0, 0, 320, 70) headString:[nsdic objectForKey:@"head"] footString:[nsdic objectForKey:@"foot"] imageID:[nsdic objectForKey:@"imageID"] imageURL:[nsdic objectForKey:@"imageURL"]];
