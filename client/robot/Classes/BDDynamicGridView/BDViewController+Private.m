@@ -67,7 +67,7 @@
                                    selector:@selector(changeProgress:) userInfo:nil repeats:YES];
 }
 
-- (void)changeProgress:(NSTimer *)timer{
+- (void)changeProgress:(NSTimer *)timer {
     _MBProgress.progress = myProgressIndicator.progress;
     if (myProgressIndicator.progress >= (endProgress - 0.001)) {
         [_MBProgress setHidden:YES];
@@ -76,8 +76,7 @@
     }
 }
 
-- (void)uploadSomethingFiveTimes
-{
+- (void)uploadSomethingFiveTimes {
     if (myProgressIndicator != nil) {
         myProgressIndicator.progress = 0.0f;
     }else {
