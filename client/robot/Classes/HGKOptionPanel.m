@@ -73,7 +73,7 @@
 
 - (void) dealloc{
     [super dealloc];
-    [btnShowHide release];
+    //[btnShowHide release];
     btnShowHide = nil;
 }
 
