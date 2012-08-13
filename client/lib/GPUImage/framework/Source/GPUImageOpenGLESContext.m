@@ -6,6 +6,7 @@
 
 @synthesize context = _context;
 @synthesize currentShaderProgram = _currentShaderProgram;
+@synthesize contextQueue = _contextQueue;
 
 // Based on Colin Wheeler's example here: http://cocoasamurai.blogspot.com/2011/04/singletons-your-doing-them-wrong.html
 + (GPUImageOpenGLESContext *)sharedImageProcessingOpenGLESContext;
