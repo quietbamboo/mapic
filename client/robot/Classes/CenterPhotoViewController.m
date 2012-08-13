@@ -213,7 +213,7 @@
     [scrollview addSubview:imageview];
     [imageview release];
     if (picker.sourceType == UIImagePickerControllerSourceTypeCamera) {
-        UIImageWriteToSavedPhotosAlbum(saveimage,nil,nil,nil);
+        UIImageWriteToSavedPhotosAlbum(saveimage, nil, nil, nil);
     }
 
     [[[AppDelegate getAppDelegate] centerButton] setHidden:NO];

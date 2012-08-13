@@ -42,9 +42,10 @@
     _imagePicker.delegate = self;
     self.sourceType = pickesSourceType;
     _imagePicker.sourceType = pickesSourceType;
-    if (self.sourceType == UIImagePickerControllerSourceTypePhotoLibrary) {
-        _imagePicker.allowsEditing = YES;
-    }
+    
+    //if (self.sourceType == UIImagePickerControllerSourceTypePhotoLibrary) {
+    _imagePicker.allowsEditing = YES;
+    //}
 
     return reslut;
 }
@@ -71,12 +72,15 @@
 }
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
-//    FKCropAction *crop = [[FKCropAction alloc] init];
-//    CGRect cropRect = [[info objectForKey:UIImagePickerControllerCropRect] CGRectValue];
-//    crop.origin = cropRect.origin;
-//    crop.cropSize = cropRect.size;
+/*    FKCropAction *crop = [[FKCropAction alloc] init];
+    CGRect cropRect = [[info objectForKey:UIImagePickerControllerCropRect] CGRectValue];
+    crop.origin = cropRect.origin;
+    crop.cropSize = cropRect.size;
 //    UIImage *image = [crop imageWithActionAppliedWithImage:[info objectForKey:UIImagePickerControllerOriginalImage]];
+ //*/
+
     UIImage *image = [info objectForKey:UIImagePickerControllerEditedImage];
+    NSLog(@"Did pick image w:%f h:%f", image.size.width, image.size.height);
     
     _filterPicker = [[FKFilterPickerController alloc] initWithImage:image];
     _filterPicker.view.frame = CGRectOffset(_filterPicker.view.frame, 0, 0);
