@@ -99,11 +99,6 @@ static const NSTimeInterval kSlideshowInterval = 6;
 //	[self.view addSubview:listlabel];
     _MBProgress = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     _MBProgress.labelText = @"正在下载请稍后！";
-    _MBProgress.mode = MBProgressHUDModeDeterminate;
-    _MBProgress.xOffset = 0;
-    _MBProgress.yOffset = 0;
-    //_MBProgress.color = [UIColor blueColor];
-    _MBProgress.progress = 0.0;
     [_MBProgress show:YES];
 }
 
@@ -204,83 +199,146 @@ static const NSTimeInterval kSlideshowInterval = 6;
 	}
 	
 	[timer invalidate];
-    progressIndicator = [[UIProgressView alloc] initWithFrame:CGRectZero];
-    
-    ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:
-                                   [NSURL URLWithString:urlString]];
-	[request setPostValue:[[UIDevice currentDevice] uniqueIdentifier] forKey:@"id"];
-	[request setTimeOutSeconds:20];
-    
-    #if __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_4_0
-        [request setShouldContinueWhenAppEntersBackground:YES];
-    #endif
-	[request setDownloadProgressDelegate:progressIndicator];
-	[request setDelegate:self];
-	[request setDidFailSelector:@selector(uploadFailed:)];
-	[request setDidFinishSelector:@selector(uploadFinished:)];
-    [request startAsynchronous];
-    
-    _MBhideTimer = [[NSTimer scheduledTimerWithTimeInterval:1 target:self
-                                                selector:@selector(changeProgress:) userInfo:nil repeats:YES] retain];
-
-}       
-- (void)changeProgress:(NSTimer *)timer{
-    _MBProgress.progress = _MBProgress.progress + 0.03;
-    if (_MBProgress.progress >= 0.9) {
-        _MBProgress.progress = 0.9;
-    }
-    NSLog(@"this is progress %f",progressIndicator.progress);
-    if (progressIndicator.progress == 1) {
-        _MBProgress.progress = 1;
-        if ([_MBhideTimer isValid]) {
-            [_MBhideTimer invalidate];
-            _MBhideTimer = nil;
-        }
-     
-        NSLog(@"this is timer not work");
-    }
-}	
-- (void)uploadFailed:(ASIFormDataRequest *)theRequest
-{
-    [self stopActivity];
-}
-
-- (void)uploadFinished:(ASIFormDataRequest *)theRequest
-{
-    NSString *returnString = [theRequest responseString]; 
-    photoList = [returnString retain];
-    NSString *titleString = @"good";
-
+    NSString *device_id = [NSString stringWithFormat:@"%@", [[UIDevice currentDevice] uniqueIdentifier]];
+	
+	NSMutableURLRequest *request = [[[NSMutableURLRequest alloc] init] autorelease];
+	[request setURL:[NSURL URLWithString:urlString]];
+	[request setHTTPMethod:@"POST"];
+	NSMutableData *body = [NSMutableData data];
+	[body appendData:[[NSString stringWithFormat:@"id=%@", device_id] dataUsingEncoding:NSUTF8StringEncoding]];	
+	[request setHTTPBody:body];
+	NSData *returnData = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
+	NSString *returnString = [[NSString alloc] initWithData:returnData encoding:NSUTF8StringEncoding];
+	
+	photoList = returnString;
+	
 	//split _-_-_
 	NSArray *arrayOfLines = [returnString componentsSeparatedByString:@"_-_-_"];
-    NSArray *photoArray = [NSArray array];
-    
-    for(int i = 0 ; i < [arrayOfLines count] ; i++){
+	NSArray *photoArray = [NSArray array];
+	int i;
+	
+	for(i = 0 ; i < [arrayOfLines count] ; i++){
 		//NSLog([arrayOfLines objectAtIndex:i]);
-        NSArray *lineparts = [[arrayOfLines objectAtIndex:i] componentsSeparatedByString:@"-----"];
-        if([lineparts count] <= 1){
-            continue;
-        }
+		NSArray *lineparts = [[arrayOfLines objectAtIndex:i] componentsSeparatedByString:@"-----"];
+		if([lineparts count] <= 1){
+			continue;
+		}
 		
 		//there is a bug for in review pictures/banned pictures
-		MockPhoto *newPhoto = [[[MockPhoto alloc]
-		                        initWithURL:[lineparts objectAtIndex:0]
-                                smallURL:[[lineparts objectAtIndex:0] stringByReplacingOccurrencesOfString:@"upload" withString:@"thumbnail"]
-		                        size:CGSizeMake(320, 480)
-		                        caption:[NSString stringWithFormat:@"From %@", [lineparts objectAtIndex:1]]
-                                ] autorelease];
+		MockPhoto *newPhoto = 
+		[[[MockPhoto alloc]
+		  initWithURL:[lineparts objectAtIndex:0]
+		  smallURL:[[lineparts objectAtIndex:0] stringByReplacingOccurrencesOfString:@"upload" withString:@"thumbnail"]
+		  size:CGSizeMake(320, 480)
+		  caption:[NSString stringWithFormat:@"From %@", [lineparts objectAtIndex:1]]
+		  ] autorelease];
 		
 		photoArray = [photoArray arrayByAddingObject:newPhoto];
-        self.photoSource = [[[MockPhotoSource alloc]
-                             initWithType:MockPhotoSourceNormal
-                             title:titleString
-                             photos:photoArray
-                             photos2:nil
-                             ] autorelease];
-    }
+	}
+	
+	/*if([arrayOfLines count] == 0){
+	 MockPhoto *newPhoto = 
+	 [[[MockPhoto alloc]
+	 initWithURL:@"http://null"
+	 smallURL:@"http://null"
+	 size:CGSizeMake(320, 480)
+	 caption:@"There is no image for this section"
+	 ] autorelease];
+	 
+	 photoArray = [photoArray arrayByAddingObject:newPhoto];
+	 }*/
+	
+	self.photoSource = [[[MockPhotoSource alloc]
+						 initWithType:MockPhotoSourceNormal
+						 //initWithType:MockPhotoSourceDelayed
+						 // initWithType:MockPhotoSourceLoadError
+						 // initWithType:MockPhotoSourceDelayed|MockPhotoSourceLoadError
+						 title:titleString
+						 photos:photoArray
+						 photos2:nil
+						 ] autorelease];
+	
+	[self stopActivity];
+
     
-    [self stopActivity];
-}
+    
+//    progressIndicator = [[UIProgressView alloc] initWithFrame:CGRectZero];
+//    
+//    ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:
+//                                   [NSURL URLWithString:urlString]];
+//	[request setPostValue:[[UIDevice currentDevice] uniqueIdentifier] forKey:@"id"];
+//	[request setTimeOutSeconds:20];
+//    
+//    #if __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_4_0
+//        [request setShouldContinueWhenAppEntersBackground:YES];
+//    #endif
+//	[request setDownloadProgressDelegate:progressIndicator];
+//	[request setDelegate:self];
+//	[request setDidFailSelector:@selector(uploadFailed:)];
+//	[request setDidFinishSelector:@selector(uploadFinished:)];
+//    [request startAsynchronous];
+//    
+//    _MBhideTimer = [[NSTimer scheduledTimerWithTimeInterval:1 target:self
+//                                                selector:@selector(changeProgress:) userInfo:nil repeats:YES] retain];
+
+}       
+//- (void)changeProgress:(NSTimer *)timer{
+//    _MBProgress.progress = _MBProgress.progress + 0.03;
+//    if (_MBProgress.progress >= 0.9) {
+//        _MBProgress.progress = 0.9;
+//    }
+//    NSLog(@"this is progress %f",progressIndicator.progress);
+//    if (progressIndicator.progress == 1) {
+//        _MBProgress.progress = 1;
+//        if ([_MBhideTimer isValid]) {
+//            [_MBhideTimer invalidate];
+//            _MBhideTimer = nil;
+//        }
+//     
+//        NSLog(@"this is timer not work");
+//    }
+//}	
+//- (void)uploadFailed:(ASIFormDataRequest *)theRequest
+//{
+//    [self stopActivity];
+//}
+//
+//- (void)uploadFinished:(ASIFormDataRequest *)theRequest
+//{
+//    NSString *returnString = [theRequest responseString]; 
+//    photoList = [returnString retain];
+//    NSString *titleString = @"good";
+//
+//	//split _-_-_
+//	NSArray *arrayOfLines = [returnString componentsSeparatedByString:@"_-_-_"];
+//    NSArray *photoArray = [NSArray array];
+//    
+//    for(int i = 0 ; i < [arrayOfLines count] ; i++){
+//		//NSLog([arrayOfLines objectAtIndex:i]);
+//        NSArray *lineparts = [[arrayOfLines objectAtIndex:i] componentsSeparatedByString:@"-----"];
+//        if([lineparts count] <= 1){
+//            continue;
+//        }
+//		
+//		//there is a bug for in review pictures/banned pictures
+//		MockPhoto *newPhoto = [[[MockPhoto alloc]
+//		                        initWithURL:[lineparts objectAtIndex:0]
+//                                smallURL:[[lineparts objectAtIndex:0] stringByReplacingOccurrencesOfString:@"upload" withString:@"thumbnail"]
+//		                        size:CGSizeMake(320, 480)
+//		                        caption:[NSString stringWithFormat:@"From %@", [lineparts objectAtIndex:1]]
+//                                ] autorelease];
+//		
+//		photoArray = [photoArray arrayByAddingObject:newPhoto];
+//        self.photoSource = [[[MockPhotoSource alloc]
+//                             initWithType:MockPhotoSourceNormal
+//                             title:titleString
+//                             photos:photoArray
+//                             photos2:nil
+//                             ] autorelease];
+//    }
+//    
+//    [self stopActivity];
+//}
 
 #pragma mark
 #pragma mark Seven methods About UIBarButtonItem
