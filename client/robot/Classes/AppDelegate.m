@@ -74,7 +74,8 @@
     secondViewNav.tabBarItem = [[[UITabBarItem alloc] initWithTitle:@"详细" image:[UIImage imageNamed:@"tab_live"] tag:1]autorelease];
     
 	centerViewController = [[CenterPhotoViewController alloc] init];
-    centerViewController.tabBarItem = [[[UITabBarItem alloc] initWithTitle:nil image:nil tag:2] autorelease];
+    UINavigationController* centernav = [[UINavigationController alloc] initWithRootViewController:centerViewController];
+    centernav.tabBarItem = [[[UITabBarItem alloc] initWithTitle:nil image:nil tag:2] autorelease];
     
     ThirdViewController *thirdView = [[ThirdViewController alloc] init];
     UINavigationController* thirdViewNav = [[UINavigationController alloc] initWithRootViewController:thirdView];
@@ -83,11 +84,12 @@
 	FourthViewController *fourthView = [[FourthViewController alloc] init];
     fourthView.tabBarItem = [[[UITabBarItem alloc] initWithTitle:@"User" image:[UIImage imageNamed:@"tab_feed_profile.png"] tag:4] autorelease];
     
-	NSArray* Controllers = [NSArray arrayWithObjects:firstviewNav,secondViewNav,centerViewController,thirdViewNav,fourthView,nil];
+	NSArray* Controllers = [NSArray arrayWithObjects:firstviewNav,secondViewNav,centernav,thirdViewNav,fourthView,nil];
 	
 	myTabBarController.viewControllers = Controllers;
 	
     [firstviewNav release];
+    [centernav release];
     [secondView release];
     [secondViewNav release];
     [thirdView release];

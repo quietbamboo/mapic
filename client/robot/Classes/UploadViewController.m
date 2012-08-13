@@ -186,7 +186,7 @@
 	[alert release];
 }
 - (void)closeUpload{
-    [self.navigationController popViewControllerAnimated:YES];
+    self.tabBarController.selectedIndex = 0;
 }
 #pragma mark
 #pragma mark Upload
