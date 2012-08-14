@@ -132,7 +132,7 @@
     [navBar.topItem setLeftBarButtonItem:[[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Cancel", @"") style:UIBarButtonItemStyleDone target:self action:@selector(tappedCancel:)]];
     [self.chrome addSubview:navBar];
     
-    [[UIBarButtonItem appearance] setBackgroundImage:[UIImage imageNamed:@"navBarButton.png"] forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
+    //[[UIBarButtonItem appearance] setBackgroundImage:[UIImage imageNamed:@"navBarButton.png"] forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
     
     
     UIView *bottomBar = [[UIView alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height-80, self.view.frame.size.width, 80)];
