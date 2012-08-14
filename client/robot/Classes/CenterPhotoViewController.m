@@ -19,6 +19,8 @@
 @synthesize pop;
 @synthesize imageView;
 
+#define SCROLLVIEW    1000
+
 #pragma mark -- 
 #pragma mark default Methods
 
@@ -40,6 +42,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.navigationController.navigationBar.tintColor = [UIColor colorWithRed:(1.0/255.0) green:(1.0 / 255.0) blue:(1.0 / 255.0) alpha:1];
     UIBarButtonItem *btnRoute = [[UIBarButtonItem alloc] 
                                  initWithTitle:@"取消"                                            
                                  style:UIBarButtonItemStyleBordered 
@@ -55,10 +58,10 @@
     self.navigationItem.rightBarButtonItem = btnUpload;
     [btnUpload release];
     scrollview = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, 320, 480)];
-    scrollview.backgroundColor=[UIColor colorWithRed:0.859f green:0.886f blue:0.929f alpha:1.0f];
+    scrollview.backgroundColor = [UIColor colorWithRed:0.859f green:0.886f blue:0.929f alpha:1.0f];
     //scrollview.backgroundColor = [UIColor blackColor];
     scrollview.contentMode = UIViewContentModeScaleToFill;
-    
+    scrollview.tag = SCROLLVIEW;
     scrollview.pagingEnabled = YES;
     scrollview.scrollEnabled = YES;
     scrollview.showsVerticalScrollIndicator = YES;
@@ -68,7 +71,7 @@
 	// Do any additional setup after loading the view.
 
     
-    UILabel *namelabel=[[UILabel alloc] initWithFrame:CGRectMake(0.0f, 340.0f, 60.0f, 20.0f)];
+    UILabel *namelabel=[[UILabel alloc] initWithFrame:CGRectMake(0.0f, 340.0f, 90.0f, 20.0f)];
     namelabel.font=[UIFont fontWithName:@"HelveticaNeue-Bold" size:18];
     namelabel.textColor=[UIColor blueColor];
     namelabel.text = NSLocalizedString(@"景点名称：", nil);
@@ -77,16 +80,18 @@
     [scrollview addSubview:namelabel];
     [namelabel release];
     
-    UITextField* text = [[UITextField alloc] initWithFrame:CGRectMake(65, 340, 220, 30)];
+    UITextField* text = [[UITextField alloc] initWithFrame:CGRectMake(90, 335, 220, 30)];
     text.borderStyle = UITextBorderStyleRoundedRect;//设置文本框边框风格
     text.autocorrectionType = UITextAutocorrectionTypeYes;//启用自动提示更正功能
     text.placeholder = @"Enter the place name";//设置默认显示文本
     text.returnKeyType = UIReturnKeyDone;//设置键盘完成按钮，相应的还有“Return”"Gｏ""Google"等
     text.clearButtonMode = UITextFieldViewModeWhileEditing;
+    text.tag = 0;
+    text.delegate = self;
     [text setBackgroundColor:[UIColor whiteColor]];
     [scrollview addSubview:text];
     
-    UILabel *textlabel=[[UILabel alloc] initWithFrame:CGRectMake(0.0f, 440.0f, 60.0f, 20.0f)];
+    UILabel *textlabel=[[UILabel alloc] initWithFrame:CGRectMake(0.0f, 400.0f, 60.0f, 20.0f)];
     textlabel.font=[UIFont fontWithName:@"HelveticaNeue-Bold" size:18];
     textlabel.textColor=[UIColor blueColor];
     textlabel.text = NSLocalizedString(@"简介：", nil);
@@ -95,35 +100,37 @@
     [scrollview addSubview:textlabel];
     [textlabel release];
     
-    UITextView *textView = [[[UITextView  alloc] initWithFrame:CGRectMake(65, 440, 250, 200)] autorelease]; //初始化大小并自动释放
+    UITextView *textView = [[[UITextView  alloc] initWithFrame:CGRectMake(65, 400, 250, 200)] autorelease]; //初始化大小并自动释放
     textView.textColor = [UIColor blackColor];//设置textview里面的字体颜色  
     textView.font = [UIFont fontWithName:@"Arial" size:18.0];//设置字体名字和字体大小  
-    //textView.delegate = self;//设置它的委托方法  
+    textView.delegate = self;//设置它的委托方法  
     textView.backgroundColor = [UIColor whiteColor];//设置它的背景颜色
-    textView.text = @"";//设置它显示的内容  
-    textView.returnKeyType = UIReturnKeyDefault;//返回键的类型  
+    textView.text = @"";//设置它显示的内容
+
+    textView.returnKeyType = UIReturnKeyDone;//返回键的类型  
     textView.keyboardType = UIKeyboardTypeDefault;//键盘类型  
     textView.scrollEnabled = YES;//是否可以拖动  
     textView.autoresizingMask = UIViewAutoresizingFlexibleHeight;//自适应高度
     [scrollview addSubview: textView];//加入到整个页面中
     
     UIButton *uploadButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    uploadButton.frame = CGRectMake(60, 745, 200, 50);
+    uploadButton.frame = CGRectMake(60, 645, 200, 50);
     [uploadButton setTitle:@"上    传" forState:UIControlStateNormal];
     uploadButton.titleLabel.font = [UIFont systemFontOfSize:20];
     [uploadButton addTarget:self action:@selector(toupload) forControlEvents:UIControlEventTouchUpInside];
     [scrollview addSubview:uploadButton];
     
     [self.view addSubview: scrollview];
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     self.navigationController.navigationBarHidden = NO;
-    self.navigationController.navigationBar.tintColor = [UIColor colorWithRed:(1.0/255.0) green:(1.0 / 255.0) blue:(1.0 / 255.0) alpha:1];
+    
     [AppDelegate getAppDelegate].centerButton.hidden = YES;
     [self hideTabBar:self.tabBarController];
-    scrollview.contentSize = CGSizeMake(320,900);
+    scrollview.contentSize = CGSizeMake(320,750);
 }
 - (void)viewDidUnload
 {
@@ -136,7 +143,66 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
+#pragma mark - UITextViewDelegate
+- (void)textViewDidBeginEditing:(UITextView *)textView{
+    if (scrollview.contentOffset.y >= 270) {
+        CGRect rect = self.view.frame;
+        [UIView beginAnimations:nil context:NULL];
+        [UIView setAnimationDuration:0.3];
+        rect.origin.y = -120.0f;
+        self.view.frame = rect;
+        [UIView commitAnimations];
+    }else {
+        scrollview.contentOffset = CGPointMake(0, 270);
+        CGRect rect = self.view.frame;
+        [UIView beginAnimations:nil context:NULL];
+        [UIView setAnimationDuration:0.3];
+        rect.origin.y = -120.0f;
+        self.view.frame = rect;
+        [UIView commitAnimations];
+    }
+}
+-(BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text  
+{  
+    if ([text isEqualToString:@"\n"]) {  
+        [textView resignFirstResponder]; 
+        CGRect rect = self.view.frame;
+        [UIView beginAnimations:nil context:NULL];
+        [UIView setAnimationDuration:0.3];
+        rect.origin.y = 0.0f;
+        self.view.frame = rect;
+        [UIView commitAnimations];
+        return NO;  
+    }  
+    return YES;  
+} 
+#pragma mark - UITextFieldDelegate
 
+- (void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    if (scrollview.contentOffset.y >= 270) {
+        
+    }else {
+        CGRect rect = self.view.frame;
+        [UIView beginAnimations:nil context:NULL];
+        [UIView setAnimationDuration:0.3];
+        rect.origin.y = -240.0f;
+        self.view.frame = rect;
+        [UIView commitAnimations];
+    }
+
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField;{
+    [textField resignFirstResponder];
+    CGRect rect = self.view.frame;
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationDuration:0.3];
+    rect.origin.y = 0.0f;
+    self.view.frame = rect;
+    [UIView commitAnimations];
+    return YES;
+}
 #pragma mark
 #pragma mark toButton
 - (void)toupload{

@@ -11,7 +11,7 @@
 #import "UploadViewController.h"
 #import "FKFilterPickerController.h"
 #import "FKImagePickerController.h"
-@interface CenterPhotoViewController : UIViewController<FKImagePickerDelegate,UIScrollViewDelegate>{
+@interface CenterPhotoViewController : UIViewController<FKImagePickerDelegate,UIScrollViewDelegate,UITextFieldDelegate,UITextViewDelegate>{
     UIScrollView *scrollview;
     UIImagePickerController *imgPicker;
     UIPopoverController *pop; // for ipad
