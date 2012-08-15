@@ -76,7 +76,7 @@
                                        reuseIdentifier:SimpleTableIdentifier] autorelease];  
     }
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    cell.selectionStyle = UITableViewCellSelectionStyleBlue;
     //    Place *place = [[Place alloc] init];
     NSDictionary *nsdic = [nsArray objectAtIndex:indexPath.row];
     //    place.btnTag = i;
@@ -185,6 +185,7 @@
     
     //    NSLog(@"this good 1");
     //    DeatilViewController *detail = [[DeatilViewController alloc] init];
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     HjxPhotoViewController *hjxPhotoview = [[HjxPhotoViewController alloc] initWithNibName:nil bundle:nil];
     switch (indexPath.row) {
         case 0:
