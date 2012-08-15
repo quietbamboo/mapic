@@ -61,7 +61,7 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeLocations:) name:UIKeyboardWillShowNotification object:nil];
     
-    sendfield = [[UITextField alloc] initWithFrame:CGRectMake(0, 4, 250, 35)];
+    sendfield = [[UITextField alloc] initWithFrame:CGRectMake(0, 4, 240, 35)];
     sendfield.delegate = self;
     sendfield.tag = 0;
     sendfield.autocorrectionType = UITextAutocorrectionTypeYes;
@@ -72,14 +72,16 @@
     sendfield.returnKeyType = UIReturnKeySend;
     sendfield.placeholder = NSLocalizedString(@"Write to comment....", nil);
     sendfield.clearButtonMode = UITextFieldViewModeWhileEditing;
-    [sendfield addTarget:self action:@selector(textFieldDoneEditing:) forControlEvents:UIControlEventEditingDidEndOnExit];  
+    [sendfield addTarget:self action:@selector(textFieldDoneEditing:) forControlEvents:UIControlEventEditingDidEndOnExit]; 
+    
     UIButton *sendbutton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    sendbutton.frame = CGRectMake(250, 7, 50, 30);
+    sendbutton.frame = CGRectMake(240, 7, 50, 30);
     [sendbutton setTitle:@"发送" forState:UIControlStateNormal];
     [sendbutton addTarget:self action:@selector(sendmessage) forControlEvents:UIControlEventTouchUpInside];
     
     UIToolbar *toolBar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 392, 320, 44)];
     toolBar.tag = TOOLBAR;
+    toolBar.barStyle = UIBarStyleBlackTranslucent;
     NSMutableArray* allitems = [[NSMutableArray alloc] init];
     [allitems addObject:[[[UIBarButtonItem alloc] initWithCustomView:sendfield] autorelease]];
     [allitems addObject:[[[UIBarButtonItem alloc] initWithCustomView:sendbutton] autorelease]];

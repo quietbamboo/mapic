@@ -28,12 +28,14 @@
 @synthesize window = _window;
 @synthesize firstview = _firstview;
 @synthesize centerButton = _centerButton;
+@synthesize fourthView;
 - (void)dealloc {
     [myTabBarController release];
     [_firstview release];
     [_centerButton release];
     [_window release];
     [centerViewController release];
+    [fourthView release];
     [super dealloc];
 }
 
@@ -81,7 +83,7 @@
     UINavigationController* thirdViewNav = [[UINavigationController alloc] initWithRootViewController:thirdView];
     thirdViewNav.tabBarItem = [[[UITabBarItem alloc] initWithTitle:@"four" image:[UIImage imageNamed:@"tab-explore"] tag:3] autorelease];
     
-	FourthViewController *fourthView = [[FourthViewController alloc] init];
+	fourthView = [[FourthViewController alloc] init];
     fourthView.tabBarItem = [[[UITabBarItem alloc] initWithTitle:@"User" image:[UIImage imageNamed:@"tab_feed_profile.png"] tag:4] autorelease];
     
 	NSArray* Controllers = [NSArray arrayWithObjects:firstviewNav,secondViewNav,centernav,thirdViewNav,fourthView,nil];

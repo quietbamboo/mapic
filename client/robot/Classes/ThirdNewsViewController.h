@@ -10,7 +10,6 @@
 #import "HjxPhotoViewController.h"
 #import "AppDelegate.h"
 #import "JMTabView.h"
-#import "NotificationView.h"
 #import "MGScrollView.h"
 #import "MGStyledBox.h"
 #import "MGBoxLine.h"
@@ -23,7 +22,6 @@
 
 @interface ThirdNewsViewController : UIViewController<UIScrollViewDelegate,JMTabViewDelegate,ImageIdAndUserNameProtocol>{
     NSMutableArray *photomessageArray;
-    NotificationView *notificationView;
     MGScrollView *scroller;
     NSMutableArray* imgArray;
     JMTabView *tabHeaderView;

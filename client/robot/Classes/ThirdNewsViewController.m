@@ -148,12 +148,7 @@
     [scroller drawBoxesWithSpeed:ANIM_SPEED];
     [scroller flashScrollIndicators];
     
-    notificationView = [[NotificationView alloc] initWithFrame:CGRectMake(154, 385, 140, 47)];
-    notificationView.userLabel.text =@"1";
-    notificationView.messageLabel.text = @"2";
-    notificationView.likeLabel.text = @"3";
-    [self.view addSubview:notificationView];
-    [notificationView release];
+    
 }
 
 - (void) viewWillAppear:(BOOL)animated{
@@ -291,13 +286,11 @@ return button;
 {
     switch (itemIndex) {
         case 0:
-            notificationView.hidden = NO;
             [self.navigationController popViewControllerAnimated:YES];
             [tabHeaderView setSelectedIndex:1];
             break;
             
         case 1:
-            notificationView.hidden = YES;
             break;
             
         default:

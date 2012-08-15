@@ -36,7 +36,11 @@ enum {
 }
 - (void) viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    self.title  = self.userName;
+    if ([AppDelegate getAppDelegate].fourthView == self)  {
+        
+    }else {
+        self.title  = self.userName;
+    }
     self.navigationController.navigationBarHidden = NO;
     self.navigationController.navigationBar.tintColor = [UIColor colorWithRed:(1.0/255.0) green:(1.0 / 255.0) blue:(1.0 / 255.0) alpha:1];
 }
@@ -49,7 +53,7 @@ enum {
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"setting";
+    self.title = @"User";
     UITableView *tableview= [[UITableView alloc] initWithFrame:CGRectMake(0,0, 320, 436) style:UITableViewStyleGrouped];
     tableview.separatorStyle = UITableViewStyleGrouped;
     //tableview.separatorColor = [UIColor blackColor];

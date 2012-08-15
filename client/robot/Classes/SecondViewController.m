@@ -76,6 +76,7 @@
                                        reuseIdentifier:SimpleTableIdentifier] autorelease];  
     }
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     //    Place *place = [[Place alloc] init];
     NSDictionary *nsdic = [nsArray objectAtIndex:indexPath.row];
     //    place.btnTag = i;

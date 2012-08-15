@@ -304,7 +304,6 @@ return button;
             break;
             
         case 1:
-            notificationView.hidden = YES;
             [self.navigationController pushViewController:thirdnews animated:YES];
             [tabHeaderView setSelectedIndex:0];
             break;
