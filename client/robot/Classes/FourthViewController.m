@@ -10,6 +10,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import "TTTQuadrantControl.h"
 #import "ImagePickeViewController.h"
+#import "LoginViewController.h"
 enum {
 	InformationSectionIndex,
 } ProfileSectionIndicies;
@@ -41,6 +42,7 @@ enum {
     }else {
         self.title  = self.userName;
     }
+    [AppDelegate getAppDelegate].centerButton.hidden = NO;
     self.navigationController.navigationBarHidden = NO;
     self.navigationController.navigationBar.tintColor = [UIColor colorWithRed:(1.0/255.0) green:(1.0 / 255.0) blue:(1.0 / 255.0) alpha:1];
 }
@@ -217,6 +219,9 @@ enum {
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	[tableView deselectRowAtIndexPath:indexPath animated:YES];
+    LoginViewController* loginview = [[LoginViewController alloc] init];
+    UINavigationController* loginnav = [[UINavigationController alloc] initWithRootViewController:loginview];
+    [self presentModalViewController:loginnav animated:YES];
 }
 
 @end
