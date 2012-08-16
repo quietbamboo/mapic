@@ -115,7 +115,7 @@
         new.delegate = self;
         new.numimage = i;
         [box5.topLines addObject:new];
-            [new release];
+        [new release];
     }
     
     //    MGStyledBox *box3 = [MGStyledBox box];
@@ -301,9 +301,9 @@ return button;
 
 - (void) photomessageControllerArray{
     
-    NSDictionary *dic1 = [NSDictionary dictionaryWithObjectsAndKeys:@"All",@"head",@" of us have read thrilling stories in which the  ",@"foot",@"logo.png",@"imgURL",@"18 minutes ago",@"labeltext",@"001",@"image",@"andong.jpg",@"image1URL",@"aaa",@"imag1ID",nil];
-    NSDictionary *dic2 = [NSDictionary dictionaryWithObjectsAndKeys:@"hero",@"head",@" had only a limited and specified time to live.",@"foot",@"weibo.png",@"imgURL",@"18 minutes ago",@"labeltext",@"003",@"image",@"",@"image1URL",@"",@"imag1ID",nil];
-    NSDictionary *dic3 = [NSDictionary dictionaryWithObjectsAndKeys:@"How",@"head",@" are you. I'm go to shopping. I go home.",@"foot",@"andong.jpg",@"imgURL",@"18 minutes ago",@"labeltext",@"002",@"image",@"andong.jpg",@"image1URL",@"ccc",@"imag1ID",nil];
+    NSDictionary *dic1 = [NSDictionary dictionaryWithObjectsAndKeys:@"All",@"head",@" of us have read thrilling stories in which the  ",@"foot",@"andong.jpg",@"imgURL",@"18 minutes ago",@"labeltext",@"001",@"image",@"andong.jpg",@"image1URL",@"aaa",@"imag1ID",nil];
+    NSDictionary *dic2 = [NSDictionary dictionaryWithObjectsAndKeys:@"he",@"head",@" is a good boy.",@"foot",@"andong.jpg",@"imgURL",@"18 minutes ago",@"labeltext",@"003",@"image",@"",@"image1URL",@"",@"imag1ID",nil];
+    NSDictionary *dic3 = [NSDictionary dictionaryWithObjectsAndKeys:@"How",@"head",@" are you. I'm go to shopping. I go home. I want to Beijing.",@"foot",@"andong.jpg",@"imgURL",@"18 minutes ago",@"labeltext",@"002",@"image",@"andong.jpg",@"image1URL",@"ccc",@"imag1ID",nil];
     photomessageArray = [[NSMutableArray alloc] initWithCapacity:0];
     [photomessageArray addObject:dic1];
     [photomessageArray addObject:dic2];
@@ -316,6 +316,7 @@ return button;
         four.userName = imageID;
     }
     [self.navigationController pushViewController:four animated:YES];
+    [four release];
 }
 - (void) userName :(NSString *)userName UIViewType:(ViewType)UIViewType{
     FourthViewController* four = [[FourthViewController alloc] init];
@@ -323,6 +324,7 @@ return button;
         four.userName = userName;
     }
     [self.navigationController pushViewController:four animated:YES];
+    [four release];
 }
 
 @end

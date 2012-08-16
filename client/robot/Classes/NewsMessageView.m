@@ -72,9 +72,9 @@
 //        label.center = CGPointMake(150, sizeheight/2);
 //        [self addSubview:label];
         
-        CGSize ssize = [[NSString stringWithFormat:@"%@ %@",headString,footString] sizeWithFont:[UIFont systemFontOfSize:19.0f] constrainedToSize:CGSizeMake(180.0f, 1000.0f) lineBreakMode:UILineBreakModeWordWrap];
-        IFTweetLabel *tweetLabel = [[IFTweetLabel alloc] initWithFrame:CGRectMake(65.0f, 0.0f, ssize.width, ssize.height)];
-        [tweetLabel setFont:[UIFont boldSystemFontOfSize:15.0f]];
+        CGSize ssize = [[NSString stringWithFormat:@"%@ %@",headString,footString] sizeWithFont:[UIFont systemFontOfSize:14.0f] constrainedToSize:CGSizeMake(180.0f, 1000.0f) lineBreakMode:UILineBreakModeWordWrap];
+        IFTweetLabel *tweetLabel = [[IFTweetLabel alloc] initWithFrame:CGRectMake(65.0f, 10.0f, ssize.width, ssize.height)];
+        [tweetLabel setFont:[UIFont boldSystemFontOfSize:13.0f]];
         [tweetLabel setTextColor:[UIColor blackColor]];
         [tweetLabel setBackgroundColor:[UIColor clearColor]];
         [tweetLabel setNumberOfLines:0];
@@ -89,7 +89,7 @@
         [self addSubview:tweetLabel];
         [tweetLabel release];
         
-        _footlabel = [[UILabel alloc] initWithFrame:CGRectMake(60, tweetLabel.frame.size.height -5, 180, 20)];
+        _footlabel = [[UILabel alloc] initWithFrame:CGRectMake(60, tweetLabel.frame.size.height + 5, 180, 20)];
         _footlabel.text = @"";
         _footlabel.font = [UIFont boldSystemFontOfSize:15];     
         _footlabel.textColor = [UIColor lightGrayColor];         
@@ -99,7 +99,13 @@
         _footlabel.lineBreakMode = UILineBreakModeTailTruncation;
         [self addSubview:_footlabel];
         [_footlabel release];
-        self.frame = CGRectMake(frame.origin.x, frame.origin.y, frame.size.width, tweetLabel.frame.size.height + 15);
+        if (ssize.height < 54) {
+            _footlabel.frame = CGRectMake(60, 40, 180, 20);
+            self.frame = CGRectMake(frame.origin.x, frame.origin.y, frame.size.width, 70);
+        }else {
+            self.frame = CGRectMake(frame.origin.x, frame.origin.y, frame.size.width, tweetLabel.frame.size.height + 25);
+        }
+        
     }
     return self;
 }

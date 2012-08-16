@@ -59,6 +59,7 @@ enum {
     UITableView *tableview= [[UITableView alloc] initWithFrame:CGRectMake(0,0, 320, 436) style:UITableViewStyleGrouped];
     tableview.separatorStyle = UITableViewStyleGrouped;
     //tableview.separatorColor = [UIColor blackColor];
+    tableview.backgroundColor = [UIColor lightGrayColor];
     [tableview setDelegate:self];
     [tableview setDataSource:self];
     

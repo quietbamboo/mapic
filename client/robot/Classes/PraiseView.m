@@ -50,6 +50,7 @@
         timelabel.text = @"3小时前";
         [self addSubview:timelabel];
         if (tweetLabel.frame.size.height + 10 < 81) {
+            timelabel.frame = CGRectMake(80, 53, 220, 20);
             self.frame = CGRectMake(frame.origin.x, frame.origin.y, frame.size.width, 81);
         }else {
             self.frame = CGRectMake(frame.origin.x, frame.origin.y, frame.size.width, tweetLabel.frame.size.height + 25);
