@@ -17,7 +17,11 @@ typedef enum {
 } ViewType;
 
 @protocol ImageIdAndUserNameProtocol <NSObject>
+
 - (void) imageID :(NSString *)imageID UIViewType:(ViewType)UIViewType;
 - (void) userName :(NSString *)userName UIViewType:(ViewType)UIViewType;
+
+@optional
+- (void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event UIViewType:(ViewType)UIViewType;
 
 @end

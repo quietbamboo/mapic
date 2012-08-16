@@ -66,6 +66,12 @@
 - (void)IFLabeluserName:(NSString *)userName{
     [delegate userName:userName UIViewType:PhotoMessageViewtype];
 }
+- (void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
+    [delegate touchesBegan:touches withEvent:event UIViewType:PhotoMessageViewtype];
+}
+- (void) touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
+     [delegate touchesBegan:touches withEvent:event UIViewType:PhotoMessageViewtype];
+}
 /*
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.

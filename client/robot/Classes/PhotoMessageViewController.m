@@ -117,7 +117,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 3;
+    return [photomessageArray count];
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     
@@ -202,6 +202,15 @@
     [photomessageArray addObject:dic1];
     [photomessageArray addObject:dic2];
     [photomessageArray addObject:dic3];
+    [photomessageArray addObject:dic1];
+    [photomessageArray addObject:dic2];
+    [photomessageArray addObject:dic3];
+    [photomessageArray addObject:dic1];
+    [photomessageArray addObject:dic2];
+    [photomessageArray addObject:dic3];
+    [photomessageArray addObject:dic1];
+    [photomessageArray addObject:dic2];
+    [photomessageArray addObject:dic3];
 }
 - (void) imageID :(NSString *)imageID UIViewType:(ViewType)UIViewType{
     FourthViewController* four = [[FourthViewController alloc] init];
@@ -216,5 +225,15 @@
         four.userName = userName;
     }
     [self.navigationController pushViewController:four animated:YES];
+}
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event UIViewType:(ViewType)UIViewType{
+    [sendfield resignFirstResponder];
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationDuration:0.3];
+    UITableView* tableview = (UITableView *)[self.view viewWithTag:TABLEHEIGHT];
+    tableview.frame = CGRectMake(0, 0, 320, 392);
+    UIToolbar* toolbar = (UIToolbar *)[self.view viewWithTag:TOOLBAR];
+    toolbar.frame = CGRectMake(0, 392, 320, 44);
+    [UIView commitAnimations];
 }
 @end
