@@ -125,14 +125,16 @@
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *SimpleTableIdentifier = @"SimpleTableIdentifier";  
-    
+
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:  
                              SimpleTableIdentifier];  
     if (cell == nil) {    
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle 
                                        reuseIdentifier:SimpleTableIdentifier] autorelease];  
     }
-    
+    for (UIView *view in cell.contentView.subviews) {
+        [view removeFromSuperview];
+    }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;//UITableViewCellSelectionStyleBlue;
     NSDictionary *nsdic = [photomessageArray objectAtIndex:indexPath.row];
     cell.textLabel.text = @"";
