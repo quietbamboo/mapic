@@ -38,11 +38,11 @@ enum {
 - (void) viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     if ([AppDelegate getAppDelegate].fourthView == self)  {
-        
+        [AppDelegate getAppDelegate].centerButton.hidden = NO;
     }else {
         self.title  = self.userName;
     }
-    [AppDelegate getAppDelegate].centerButton.hidden = NO;
+    
     self.navigationController.navigationBarHidden = NO;
     self.navigationController.navigationBar.tintColor = [UIColor colorWithRed:(1.0/255.0) green:(1.0 / 255.0) blue:(1.0 / 255.0) alpha:1];
 }
