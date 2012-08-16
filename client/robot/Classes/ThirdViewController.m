@@ -69,6 +69,7 @@
     CGRect frame = CGRectMake(0, 60, 320, 371);
     scroller = [[MGScrollView alloc] initWithFrame:frame];
     [self.view addSubview:scroller];
+    scroller.backgroundColor = [UIColor scrollViewTexturedBackgroundColor];
     scroller.alwaysBounceVertical = YES;
     scroller.delegate = self;
     
@@ -106,28 +107,28 @@
     [self praiseImageArray];
     MGStyledBox *box1 = [MGStyledBox box];
     [scroller.boxes addObject:box1];
-    AttentionView* attention = [[AttentionView alloc] initWithFrame:CGRectMake(0, 0, 300, 90) firstname:@"this" secondname:@"are"];
+    AttentionView* attention = [[AttentionView alloc] initWithFrame:CGRectMake(-5, 0, 310, 90) firstname:@"this" secondname:@"are"];
     attention.delegate = self;
     [box1.topLines addObject:attention];
     [attention release];
     
     MGStyledBox *box2 = [MGStyledBox box];
     [scroller.boxes addObject:box2];
-    PraiseView* praise = [[PraiseView alloc] initWithFrame:CGRectMake(0, 0, 300, 70) firstname:@"she" secondname:@"he" imageID:@"222222" imageURL:@"Icon@2x.png"];
+    PraiseView* praise = [[PraiseView alloc] initWithFrame:CGRectMake(-5, 0, 310, 70) firstname:@"she" secondname:@"he" imageID:@"222222" imageURL:@"Icon@2x.png"];
     praise.delegate = self;
     [box2.topLines addObject:praise];
     [praise release];
     
     MGStyledBox *box3 = [MGStyledBox box];
     [scroller.boxes addObject:box3];
-    OnTopView* ontop = [[OnTopView alloc] initWithFrame:CGRectMake(0, 0, 300, 80) userName:@"collering" imageID:@"111111" imageURL:@"Icon@2x.png"];
+    OnTopView* ontop = [[OnTopView alloc] initWithFrame:CGRectMake(-5, 0, 310, 80) userName:@"collering" imageID:@"111111" imageURL:@"Icon@2x.png"];
     ontop.delegate = self;
     [box3.topLines addObject:ontop];
     [ontop release];
     
     MGStyledBox *box4 = [MGStyledBox box];
     [scroller.boxes addObject:box4];
-    PraisePhotoView* pp = [[PraisePhotoView alloc] initWithFrame:CGRectMake(0, 0, 300, 80)firstname:@"How are you" imagecount:5 imageArray:imgArray];
+    PraisePhotoView* pp = [[PraisePhotoView alloc] initWithFrame:CGRectMake(-5, 0, 310, 80)firstname:@"How are you" imagecount:5 imageArray:imgArray];
     pp.delegate = self;
     [box4.topLines addObject:pp];
     [pp release];
@@ -342,6 +343,7 @@ return button;
     }else if(UIViewType == OnTopViewtype){
         four.userName = imageID;
     }
+    four.isYES = @"isYES";
     [self.navigationController pushViewController:four animated:YES];
     [four release];
 }
@@ -356,6 +358,7 @@ return button;
     }else if(UIViewType == AttentionViewtype){
         four.userName = userName;
     }
+    four.isYES = @"isYES";
     [self.navigationController pushViewController:four animated:YES];
     [four release];
 }

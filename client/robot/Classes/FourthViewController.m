@@ -27,7 +27,7 @@ enum {
 @implementation FourthViewController
 @synthesize userName;
 @synthesize quadrantControl = _quadrantControl;
-
+@synthesize isYES;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
@@ -41,6 +41,9 @@ enum {
         [AppDelegate getAppDelegate].centerButton.hidden = NO;
     }else {
         self.title  = self.userName;
+        if ([self.isYES isEqualToString:@"isYES"]) {
+            [AppDelegate getAppDelegate].centerButton.hidden = NO;
+        }
     }
     
     self.navigationController.navigationBarHidden = NO;
@@ -59,7 +62,7 @@ enum {
     UITableView *tableview= [[UITableView alloc] initWithFrame:CGRectMake(0,0, 320, 436) style:UITableViewStyleGrouped];
     tableview.separatorStyle = UITableViewStyleGrouped;
     //tableview.separatorColor = [UIColor blackColor];
-    tableview.backgroundColor = [UIColor lightGrayColor];
+    tableview.backgroundColor = [UIColor scrollViewTexturedBackgroundColor];
     [tableview setDelegate:self];
     [tableview setDataSource:self];
     

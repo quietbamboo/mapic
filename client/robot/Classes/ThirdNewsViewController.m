@@ -68,6 +68,7 @@
     CGRect frame = CGRectMake(0, 60, 320, 371);
     scroller = [[MGScrollView alloc] initWithFrame:frame];
     [self.view addSubview:scroller];
+    scroller.backgroundColor = [UIColor scrollViewTexturedBackgroundColor];
     scroller.alwaysBounceVertical = YES;
     scroller.delegate = self;
     
@@ -315,6 +316,7 @@ return button;
     if(UIViewType == NewsMessageViewtype){
         four.userName = imageID;
     }
+    four.isYES = @"isYES";
     [self.navigationController pushViewController:four animated:YES];
     [four release];
 }
@@ -323,6 +325,7 @@ return button;
     if(UIViewType == NewsMessageViewtype){
         four.userName = userName;
     }
+    four.isYES = @"isYES";
     [self.navigationController pushViewController:four animated:YES];
     [four release];
 }

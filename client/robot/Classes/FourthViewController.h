@@ -13,9 +13,11 @@
     
     TTTQuadrantControl *_quadrantControl;
     NSString *userName;
+    NSString* isYES;
 }
 
 
 @property (nonatomic, retain) TTTQuadrantControl *quadrantControl;
 @property (nonatomic, retain) NSString *userName;
+@property (nonatomic, retain) NSString* isYES;
 @end

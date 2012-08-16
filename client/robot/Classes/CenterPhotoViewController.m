@@ -58,14 +58,15 @@
     self.navigationItem.rightBarButtonItem = btnUpload;
     [btnUpload release];
     scrollview = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, 320, 480)];
-    scrollview.backgroundColor = [UIColor colorWithRed:0.859f green:0.886f blue:0.929f alpha:1.0f];
-    //scrollview.backgroundColor = [UIColor blackColor];
+    //scrollview.backgroundColor = [UIColor colorWithRed:0.859f green:0.886f blue:0.929f alpha:1.0f];
+    scrollview.backgroundColor = [UIColor scrollViewTexturedBackgroundColor];
     scrollview.contentMode = UIViewContentModeScaleToFill;
     scrollview.tag = SCROLLVIEW;
     scrollview.pagingEnabled = YES;
     scrollview.scrollEnabled = YES;
     scrollview.showsVerticalScrollIndicator = YES;
     scrollview.showsHorizontalScrollIndicator = NO;
+    
     scrollview.delegate = self;
     [self.view addSubview:scrollview];
 	// Do any additional setup after loading the view.
@@ -73,7 +74,7 @@
     
     UILabel *namelabel=[[UILabel alloc] initWithFrame:CGRectMake(0.0f, 340.0f, 90.0f, 20.0f)];
     namelabel.font=[UIFont fontWithName:@"HelveticaNeue-Bold" size:18];
-    namelabel.textColor=[UIColor blueColor];
+    namelabel.textColor=[UIColor whiteColor];
     namelabel.text = NSLocalizedString(@"景点名称：", nil);
     namelabel.textAlignment = UITextAlignmentCenter;
     namelabel.backgroundColor = [UIColor clearColor];
@@ -93,7 +94,7 @@
     
     UILabel *textlabel=[[UILabel alloc] initWithFrame:CGRectMake(0.0f, 400.0f, 60.0f, 20.0f)];
     textlabel.font=[UIFont fontWithName:@"HelveticaNeue-Bold" size:18];
-    textlabel.textColor=[UIColor blueColor];
+    textlabel.textColor=[UIColor whiteColor];
     textlabel.text = NSLocalizedString(@"简介：", nil);
     textlabel.textAlignment = UITextAlignmentCenter;
     textlabel.backgroundColor = [UIColor clearColor];

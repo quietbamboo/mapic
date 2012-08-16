@@ -220,6 +220,7 @@
         four.userName = imageID;
     }
     [self.navigationController pushViewController:four animated:YES];
+    [four release];
 }
 - (void) userName :(NSString *)userName UIViewType:(ViewType)UIViewType{
     FourthViewController* four = [[FourthViewController alloc] init];
@@ -227,6 +228,7 @@
         four.userName = userName;
     }
     [self.navigationController pushViewController:four animated:YES];
+    [four release];
 }
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event UIViewType:(ViewType)UIViewType{
     [sendfield resignFirstResponder];
