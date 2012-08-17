@@ -113,6 +113,7 @@
         NewsMessageView* new = [[NewsMessageView alloc] initWithFrame:CGRectMake(10, 0, 300, 80) headString:[nsdic objectForKey:@"head"] footString:[nsdic objectForKey:@"foot"] imageID:[nsdic objectForKey:@"image"] imageURL:[nsdic objectForKey:@"imgURL"] image1ID:[nsdic objectForKey:@"imag1ID"] image1URL:[nsdic objectForKey:@"image1URL"]];
         new.footimageView.image = [UIImage imageNamed:@"andong.jpg"];
         new.footlabel.text = [nsdic objectForKey:@"labeltext"];
+            new.backgroundColor = [UIColor clearColor];
         new.delegate = self;
         new.numimage = i;
         [box5.topLines addObject:new];
