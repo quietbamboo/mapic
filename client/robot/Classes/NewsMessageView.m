@@ -73,7 +73,7 @@
 //        [self addSubview:label];
         
         CGSize ssize = [[NSString stringWithFormat:@"%@ %@",headString,footString] sizeWithFont:[UIFont systemFontOfSize:14.0f] constrainedToSize:CGSizeMake(180.0f, 1000.0f) lineBreakMode:UILineBreakModeWordWrap];
-        IFTweetLabel *tweetLabel = [[IFTweetLabel alloc] initWithFrame:CGRectMake(65.0f, 10.0f, ssize.width, ssize.height)];
+        IFTweetLabel *tweetLabel = [[IFTweetLabel alloc] initWithFrame:CGRectMake(65.0f, 5.0f, ssize.width, ssize.height)];
         [tweetLabel setFont:[UIFont boldSystemFontOfSize:13.0f]];
         [tweetLabel setTextColor:[UIColor blackColor]];
         [tweetLabel setBackgroundColor:[UIColor clearColor]];
@@ -91,8 +91,8 @@
         
         _footlabel = [[UILabel alloc] initWithFrame:CGRectMake(60, tweetLabel.frame.size.height + 5, 180, 20)];
         _footlabel.text = @"";
-        _footlabel.font = [UIFont boldSystemFontOfSize:15];     
-        _footlabel.textColor = [UIColor lightGrayColor];         
+        _footlabel.font = [UIFont boldSystemFontOfSize:12];     
+        _footlabel.textColor = [UIColor scrollViewTexturedBackgroundColor];         
         _footlabel.textAlignment = UITextAlignmentLeft;
         _footlabel.backgroundColor = [UIColor clearColor];
         _footlabel.numberOfLines = 1;

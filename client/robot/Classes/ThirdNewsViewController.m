@@ -302,13 +302,18 @@ return button;
 
 - (void) photomessageControllerArray{
     
-    NSDictionary *dic1 = [NSDictionary dictionaryWithObjectsAndKeys:@"All",@"head",@" of us have read thrilling stories in which the  ",@"foot",@"andong.jpg",@"imgURL",@"18 minutes ago",@"labeltext",@"001",@"image",@"andong.jpg",@"image1URL",@"aaa",@"imag1ID",nil];
-    NSDictionary *dic2 = [NSDictionary dictionaryWithObjectsAndKeys:@"he",@"head",@" is a good boy.",@"foot",@"andong.jpg",@"imgURL",@"18 minutes ago",@"labeltext",@"003",@"image",@"",@"image1URL",@"",@"imag1ID",nil];
+    NSDictionary *dic1 = [NSDictionary dictionaryWithObjectsAndKeys:@"All",@"head",@" of us have read thrilling stories in which the  ",@"foot",@"andong.jpg",@"imgURL",@"55 minutes ago",@"labeltext",@"001",@"image",@"andong.jpg",@"image1URL",@"aaa",@"imag1ID",nil];
+    NSDictionary *dic2 = [NSDictionary dictionaryWithObjectsAndKeys:@"he",@"head",@" is a good boy.",@"foot",@"andong.jpg",@"imgURL",@"50 minutes ago",@"labeltext",@"003",@"image",@"",@"image1URL",@"",@"imag1ID",nil];
     NSDictionary *dic3 = [NSDictionary dictionaryWithObjectsAndKeys:@"How",@"head",@" are you. I'm go to shopping. I go home. I want to Beijing.",@"foot",@"andong.jpg",@"imgURL",@"18 minutes ago",@"labeltext",@"002",@"image",@"andong.jpg",@"image1URL",@"ccc",@"imag1ID",nil];
+    NSDictionary *dic4 = [NSDictionary dictionaryWithObjectsAndKeys:@"鲁迅",@"head",@"先生说：“天才并不是自生自长在深林荒野的怪物，是由可以使天才生长的民众产生、长育出来的，所以没有这种民众，就没有天才。",@"foot",@"Icon@2x.png",@"imgURL",@"10 minutes ago",@"labeltext",@"002",@"image",@"",@"image1URL",@"",@"imag1ID",nil];
+    NSDictionary *dic5 = [NSDictionary dictionaryWithObjectsAndKeys:@"君子",@"head",@"一言，驷马难追.",@"foot",@"andong.jpg",@"imgURL",@"10 minutes ago",@"labeltext",@"002",@"image",@"Icon@2x.png",@"image1URL",@"ddd",@"imag1ID",nil];
+    
     photomessageArray = [[NSMutableArray alloc] initWithCapacity:0];
     [photomessageArray addObject:dic1];
     [photomessageArray addObject:dic2];
     [photomessageArray addObject:dic3];
+    [photomessageArray addObject:dic4];
+    [photomessageArray addObject:dic5];
 }
 
 - (void) imageID :(NSString *)imageID UIViewType:(ViewType)UIViewType{

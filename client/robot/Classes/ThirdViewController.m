@@ -103,14 +103,17 @@
     //    "given an NSString, UIFont, and desired padding.";
     //    MGBoxLine *multi = [MGBoxLine multilineWithText:blah font:nil padding:24];
     //    [box2.topLines addObject:multi];
-    
+    NSString* fiststring = @"成功是你梦寐以求的那朵红玫瑰，挫折正是那遍及周围的针刺。快乐是你辛勤耕耘获得的果实，悲伤正是那成熟前的秕粒。";
+    NSArray* attentionarray = [[NSArray alloc] initWithObjects:@"成功",@"红玫瑰",@"悲伤",@"快乐", nil];
     [self praiseImageArray];
     MGStyledBox *box1 = [MGStyledBox box];
     [scroller.boxes addObject:box1];
-    AttentionView* attention = [[AttentionView alloc] initWithFrame:CGRectMake(-5, 0, 310, 90) firstname:@"this" secondname:@"are"];
+    AttentionView* attention = [[AttentionView alloc] initWithFrame:CGRectMake(-5, 0, 310, 90) firstname:fiststring attentionArray:attentionarray];
     attention.delegate = self;
     [box1.topLines addObject:attention];
     [attention release];
+    
+    
     
     MGStyledBox *box2 = [MGStyledBox box];
     [scroller.boxes addObject:box2];
@@ -124,6 +127,13 @@
     OnTopView* ontop = [[OnTopView alloc] initWithFrame:CGRectMake(-5, 0, 310, 80) userName:@"collering" imageID:@"111111" imageURL:@"Icon@2x.png"];
     ontop.delegate = self;
     [box3.topLines addObject:ontop];
+    [ontop release];
+    
+    MGStyledBox *box5 = [MGStyledBox box];
+    [scroller.boxes addObject:box5];
+    OnTopView* ontop1 = [[OnTopView alloc] initWithFrame:CGRectMake(-5, 0, 310, 80) userName:@"北京" imageID:@"111111" imageURL:@"Icon@2x.png"];
+    ontop1.delegate = self;
+    [box5.topLines addObject:ontop1];
     [ontop release];
     
     MGStyledBox *box4 = [MGStyledBox box];
