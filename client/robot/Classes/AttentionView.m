@@ -17,7 +17,7 @@
         // Initialization code
 //        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(attentionNotification:) name:IFTweetLabelURLNotification object:nil];
         
-        CGSize ssize = [firstname sizeWithFont:[UIFont systemFontOfSize:19.0f] constrainedToSize:CGSizeMake(320.0f, 1000.0f) lineBreakMode:UILineBreakModeWordWrap];
+        CGSize ssize = [firstname sizeWithFont:[UIFont systemFontOfSize:19.0f] constrainedToSize:CGSizeMake(300.0f, 1000.0f) lineBreakMode:UILineBreakModeWordWrap];
         IFTweetLabel *tweetLabel = [[IFTweetLabel alloc] initWithFrame:CGRectMake(5.0f, 0.0f, ssize.width, ssize.height)];
         [tweetLabel setFont:[UIFont boldSystemFontOfSize:15.0f]];
         [tweetLabel setTextColor:[UIColor blackColor]];
@@ -34,7 +34,7 @@
 
         [self addSubview:tweetLabel];
         
-        UILabel* timelabel = [[UILabel alloc] initWithFrame:CGRectMake(10, tweetLabel.frame.size.height, 320, 20)];
+        UILabel* timelabel = [[UILabel alloc] initWithFrame:CGRectMake(10, tweetLabel.frame.size.height, 280, 20)];
         timelabel.textColor = [UIColor lightGrayColor];
         timelabel.font = [UIFont systemFontOfSize:13];
         timelabel.backgroundColor = [UIColor clearColor];
