@@ -49,7 +49,7 @@
             case 0:
                 cell.selectionStyle = UITableViewCellSelectionStyleNone;
                 cell.textLabel.text = NSLocalizedString(@"Username:", nil);
-                UITextField *usernametext = [[UITextField alloc] initWithFrame:CGRectMake(110, 2, 170, 40)];             
+                usernametext = [[UITextField alloc] initWithFrame:CGRectMake(110, 2, 170, 40)];             
                 usernametext.placeholder = @"Username";
                 usernametext.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
                 usernametext.autocapitalizationType = UITextAutocapitalizationTypeNone;
@@ -63,7 +63,7 @@
             case 1:
                 cell.selectionStyle = UITableViewCellSelectionStyleNone;
                 cell.textLabel.text = NSLocalizedString(@"Password:", nil);
-                UITextField *passwordtext = [[UITextField alloc] initWithFrame:CGRectMake(110, 2, 170, 40)];             
+                passwordtext = [[UITextField alloc] initWithFrame:CGRectMake(110, 2, 170, 40)];             
                 passwordtext.secureTextEntry = YES; 
                 passwordtext.contentVerticalAlignment = UIControlContentHorizontalAlignmentCenter;
                 passwordtext.placeholder = @"Password";
@@ -100,13 +100,58 @@
 	if (indexPath.section == 1) {
         switch (indexPath.row) {
             case 0:
-                [self dismissModalViewControllerAnimated:YES];
+                //[self dismissModalViewControllerAnimated:YES];
+                [self grabURLInBackground];
 //                [self.navigationController pushViewController:[AppDelegate getAppDelegate].firstview animated:YES];
                 break;
                 
             default:
                 break;
         }
+    }
+}
+
+- (void)grabURLInBackground
+{
+    NSURL *url = [NSURL URLWithString:@"http://allseeing-i.com"];
+    ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
+    [request setDelegate:self];
+    [request setRequestMethod:@"POST"];
+    [request setPostValue:usernametext.text forKey:@"username"];
+    [request setPostValue:passwordtext.text forKey:@"password"];
+    [request startAsynchronous];
+}
+
+- (void)requestFinished:(ASIHTTPRequest *)request
+{
+    NSString *responseString = [request responseString];
+    UIAlertView* successAlert = [[UIAlertView alloc] initWithTitle:@"error" 
+                                                         message:@"登陆成功！"
+                                                        delegate:self 
+                                               cancelButtonTitle:@"OK"
+                                               otherButtonTitles: nil];
+    successAlert.tag = 0;
+    [successAlert show];
+    [successAlert release];
+}
+
+- (void)requestFailed:(ASIHTTPRequest *)request
+{
+    NSError *error = [request error];
+    UIAlertView* errorAlert = [[UIAlertView alloc] initWithTitle:@"error" 
+                                                         message:@"登陆失败！"
+                                                        delegate:self 
+                                               cancelButtonTitle:@"OK"
+                                               otherButtonTitles: nil];
+    errorAlert.tag = 1;
+    [errorAlert show];
+    [errorAlert release];
+}
+
+#pragma mark UIAlertViewDelegate
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if (alertView.tag == 0) {
+        [self dismissModalViewControllerAnimated:YES];
     }
 }
 

@@ -20,7 +20,8 @@
 #import "MTLocationManager.h"
 #import "FKFilterPickerController.h"
 #import "FKImagePickerController.h"
-@interface FirstViewController : UIViewController <MKMapViewDelegate,CLLocationManagerDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate,DirectionsViewControllerDelegate,CustomSegmentedControlDelegate>{
+#import "ASIFormDataRequest.h"
+@interface FirstViewController : UIViewController <MKMapViewDelegate,CLLocationManagerDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate,DirectionsViewControllerDelegate,CustomSegmentedControlDelegate,ASIHTTPRequestDelegate>{
     BOOL canChangeMap;
     UIImageView *routeView;
 	NSArray *routes;

@@ -13,7 +13,8 @@
 #import "US2ValidatorTextField.h"
 #import "TooltipView.h"
 #import "FormTableViewCell.h"
-@interface DBSignupViewController : UIViewController <UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate, UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate,US2ValidatorUIDelegate,UITextViewDelegate,FormTableViewCellDelegate> {
+#import "ASIFormDataRequest.h"
+@interface DBSignupViewController : UIViewController <UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate, UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate,US2ValidatorUIDelegate,UITextViewDelegate,FormTableViewCellDelegate,ASIHTTPRequestDelegate,UIAlertViewDelegate> {
     UIView *contentView;
     US2ValidatorTextField *nameTextField_;
     US2ValidatorTextField *lastNameTextField_;

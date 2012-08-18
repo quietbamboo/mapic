@@ -823,4 +823,28 @@ typedef enum {
             break;
     }
 }
+
+#pragma mark - ASIHTTPRequestDelegate
+
+- (void)firstRequest
+{
+    NSURL *url = [NSURL URLWithString:@"http://allseeing-i.com"];
+    ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
+    [request setDelegate:self];
+    [request setRequestMethod:@"POST"];
+    [request setPostValue:@"" forKey:@""];
+    [request startAsynchronous];
+}
+
+- (void)requestFinished:(ASIHTTPRequest *)request
+{
+    NSString *responseString = [request responseString];
+}
+
+- (void)requestFailed:(ASIHTTPRequest *)request
+{
+    NSError *error = [request error];
+}
+
+
 @end

@@ -842,6 +842,7 @@
                                                            delegate:self
                                                   cancelButtonTitle:@"Continue"
                                                   otherButtonTitles:nil, nil];
+        alertView.tag = 1;
         [alertView show];
     }else {
         NSLog(@"this is name : %@",nameTextField_.text);
@@ -851,10 +852,57 @@
         NSLog(@"this is birthday : %@",birthdayTextField_.text);
         NSLog(@"this is gender : %@",genderTextField_.text);
         NSLog(@"this is phone : %@",phoneTextField_.text);
+        //[self.navigationController popViewControllerAnimated:YES];
+        [self signupRequest];
+    }
+}
+#pragma mark - ASIHTTPRequestDelegate
+
+- (void)signupRequest
+{
+    NSURL *url = [NSURL URLWithString:@"http://allseeing-i.com"];
+    ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
+    [request setDelegate:self];
+    [request setRequestMethod:@"POST"];
+    [request setPostValue:nameTextField_.text forKey:@"name"];
+    [request setPostValue:lastNameTextField_.text forKey:@"lastname"];
+    [request setPostValue:emailTextField_.text forKey:@"email"];
+    [request setPostValue:passwordTextField_.text forKey:@"password"];
+    [request setPostValue:birthdayTextField_.text forKey:@"birthday"];
+    [request setPostValue:genderTextField_.text forKey:@"gender"];
+    [request setPostValue:phoneTextField_.text forKey:@"phone"];
+    [request startAsynchronous];
+}
+
+- (void)requestFinished:(ASIHTTPRequest *)request
+{
+    NSString *responseString = [request responseString];
+    UIAlertView* successAlert = [[UIAlertView alloc] initWithTitle:@"error" 
+                                                           message:@"注册成功！"
+                                                          delegate:self 
+                                                 cancelButtonTitle:@"OK"
+                                                 otherButtonTitles: nil];
+    successAlert.tag = 0;
+    [successAlert show];
+    
+}
+
+- (void)requestFailed:(ASIHTTPRequest *)request
+{
+    NSError *error = [request error];
+    UIAlertView* errorAlert = [[UIAlertView alloc] initWithTitle:@"error" 
+                                                         message:@"注册失败！"
+                                                        delegate:self 
+                                               cancelButtonTitle:@"OK"
+                                               otherButtonTitles: nil];
+    [errorAlert show];
+}
+#pragma mark - UIAlertViewDelegate
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if (buttonIndex == 0 && alertView.tag == 0 ) {
         [self.navigationController popViewControllerAnimated:YES];
     }
 }
-
 
 #pragma mark - UIActionSheetDelegate
 

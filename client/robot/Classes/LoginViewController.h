@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ASIFormDataRequest.h"
 #import "MyMD5.h"
-@interface LoginViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate>{
-
-    
+@interface LoginViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate,ASIHTTPRequestDelegate,UIAlertViewDelegate>{
+    UITextField *usernametext;
+    UITextField *passwordtext;
 }
 
 @end
