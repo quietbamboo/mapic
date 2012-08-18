@@ -28,9 +28,11 @@ CREATE TABLE `comment` (
   `creationTime` datetime DEFAULT NULL,
   `commentContent` mediumtext COLLATE utf8_unicode_ci,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `comment` */
+
+insert  into `comment`(`id`,`pictureId`,`commentType`,`userId`,`creationTime`,`commentContent`) values (1,1,1,1,NULL,NULL);
 
 /*Table structure for table `picture` */
 
@@ -47,12 +49,18 @@ CREATE TABLE `picture` (
   `report` int(255) DEFAULT NULL,
   `creationTime` datetime DEFAULT NULL,
   `generateTime` datetime DEFAULT NULL,
-  `lagitude` float DEFAULT NULL,
+  `latitude` float DEFAULT NULL,
   `longitude` float DEFAULT NULL,
+  `userId` int(18) DEFAULT NULL,
+  `hash` varchar(64) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `width` float DEFAULT NULL,
+  `height` float DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `picture` */
+
+insert  into `picture`(`id`,`url`,`title`,`description`,`deleteFlag`,`likes`,`dislikes`,`report`,`creationTime`,`generateTime`,`latitude`,`longitude`,`userId`,`hash`,`width`,`height`) values (1,'http://www.j.cn',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,100,100,NULL,NULL,NULL,NULL),(2,'www.g.com',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,100,100,NULL,NULL,NULL,NULL);
 
 /*Table structure for table `relationship` */
 

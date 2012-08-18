@@ -12,6 +12,7 @@ client/US2FormValidationFramework/US2FormValidationFramework.xcodeproj/xcuserdat
 client/robot/template.xcodeproj/xcuserdata/apple.xcuserdatad/xcdebugger/Breakpoints.xcbkptlist/
 #System hidden files
 *.DS_Store
+server/db_con.php
 
 
 
