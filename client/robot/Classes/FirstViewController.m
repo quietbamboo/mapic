@@ -112,7 +112,7 @@ typedef enum {
 - (void)removePins {
     isinitArray = YES;
    //[self.mainMapView removeAnnotations:self.mainMapView.annotations];
-    
+    routeView.image = nil;
     for (id<MKAnnotation> myAnnotation in mainMapView.annotations ) {
         if ([myAnnotation isKindOfClass:[MKUserLocation class]]){
             
@@ -253,7 +253,13 @@ typedef enum {
 	home.longitude = mainMapView.userLocation.location.coordinate.longitude;
     home.image = nil;
     //[self.mainMapView.annotations removeAllObjects];
-    [self removePins];
+    for (id<MKAnnotation> myAnnotation in mainMapView.annotations ) {
+        if ([myAnnotation isKindOfClass:[MKUserLocation class]]){
+            
+        }else {
+            [self.mainMapView removeAnnotation:myAnnotation];
+        }
+    }
     PlaceMark *placeMark = [[PlaceMark alloc] initWithPlace:endPlace];
     [self.mainMapView addAnnotation:placeMark];
     [self showRouteFrom:home to:endPlace];
@@ -507,7 +513,13 @@ typedef enum {
 	home.latitude = mainMapView.userLocation.location.coordinate.latitude;
 	home.longitude = mainMapView.userLocation.location.coordinate.longitude;
     home.image = nil;
-    [self removePins];
+    for (id<MKAnnotation> myAnnotation in mainMapView.annotations ) {
+        if ([myAnnotation isKindOfClass:[MKUserLocation class]]){
+            
+        }else {
+            [self.mainMapView removeAnnotation:myAnnotation];
+        }
+    }
     PlaceMark *placeMark = [[PlaceMark alloc] initWithPlace:endPlace];
     [self.mainMapView addAnnotation:placeMark];
     [self showRouteFrom:home to:endPlace];
