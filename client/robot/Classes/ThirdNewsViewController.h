@@ -19,8 +19,8 @@
 #import "OnTopView.h"
 #import "PraisePhotoView.h"
 #import "ImageIdAndUserNameProtocol.h"
-
-@interface ThirdNewsViewController : UIViewController<UIScrollViewDelegate,JMTabViewDelegate,ImageIdAndUserNameProtocol>{
+#import "ASIFormDataRequest.h"
+@interface ThirdNewsViewController : UIViewController<UIScrollViewDelegate,JMTabViewDelegate,ImageIdAndUserNameProtocol,ASIHTTPRequestDelegate>{
     NSMutableArray *photomessageArray;
     MGScrollView *scroller;
     NSMutableArray* imgArray;

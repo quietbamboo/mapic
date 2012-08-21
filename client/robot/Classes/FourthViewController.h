@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "AppDelegate.h"
+#import "ASIFormDataRequest.h"
 @class TTTQuadrantControl;
-@interface FourthViewController : UITableViewController{
+@interface FourthViewController : UITableViewController<ASIHTTPRequestDelegate>{
     
     TTTQuadrantControl *_quadrantControl;
     NSString *userName;

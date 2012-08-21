@@ -826,7 +826,7 @@ typedef enum {
 
 #pragma mark - ASIHTTPRequestDelegate
 
-- (void)firstRequest
+- (void)firstviewRequest
 {
     NSURL *url = [NSURL URLWithString:@"http://allseeing-i.com"];
     ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];

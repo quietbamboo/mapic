@@ -21,7 +21,8 @@
 #import "PraisePhotoView.h"
 #import "ImageIdAndUserNameProtocol.h"
 #import "ThirdNewsViewController.h"
-@interface ThirdViewController : UIViewController<UIScrollViewDelegate,JMTabViewDelegate,ImageIdAndUserNameProtocol>{
+#import "ASIFormDataRequest.h"
+@interface ThirdViewController : UIViewController<UIScrollViewDelegate,JMTabViewDelegate,ImageIdAndUserNameProtocol,ASIHTTPRequestDelegate>{
     NSMutableArray *photomessageArray;
     NotificationView *notificationView;
     MGScrollView *scroller;

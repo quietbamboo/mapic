@@ -12,7 +12,8 @@
 #import "ODRefreshControl.h"
 #import "HjxPhotoViewController.h"
 #import "CellView.h"
-@interface SecondViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,DirectionsViewControllerDelegate,JMTabViewDelegate>{
+#import "ASIFormDataRequest.h"
+@interface SecondViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,DirectionsViewControllerDelegate,JMTabViewDelegate,ASIHTTPRequestDelegate>{
     
     NSMutableArray *nsArray;
     BOOL isloading;
