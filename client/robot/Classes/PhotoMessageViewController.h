@@ -9,9 +9,10 @@
 #import <UIKit/UIKit.h>
 #import "PhotoMessageView.h"
 #import "ImageIdAndUserNameProtocol.h"
+#import "ASIFormDataRequest.h"
 @protocol ModalControllerDelegate;
 
-@interface PhotoMessageViewController : UIViewController <UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate,ImageIdAndUserNameProtocol>{
+@interface PhotoMessageViewController : UIViewController <UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate,ImageIdAndUserNameProtocol,ASIHTTPRequestDelegate>{
     NSMutableArray *photomessageArray;
 	id <ModalControllerDelegate> delegate;
     UITextField* sendfield;
