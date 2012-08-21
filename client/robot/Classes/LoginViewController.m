@@ -125,7 +125,7 @@
 - (void)requestFinished:(ASIHTTPRequest *)request
 {
     NSString *responseString = [request responseString];
-    UIAlertView* successAlert = [[UIAlertView alloc] initWithTitle:@"error" 
+    UIAlertView* successAlert = [[UIAlertView alloc] initWithTitle:@"成功" 
                                                          message:@"登陆成功！"
                                                         delegate:self 
                                                cancelButtonTitle:@"OK"

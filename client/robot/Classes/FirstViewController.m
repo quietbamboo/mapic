@@ -252,8 +252,13 @@ typedef enum {
 	home.latitude = mainMapView.userLocation.location.coordinate.latitude;
 	home.longitude = mainMapView.userLocation.location.coordinate.longitude;
     home.image = nil;
-    
+    //[self.mainMapView.annotations removeAllObjects];
+    [self removePins];
+    PlaceMark *placeMark = [[PlaceMark alloc] initWithPlace:endPlace];
+    [self.mainMapView addAnnotation:placeMark];
     [self showRouteFrom:home to:endPlace];
+    
+    
 }
 
 -(NSMutableArray *)decodePolyLine: (NSMutableString *)encoded {
@@ -502,7 +507,9 @@ typedef enum {
 	home.latitude = mainMapView.userLocation.location.coordinate.latitude;
 	home.longitude = mainMapView.userLocation.location.coordinate.longitude;
     home.image = nil;
-
+    [self removePins];
+    PlaceMark *placeMark = [[PlaceMark alloc] initWithPlace:endPlace];
+    [self.mainMapView addAnnotation:placeMark];
     [self showRouteFrom:home to:endPlace];
 
 }
