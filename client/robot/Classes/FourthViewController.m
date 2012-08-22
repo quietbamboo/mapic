@@ -59,6 +59,10 @@ enum {
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"User";
+    [self initArray];
+    web = [dic objectForKey:@"web"];
+    location = [dic objectForKey:@"location"];
+    Motto = [dic objectForKey:@"Motto"];
     UITableView *tableview= [[UITableView alloc] initWithFrame:CGRectMake(0,0, 320, 436) style:UITableViewStyleGrouped];
     tableview.separatorStyle = UITableViewStyleGrouped;
     //tableview.separatorColor = [UIColor blackColor];
@@ -67,27 +71,28 @@ enum {
     [tableview setDataSource:self];
     
     
+    
     UIView *header = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 90)];
     
     UIImageView *imageview = [[UIImageView alloc] initWithFrame:CGRectMake(50, 25, 50, 50)];
-    imageview.image = [UIImage imageNamed:@"mattt.png"];
+    imageview.image = [UIImage imageNamed:[dic objectForKey:@"headimag"]];
     [header addSubview:imageview];
     [imageview release];
     
     UILabel *label1 = [[UILabel alloc]initWithFrame:CGRectMake(120.0, 25.0, 200.0, 20.0)];
-    label1.text = @"Mattt Thompson";
+    label1.text = [dic objectForKey:@"lable1"];
     label1.backgroundColor = [UIColor clearColor];
     label1.font = [UIFont systemFontOfSize:15];
     [header addSubview:label1];
     [label1 release];
     UILabel *label2 = [[UILabel alloc]initWithFrame:CGRectMake(120.0, 45.0, 100.0, 20.0)];
-    label2.text = @"Mattt Thompson";
+    label2.text = [dic objectForKey:@"lable2"];
     label2.font = [UIFont systemFontOfSize:10];
     label2.backgroundColor = [UIColor clearColor];
     [header addSubview:label2];
     [label2 release];
     UILabel *label3 = [[UILabel alloc]initWithFrame:CGRectMake(120.0, 65.0, 100.0, 15.0)];
-    label3.text = @"Mattt Thompson";
+    label3.text = [dic objectForKey:@"lable3"];
     label3.font = [UIFont systemFontOfSize:10];
     label3.backgroundColor = [UIColor clearColor];
     [header addSubview:label3];
@@ -108,22 +113,22 @@ enum {
     self.quadrantControl.delegate = self;
 	//_quadrantControl.delegate = self;
     //TTTQuadrantLocation *t = [[TTTQuadrantView alloc] ];
-	[self.quadrantControl setNumber:[NSNumber numberWithInt:190]
+	[self.quadrantControl setNumber:[dic objectForKey:@"following"]//[NSNumber numberWithInt:190]
                             caption:@"following"
                              action:@selector(didSelectFollowingQuadrant)
                         forLocation:TopLeftLocation];
 	
-	[self.quadrantControl setNumber:[NSNumber numberWithInt:2969]
+	[self.quadrantControl setNumber:[dic objectForKey:@"Tweets"]//[NSNumber numberWithInt:2969]
                             caption:@"tweets" 
                              action:@selector(didSelectTweetsQuadrant)
                         forLocation:TopRightLocation];
 	
-	[self.quadrantControl setNumber:[NSNumber numberWithInt:1013]
+	[self.quadrantControl setNumber:[dic objectForKey:@"Followers"]//[NSNumber numberWithInt:1013]
                             caption:@"followers" 
                              action:@selector(didSelectFollowersQuadrant)
                         forLocation:BottomLeftLocation];
 	
-	[self.quadrantControl setNumber:[NSNumber numberWithInt:115] 
+	[self.quadrantControl setNumber:[dic objectForKey:@"Listed"]//[NSNumber numberWithInt:115] 
                             caption:@"listed" 
                              action:@selector(didSelectListedQuadrant)
                         forLocation:BottomRightLocation];
@@ -195,7 +200,7 @@ enum {
 		case 0:
 			cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault 
 										   reuseIdentifier:nil] autorelease];
-			cell.textLabel.text = NSLocalizedString(@"Hacker from the Rustbelt, living in Austin, TX. iOS Developer at @gowalla, and co-founder of @austinrb", nil);
+			cell.textLabel.text = Motto;//NSLocalizedString(@"Hacker from the Rustbelt, living in Austin, TX. iOS Developer at @gowalla, and co-founder of @austinrb", nil);
 			cell.textLabel.font = [UIFont systemFontOfSize:14];
             cell.textLabel.numberOfLines = 0;
 			cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -204,14 +209,14 @@ enum {
 			cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue2 
 										   reuseIdentifier:nil] autorelease];
 			cell.textLabel.text = NSLocalizedString(@"location", nil);
-			cell.detailTextLabel.text = NSLocalizedString(@"Austin, TX", nil);
+			cell.detailTextLabel.text = location;//NSLocalizedString(@"Austin, TX", nil);
 			cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 			break;
 		case 2:
 			cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue2 
 										   reuseIdentifier:nil] autorelease];
 			cell.textLabel.text = @"web";
-			cell.detailTextLabel.text = @"http://mattt.me";
+			cell.detailTextLabel.text = web;
 			cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 			break;
 	}
@@ -226,6 +231,11 @@ enum {
     LoginViewController* loginview = [[LoginViewController alloc] init];
     UINavigationController* loginnav = [[UINavigationController alloc] initWithRootViewController:loginview];
     [self presentModalViewController:loginnav animated:YES];
+}
+
+#pragma mark initArray
+- (void) initArray{
+     dic = [NSDictionary dictionaryWithObjectsAndKeys:@"mattt.png",@"headimag",[NSNumber numberWithInt:2969],@"following",[NSNumber numberWithInt:296],@"Tweets",[NSNumber numberWithInt:69],@"Followers",[NSNumber numberWithInt:29869],@"Listed",@"Hacker from the Rustbelt, living in Austin, and co-founder of @austinrb",@"Motto",@"Austin, TX",@"location",@"http://mattt.me",@"web",@"lable1",@"lable1",@"lable1",@"lable2",@"lable1",@"lable3",nil];
 }
 
 #pragma mark - ASIHTTPRequestDelegate

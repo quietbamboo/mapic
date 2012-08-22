@@ -16,7 +16,7 @@
 }
 @property (nonatomic) id <ImageIdAndUserNameProtocol> delegate;
 
-- (id)initWithFrame:(CGRect)frame firstname:(NSString *)firstname secondname:(NSString *)secondname imageID:(NSString *)imageID imageURL:(NSString *)imageURL;
+- (id)initWithFrame:(CGRect)frame praiseArray:(NSArray *)praiseArray imageArray:(NSMutableArray *)imageArray timestring:(NSString *)timestring;
 
 @end
 

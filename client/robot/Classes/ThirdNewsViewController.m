@@ -111,7 +111,6 @@
             //initWithFrame:CGRectMake(10, 0, 300, 80) headString:[nsdic objectForKey:@"head"] footString:[nsdic objectForKey:@"foot"] imageID:[nsdic objectForKey:@"image"]];
            // new.footimageView.image = [UIImage imageNamed:@"andong.jpg"]
         NewsMessageView* new = [[NewsMessageView alloc] initWithFrame:CGRectMake(10, 0, 300, 80) headString:[nsdic objectForKey:@"head"] footString:[nsdic objectForKey:@"foot"] imageID:[nsdic objectForKey:@"image"] imageURL:[nsdic objectForKey:@"imgURL"] image1ID:[nsdic objectForKey:@"imag1ID"] image1URL:[nsdic objectForKey:@"image1URL"]];
-        new.footimageView.image = [UIImage imageNamed:@"andong.jpg"];
         new.footlabel.text = [nsdic objectForKey:@"labeltext"];
             new.backgroundColor = [UIColor clearColor];
         new.delegate = self;
@@ -302,6 +301,7 @@
 #pragma mark - initphotomessage
 
 - (void) photomessageControllerArray{
+    
     
     NSDictionary *dic1 = [NSDictionary dictionaryWithObjectsAndKeys:@"All",@"head",@" of us have read thrilling stories in which the  ",@"foot",@"andong.jpg",@"imgURL",@"55 minutes ago",@"labeltext",@"001",@"image",@"andong.jpg",@"image1URL",@"aaa",@"imag1ID",nil];
     NSDictionary *dic2 = [NSDictionary dictionaryWithObjectsAndKeys:@"he",@"head",@" is a good boy.",@"foot",@"andong.jpg",@"imgURL",@"50 minutes ago",@"labeltext",@"003",@"image",@"",@"image1URL",@"",@"imag1ID",nil];

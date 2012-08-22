@@ -10,7 +10,6 @@
 #import "DetailTextView.h"
 @implementation NewsMessageView
 
-@synthesize footimageView = _footimageView;
 @synthesize footlabel = _footlabel;
 @synthesize numimage;
 @synthesize delegate;

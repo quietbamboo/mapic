@@ -9,35 +9,33 @@
 #import "OnTopView.h"
 @implementation OnTopView
 @synthesize delegate;
-- (id)initWithFrame:(CGRect)frame userName:(NSString *)userName imageID:(NSString *)imageID imageURL:(NSString *)imageURL
+- (id)initWithFrame:(CGRect)frame praiseArray:(NSArray *)praiseArray imageArray:(NSMutableArray *)imageArray timestring:(NSString *)timestring
 {
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
-        imgID = imageID;
+        NSDictionary *nsdic = [imageArray objectAtIndex:0];
+        imgID = [nsdic objectForKey:@"imagID"];
         PictureImageview* imageview = [[PictureImageview alloc] initWithFrame:CGRectMake(8, 8, 65, 65)];
         imageview.userInteractionEnabled=YES;
         imageview.layer.cornerRadius = 5.0;
         imageview.layer.masksToBounds = YES;
-        UIImage *icon = [UIImage imageNamed:imageURL];
+        UIImage *icon = [UIImage imageNamed:[nsdic objectForKey:@"username"]];
         imageview.image = icon;
         imageview.tag = 0;
         imageview.delegate = self;
         [self addSubview:imageview];
 //        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(ontopNotification:) name:IFTweetLabelURLNotification object:nil];
         
-        CGSize ssize = [[NSString stringWithFormat:@"%@ 的照片上热门榜了。",userName] sizeWithFont:[UIFont systemFontOfSize:18.0f] constrainedToSize:CGSizeMake(220.0f, 1000.0f) lineBreakMode:UILineBreakModeWordWrap];
+        CGSize ssize = [[NSString stringWithFormat:@"%@ 的照片上热门榜了。",[praiseArray objectAtIndex:0]] sizeWithFont:[UIFont systemFontOfSize:18.0f] constrainedToSize:CGSizeMake(220.0f, 1000.0f) lineBreakMode:UILineBreakModeWordWrap];
         IFTweetLabel *tweetLabel = [[IFTweetLabel alloc] initWithFrame:CGRectMake(80.0f, 5.0f, ssize.width, ssize.height)];
         [tweetLabel setFont:[UIFont boldSystemFontOfSize:15.0f]];
         [tweetLabel setTextColor:[UIColor blackColor]];
         [tweetLabel setBackgroundColor:[UIColor clearColor]];
         [tweetLabel setNumberOfLines:0];
         tweetLabel.delegate = self;
-        tweetLabel.expressions = [[NSArray alloc] initWithObjects:
-                                  userName,
-                                  //@"([hH][tT][tT][pP][sS]?:\\/\\/[^ ,'\">\\]\\)]*[^\\. ,'\">\\]\\)])", // hyperlinks
-                                  nil];
-        [tweetLabel setText:[NSString stringWithFormat:@"%@ 的照片上热门榜了。",userName]];
+        tweetLabel.expressions = praiseArray;
+        [tweetLabel setText:[NSString stringWithFormat:@"%@ 的照片上热门榜了。",[praiseArray objectAtIndex:0]]];
         [tweetLabel setLinksEnabled:YES];
         
         [self addSubview:tweetLabel];
@@ -46,7 +44,7 @@
         timelabel.font = [UIFont systemFontOfSize:13];
         timelabel.textColor = [UIColor lightGrayColor];
         timelabel.backgroundColor = [UIColor clearColor];
-        timelabel.text = @"1小时前";
+        timelabel.text = timestring;
         [self addSubview:timelabel];
         if (tweetLabel.frame.size.height + 10 < 81) {
             timelabel.frame = CGRectMake(80, 53, 220, 20);

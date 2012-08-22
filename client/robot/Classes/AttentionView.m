@@ -10,7 +10,7 @@
 #import "IFTweetLabel.h"
 @implementation AttentionView
 @synthesize delegate;
-- (id)initWithFrame:(CGRect)frame firstname:(NSString *)firstname attentionArray:(NSArray *)attentionArray
+- (id)initWithFrame:(CGRect)frame firstname:(NSString *)firstname attentionArray:(NSArray *)attentionArray timestring:(NSString *)timestring
 {
     self = [super initWithFrame:frame];
     if (self) {
@@ -38,7 +38,7 @@
         timelabel.textColor = [UIColor lightGrayColor];
         timelabel.font = [UIFont systemFontOfSize:13];
         timelabel.backgroundColor = [UIColor clearColor];
-        timelabel.text = @"5小时前";
+        timelabel.text = timestring;
         [self addSubview:timelabel];
         self.frame = CGRectMake(frame.origin.x, frame.origin.y, frame.size.width, tweetLabel.frame.size.height + 20);
     }

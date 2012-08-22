@@ -14,6 +14,7 @@
 #import "TooltipView.h"
 #import "FormTableViewCell.h"
 #import "ASIFormDataRequest.h"
+#import "MyMD5.h"
 @interface DBSignupViewController : UIViewController <UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate, UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate,US2ValidatorUIDelegate,UITextViewDelegate,FormTableViewCellDelegate,ASIHTTPRequestDelegate,UIAlertViewDelegate> {
     UIView *contentView;
     US2ValidatorTextField *nameTextField_;

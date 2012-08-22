@@ -848,7 +848,7 @@
         NSLog(@"this is name : %@",nameTextField_.text);
         NSLog(@"this is lastname : %@",lastNameTextField_.text);
         NSLog(@"this is email : %@",emailTextField_.text);
-        NSLog(@"this is password : %@ ",passwordTextField_.text);
+        NSLog(@"this is password : %@ ",[MyMD5 md5:passwordTextField_.text]);
         NSLog(@"this is birthday : %@",birthdayTextField_.text);
         NSLog(@"this is gender : %@",genderTextField_.text);
         NSLog(@"this is phone : %@",phoneTextField_.text);
@@ -867,7 +867,7 @@
     [request setPostValue:nameTextField_.text forKey:@"name"];
     [request setPostValue:lastNameTextField_.text forKey:@"lastname"];
     [request setPostValue:emailTextField_.text forKey:@"email"];
-    [request setPostValue:passwordTextField_.text forKey:@"password"];
+    [request setPostValue:[MyMD5 md5:passwordTextField_.text] forKey:@"password"];
     [request setPostValue:birthdayTextField_.text forKey:@"birthday"];
     [request setPostValue:genderTextField_.text forKey:@"gender"];
     [request setPostValue:phoneTextField_.text forKey:@"phone"];

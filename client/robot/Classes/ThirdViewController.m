@@ -105,43 +105,46 @@
     //    [box2.topLines addObject:multi];
     NSString* fiststring = @"成功是你梦寐以求的那朵红玫瑰，挫折正是那遍及周围的针刺。快乐是你辛勤耕耘获得的果实，悲伤正是那成熟前的秕粒。";
     NSArray* attentionarray = [[NSArray alloc] initWithObjects:@"成功",@"红玫瑰",@"悲伤",@"快乐", nil];
+    
     [self praiseImageArray];
-    MGStyledBox *box1 = [MGStyledBox box];
-    [scroller.boxes addObject:box1];
-    AttentionView* attention = [[AttentionView alloc] initWithFrame:CGRectMake(0, 0, 300, 90) firstname:fiststring attentionArray:attentionarray];
-    attention.delegate = self;
-    [box1.topLines addObject:attention];
-    [attention release];
+    
+    for (NSInteger i = 0; imgArray.count > i ; i++) {
+        NSDictionary *nsdic = [imgArray objectAtIndex:i];
+        if ([[nsdic objectForKey:@"DisplayType"] isEqualToString:@"Attention"]) {
+            MGStyledBox *box1 = [MGStyledBox box];
+            [scroller.boxes addObject:box1];
+            AttentionView* attention = [[AttentionView alloc] initWithFrame:CGRectMake(0, 0, 300, 90) firstname:[nsdic objectForKey:@"Information"] attentionArray:[nsdic objectForKey:@"Users"] timestring:[nsdic objectForKey:@"time"]];
+            attention.delegate = self;
+            [box1.topLines addObject:attention];
+            [attention release];
+        }else if ([[nsdic objectForKey:@"DisplayType"] isEqualToString:@"Praise"]) {
+            MGStyledBox *box2 = [MGStyledBox box];
+            [scroller.boxes addObject:box2];
+            PraiseView* praise = [[PraiseView alloc] initWithFrame:CGRectMake(0, 0, 300, 70) praiseArray:[nsdic objectForKey:@"Users"] imageArray:[nsdic objectForKey:@"Photos"] timestring:[nsdic objectForKey:@"time"]];
+            praise.delegate = self;
+            [box2.topLines addObject:praise];
+            [praise release];
+        }else if ([[nsdic objectForKey:@"DisplayType"] isEqualToString:@"Ontop"]) {
+            MGStyledBox *box3 = [MGStyledBox box];
+            [scroller.boxes addObject:box3];
+            OnTopView* ontop = [[OnTopView alloc] initWithFrame:CGRectMake(0, 0, 300, 80) praiseArray:[nsdic objectForKey:@"Users"] imageArray:[nsdic objectForKey:@"Photos"] timestring:[nsdic objectForKey:@"time"]];
+            ontop.delegate = self;
+            [box3.topLines addObject:ontop];
+            [ontop release];
+        }else if ([[nsdic objectForKey:@"DisplayType"] isEqualToString:@"PraisePhoto"]) {
+            MGStyledBox *box4 = [MGStyledBox box];
+            [scroller.boxes addObject:box4];
+            PraisePhotoView* pp = [[PraisePhotoView alloc] initWithFrame:CGRectMake(0, 0, 300, 80) praiseArray:[nsdic objectForKey:@"Users"] imageArray:[nsdic objectForKey:@"Photos"] timestring:[nsdic objectForKey:@"time"]];
+            pp.delegate = self;
+            [box4.topLines addObject:pp];
+            [pp release];
+        }
+        
+    }
     
     
     
-    MGStyledBox *box2 = [MGStyledBox box];
-    [scroller.boxes addObject:box2];
-    PraiseView* praise = [[PraiseView alloc] initWithFrame:CGRectMake(0, 0, 300, 70) firstname:@"she" secondname:@"he" imageID:@"222222" imageURL:@"Icon@2x.png"];
-    praise.delegate = self;
-    [box2.topLines addObject:praise];
-    [praise release];
     
-    MGStyledBox *box3 = [MGStyledBox box];
-    [scroller.boxes addObject:box3];
-    OnTopView* ontop = [[OnTopView alloc] initWithFrame:CGRectMake(0, 0, 300, 80) userName:@"collering" imageID:@"111111" imageURL:@"Icon@2x.png"];
-    ontop.delegate = self;
-    [box3.topLines addObject:ontop];
-    [ontop release];
-    
-    MGStyledBox *box5 = [MGStyledBox box];
-    [scroller.boxes addObject:box5];
-    OnTopView* ontop1 = [[OnTopView alloc] initWithFrame:CGRectMake(0, 0, 300, 80) userName:@"北京" imageID:@"111111" imageURL:@"Icon@2x.png"];
-    ontop1.delegate = self;
-    [box5.topLines addObject:ontop1];
-    [ontop release];
-    
-    MGStyledBox *box4 = [MGStyledBox box];
-    [scroller.boxes addObject:box4];
-    PraisePhotoView* pp = [[PraisePhotoView alloc] initWithFrame:CGRectMake(0, 0, 300, 80)firstname:@"How are you" imagecount:5 imageArray:imgArray];
-    pp.delegate = self;
-    [box4.topLines addObject:pp];
-    [pp release];
     //    MGStyledBox *box3 = [MGStyledBox box];
     //    [scroller.boxes addObject:box3];
     
@@ -330,18 +333,40 @@
 #pragma mark - initphotomessage
 
 - (void) praiseImageArray{
+    
     NSDictionary *dic1 = [NSDictionary dictionaryWithObjectsAndKeys:@"logo.png",@"imagID",@"logo.png",@"username",nil];
     NSDictionary *dic2 = [NSDictionary dictionaryWithObjectsAndKeys:@"weibo.png",@"imagID",@"weibo.png",@"username",nil];
     NSDictionary *dic3 = [NSDictionary dictionaryWithObjectsAndKeys:@"andong.jpg",@"imagID",@"andong.jpg",@"username",nil];
     NSDictionary *dic4 = [NSDictionary dictionaryWithObjectsAndKeys:@"Icon.png",@"imagID",@"Icon.png",@"username",nil];
     NSDictionary *dic5 = [NSDictionary dictionaryWithObjectsAndKeys:@"andong.jpg",@"imagID",@"andong.jpg",@"username",nil];
     
+    NSMutableArray* imgs4 = [[NSMutableArray alloc] initWithCapacity:0];
+    [imgs4 addObject:dic1];
+    [imgs4 addObject:dic2];
+    [imgs4 addObject:dic3];
+    [imgs4 addObject:dic4];
+    [imgs4 addObject:dic5];
+    
+    NSMutableArray* imgs3 = [[NSMutableArray alloc] initWithCapacity:0];
+    [imgs3 addObject:dic1];
+
+    NSMutableArray* imgs2 = [[NSMutableArray alloc] initWithCapacity:0];
+    [imgs2 addObject:dic3];
+    
+    NSArray* user1 = [[NSArray alloc] initWithObjects:@"成功",@"红玫瑰", nil];
+    NSArray* user2 = [[NSArray alloc] initWithObjects:@"Juny",@"LiLi", nil];
+    NSArray* user3 = [[NSArray alloc] initWithObjects:@"BeiJing", nil];
+    NSArray* user4 = [[NSArray alloc] initWithObjects:@"LiLi", nil];
+    
+    NSDictionary *d1 = [NSDictionary dictionaryWithObjectsAndKeys:@"Attention",@"DisplayType",@"成功是你梦寐以求的那朵红玫瑰",@"Information",user1,@"Users",@"",@"Photos",@"30分钟前",@"time",nil];
+    NSDictionary *d2 = [NSDictionary dictionaryWithObjectsAndKeys:@"Praise",@"DisplayType",@"",@"Information",user2,@"Users",imgs2,@"Photos",@"1 个小时前",@"time",nil];
+    NSDictionary *d3 = [NSDictionary dictionaryWithObjectsAndKeys:@"Ontop",@"DisplayType",@"",@"Information",user3,@"Users",imgs3,@"Photos",@"1.5 个小时前",@"time",nil];
+    NSDictionary *d4 = [NSDictionary dictionaryWithObjectsAndKeys:@"PraisePhoto",@"DisplayType",@"",@"Information",user4,@"Users",imgs4,@"Photos",@"2 个小时前",@"time",nil];
     imgArray = [[NSMutableArray alloc] initWithCapacity:0];
-    [imgArray addObject:dic1];
-    [imgArray addObject:dic2];
-    [imgArray addObject:dic3];
-    [imgArray addObject:dic4];
-    [imgArray addObject:dic5];
+    [imgArray addObject:d1];
+    [imgArray addObject:d2];
+    [imgArray addObject:d3];
+    [imgArray addObject:d4];
 }
 
 - (void) imageID :(NSString *)imageID UIViewType:(ViewType)UIViewType{

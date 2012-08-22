@@ -15,6 +15,10 @@
     TTTQuadrantControl *_quadrantControl;
     NSString *userName;
     NSString* isYES;
+    NSDictionary *dic;
+    NSString* web;
+    NSString* Motto;
+    NSString* location;
 }
 
 

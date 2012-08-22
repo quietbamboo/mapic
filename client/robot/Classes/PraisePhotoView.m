@@ -9,7 +9,7 @@
 #import "PraisePhotoView.h"
 @implementation PraisePhotoView
 @synthesize delegate;
-- (id)initWithFrame:(CGRect)frame firstname:(NSString *)firstname imagecount:(int)imagecount imageArray:(NSMutableArray *)imageArray
+- (id)initWithFrame:(CGRect)frame praiseArray:(NSArray *)praiseArray imageArray:(NSMutableArray *)imageArray timestring:(NSString *)timestring
 {
     self = [super initWithFrame:frame];
     if (self) {
@@ -17,24 +17,21 @@
 
 //        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(praisephotoNotification:) name:IFTweetLabelURLNotification object:nil];
         
-        CGSize ssize = [[NSString stringWithFormat:@"%@ 称赞了8张照片",firstname] sizeWithFont:[UIFont systemFontOfSize:19.0f] constrainedToSize:CGSizeMake(300.0f, 1000.0f) lineBreakMode:UILineBreakModeWordWrap];
+        CGSize ssize = [[NSString stringWithFormat:@"%@ 称赞了%d张照片",[praiseArray objectAtIndex:0],imageArray.count] sizeWithFont:[UIFont systemFontOfSize:19.0f] constrainedToSize:CGSizeMake(300.0f, 1000.0f) lineBreakMode:UILineBreakModeWordWrap];
         IFTweetLabel *tweetLabel = [[IFTweetLabel alloc] initWithFrame:CGRectMake(10.0f, 0.0f, ssize.width, ssize.height)];
         [tweetLabel setFont:[UIFont boldSystemFontOfSize:15.0f]];
         [tweetLabel setTextColor:[UIColor blackColor]];
         [tweetLabel setBackgroundColor:[UIColor clearColor]];
         tweetLabel.delegate = self;
         [tweetLabel setNumberOfLines:0];
-        tweetLabel.expressions = [[NSArray alloc] initWithObjects:
-                                  firstname,
-                                  //@"([hH][tT][tT][pP][sS]?:\\/\\/[^ ,'\">\\]\\)]*[^\\. ,'\">\\]\\)])", // hyperlinks
-                                  nil];
-        [tweetLabel setText:[NSString stringWithFormat:@"%@ 称赞了%d张照片",firstname,imagecount]];
+        tweetLabel.expressions = praiseArray;
+        [tweetLabel setText:[NSString stringWithFormat:@"%@ 称赞了%d张照片",[praiseArray objectAtIndex:0],imageArray.count]];
         [tweetLabel setLinksEnabled:YES];
         
         [self addSubview:tweetLabel];
         imagmessageArray = imageArray;
         int iby = 0; 
-        for (int i = 0; i < imagecount; i++) {
+        for (NSInteger i = 0; i < imageArray.count; i++) {
             if (i%4 == 0) {
                 iby = tweetLabel.frame.size.height + (i/4*73); 
             }
@@ -53,7 +50,7 @@
         timelabel.font = [UIFont systemFontOfSize:13];
         timelabel.textColor = [UIColor lightGrayColor];
         timelabel.backgroundColor = [UIColor clearColor];
-        timelabel.text = @"1小时前";
+        timelabel.text = timestring;
         [self addSubview:timelabel];
         
         self.frame = CGRectMake(frame.origin.x, frame.origin.y, frame.size.width, iby + 93);

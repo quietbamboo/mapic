@@ -12,7 +12,6 @@
 #import "PictureImageview.h"
 @interface NewsMessageView : UIView<IFLabelDelegate,pictureimageDelegate>{
     
-    UIImageView* footimageView;
     UILabel* footlabel;
     id<ImageIdAndUserNameProtocol> delegate;
     int numimage;
