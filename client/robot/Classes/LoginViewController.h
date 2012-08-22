@@ -9,9 +9,11 @@
 #import <UIKit/UIKit.h>
 #import "ASIFormDataRequest.h"
 #import "MyMD5.h"
+#import "MBProgressHUD.h"
 @interface LoginViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate,ASIHTTPRequestDelegate,UIAlertViewDelegate>{
     UITextField *usernametext;
     UITextField *passwordtext;
+    MBProgressHUD  * _MBProgress;
 }
 
 @end

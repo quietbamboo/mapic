@@ -15,6 +15,7 @@
 #import "FormTableViewCell.h"
 #import "ASIFormDataRequest.h"
 #import "MyMD5.h"
+#import "MBProgressHUD.h"
 @interface DBSignupViewController : UIViewController <UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate, UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate,US2ValidatorUIDelegate,UITextViewDelegate,FormTableViewCellDelegate,ASIHTTPRequestDelegate,UIAlertViewDelegate> {
     UIView *contentView;
     US2ValidatorTextField *nameTextField_;
@@ -43,6 +44,7 @@
     BOOL           _didSubmit;
     id <US2ValidatorUIProtocol> _tooltipConnectedTextUI;
     TooltipView    *_tooltipView;
+    MBProgressHUD  * _MBProgress;
 }
 
 @property(nonatomic, retain) UITextField *nameTextField;

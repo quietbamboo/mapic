@@ -872,11 +872,15 @@
     [request setPostValue:genderTextField_.text forKey:@"gender"];
     [request setPostValue:phoneTextField_.text forKey:@"phone"];
     [request startAsynchronous];
+    _MBProgress = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    _MBProgress.labelText = @"";
+    [_MBProgress show:YES];
 }
 
 - (void)requestFinished:(ASIHTTPRequest *)request
 {
     NSString *responseString = [request responseString];
+    [_MBProgress hide:YES];
     UIAlertView* successAlert = [[UIAlertView alloc] initWithTitle:@"成功" 
                                                            message:@"注册成功！"
                                                           delegate:self 
@@ -890,6 +894,7 @@
 - (void)requestFailed:(ASIHTTPRequest *)request
 {
     NSError *error = [request error];
+    [_MBProgress hide:YES];
     UIAlertView* errorAlert = [[UIAlertView alloc] initWithTitle:@"error" 
                                                          message:@"注册失败！"
                                                         delegate:self 

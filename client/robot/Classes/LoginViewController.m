@@ -120,11 +120,15 @@
     [request setPostValue:usernametext.text forKey:@"username"];
     [request setPostValue:passwordtext.text forKey:@"password"];
     [request startAsynchronous];
+    _MBProgress = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    _MBProgress.labelText = @"";
+    [_MBProgress show:YES];
 }
 
 - (void)requestFinished:(ASIHTTPRequest *)request
 {
     NSString *responseString = [request responseString];
+    [_MBProgress hide:YES];
     UIAlertView* successAlert = [[UIAlertView alloc] initWithTitle:@"成功" 
                                                          message:@"登陆成功！"
                                                         delegate:self 
@@ -138,6 +142,7 @@
 - (void)requestFailed:(ASIHTTPRequest *)request
 {
     NSError *error = [request error];
+    [_MBProgress hide:YES];
     UIAlertView* errorAlert = [[UIAlertView alloc] initWithTitle:@"error" 
                                                          message:@"登陆失败！"
                                                         delegate:self 
