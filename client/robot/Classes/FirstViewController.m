@@ -246,13 +246,6 @@ typedef enum {
 #pragma mark 
 #pragma mark Google get polyLine Methods
 -(void) showRouteLine:(Place *)endPlace{
-    Place* home = [[[Place alloc] init] autorelease];
-	home.name = @"Current Location";
-	home.description = nil;
-	home.latitude = mainMapView.userLocation.location.coordinate.latitude;
-	home.longitude = mainMapView.userLocation.location.coordinate.longitude;
-    home.image = nil;
-    //[self.mainMapView.annotations removeAllObjects];
     for (id<MKAnnotation> myAnnotation in mainMapView.annotations ) {
         if ([myAnnotation isKindOfClass:[MKUserLocation class]]){
             
@@ -260,8 +253,16 @@ typedef enum {
             [self.mainMapView removeAnnotation:myAnnotation];
         }
     }
-    PlaceMark *placeMark = [[PlaceMark alloc] initWithPlace:endPlace];
-    [self.mainMapView addAnnotation:placeMark];
+    Place* home = [[[Place alloc] init] autorelease];
+	home.name = nil;
+	home.description = nil;
+	home.latitude = mainMapView.userLocation.location.coordinate.latitude;
+	home.longitude = mainMapView.userLocation.location.coordinate.longitude;
+    home.image = nil;
+    //[self.mainMapView.annotations removeAllObjects];
+   
+    //PlaceMark *placeMark = [[PlaceMark alloc] initWithPlace:endPlace];
+   // [self.mainMapView addAnnotation:placeMark];
     [self showRouteFrom:home to:endPlace];
     
     
@@ -350,14 +351,20 @@ typedef enum {
 -(void) showRouteFrom: (Place*) f to:(Place*) t {
 	
 	if(routes) {
-		[mainMapView removeAnnotations:[mainMapView annotations]];
+        for (id<MKAnnotation> myAnnotation in mainMapView.annotations ) {
+            if ([myAnnotation isKindOfClass:[MKUserLocation class]]){
+                
+            }else {
+                [self.mainMapView removeAnnotation:myAnnotation];
+            }
+        }
 		[routes release];
 	}
 	
 	PlaceMark* from = [[[PlaceMark alloc] initWithPlace:f] autorelease];
 	PlaceMark* to = [[[PlaceMark alloc] initWithPlace:t] autorelease];
 	
-	[mainMapView addAnnotation:from];
+	//[mainMapView addAnnotation:from];
 	[mainMapView addAnnotation:to];
 	
 	routes = [[self calculateRoutesFrom:from.coordinate to:to.coordinate] retain];
@@ -430,10 +437,22 @@ typedef enum {
 
 - (MKAnnotationView *)mapView:(MKMapView *)theMapView viewForAnnotation:(id <MKAnnotation>)annotation
 {
-    // if it's the user location, just return nil.
-    if ([annotation isKindOfClass:[MKUserLocation class]])
-        return nil;
-    
+    if ([annotation isKindOfClass:[MKUserLocation class]]){
+        static NSString* SFAnnotationIdentifier = @"SFAnnotationIdentifier";
+        MKPinAnnotationView* pinView =
+        (MKPinAnnotationView *)[mainMapView dequeueReusableAnnotationViewWithIdentifier:SFAnnotationIdentifier];
+        if (!pinView) {
+            MKAnnotationView *annotationView = [[[MKAnnotationView alloc] initWithAnnotation:annotation
+                                                                             reuseIdentifier:SFAnnotationIdentifier] autorelease];
+            annotationView.canShowCallout = NO;
+            annotationView.image = nil;
+            for (UIView *view in [pinView subviews]) {
+                [annotationView removeFromSuperview];
+            }
+        }
+          return nil;
+
+    }
     // handle our two custom annotations
     //
 
@@ -447,7 +466,10 @@ typedef enum {
             MKAnnotationView *annotationView = [[[MKAnnotationView alloc] initWithAnnotation:annotation
                                                                              reuseIdentifier:SFAnnotationIdentifier] autorelease];
             annotationView.canShowCallout = YES;
-            
+            annotationView.image = nil;
+            for (UIView *view in [annotationView subviews]) {
+                [view removeFromSuperview];
+            }
 //            if ([annotation isKindOfClass:[MKUserLocation class]]){
 //                if ([mainMapView mapType] == MKMapTypeStandard) {
 //                    annotationView.image = [UIImage imageNamed:@"searchtitle_map.png"];
@@ -477,7 +499,7 @@ typedef enum {
 //            UIImage *resizedImage = UIGraphicsGetImageFromCurrentImageContext();
 //            UIGraphicsEndImageContext();
             
-            annotationView.image = [self ImageOverlay:flagImage];//flagImage;
+                annotationView.image = [self ImageOverlay:flagImage];//flagImage;
                 annotationView.opaque = NO;
             
                 UIButton *accesbutton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
@@ -508,7 +530,7 @@ typedef enum {
 - (void)directionsViewController:(HjxPhotoViewController *)viewController toPlace:(Place *)endPlace{
     [viewController.navigationController popViewControllerAnimated:YES];
     Place* home = [[[Place alloc] init] autorelease];
-	home.name = @"Current Location";
+	home.name = nil;
 	home.description = nil;
 	home.latitude = mainMapView.userLocation.location.coordinate.latitude;
 	home.longitude = mainMapView.userLocation.location.coordinate.longitude;
@@ -520,8 +542,8 @@ typedef enum {
             [self.mainMapView removeAnnotation:myAnnotation];
         }
     }
-    PlaceMark *placeMark = [[PlaceMark alloc] initWithPlace:endPlace];
-    [self.mainMapView addAnnotation:placeMark];
+//    PlaceMark *placeMark = [[PlaceMark alloc] initWithPlace:endPlace];
+//    [self.mainMapView addAnnotation:placeMark];
     [self showRouteFrom:home to:endPlace];
 
 }
