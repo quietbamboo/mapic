@@ -168,6 +168,7 @@
     place.image = [UIImage imageNamed:[nsdic objectForKey:@"image"]];
     place.latitude = [(NSNumber *)[nsdic objectForKey:@"lat"] doubleValue];
     place.longitude = [(NSNumber *)[nsdic objectForKey:@"lon"] doubleValue];
+    place.Distance = [(NSNumber *)[nsdic objectForKey:@"Distance"] intValue];
     place.description = [nsdic objectForKey:@"dec"];
     hjxPhotoview.endPlace = place;
     //    [self.navigationController pushViewController:detail animated:YES];
@@ -216,6 +217,7 @@
     place.image = [UIImage imageNamed:[nsdic objectForKey:@"image"]];
     place.latitude = [(NSNumber *)[nsdic objectForKey:@"lat"] doubleValue];
     place.longitude = [(NSNumber *)[nsdic objectForKey:@"lon"] doubleValue];
+    place.Distance = [(NSNumber *)[nsdic objectForKey:@"Distance"] intValue];
     place.description = [nsdic objectForKey:@"dec"];
     hjxPhotoview.endPlace = place;
     //    [self.navigationController pushViewController:detail animated:YES];

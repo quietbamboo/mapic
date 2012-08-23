@@ -72,6 +72,7 @@ typedef enum {
          place.image = [UIImage imageNamed:[nsdic objectForKey:@"image"]];
          place.latitude = [(NSNumber *)[nsdic objectForKey:@"lat"] doubleValue];
          place.longitude = [(NSNumber *)[nsdic objectForKey:@"lon"] doubleValue];
+         place.Distance = [(NSNumber *)[nsdic objectForKey:@"Distance"] intValue];
          place.description = [NSString stringWithFormat:@"距离:%d%@",[(NSNumber *)[nsdic objectForKey:@"Distance"] intValue],@"米"];
          PlaceMark *placeMark = [[PlaceMark alloc] initWithPlace:place];
          [self.mainMapView addAnnotation:placeMark];
@@ -162,6 +163,7 @@ typedef enum {
     place.image = [UIImage imageNamed:[nsdic objectForKey:@"image"]];
     place.latitude = [(NSNumber *)[nsdic objectForKey:@"lat"] doubleValue];
     place.longitude = [(NSNumber *)[nsdic objectForKey:@"lon"] doubleValue];
+    place.Distance = [(NSNumber *)[nsdic objectForKey:@"Distance"] intValue];
     place.description = [nsdic objectForKey:@"dec"];
     hjxPhotoview.endPlace = place;
     //[self.navigationController pushViewController:hjxPhotoview animated:YES];
@@ -360,11 +362,11 @@ typedef enum {
         }
 		[routes release];
 	}
-	
+    
+	t.description = [NSString stringWithFormat:@"距离:%d%@",t.Distance,@"米"];
 	PlaceMark* from = [[[PlaceMark alloc] initWithPlace:f] autorelease];
 	PlaceMark* to = [[[PlaceMark alloc] initWithPlace:t] autorelease];
-	
-	//[mainMapView addAnnotation:from];
+	;
 	[mainMapView addAnnotation:to];
 	
 	routes = [[self calculateRoutesFrom:from.coordinate to:to.coordinate] retain];
