@@ -617,7 +617,7 @@ typedef enum {
     
     [[MTLocationManager sharedInstance] stopAllServices];
     [self.locationItem stopListeningToLocationUpdates];
-    mainMapView.showsUserLocation = NO;
+    mainMapView.showsUserLocation = YES;
     self.navigationController.tabBarItem.title = @"地图";
     // end listening to location update notifications
     [[NSNotificationCenter defaultCenter] removeObserver:self name:kMTLocationManagerDidStopUpdatingHeading object:nil];
