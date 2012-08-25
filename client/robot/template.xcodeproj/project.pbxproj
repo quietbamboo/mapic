@@ -829,11 +829,10 @@
 				27CBE2CD15BE4939007D6AEC /* MGBox */,
 				1802BAAD15BA982900E2AC4C /* MtLocation */,
 				27D4172815BA3EF30044C478 /* ODRefreshControl */,
-				2715BDAF15B8F03700B0A5B1 /* Categories */,
-				2715BDC115B8F03700B0A5B1 /* Subviews */,
 				18ED81B414AC00800092CAC8 /* RefreshTableHeaderView */,
-				EC8BD82C13F359D500A6E82D /* Inneractive */,
+				27F41A5F15E8A7FF005998B4 /* JMSegmentedControl */,
 				ECC37D811241950700F97B50 /* AdMob */,
+				EC8BD82C13F359D500A6E82D /* Inneractive */,
 				27CCB4D415BFD50B00A38922 /* FKImagePickerController.h */,
 				27CCB4D515BFD51800A38922 /* FKFilterPickerController.h */,
 				0A633C6E15CB709100CD0294 /* MyMD5.h */,
@@ -1195,6 +1194,15 @@
 				27D4172A15BA3EF30044C478 /* ODRefreshControl.m */,
 			);
 			path = ODRefreshControl;
+			sourceTree = "<group>";
+		};
+		27F41A5F15E8A7FF005998B4 /* JMSegmentedControl */ = {
+			isa = PBXGroup;
+			children = (
+				2715BDAF15B8F03700B0A5B1 /* Categories */,
+				2715BDC115B8F03700B0A5B1 /* Subviews */,
+			);
+			name = JMSegmentedControl;
 			sourceTree = "<group>";
 		};
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
