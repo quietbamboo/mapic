@@ -57,9 +57,13 @@
     return self;
 }
 
+#pragma mark pictureimageDelegate
+
 - (void) pictureevent:(NSInteger) imaagetag{
     [delegate imageID:imgID UIViewType:OnTopViewtype];
 }
+
+#pragma mark IFLabelDelegate
 
 - (void)IFLabeluserName:(NSString *)userName{
     [delegate userName:userName UIViewType:OnTopViewtype];

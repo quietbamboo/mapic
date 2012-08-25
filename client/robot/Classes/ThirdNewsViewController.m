@@ -15,6 +15,8 @@
 
 @implementation ThirdNewsViewController
 
+#pragma mark
+#pragma mark default Mthods
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -317,6 +319,7 @@
     [photomessageArray addObject:dic5];
 }
 
+#pragma mark ImageIdAndUserNameProtocol
 - (void) imageID :(NSString *)imageID UIViewType:(ViewType)UIViewType{
     FourthViewController* four = [[FourthViewController alloc] init];
     if(UIViewType == NewsMessageViewtype){

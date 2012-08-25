@@ -109,6 +109,8 @@
     return self;
 }
 
+#pragma mark pictureimageDelegate
+
 - (void) pictureevent:(NSInteger) imaagetag{
     if (imaagetag == 0) {
         [delegate imageID:imgID UIViewType:NewsMessageViewtype];
@@ -118,6 +120,7 @@
 
 }
 
+#pragma mark IFLabelDelegate
 - (void)IFLabeluserName:(NSString *)userName{
     [delegate userName:userName UIViewType:NewsMessageViewtype];
 }

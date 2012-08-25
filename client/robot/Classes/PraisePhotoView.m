@@ -62,7 +62,7 @@
     NSDictionary *img = [imagmessageArray objectAtIndex:imaagetag];
     [delegate imageID:[img objectForKey:@"imagID"] UIViewType:PraisePhotoViewtype];
 }
-
+#pragma mark IFLabelDelegate
 - (void)IFLabeluserName:(NSString *)userName{
     [delegate userName:userName UIViewType:PraisePhotoViewtype];
 }

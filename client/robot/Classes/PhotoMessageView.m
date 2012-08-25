@@ -59,13 +59,18 @@
     return self;
 }
 
+#pragma mark pictureimageDelegate
+
 - (void) pictureevent:(NSInteger) imaagetag{
     [delegate imageID:imgID UIViewType:PhotoMessageViewtype];
 }
 
+#pragma mark IFLabelDelegate
+
 - (void)IFLabeluserName:(NSString *)userName{
     [delegate userName:userName UIViewType:PhotoMessageViewtype];
 }
+
 - (void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
     [delegate touchesBegan:touches withEvent:event UIViewType:PhotoMessageViewtype];
 }

@@ -19,6 +19,8 @@
 @implementation PhotoMessageViewController
 @synthesize delegate;
 
+#pragma mark
+#pragma mark default Mthods
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -214,6 +216,9 @@
     [photomessageArray addObject:dic2];
     [photomessageArray addObject:dic3];
 }
+
+#pragma mark ImageIdAndUserNameProtocol
+
 - (void) imageID :(NSString *)imageID UIViewType:(ViewType)UIViewType{
     FourthViewController* four = [[FourthViewController alloc] init];
     if (UIViewType == PhotoMessageViewtype) {
@@ -230,6 +235,7 @@
     [self.navigationController pushViewController:four animated:YES];
     [four release];
 }
+
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event UIViewType:(ViewType)UIViewType{
     [sendfield resignFirstResponder];
     [UIView beginAnimations:nil context:NULL];

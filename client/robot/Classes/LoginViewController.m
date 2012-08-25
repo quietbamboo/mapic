@@ -111,6 +111,8 @@
     }
 }
 
+#pragma mark ASIHTTPRequestDelegate
+
 - (void)grabURLInBackground
 {
     NSURL *url = [NSURL URLWithString:@"http://allseeing-i.com"];

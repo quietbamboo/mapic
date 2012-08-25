@@ -19,6 +19,9 @@
     }
     return self;
 }
+
+#pragma mark - pictureimageDelegate
+
 - (void) touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event{
     [super touchesEnded:touches withEvent:event];
     [delegate pictureevent:self.tag];
