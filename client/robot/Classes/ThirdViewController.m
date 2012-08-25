@@ -172,7 +172,7 @@
     //    [box3.topLines addObject:imgLine];
     
     // draw all the boxes and animate as appropriate
-    [scroller drawBoxesWithSpeed:ANIM_SPEED];
+    [scroller drawBoxesWithSpeed:0];
     [scroller flashScrollIndicators];
     
     notificationView = [[NotificationView alloc] initWithFrame:CGRectMake(154, 385, 140, 47)];
