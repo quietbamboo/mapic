@@ -113,7 +113,8 @@ typedef enum {
 - (void)removePins {
     isinitArray = YES;
    //[self.mainMapView removeAnnotations:self.mainMapView.annotations];
-    routeView.image = nil;
+    [routes release];
+    routes = [[NSArray alloc] initWithArray:nil];
     for (id<MKAnnotation> myAnnotation in mainMapView.annotations ) {
         if ([myAnnotation isKindOfClass:[MKUserLocation class]]){
             
@@ -124,7 +125,7 @@ typedef enum {
    // [self.mainMapView.annotations removeAllObjects];
     [self moveToCurrentLocation];
     mainMapView.showsUserLocation = YES;
-    //[self initnaArray]; 
+    [self initnaArray:mainMapView.userLocation.coordinate]; 
    }
 - (void) originBu{
     [mainMapView setCenterCoordinate:[mainMapView.userLocation coordinate] animated:YES];
