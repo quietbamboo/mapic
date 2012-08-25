@@ -149,6 +149,7 @@ static const NSTimeInterval kSlideshowInterval = 6;
 	//using this to grach
 	//NSString* clicked = [[TTNavigator navigator] URL];
 	//NSLog(@"Clicked %@", clicked);
+ 
 	NSString* urlString;
     NSString* titleString;
 	NSString *prefix = @"pet";//[[[NSBundle mainBundle] infoDictionary] objectForKey:@"prefix"];
@@ -209,8 +210,7 @@ static const NSTimeInterval kSlideshowInterval = 6;
 	[request setHTTPBody:body];
 	NSData *returnData = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
 	NSString *returnString = [[NSString alloc] initWithData:returnData encoding:NSUTF8StringEncoding];
-	
-	photoList = returnString;
+   	photoList = returnString;
 	
 	//split _-_-_
 	NSArray *arrayOfLines = [returnString componentsSeparatedByString:@"_-_-_"];

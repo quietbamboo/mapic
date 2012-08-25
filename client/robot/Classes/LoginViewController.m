@@ -121,7 +121,7 @@
     [request setPostValue:passwordtext.text forKey:@"password"];
     [request startAsynchronous];
     _MBProgress = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    _MBProgress.labelText = @"";
+    _MBProgress.labelText = @"正在登陆";
     [_MBProgress show:YES];
 }
 
