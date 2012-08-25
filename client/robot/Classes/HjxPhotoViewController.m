@@ -344,7 +344,7 @@ static const NSTimeInterval kSlideshowInterval = 6;
 #pragma mark Seven methods About UIBarButtonItem
 
 - (void)seeAllAction {
-    BDViewController *bdviewcontroller = [[BDViewController alloc] initWithImageArray:photoList];
+    BDViewController *bdviewcontroller = [[BDViewController alloc] initWithImageArrayStr:photoList];
     
     [self.navigationController pushViewController:bdviewcontroller animated:YES];
 }
