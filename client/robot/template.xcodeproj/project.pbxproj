@@ -82,7 +82,6 @@
 		18E00A6915C27615003B4358 /* TooltipView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E00A6415C27614003B4358 /* TooltipView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		18E00A6A15C27615003B4358 /* ValidTooltipView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E00A6715C27615003B4358 /* ValidTooltipView.m */; };
 		18E36A7415AD4253006E62AA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E36A6415AD4253006E62AA /* AppDelegate.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		18E36A7615AD4253006E62AA /* DeatilViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E36A6615AD4253006E62AA /* DeatilViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		18E36A7715AD4253006E62AA /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E36A6715AD4253006E62AA /* FirstViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		18E36A7A15AD4253006E62AA /* Place.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E36A6A15AD4253006E62AA /* Place.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		18E36A7C15AD4253006E62AA /* PlaceMark.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E36A6C15AD4253006E62AA /* PlaceMark.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -192,7 +191,6 @@
 		27CBE2F115BE4CF1007D6AEC /* BDDynamicGridViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27CBE2EC15BE4CF1007D6AEC /* BDDynamicGridViewController.m */; };
 		27CBE2F215BE4CF1007D6AEC /* BDRowInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 27CBE2EF15BE4CF1007D6AEC /* BDRowInfo.m */; };
 		27CCB4D015BFD36600A38922 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27CCB4CF15BFD36600A38922 /* OpenGLES.framework */; };
-		27CCB4D315BFD3DB00A38922 /* ImagePickeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27CCB4D215BFD3DB00A38922 /* ImagePickeViewController.m */; };
 		27CCB4DF15BFDE9200A38922 /* bottomBar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 27CCB4D815BFDE9200A38922 /* bottomBar@2x.png */; };
 		27CCB4E015BFDE9200A38922 /* cameraViewPort@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 27CCB4D915BFDE9200A38922 /* cameraViewPort@2x.png */; };
 		27CCB4E115BFDE9200A38922 /* disk@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 27CCB4DA15BFDE9200A38922 /* disk@2x.png */; };
@@ -543,14 +541,12 @@
 		18E00A6615C27615003B4358 /* ValidTooltipView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ValidTooltipView.h; sourceTree = "<group>"; };
 		18E00A6715C27615003B4358 /* ValidTooltipView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ValidTooltipView.m; sourceTree = "<group>"; };
 		18E36A6415AD4253006E62AA /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		18E36A6615AD4253006E62AA /* DeatilViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeatilViewController.m; sourceTree = "<group>"; };
 		18E36A6715AD4253006E62AA /* FirstViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirstViewController.m; sourceTree = "<group>"; };
 		18E36A6A15AD4253006E62AA /* Place.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Place.m; sourceTree = "<group>"; };
 		18E36A6C15AD4253006E62AA /* PlaceMark.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaceMark.m; sourceTree = "<group>"; };
 		18E36A6D15AD4253006E62AA /* RegexKitLite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegexKitLite.m; sourceTree = "<group>"; };
 		18E36A6F15AD4253006E62AA /* UploadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UploadViewController.m; sourceTree = "<group>"; };
 		18E36A7015AD4253006E62AA /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		18E36A7215AD4253006E62AA /* DeatilViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeatilViewController.h; sourceTree = "<group>"; };
 		18E36A7315AD4253006E62AA /* FirstViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirstViewController.h; sourceTree = "<group>"; };
 		18E36A8215AD4275006E62AA /* Place.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Place.h; sourceTree = "<group>"; };
 		18E36A8415AD4275006E62AA /* PlaceMark.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaceMark.h; sourceTree = "<group>"; };
@@ -728,8 +724,6 @@
 		27CBE2EF15BE4CF1007D6AEC /* BDRowInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDRowInfo.m; sourceTree = "<group>"; };
 		27CCB4C715BFD2DA00A38922 /* FilterKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = FilterKit.xcodeproj; path = ../FilterKit/FilterKit.xcodeproj; sourceTree = "<group>"; };
 		27CCB4CF15BFD36600A38922 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
-		27CCB4D115BFD3DB00A38922 /* ImagePickeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImagePickeViewController.h; sourceTree = "<group>"; };
-		27CCB4D215BFD3DB00A38922 /* ImagePickeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImagePickeViewController.m; sourceTree = "<group>"; };
 		27CCB4D415BFD50B00A38922 /* FKImagePickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FKImagePickerController.h; sourceTree = "<group>"; };
 		27CCB4D515BFD51800A38922 /* FKFilterPickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FKFilterPickerController.h; sourceTree = "<group>"; };
 		27CCB4D815BFDE9200A38922 /* bottomBar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bottomBar@2x.png"; sourceTree = "<group>"; };
@@ -888,10 +882,6 @@
 				186DFF5015AE6250005AE621 /* HjxPhotoViewController.m */,
 				189977D415C0DFBB00811264 /* DBSignupViewController.h */,
 				189977D315C0DFBB00811264 /* DBSignupViewController.m */,
-				18E36A7215AD4253006E62AA /* DeatilViewController.h */,
-				18E36A6615AD4253006E62AA /* DeatilViewController.m */,
-				27CCB4D115BFD3DB00A38922 /* ImagePickeViewController.h */,
-				27CCB4D215BFD3DB00A38922 /* ImagePickeViewController.m */,
 				0A979C7215CA170500BE4CED /* LoginViewController.h */,
 				0A979C7315CA170500BE4CED /* LoginViewController.m */,
 				0A9CC0A515CCE44C00F5D03E /* NewsMessageView.h */,
@@ -1885,7 +1875,6 @@
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
 				18ED81B714AC00800092CAC8 /* EGORefreshTableHeaderView.m in Sources */,
 				18E36A7415AD4253006E62AA /* AppDelegate.m in Sources */,
-				18E36A7615AD4253006E62AA /* DeatilViewController.m in Sources */,
 				18E36A7715AD4253006E62AA /* FirstViewController.m in Sources */,
 				18E36A7A15AD4253006E62AA /* Place.m in Sources */,
 				18E36A7C15AD4253006E62AA /* PlaceMark.m in Sources */,
@@ -1926,7 +1915,6 @@
 				27CBE2F215BE4CF1007D6AEC /* BDRowInfo.m in Sources */,
 				18EAFF1A15BE762A00869982 /* CellView.m in Sources */,
 				186240B915BFB76E00EC605B /* MBProgressHUD.m in Sources */,
-				27CCB4D315BFD3DB00A38922 /* ImagePickeViewController.m in Sources */,
 				189977D515C0DFBB00811264 /* DBSignupViewController.m in Sources */,
 				27C8545515C0EB690037F842 /* ASIAuthenticationDialog.m in Sources */,
 				27C8545615C0EB690037F842 /* ASIDataCompressor.m in Sources */,

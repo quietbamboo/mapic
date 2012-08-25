@@ -8,10 +8,6 @@
 
 #import "AppDelegate.h"
 #import "FirstViewController.h"
-//#import "SettingViewController.h"
-#import "DeatilViewController.h"
-//#import "LocationlistViewController.h"
-//#import "UserViewController.h"
 #import "SecondViewController.h"
 #import "ThirdViewController.h"
 #import "FourthViewController.h"

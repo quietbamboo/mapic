@@ -19,7 +19,7 @@
 @synthesize pop;
 @synthesize imageView;
 #pragma mark
-#pragma mark default Mthods
+#pragma mark Default Mthods
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -176,7 +176,7 @@
     [UIView commitAnimations];
 }
 #pragma mark
-#pragma mark toButton
+#pragma mark navBar Action
 - (void)toupload{
 
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Upload confirmation" message:@"Are you sure to upload this image?\n\nBe patient when uploading ...\n\nIf you want to remove a previously uploaded and approved photo, you can do so in \"Uploaded By Me\" section by clicking the <!> button" 
@@ -189,7 +189,7 @@
     self.tabBarController.selectedIndex = 0;
 }
 #pragma mark
-#pragma mark Upload
+#pragma mark Upload UIImage Methods
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
 	//[imageView removeFromSuperview];
 	//[[TTNavigator navigator] openURLAction:[TTURLAction actionWithURLPath:@"tt://catalog"]];

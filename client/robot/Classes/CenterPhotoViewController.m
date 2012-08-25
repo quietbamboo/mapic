@@ -21,8 +21,8 @@
 
 #define SCROLLVIEW    1000
 
-#pragma mark -- 
-#pragma mark default Methods
+#pragma mark
+#pragma mark Default Methods
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -338,7 +338,7 @@
     
 }
 
-#pragma mark --
+#pragma mark
 #pragma mark hideTabBar and showTabBar
 
 -(void) hideTabBar:(UITabBarController*) tabbarcontroller {
@@ -360,7 +360,7 @@
 }
 
 
-#pragma mark --
+#pragma mark
 #pragma mark show Photos and Camera Methods
 
 -(void)showPhotos{
@@ -384,7 +384,7 @@
      }
 }
 
-#pragma mark -- 
+#pragma mark
 #pragma mark FKImagePickerDelegate Methods
 
 - (void)imagePickerController:(FKImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{

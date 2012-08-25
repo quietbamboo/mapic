@@ -49,6 +49,7 @@
 @synthesize gender = gender_;
 @synthesize photo = photo_;
 
+#pragma mark - Default Methods
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -94,8 +95,6 @@
     
     // Release any cached data, images, etc that aren't in use.
 }
-
-#pragma mark - View lifecycle
 
 /*
  // Implement loadView to create a view hierarchy programmatically, without using a nib.
@@ -363,7 +362,7 @@
 }
 
 
-#pragma mark - IBActions
+#pragma mark - UserHeaderImage Button Action
 
 - (void)choosePhoto:(id)sender
 {
@@ -387,8 +386,6 @@
 }
 
 
-#pragma mark - Others
-
 - (void)signup:(id)sender
 {
     [self resignKeyboard:nil];
@@ -406,7 +403,7 @@
         [self resetLabelsColors];
     }
 }
-
+#pragma mark - On Keyboard ToolBar Button Methods
 - (void)previousField:(id)sender
 {
     id firstResponder = [self getFirstResponder];
@@ -459,6 +456,7 @@
     return nil;
 }
 
+//when keyboard show and textfiled.tag > 3 call this methods
 - (void)animateView:(NSUInteger)tag
 {
     CGRect rect = self.view.frame;
@@ -500,6 +498,8 @@
     [nextBarItem setEnabled:tag == FIELDS_COUNT ? NO : YES];
 }
 
+#pragma mark - specialTextFiled set text
+
 - (void)checkSpecialFields:(NSUInteger)tag
 {
     if (tag == BIRTHDAY_FIELD_TAG && [self.birthdayTextField.text isEqualToString:@""]) {
@@ -509,6 +509,7 @@
     }
 }
 
+//set birthday textfiled text
 - (void)setBirthdayData
 {
     self.birthday = self.birthdayDatePicker.date;
@@ -519,6 +520,7 @@
    // [dateFormatter release];
 }
 
+//set sex textfiled text
 - (void)setGenderData
 {
     if ([self.genderPickerView selectedRowInComponent:0] == 0) {
@@ -535,6 +537,7 @@
     [self setBirthdayData];
 }
 
+#pragma mark - textFiled change color Methods
 - (void)resetLabelsColors
 {
     self.emailLabel.textColor = [DBSignupViewController labelNormalColor];
@@ -621,7 +624,7 @@
     [self setGenderData];
 }
 
-#pragma mark - Validator text field protocol
+#pragma mark - Validator Text Field Protocol Methods
 
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
 {
@@ -735,7 +738,7 @@
 }
 
 
-#pragma mark - Form table view cell delegate
+#pragma mark - FormTableViewCell delegate
 
 - (void)formTableViewCell:(FormTableViewCell *)cell touchedIconButton:(UIButton *)button aligningTextUI:(id <US2ValidatorUIProtocol>)textUI
 {
@@ -796,7 +799,7 @@
     _tooltipConnectedTextUI = nil;
 }
 
-#pragma mark - Submit button
+#pragma mark - Submit button Action
 
 - (void)submitButtonTouched
 {
@@ -856,7 +859,7 @@
         [self signupRequest];
     }
 }
-#pragma mark - ASIHTTPRequestDelegate
+#pragma mark - ASIHTTPRequest Delegate Methods
 
 - (void)signupRequest
 {
@@ -902,14 +905,14 @@
                                                otherButtonTitles: nil];
     [errorAlert show];
 }
-#pragma mark - UIAlertViewDelegate
+#pragma mark - UIAlertView Delegate
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
     if (buttonIndex == 0 && alertView.tag == 0 ) {
         [self.navigationController popViewControllerAnimated:YES];
     }
 }
 
-#pragma mark - UIActionSheetDelegate
+#pragma mark - UIActionSheet Delegate 
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
@@ -942,7 +945,7 @@
 }
 
 
-#pragma mark - UIImagePickerControllerDelegate
+#pragma mark - UIImagePickerController Delegate
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info 
 {

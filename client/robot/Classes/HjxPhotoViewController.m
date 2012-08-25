@@ -554,7 +554,7 @@ static const NSTimeInterval kSlideshowInterval = 6;
 }
 
 #pragma mark
-#pragma mark default Mthods
+#pragma mark Default Mthods
 - (void)viewDidLoad {
     //only called once when entering the image section
 	
@@ -826,7 +826,7 @@ static const NSTimeInterval kSlideshowInterval = 6;
 	return (TTPhotoView*)_scrollView.centerPage;
 }
 #pragma mark
-#pragma mark about ad
+#pragma mark about ads
 - (double)getCrossX {
     // if([AppDelegate isIpad])
     return (TTScreenBounds().size.width + 728) / 2 - 20;
