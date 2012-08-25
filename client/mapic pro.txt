@@ -29,4 +29,14 @@
 -----------------------ImageIdAndUserNameProtocol.h		//是一个协议文件，有一个必写方法，两个可选方法
 -----------------------ThirdNewsViewController.h		//是fourView中，News类型的显示，前面是一张图片，中间是文字信息和上传时间，最后（可选）一张图片。
 -----------------------ThirdNewsViewController.m-----------------------PictureImageview.h			//一个继承UIImageView的View，写有一个协议pictureimageDelegate，是一个点击图片的方法。
------------------------PictureImageview.m
+-----------------------PictureImageview.mFirstViewController:
+
+//添加Annotation方法[self.mainMapView addAnnotation:placeMark];
+//删除 除了本身Annotation 之外的其它Annotationfor (id<MKAnnotation> myAnnotation in mainMapView.annotations ) {
+        if ([myAnnotation isKindOfClass:[MKUserLocation class]]){
+            
+        }else {
+             [self.mainMapView removeAnnotation:myAnnotation];
+        }
+    }//显示路线需调用的方法
+- (void)directionsViewController:(HjxPhotoViewController *)viewController toPlace:(Place *)endPlace-(void) showRouteLine:(Place *)endPlace其它难点暂无
