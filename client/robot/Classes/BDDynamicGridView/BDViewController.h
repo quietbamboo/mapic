@@ -14,7 +14,7 @@
 #import "MBProgressHUD.h"
 @interface BDViewController : BDDynamicGridViewController <BDDynamicGridViewDelegate,UIScrollViewDelegate> {
     NSMutableArray * _items;
-    NSString *imagearray;
+    NSString *imagearraystr;
     UIProgressView *myProgressIndicator;
     NSMutableArray *imagemuarray;
     MBProgressHUD *_MBProgress;
@@ -22,5 +22,5 @@
     float endProgress;
     BOOL isloading;
 }
-- (id) initWithImageArray:(NSString *)imageNSArray;
+- (id) initWithImageArrayStr:(NSString *)imageNSArrayStr;
 @end

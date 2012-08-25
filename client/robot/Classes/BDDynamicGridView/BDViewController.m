@@ -18,12 +18,12 @@
 
 #pragma mark default Methods
 
-- (id) initWithImageArray:(NSString *)imageNSArray {
+- (id) initWithImageArrayStr:(NSString *)imageNSArrayStr {
     self =  [super init];
     if (self) {
-        imagearray = imageNSArray;
+        imagearraystr = imageNSArrayStr;
         imagemuarray = [[NSMutableArray alloc] initWithCapacity:0];
-        [self uploadSomethingFiveTimes];
+        [self downloadImages];
         indextemp = 0;
         endProgress = 1;
         isloading = NO;

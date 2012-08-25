@@ -76,7 +76,7 @@
     }
 }
 
-- (void)uploadSomethingFiveTimes {
+- (void)downloadImages {
     if (myProgressIndicator != nil) {
         myProgressIndicator.progress = 0.0f;
     }else {
@@ -101,8 +101,8 @@
         ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:path]];
         //[request setDownloadDestinationPath:NSTemporaryDirectory()];
         [request setDelegate:self];
-    	[request setDidFailSelector:@selector(uploadFailed:)];
-        [request setDidFinishSelector:@selector(uploadFinished:)];
+    	[request setDidFailSelector:@selector(downloadFailed:)];
+        [request setDidFinishSelector:@selector(downloadFinished:)];
         [myQueue addOperation:request];
     }
     [myQueue go];
@@ -134,7 +134,7 @@
         }
     }
 }
-- (void)uploadFailed:(ASIHTTPRequest *)theRequest
+- (void)downloadFailed:(ASIHTTPRequest *)theRequest
 {
     NSLog(@"this is filedd");
     endProgress = endProgress - (float)1.0/12.0;
@@ -160,7 +160,7 @@
     }
 }
 
-- (void)uploadFinished:(ASIHTTPRequest *)theRequest
+- (void)downloadFinished:(ASIHTTPRequest *)theRequest
 {
     // NSLog(@"this is data %@",[[theRequest responseData] description]);
     [imagemuarray addObject:[UIImage imageWithData:[theRequest responseData]]];
