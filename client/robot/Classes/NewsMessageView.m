@@ -7,7 +7,6 @@
 //
 
 #import "NewsMessageView.h"
-#import "DetailTextView.h"
 @implementation NewsMessageView
 
 @synthesize footlabel = _footlabel;

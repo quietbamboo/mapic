@@ -25,7 +25,7 @@
 -(NSArray*)_imagesFromBundle
 {
     NSArray *images = [NSArray array];
-    NSArray *arrayOfLines = [imagearray componentsSeparatedByString:@"_-_-_"];
+    NSArray *arrayOfLines = [imagearraystr componentsSeparatedByString:@"_-_-_"];
 	
     for (int i=0; i< [arrayOfLines count]; i++) {
         NSArray *lineparts = [[arrayOfLines objectAtIndex:i] componentsSeparatedByString:@"-----"];
@@ -89,7 +89,7 @@
     [myQueue setDelegate:self];
     [myQueue setRequestDidFinishSelector:@selector(queueComplete:)];
     
-    NSArray *arrayOfLines = [imagearray componentsSeparatedByString:@"_-_-_"];
+    NSArray *arrayOfLines = [imagearraystr componentsSeparatedByString:@"_-_-_"];
     //	int photonum = 25;
     if ((indextemp + 12) >= [arrayOfLines count] ) {
         indextemp = [arrayOfLines count] - 12;

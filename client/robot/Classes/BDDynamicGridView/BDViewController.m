@@ -66,7 +66,7 @@
     indextemp = 0;
     endProgress = 1;
     isloading = YES;
-    [self uploadSomethingFiveTimes];
+    [self downloadImages];
     [self _demoAsyncDataLoading];
 }
 
@@ -105,7 +105,7 @@
         isloading = YES;
         NSLog(@"woyao jiazai ");
         endProgress = 1;
-        [self uploadSomethingFiveTimes];
+        [self downloadImages];
         [self _demoAsyncDataLoading];
     }
 }
