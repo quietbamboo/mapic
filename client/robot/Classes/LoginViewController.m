@@ -100,9 +100,9 @@
 	if (indexPath.section == 1) {
         switch (indexPath.row) {
             case 0:
-                //[self dismissModalViewControllerAnimated:YES];
                 [self grabURLInBackground];
-//                [self.navigationController pushViewController:[AppDelegate getAppDelegate].firstview animated:YES];
+                [tableView deselectRowAtIndexPath:indexPath animated:YES];
+                //[self.navigationController pushViewController:[AppDelegate getAppDelegate].firstview animated:YES];
                 break;
                 
             default:
