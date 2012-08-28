@@ -13,11 +13,12 @@
 #import "HjxPhotoViewController.h"
 #import "CellView.h"
 #import "ASIFormDataRequest.h"
-@interface SecondViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,DirectionsViewControllerDelegate,JMTabViewDelegate,ASIHTTPRequestDelegate>{
+@interface SecondViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,CLLocationManagerDelegate,DirectionsViewControllerDelegate,JMTabViewDelegate,ASIHTTPRequestDelegate>{
     
     NSMutableArray *nsArray;
     BOOL isloading;
     ODRefreshControl *refreshControl;
+    CLLocationCoordinate2D coord;
 }
 
 @end

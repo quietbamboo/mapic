@@ -876,7 +876,8 @@ typedef enum {
     ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
     [request setDelegate:self];
     [request setRequestMethod:@"POST"];
-    [request setPostValue:@"" forKey:@""];
+    [request setPostValue:[NSString stringWithFormat:@"%f",mainMapView.userLocation.location.coordinate.latitude] forKey:@"userlatitude"];
+    [request setPostValue:[NSString stringWithFormat:@"%f",mainMapView.userLocation.location.coordinate.longitude] forKey:@"userlongitude"];
     [request startAsynchronous];
 }
 

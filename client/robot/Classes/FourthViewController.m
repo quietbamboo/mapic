@@ -237,7 +237,17 @@ enum {
 
 #pragma mark - initArray
 - (void) initArray{
-     dic = [NSDictionary dictionaryWithObjectsAndKeys:@"mattt.png",@"headimag",[NSNumber numberWithInt:2969],@"following",[NSNumber numberWithInt:296],@"Tweets",[NSNumber numberWithInt:69],@"Followers",[NSNumber numberWithInt:29869],@"Listed",@"Hacker from the Rustbelt, living in Austin, and co-founder of @austinrb",@"Motto",@"Austin, TX",@"location",@"http://mattt.me",@"web",@"lable1",@"lable1",@"lable1",@"lable2",@"lable1",@"lable3",nil];
+     dic = [NSDictionary dictionaryWithObjectsAndKeys:@"mattt.png",@"headimag",
+                                    [NSNumber numberWithInt:2969],@"following",
+                                    [NSNumber numberWithInt:296],@"Tweets",
+                                    [NSNumber numberWithInt:69],@"Followers",
+                                [NSNumber numberWithInt:29869],@"Listed",
+@"Hacker from the Rustbelt, living in Austin, and co-founder of @austinrb",@"Motto",
+                                                @"Austin, TX",@"location",
+                                            @"http://mattt.me",@"web",
+                                                    @"lable1",@"lable1",
+                                                    @"lable1",@"lable2",
+                                                    @"lable1",@"lable3",nil];
 }
 
 #pragma mark - ASIHTTPRequestDelegate

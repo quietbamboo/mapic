@@ -264,6 +264,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    CLLocationManager *locationManager = [[CLLocationManager alloc] init];
+    locationManager.delegate = self;
+    locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+	locationManager.distanceFilter = 1000.0f;
+    [locationManager startUpdatingLocation];
 	// Do any additional setup after loading the view.
     [self initNStableArray];
     JMTabView *tabHeaderView = [[[JMTabView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 60.0f)] autorelease];
@@ -323,6 +328,12 @@
     [refreshControl endRefreshing];
 }
 
+#pragma mark CLLocationManagerDelegate Methods
+- (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation {
+	[manager stopUpdatingHeading];
+    coord = newLocation.coordinate;
+}
+
 #pragma mark - ASIHTTPRequestDelegate
 
 - (void)secondviewRequest
@@ -331,7 +342,8 @@
     ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
     [request setDelegate:self];
     [request setRequestMethod:@"POST"];
-    [request setPostValue:@"" forKey:@""];
+    [request setPostValue:[NSString stringWithFormat:@"%f",coord.latitude] forKey:@"userlatitude"];
+    [request setPostValue:[NSString stringWithFormat:@"%f",coord.longitude] forKey:@"userlongitude"];
     [request startAsynchronous];
 }
 
