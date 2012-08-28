@@ -12,7 +12,7 @@
 @synthesize footlabel = _footlabel;
 @synthesize butnum = _butnum;
 @synthesize delegate;
-- (id)initWithFrame:(CGRect)frame headString:(NSString *)headString footString:(NSString *)footString imageID:(NSString *)imageID imageURL:(NSString *)imageURL
+- (id)initWithFrame:(CGRect)frame clickTextArray:(NSArray *)clickTextArray allString:(NSString *)allString imageID:(NSString *)imageID imageURL:(NSString *)imageURL
 {
     self = [super initWithFrame:frame];
     if (self) {
@@ -30,18 +30,18 @@
         imageview.delegate = self;
         [self addSubview:imageview];
         
-        CGSize ssize = [[NSString stringWithFormat:@"%@ %@",headString,footString] sizeWithFont:[UIFont systemFontOfSize:19.0f] constrainedToSize:CGSizeMake(240.0f, 1000.0f) lineBreakMode:UILineBreakModeWordWrap];
+        CGSize ssize = [[NSString stringWithFormat:@"%@",allString] sizeWithFont:[UIFont systemFontOfSize:19.0f] constrainedToSize:CGSizeMake(240.0f, 1000.0f) lineBreakMode:UILineBreakModeWordWrap];
         IFTweetLabel *tweetLabel = [[IFTweetLabel alloc] initWithFrame:CGRectMake(80.0f, 0.0f, ssize.width, ssize.height)];
         [tweetLabel setFont:[UIFont boldSystemFontOfSize:15.0f]];
         [tweetLabel setTextColor:[UIColor blackColor]];
         [tweetLabel setBackgroundColor:[UIColor clearColor]];
         [tweetLabel setNumberOfLines:0];
         tweetLabel.delegate = self;
-        tweetLabel.expressions = [[NSArray alloc] initWithObjects:
-                                  headString,
+        tweetLabel.expressions = clickTextArray;//[[NSArray alloc] initWithObjects:
+                                 // headString,
                                   //@"([hH][tT][tT][pP][sS]?:\\/\\/[^ ,'\">\\]\\)]*[^\\. ,'\">\\]\\)])", // hyperlinks
-                                  nil];
-        [tweetLabel setText:[NSString stringWithFormat:@"%@ %@",headString,footString]];
+                                  //nil];
+        [tweetLabel setText:[NSString stringWithFormat:@"%@",allString]];
         [tweetLabel setLinksEnabled:YES];
         [self addSubview:tweetLabel];
         
