@@ -105,8 +105,6 @@
     //    "given an NSString, UIFont, and desired padding.";
     //    MGBoxLine *multi = [MGBoxLine multilineWithText:blah font:nil padding:24];
     //    [box2.topLines addObject:multi];
-    NSString* fiststring = @"成功是你梦寐以求的那朵红玫瑰，挫折正是那遍及周围的针刺。快乐是你辛勤耕耘获得的果实，悲伤正是那成熟前的秕粒。";
-    NSArray* attentionarray = [[NSArray alloc] initWithObjects:@"成功",@"红玫瑰",@"悲伤",@"快乐", nil];
     
     [self praiseImageArray];
     
@@ -115,7 +113,7 @@
         if ([[nsdic objectForKey:@"DisplayType"] isEqualToString:@"Attention"]) {
             MGStyledBox *box1 = [MGStyledBox box];
             [scroller.boxes addObject:box1];
-            AttentionView* attention = [[AttentionView alloc] initWithFrame:CGRectMake(0, 0, 300, 90) firstname:[nsdic objectForKey:@"Information"] attentionArray:[nsdic objectForKey:@"clickTextArray"] timestring:[nsdic objectForKey:@"time"]];
+            AttentionView* attention = [[AttentionView alloc] initWithFrame:CGRectMake(0, 0, 300, 90) allText:[nsdic objectForKey:@"Information"] attentionArray:[nsdic objectForKey:@"clickTextArray"] timestring:[nsdic objectForKey:@"time"]];
             attention.delegate = self;
             [box1.topLines addObject:attention];
             [attention release];

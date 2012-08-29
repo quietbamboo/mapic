@@ -112,8 +112,8 @@
         NSDictionary *nsdic = [photomessageArray objectAtIndex:i];
             //initWithFrame:CGRectMake(10, 0, 300, 80) headString:[nsdic objectForKey:@"head"] footString:[nsdic objectForKey:@"foot"] imageID:[nsdic objectForKey:@"image"]];
            // new.footimageView.image = [UIImage imageNamed:@"andong.jpg"]
-        NewsMessageView* new = [[NewsMessageView alloc] initWithFrame:CGRectMake(10, 0, 300, 80) headString:[nsdic objectForKey:@"head"] footString:[nsdic objectForKey:@"foot"] imageID:[nsdic objectForKey:@"image"] imageURL:[nsdic objectForKey:@"imgURL"] image1ID:[nsdic objectForKey:@"imag1ID"] image1URL:[nsdic objectForKey:@"image1URL"]];
-        new.footlabel.text = [nsdic objectForKey:@"labeltext"];
+            NewsMessageView* new = [[NewsMessageView alloc] initWithFrame:CGRectMake(10, 0, 300, 80) clickTextArray:[nsdic objectForKey:@"clickTextArray"] allString:[nsdic objectForKey:@"allText"] headimageID:[nsdic objectForKey:@"headimageID"] headimageURL:[nsdic objectForKey:@"headimageURL"] footimageID:[nsdic objectForKey:@"footimageID"] footimageURL:[nsdic objectForKey:@"footimageURL"]];
+        new.footlabel.text = [nsdic objectForKey:@"time"];
             new.backgroundColor = [UIColor clearColor];
         new.delegate = self;
         new.numimage = i;
@@ -304,12 +304,17 @@
 
 - (void) photomessageControllerArray{
     
+    NSArray* user1 = [[NSArray alloc] initWithObjects:@"All", nil];
+    NSArray* user2 = [[NSArray alloc] initWithObjects:@"he", nil];
+    NSArray* user3 = [[NSArray alloc] initWithObjects:@"How", nil];
+    NSArray* user4 = [[NSArray alloc] initWithObjects:@"鲁迅", nil];
+    NSArray* user5 = [[NSArray alloc] initWithObjects:@"君子", nil];
     
-    NSDictionary *dic1 = [NSDictionary dictionaryWithObjectsAndKeys:@"All",@"head",@" of us have read thrilling stories in which the  ",@"foot",@"andong.jpg",@"imgURL",@"55 minutes ago",@"labeltext",@"001",@"image",@"andong.jpg",@"image1URL",@"aaa",@"imag1ID",nil];
-    NSDictionary *dic2 = [NSDictionary dictionaryWithObjectsAndKeys:@"he",@"head",@" is a good boy.",@"foot",@"andong.jpg",@"imgURL",@"50 minutes ago",@"labeltext",@"003",@"image",@"",@"image1URL",@"",@"imag1ID",nil];
-    NSDictionary *dic3 = [NSDictionary dictionaryWithObjectsAndKeys:@"How",@"head",@" are you. I'm go to shopping. I go home. I want to Beijing.",@"foot",@"andong.jpg",@"imgURL",@"18 minutes ago",@"labeltext",@"002",@"image",@"andong.jpg",@"image1URL",@"ccc",@"imag1ID",nil];
-    NSDictionary *dic4 = [NSDictionary dictionaryWithObjectsAndKeys:@"鲁迅",@"head",@"先生说：“天才并不是自生自长在深林荒野的怪物，是由可以使天才生长的民众产生、长育出来的，所以没有这种民众，就没有天才。",@"foot",@"Icon@2x.png",@"imgURL",@"10 minutes ago",@"labeltext",@"002",@"image",@"",@"image1URL",@"",@"imag1ID",nil];
-    NSDictionary *dic5 = [NSDictionary dictionaryWithObjectsAndKeys:@"君子",@"head",@"一言，驷马难追.",@"foot",@"andong.jpg",@"imgURL",@"10 minutes ago",@"labeltext",@"002",@"image",@"Icon@2x.png",@"image1URL",@"ddd",@"imag1ID",nil];
+    NSDictionary *dic1 = [NSDictionary dictionaryWithObjectsAndKeys:user1,@"clickTextArray",@"All of us have read thrilling stories in which the  ",@"allText",@"andong.jpg",@"headimageURL",@"55 minutes ago",@"time",@"001",@"headimageID",@"andong.jpg",@"footimageURL",@"aaa",@"footimageID",nil];
+    NSDictionary *dic2 = [NSDictionary dictionaryWithObjectsAndKeys:user2,@"clickTextArray",@"he is a good boy.",@"allText",@"andong.jpg",@"headimageURL",@"50 minutes ago",@"time",@"003",@"headimageID",@"",@"footimageURL",@"",@"footimageID",nil];
+    NSDictionary *dic3 = [NSDictionary dictionaryWithObjectsAndKeys:user3,@"clickTextArray",@"How are you. I'm go to shopping. I go home. I want to Beijing.",@"allText",@"andong.jpg",@"headimageURL",@"18 minutes ago",@"time",@"002",@"headimageID",@"andong.jpg",@"footimageURL",@"ccc",@"footimageID",nil];
+    NSDictionary *dic4 = [NSDictionary dictionaryWithObjectsAndKeys:user4,@"clickTextArray",@"鲁迅先生说：“天才并不是自生自长在深林荒野的怪物，是由可以使天才生长的民众产生、长育出来的，所以没有这种民众，就没有天才。",@"allText",@"Icon@2x.png",@"headimageURL",@"10 minutes ago",@"time",@"002",@"headimageID",@"",@"footimageURL",@"",@"footimageID",nil];
+    NSDictionary *dic5 = [NSDictionary dictionaryWithObjectsAndKeys:user5,@"clickTextArray",@"君子一言，驷马难追.",@"allText",@"andong.jpg",@"headimageURL",@"10 minutes ago",@"time",@"002",@"headimageID",@"Icon@2x.png",@"footimageURL",@"ddd",@"footimageID",nil];
     
     photomessageArray = [[NSMutableArray alloc] initWithCapacity:0];
     [photomessageArray addObject:dic1];

@@ -10,14 +10,15 @@
 #import "IFTweetLabel.h"
 @implementation AttentionView
 @synthesize delegate;
-- (id)initWithFrame:(CGRect)frame firstname:(NSString *)firstname attentionArray:(NSArray *)attentionArray timestring:(NSString *)timestring
+
+- (id)initWithFrame:(CGRect)frame allText:(NSString *)allText attentionArray:(NSArray *)attentionArray timestring:(NSString *)timestring
 {
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
 //        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(attentionNotification:) name:IFTweetLabelURLNotification object:nil];
         
-        CGSize ssize = [firstname sizeWithFont:[UIFont systemFontOfSize:19.0f] constrainedToSize:CGSizeMake(300.0f, 1000.0f) lineBreakMode:UILineBreakModeWordWrap];
+        CGSize ssize = [allText sizeWithFont:[UIFont systemFontOfSize:19.0f] constrainedToSize:CGSizeMake(300.0f, 1000.0f) lineBreakMode:UILineBreakModeWordWrap];
         IFTweetLabel *tweetLabel = [[IFTweetLabel alloc] initWithFrame:CGRectMake(5.0f, 0.0f, ssize.width, ssize.height)];
         [tweetLabel setFont:[UIFont boldSystemFontOfSize:15.0f]];
         [tweetLabel setTextColor:[UIColor blackColor]];
@@ -29,7 +30,7 @@
 //                                  secondname,
 //                                  //@"([hH][tT][tT][pP][sS]?:\\/\\/[^ ,'\">\\]\\)]*[^\\. ,'\">\\]\\)])", // hyperlinks
 //                                  nil];
-        [tweetLabel setText:firstname];
+        [tweetLabel setText:allText];
         [tweetLabel setLinksEnabled:YES];
 
         [self addSubview:tweetLabel];

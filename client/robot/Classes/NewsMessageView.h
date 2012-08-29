@@ -24,5 +24,5 @@
 @property (nonatomic) int numimage;
 @property (nonatomic) id <ImageIdAndUserNameProtocol> delegate;
 
-- (id)initWithFrame:(CGRect)frame headString:(NSString *)headString footString:(NSString *)footString imageID:(NSString *)imageID imageURL:(NSString *)imageURL image1ID:(NSString *)image1ID image1URL:(NSString *)image1URL;
+- (id)initWithFrame:(CGRect)frame clickTextArray:(NSArray *)clickTextArray allString:(NSString *)allString headimageID:(NSString *)headimageID headimageURL:(NSString *)headimageURL footimageID:(NSString *)footimageID footimageURL:(NSString *)footimageURL;
 @end

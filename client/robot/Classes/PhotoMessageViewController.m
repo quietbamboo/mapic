@@ -141,7 +141,7 @@
     NSDictionary *nsdic = [photomessageArray objectAtIndex:indexPath.row];
     cell.textLabel.text = @"";
     PhotoMessageView* photomessage = [[PhotoMessageView alloc] initWithFrame:CGRectMake(0, 0, 320, 70) clickTextArray:[nsdic objectForKey:@"clickTextArray"] allString:[nsdic objectForKey:@"allText"] imageID:[nsdic objectForKey:@"imageID"] imageURL:[nsdic objectForKey:@"imageURL"]];
-    photomessage.footlabel.text = [nsdic objectForKey:@"labeltext"];
+    photomessage.footlabel.text = [nsdic objectForKey:@"time"];
     photomessage.delegate = self;
     photomessage.butnum = indexPath.row;
     [cell.contentView addSubview:photomessage];
@@ -203,9 +203,9 @@
     NSArray* user2 = [[NSArray alloc] initWithObjects:@"hero", nil];
     NSArray* user3 = [[NSArray alloc] initWithObjects:@"How", nil];
     
-    NSDictionary *dic1 = [NSDictionary dictionaryWithObjectsAndKeys:user1,@"clickTextArray",@"All of us have read thrilling stories in which the  ",@"allText",@"logo.png",@"imageURL",@"18 minutes ago",@"labeltext",@"111",@"imageID",nil];
-    NSDictionary *dic2 = [NSDictionary dictionaryWithObjectsAndKeys:user2,@"clickTextArray",@"hero had only a limited and specified time to live.",@"allText",@"weibo.png",@"imageURL",@"18 minutes ago",@"labeltext",@"222",@"imageID",nil];
-    NSDictionary *dic3 = [NSDictionary dictionaryWithObjectsAndKeys:user3,@"clickTextArray",@"How are you. I'm go to shopping. I go home.",@"allText",@"andong.jpg",@"imageURL",@"18 minutes ago",@"labeltext",@"222",@"imageID",nil];
+    NSDictionary *dic1 = [NSDictionary dictionaryWithObjectsAndKeys:user1,@"clickTextArray",@"All of us have read thrilling stories in which the  ",@"allText",@"logo.png",@"imageURL",@"18 minutes ago",@"time",@"111",@"imageID",nil];
+    NSDictionary *dic2 = [NSDictionary dictionaryWithObjectsAndKeys:user2,@"clickTextArray",@"hero had only a limited and specified time to live.",@"allText",@"weibo.png",@"imageURL",@"18 minutes ago",@"time",@"222",@"imageID",nil];
+    NSDictionary *dic3 = [NSDictionary dictionaryWithObjectsAndKeys:user3,@"clickTextArray",@"How are you. I'm go to shopping. I go home.",@"allText",@"andong.jpg",@"imageURL",@"18 minutes ago",@"time",@"222",@"imageID",nil];
     photomessageArray = [[NSMutableArray alloc] initWithCapacity:0];
     [photomessageArray addObject:dic1];
     [photomessageArray addObject:dic2];

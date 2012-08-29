@@ -12,19 +12,19 @@
 @synthesize footlabel = _footlabel;
 @synthesize numimage;
 @synthesize delegate;
-- (id)initWithFrame:(CGRect)frame headString:(NSString *)headString footString:(NSString *)footString imageID:(NSString *)imageID imageURL:(NSString *)imageURL image1ID:(NSString *)image1ID image1URL:(NSString *)image1URL
+- (id)initWithFrame:(CGRect)frame clickTextArray:(NSArray *)clickTextArray allString:(NSString *)allString headimageID:(NSString *)headimageID headimageURL:(NSString *)headimageURL footimageID:(NSString *)footimageID footimageURL:(NSString *)footimageURL
 {
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
         self.backgroundColor = [UIColor whiteColor];
-        imgID = imageID;
+        imgID = headimageID;
         
         PictureImageview* imageview = [[PictureImageview alloc] initWithFrame:CGRectMake(5, 10, 50, 50)];
         imageview.userInteractionEnabled=YES;
         imageview.layer.cornerRadius = 5.0;
         imageview.layer.masksToBounds = YES;
-        UIImage *icon = [UIImage imageNamed:imageURL];
+        UIImage *icon = [UIImage imageNamed:headimageURL];
         imageview.image = icon;
         [icon release];
         imageview.tag = 0;
@@ -32,15 +32,15 @@
         [self addSubview:imageview];
         [imageview release];
         
-        if ([image1ID isEqualToString:@""]) {
+        if ([footimageID isEqualToString:@""]) {
             
         }else {
-            img1ID = image1ID;
+            img1ID = footimageID;
             PictureImageview* imageview1 = [[PictureImageview alloc] initWithFrame:CGRectMake(245, 10, 50, 50)];
             imageview1.userInteractionEnabled=YES;
             imageview1.layer.cornerRadius = 5.0;
             imageview1.layer.masksToBounds = YES;
-            UIImage *icon1 = [UIImage imageNamed:image1URL];
+            UIImage *icon1 = [UIImage imageNamed:footimageURL];
             imageview1.image = icon1;
             [icon1 release];
             imageview1.tag = 1;
@@ -70,18 +70,18 @@
 //        label.center = CGPointMake(150, sizeheight/2);
 //        [self addSubview:label];
         
-        CGSize ssize = [[NSString stringWithFormat:@"%@ %@",headString,footString] sizeWithFont:[UIFont systemFontOfSize:14.0f] constrainedToSize:CGSizeMake(180.0f, 1000.0f) lineBreakMode:UILineBreakModeWordWrap];
+        CGSize ssize = [[NSString stringWithFormat:@"%@",allString] sizeWithFont:[UIFont systemFontOfSize:14.0f] constrainedToSize:CGSizeMake(180.0f, 1000.0f) lineBreakMode:UILineBreakModeWordWrap];
         IFTweetLabel *tweetLabel = [[IFTweetLabel alloc] initWithFrame:CGRectMake(65.0f, 5.0f, ssize.width, ssize.height)];
         [tweetLabel setFont:[UIFont boldSystemFontOfSize:13.0f]];
         [tweetLabel setTextColor:[UIColor blackColor]];
         [tweetLabel setBackgroundColor:[UIColor clearColor]];
         [tweetLabel setNumberOfLines:0];
         tweetLabel.delegate = self;
-        tweetLabel.expressions = [[NSArray alloc] initWithObjects:
-                                  headString,
+        tweetLabel.expressions = clickTextArray;//[[NSArray alloc] initWithObjects:
+                                  //headString,
                                   //@"([hH][tT][tT][pP][sS]?:\\/\\/[^ ,'\">\\]\\)]*[^\\. ,'\">\\]\\)])", // hyperlinks
-                                  nil];
-        [tweetLabel setText:[NSString stringWithFormat:@"%@ %@",headString,footString]];
+                                  //nil];
+        [tweetLabel setText:[NSString stringWithFormat:@"%@",allString]];
         [tweetLabel setLinksEnabled:YES];
         
         [self addSubview:tweetLabel];
