@@ -10,12 +10,14 @@
 #import "PhotoMessageView.h"
 #import "ImageIdAndUserNameProtocol.h"
 #import "ASIFormDataRequest.h"
+#import "MBProgressHUD.h"
 @protocol ModalControllerDelegate;
 
 @interface PhotoMessageViewController : UIViewController <UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate,ImageIdAndUserNameProtocol,ASIHTTPRequestDelegate>{
     NSMutableArray *photomessageArray;
 	id <ModalControllerDelegate> delegate;
     UITextField* sendfield;
+    MBProgressHUD  * _MBProgress;
 }
 
 @property (nonatomic,assign) id <ModalControllerDelegate> delegate;

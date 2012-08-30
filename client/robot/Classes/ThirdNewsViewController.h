@@ -20,11 +20,13 @@
 #import "PraisePhotoView.h"
 #import "ImageIdAndUserNameProtocol.h"
 #import "ASIFormDataRequest.h"
+#import "MBProgressHUD.h"
 @interface ThirdNewsViewController : UIViewController<UIScrollViewDelegate,JMTabViewDelegate,ImageIdAndUserNameProtocol,ASIHTTPRequestDelegate>{
     NSMutableArray *photomessageArray;
     MGScrollView *scroller;
     NSMutableArray* imgArray;
     JMTabView *tabHeaderView;
+    MBProgressHUD  * _MBProgress;
 }
 - (void)addBox:(UIButton *)sender;
 - (void)removeBox:(UIButton *)sender;

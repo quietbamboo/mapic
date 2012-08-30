@@ -42,6 +42,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self thirdviewRequest];
     thirdnews = [[ThirdNewsViewController alloc] init];
     tabHeaderView = [[[JMTabView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 60.)] autorelease];
     [tabHeaderView setDelegate:self];
@@ -407,16 +408,21 @@
     [request setRequestMethod:@"POST"];
     [request setPostValue:@"" forKey:@""];
     [request startAsynchronous];
+    _MBProgress = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    _MBProgress.labelText = @"";
+    [_MBProgress show:YES];
 }
 
 - (void)requestFinished:(ASIHTTPRequest *)request
 {
     NSString *responseString = [request responseString];
+    [_MBProgress hide:YES];
 }
 
 - (void)requestFailed:(ASIHTTPRequest *)request
 {
     NSError *error = [request error];
+    [_MBProgress hide:YES];
 }
 
 @end

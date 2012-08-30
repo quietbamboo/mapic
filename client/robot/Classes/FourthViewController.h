@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "AppDelegate.h"
 #import "ASIFormDataRequest.h"
+#import "MBProgressHUD.h"
 @class TTTQuadrantControl;
 @interface FourthViewController : UITableViewController<ASIHTTPRequestDelegate>{
     
@@ -19,6 +20,7 @@
     NSString* web;
     NSString* Motto;
     NSString* location;
+    MBProgressHUD  * _MBProgress;
 }
 
 

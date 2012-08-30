@@ -237,6 +237,7 @@ enum {
 
 #pragma mark - initArray
 - (void) initArray{
+    [self fourthviewRequest];
      dic = [NSDictionary dictionaryWithObjectsAndKeys:@"mattt.png",@"headimag",
                                     [NSNumber numberWithInt:2969],@"following",
                                     [NSNumber numberWithInt:296],@"Tweets",
@@ -260,16 +261,21 @@ enum {
     [request setRequestMethod:@"POST"];
     [request setPostValue:@"" forKey:@""];
     [request startAsynchronous];
+    _MBProgress = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    _MBProgress.labelText = @"";
+    [_MBProgress show:YES];
 }
 
 - (void)requestFinished:(ASIHTTPRequest *)request
 {
     NSString *responseString = [request responseString];
+    [_MBProgress hide:YES];
 }
 
 - (void)requestFailed:(ASIHTTPRequest *)request
 {
     NSError *error = [request error];
+    [_MBProgress hide:YES];
 }
 
 @end

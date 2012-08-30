@@ -13,12 +13,14 @@
 #import "HjxPhotoViewController.h"
 #import "CellView.h"
 #import "ASIFormDataRequest.h"
+#import "MBProgressHUD.h"
 @interface SecondViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,CLLocationManagerDelegate,DirectionsViewControllerDelegate,JMTabViewDelegate,ASIHTTPRequestDelegate>{
     
     NSMutableArray *nsArray;
     BOOL isloading;
     ODRefreshControl *refreshControl;
     CLLocationCoordinate2D coord;
+    MBProgressHUD  * _MBProgress;
 }
 
 @end

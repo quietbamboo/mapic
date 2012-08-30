@@ -198,7 +198,7 @@
 #pragma mark - initphotomessage
 
 - (void) photomessageArray{
-
+    [self photoMessageviewRequest];
     NSArray* user1 = [[NSArray alloc] initWithObjects:@"All", nil];
     NSArray* user2 = [[NSArray alloc] initWithObjects:@"hero", nil];
     NSArray* user3 = [[NSArray alloc] initWithObjects:@"How", nil];
@@ -261,16 +261,21 @@
     [request setRequestMethod:@"POST"];
     [request setPostValue:@"" forKey:@""];
     [request startAsynchronous];
+    _MBProgress = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    _MBProgress.labelText = @"";
+    [_MBProgress show:YES];
 }
 
 - (void)requestFinished:(ASIHTTPRequest *)request
 {
     NSString *responseString = [request responseString];
+    [_MBProgress hide:YES];
 }
 
 - (void)requestFailed:(ASIHTTPRequest *)request
 {
     NSError *error = [request error];
+    [_MBProgress hide:YES];
 }
 
 @end

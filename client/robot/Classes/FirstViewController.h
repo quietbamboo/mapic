@@ -21,6 +21,7 @@
 #import "FKFilterPickerController.h"
 #import "FKImagePickerController.h"
 #import "ASIFormDataRequest.h"
+#import "MBProgressHUD.h"
 @interface FirstViewController : UIViewController <MKMapViewDelegate,CLLocationManagerDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate,DirectionsViewControllerDelegate,CustomSegmentedControlDelegate,ASIHTTPRequestDelegate>{
     BOOL canChangeMap;
     UIImageView *routeView;
@@ -32,6 +33,7 @@
     UIView *secondView;
     HGKOptionPanel *panel;
     BOOL showlogin;
+    MBProgressHUD  * _MBProgress;
 }
 @property (nonatomic, retain) UIBarButtonItem *locationItem;
 @property (retain, nonatomic) MKMapView *mainMapView;
