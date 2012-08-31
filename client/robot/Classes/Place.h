@@ -16,6 +16,7 @@
 	double latitude;
 	double longitude;
     UIImage *image;
+    NSString *imageURLString;
     int btnTag;
     int Distance;
 }
@@ -25,6 +26,7 @@
 @property (nonatomic) double latitude;
 @property (nonatomic) double longitude;
 @property (nonatomic,retain) UIImage *image;
+@property (nonatomic, retain) NSString *imageURLString;
 @property (nonatomic) int btnTag;
 @property (nonatomic) int Distance;
 @end

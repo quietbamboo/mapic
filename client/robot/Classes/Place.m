@@ -18,11 +18,13 @@
 @synthesize image;
 @synthesize btnTag;
 @synthesize Distance;
+@synthesize imageURLString;
 - (void) dealloc
 {
 	[name release];
 	[description release];
     [image release];
+    [imageURLString release];
 	[super dealloc];
 }
 

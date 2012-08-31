@@ -14,13 +14,17 @@
 #import "CellView.h"
 #import "ASIFormDataRequest.h"
 #import "MBProgressHUD.h"
-@interface SecondViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,CLLocationManagerDelegate,DirectionsViewControllerDelegate,JMTabViewDelegate,ASIHTTPRequestDelegate>{
+#import "IconDownloader.h"
+@interface SecondViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,CLLocationManagerDelegate,UIScrollViewDelegate,DirectionsViewControllerDelegate,JMTabViewDelegate,ASIHTTPRequestDelegate,IconDownloaderDelegate>{
     
     NSMutableArray *nsArray;
     BOOL isloading;
     ODRefreshControl *refreshControl;
     CLLocationCoordinate2D coord;
-    MBProgressHUD  * _MBProgress;
+    MBProgressHUD  * _MBProgress; 
+    NSMutableDictionary *imageDownloadsInProgress;  
+    UITableView *secondtableView;
 }
+@property (nonatomic, retain) NSMutableDictionary *imageDownloadsInProgress;
 
 @end

@@ -110,6 +110,8 @@
 		18E3C9E01576FF56000418D7 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18E3C9DF1576FF56000418D7 /* CoreVideo.framework */; };
 		18E3C9E21576FF86000418D7 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18E3C9E11576FF86000418D7 /* MobileCoreServices.framework */; };
 		18E3C9E41576FFAB000418D7 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18E3C9E31576FFAB000418D7 /* AssetsLibrary.framework */; };
+		18E6C49515EF531200312D95 /* IconDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E6C49415EF531200312D95 /* IconDownloader.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		18E6C49715EF532600312D95 /* Placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = 18E6C49615EF532600312D95 /* Placeholder.png */; };
 		18E8D11915D3563700CAD030 /* AttentionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E8D11815D3563700CAD030 /* AttentionView.m */; };
 		18E8D11C15D35D3D00CAD030 /* PraiseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E8D11B15D35D3D00CAD030 /* PraiseView.m */; };
 		18E8D11F15D37ACB00CAD030 /* OnTopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E8D11E15D37ACB00CAD030 /* OnTopView.m */; };
@@ -573,6 +575,9 @@
 		18E3C9DF1576FF56000418D7 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
 		18E3C9E11576FF86000418D7 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		18E3C9E31576FFAB000418D7 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
+		18E6C49315EF531100312D95 /* IconDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IconDownloader.h; sourceTree = "<group>"; };
+		18E6C49415EF531200312D95 /* IconDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IconDownloader.m; sourceTree = "<group>"; };
+		18E6C49615EF532600312D95 /* Placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Placeholder.png; path = Classes/Placeholder.png; sourceTree = "<group>"; };
 		18E8D11715D3563700CAD030 /* AttentionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AttentionView.h; sourceTree = "<group>"; };
 		18E8D11815D3563700CAD030 /* AttentionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AttentionView.m; sourceTree = "<group>"; };
 		18E8D11A15D35D3D00CAD030 /* PraiseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PraiseView.h; sourceTree = "<group>"; };
@@ -835,6 +840,8 @@
 				EC8BD82C13F359D500A6E82D /* Inneractive */,
 				27CCB4D415BFD50B00A38922 /* FKImagePickerController.h */,
 				27CCB4D515BFD51800A38922 /* FKFilterPickerController.h */,
+				18E6C49315EF531100312D95 /* IconDownloader.h */,
+				18E6C49415EF531200312D95 /* IconDownloader.m */,
 				0A633C6E15CB709100CD0294 /* MyMD5.h */,
 				0A633C6F15CB709100CD0294 /* MyMD5.m */,
 				18E36A8215AD4275006E62AA /* Place.h */,
@@ -1230,6 +1237,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				18E6C49615EF532600312D95 /* Placeholder.png */,
 				18E00A4915C26665003B4358 /* image_icon_validation_invalid.png */,
 				18E00A4A15C26665003B4358 /* image_icon_validation_invalid@2x.png */,
 				18E00A4B15C26665003B4358 /* image_icon_validation_valid.png */,
@@ -1837,6 +1845,7 @@
 				18E00A5B15C26665003B4358 /* image_tooltip_valid.png in Resources */,
 				18E00A5C15C26665003B4358 /* image_tooltip_valid@2x.png in Resources */,
 				0AA5F2BC15C90D3A00D775A8 /* Localization.bundle in Resources */,
+				18E6C49715EF532600312D95 /* Placeholder.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1935,6 +1944,7 @@
 				18E8D12C15D3A84F00CAD030 /* IFTweetLabel.m in Sources */,
 				18EAA05315D88CAE007D9132 /* ThirdNewsViewController.m in Sources */,
 				18EAA09015D8C196007D9132 /* PictureImageview.m in Sources */,
+				18E6C49515EF531200312D95 /* IconDownloader.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
