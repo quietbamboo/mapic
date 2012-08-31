@@ -41,7 +41,6 @@ typedef enum {
 #pragma mark
 #pragma mark init nsArray
 - (void)initnaArray:(CLLocationCoordinate2D )sendr{
-    [self firstviewRequest];
     NSDictionary *dic1 = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:1500],@"Distance",@"weibo.png",@"image",[NSNumber numberWithDouble:sendr.latitude - 0.005],@"lat",[NSNumber numberWithDouble:sendr.longitude],@"lon",@"Yale University",@"name",@"Yale University is a private research university in New Haven, Connecticut, and a member of the Ivy League. Founded in 1701 in the Colony of Connecticut, the university is the third-oldest institution of higher education in the United States. Yale has produced many notable alumni, including five U.S. presidents, seventeen U.S. Supreme Court Justices, and several foreign heads of state.",@"dec",nil];
     NSDictionary *dic2 = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:1200],@"Distance",@"logo.png",@"image",[NSNumber numberWithDouble:sendr.latitude + 0.004],@"lat",[NSNumber numberWithDouble:sendr.longitude],@"lon",@"Harvard University",@"name",@"Harvard University (Harvard University) is the longest in U.S. history one of the first-class academic institution, is located in Cambridge, Massachusetts, and at Boston and across the Charles River. Harvard University has two colleges to recruit students, Harvard College and Radcliffe College, which recruited the students about half of all students at Harvard University. Ivy Harvard University is one of the school.",@"dec",nil];
     NSDictionary *dic3 = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:1100],@"Distance",@"reset.png",@"image",[NSNumber numberWithDouble:sendr.latitude],@"lat",[NSNumber numberWithDouble:sendr.longitude - 0.005],@"lon",@"University of Cambridge",@"name",@"The University of Cambridge (informally Cambridge University, or simply Cambridge) is the second oldest university in England and the fourth oldest in the world. In post-nominals the university's name is abbreviated as Cantab, a shortened form of Cantabrigiensis (an adjective derived from Cantabrigia, the Latinised form of Cambridge).",@"dec",nil];
@@ -83,7 +82,6 @@ typedef enum {
 }
 - (void)updateMapSlider: (UISlider *) sender{
     
-    //  NSLog(@"this is ******%f**",mapslider.value);
     MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(mainMapView.userLocation.location.coordinate,sender.value, sender.value); 
     [mainMapView setRegion:viewRegion animated:YES];
 }
@@ -100,7 +98,7 @@ typedef enum {
     [bottomImage drawInRect:CGRectMake(0,0,newSize.width,newSize.height)];
     
     // Apply supplied opacity if applicable
-    [image drawInRect:CGRectMake(5,0,newSize.width-10,newSize.height-10) blendMode:kCGBlendModeNormal alpha:0.8];
+    [image drawInRect:CGRectMake(5,5,newSize.width-10,newSize.height-10) blendMode:kCGBlendModeNormal alpha:0.8];
     
     UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
     
@@ -113,7 +111,6 @@ typedef enum {
 #pragma mark to other view Methods
 - (void)removePins {
     isinitArray = YES;
-   //[self.mainMapView removeAnnotations:self.mainMapView.annotations];
     [routes release];
     routes = [[NSArray alloc] initWithArray:nil];
     for (id<MKAnnotation> myAnnotation in mainMapView.annotations ) {
@@ -123,7 +120,6 @@ typedef enum {
              [self.mainMapView removeAnnotation:myAnnotation];
         }
     }
-   // [self.mainMapView.annotations removeAllObjects];
     [self moveToCurrentLocation];
     mainMapView.showsUserLocation = YES;
     [self initnaArray:mainMapView.userLocation.coordinate]; 

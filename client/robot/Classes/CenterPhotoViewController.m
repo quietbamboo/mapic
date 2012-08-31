@@ -58,7 +58,6 @@
     self.navigationItem.rightBarButtonItem = btnUpload;
     [btnUpload release];
     scrollview = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, 320, 480)];
-    //scrollview.backgroundColor = [UIColor colorWithRed:0.859f green:0.886f blue:0.929f alpha:1.0f];
     scrollview.backgroundColor = [UIColor scrollViewTexturedBackgroundColor];
     scrollview.contentMode = UIViewContentModeScaleToFill;
     scrollview.tag = SCROLLVIEW;
@@ -82,10 +81,10 @@
     [namelabel release];
     
     UITextField* text = [[UITextField alloc] initWithFrame:CGRectMake(90, 335, 220, 30)];
-    text.borderStyle = UITextBorderStyleRoundedRect;//设置文本框边框风格
-    text.autocorrectionType = UITextAutocorrectionTypeYes;//启用自动提示更正功能
-    text.placeholder = @"Enter the place name";//设置默认显示文本
-    text.returnKeyType = UIReturnKeyDone;//设置键盘完成按钮，相应的还有“Return”"Gｏ""Google"等
+    text.borderStyle = UITextBorderStyleRoundedRect;
+    text.autocorrectionType = UITextAutocorrectionTypeYes;
+    text.placeholder = @"Enter the place name";
+    text.returnKeyType = UIReturnKeyDone;
     text.clearButtonMode = UITextFieldViewModeWhileEditing;
     text.tag = 0;
     text.delegate = self;
@@ -101,18 +100,18 @@
     [scrollview addSubview:textlabel];
     [textlabel release];
     
-    UITextView *textView = [[[UITextView  alloc] initWithFrame:CGRectMake(65, 400, 250, 200)] autorelease]; //初始化大小并自动释放
-    textView.textColor = [UIColor blackColor];//设置textview里面的字体颜色  
-    textView.font = [UIFont fontWithName:@"Arial" size:18.0];//设置字体名字和字体大小  
-    textView.delegate = self;//设置它的委托方法  
-    textView.backgroundColor = [UIColor whiteColor];//设置它的背景颜色
-    textView.text = @"";//设置它显示的内容
+    UITextView *textView = [[[UITextView  alloc] initWithFrame:CGRectMake(65, 400, 250, 200)] autorelease];
+    textView.textColor = [UIColor blackColor]; 
+    textView.font = [UIFont fontWithName:@"Arial" size:18.0];  
+    textView.delegate = self;
+    textView.backgroundColor = [UIColor whiteColor];
+    textView.text = @"";
 
-    textView.returnKeyType = UIReturnKeyDone;//返回键的类型  
-    textView.keyboardType = UIKeyboardTypeDefault;//键盘类型  
-    textView.scrollEnabled = YES;//是否可以拖动  
-    textView.autoresizingMask = UIViewAutoresizingFlexibleHeight;//自适应高度
-    [scrollview addSubview: textView];//加入到整个页面中
+    textView.returnKeyType = UIReturnKeyDone;  
+    textView.keyboardType = UIKeyboardTypeDefault;  
+    textView.scrollEnabled = YES;  
+    textView.autoresizingMask = UIViewAutoresizingFlexibleHeight;
+    [scrollview addSubview: textView];
     
     UIButton *uploadButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     uploadButton.frame = CGRectMake(60, 645, 200, 50);
