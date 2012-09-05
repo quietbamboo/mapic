@@ -237,7 +237,6 @@ enum {
 
 #pragma mark - initArray
 - (void) initArray{
-    [self fourthviewRequest];
      dic = [NSDictionary dictionaryWithObjectsAndKeys:@"mattt.png",@"headimag",
                                     [NSNumber numberWithInt:2969],@"following",
                                     [NSNumber numberWithInt:296],@"Tweets",

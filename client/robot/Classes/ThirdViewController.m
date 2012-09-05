@@ -42,7 +42,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self thirdviewRequest];
     thirdnews = [[ThirdNewsViewController alloc] init];
     tabHeaderView = [[[JMTabView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 60.)] autorelease];
     [tabHeaderView setDelegate:self];
