@@ -12,7 +12,8 @@
 @synthesize footlabel = _footlabel;
 @synthesize butnum = _butnum;
 @synthesize delegate;
-- (id)initWithFrame:(CGRect)frame clickTextArray:(NSArray *)clickTextArray allString:(NSString *)allString imageID:(NSString *)imageID imageURL:(NSString *)imageURL
+@synthesize imageview = _imageview;
+- (id)initWithFrame:(CGRect)frame clickTextArray:(NSArray *)clickTextArray allString:(NSString *)allString imageID:(NSString *)imageID
 {
     self = [super initWithFrame:frame];
     if (self) {
@@ -20,15 +21,15 @@
         self.backgroundColor = [UIColor whiteColor];
         imgID = imageID;
         
-        PictureImageview* imageview = [[PictureImageview alloc] initWithFrame:CGRectMake(8, 8, 65, 65)];
-        imageview.userInteractionEnabled=YES;
-        imageview.layer.cornerRadius = 5.0;
-        imageview.layer.masksToBounds = YES;
-        UIImage *icon = [UIImage imageNamed:imageURL];
-        imageview.image = icon;
-        imageview.tag = 0;
-        imageview.delegate = self;
-        [self addSubview:imageview];
+        _imageview = [[PictureImageview alloc] initWithFrame:CGRectMake(8, 8, 65, 65)];
+        _imageview.userInteractionEnabled=YES;
+        _imageview.layer.cornerRadius = 5.0;
+        _imageview.layer.masksToBounds = YES;
+        //UIImage *icon = [UIImage imageNamed:imageURL];
+        _imageview.image = [UIImage imageNamed:@""];//icon;
+        _imageview.tag = 0;
+        _imageview.delegate = self;
+        [self addSubview:_imageview];
         
         CGSize ssize = [[NSString stringWithFormat:@"%@",allString] sizeWithFont:[UIFont systemFontOfSize:19.0f] constrainedToSize:CGSizeMake(240.0f, 1000.0f) lineBreakMode:UILineBreakModeWordWrap];
         IFTweetLabel *tweetLabel = [[IFTweetLabel alloc] initWithFrame:CGRectMake(80.0f, 0.0f, ssize.width, ssize.height)];

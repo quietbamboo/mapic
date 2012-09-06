@@ -199,6 +199,8 @@
 		27CCB4E315BFDE9200A38922 /* navBar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 27CCB4DC15BFDE9200A38922 /* navBar@2x.png */; };
 		27CCB4E415BFDE9200A38922 /* navBarButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 27CCB4DD15BFDE9200A38922 /* navBarButton@2x.png */; };
 		27CCB4E515BFDE9200A38922 /* navBarShadow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 27CCB4DE15BFDE9200A38922 /* navBarShadow@2x.png */; };
+		27CCE7DE15F837DB003FCE06 /* PhotoMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 27CCE7DD15F837DB003FCE06 /* PhotoMessage.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		27CCE7E115F87968003FCE06 /* DownloaderPhotoMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 27CCE7E015F87968003FCE06 /* DownloaderPhotoMessage.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		27D4172B15BA3EF30044C478 /* ODRefreshControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 27D4172A15BA3EF30044C478 /* ODRefreshControl.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		27F30FF715D0A4E50083724A /* PhotoMessageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 27F30FF615D0A4E50083724A /* PhotoMessageView.m */; };
 		27F85C751548F2AF0053FBEC /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27F85C741548F2AF0053FBEC /* StoreKit.framework */; };
@@ -725,6 +727,10 @@
 		27CCB4DC15BFDE9200A38922 /* navBar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "navBar@2x.png"; sourceTree = "<group>"; };
 		27CCB4DD15BFDE9200A38922 /* navBarButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "navBarButton@2x.png"; sourceTree = "<group>"; };
 		27CCB4DE15BFDE9200A38922 /* navBarShadow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "navBarShadow@2x.png"; sourceTree = "<group>"; };
+		27CCE7DC15F837DB003FCE06 /* PhotoMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoMessage.h; sourceTree = "<group>"; };
+		27CCE7DD15F837DB003FCE06 /* PhotoMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoMessage.m; sourceTree = "<group>"; };
+		27CCE7DF15F87968003FCE06 /* DownloaderPhotoMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DownloaderPhotoMessage.h; sourceTree = "<group>"; };
+		27CCE7E015F87968003FCE06 /* DownloaderPhotoMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DownloaderPhotoMessage.m; sourceTree = "<group>"; };
 		27D4172915BA3EF30044C478 /* ODRefreshControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODRefreshControl.h; sourceTree = "<group>"; };
 		27D4172A15BA3EF30044C478 /* ODRefreshControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ODRefreshControl.m; sourceTree = "<group>"; };
 		27F30FF515D0A4E50083724A /* PhotoMessageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoMessageView.h; sourceTree = "<group>"; };
@@ -893,6 +899,10 @@
 				18EAA05215D88CAD007D9132 /* ThirdNewsViewController.m */,
 				18EAA08E15D8C195007D9132 /* PictureImageview.h */,
 				18EAA08F15D8C195007D9132 /* PictureImageview.m */,
+				27CCE7DC15F837DB003FCE06 /* PhotoMessage.h */,
+				27CCE7DD15F837DB003FCE06 /* PhotoMessage.m */,
+				27CCE7DF15F87968003FCE06 /* DownloaderPhotoMessage.h */,
+				27CCE7E015F87968003FCE06 /* DownloaderPhotoMessage.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -1945,6 +1955,8 @@
 				18EAA05315D88CAE007D9132 /* ThirdNewsViewController.m in Sources */,
 				18EAA09015D8C196007D9132 /* PictureImageview.m in Sources */,
 				18E6C49515EF531200312D95 /* IconDownloader.m in Sources */,
+				27CCE7DE15F837DB003FCE06 /* PhotoMessage.m in Sources */,
+				27CCE7E115F87968003FCE06 /* DownloaderPhotoMessage.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

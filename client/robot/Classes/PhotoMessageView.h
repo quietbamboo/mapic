@@ -15,12 +15,14 @@
     id <ImageIdAndUserNameProtocol> delegate;
     int butnum;
     NSString* imgID;
+    PictureImageview* imageview;
 }
 
 @property (retain, nonatomic) UILabel* footlabel;
 @property (nonatomic) int butnum;
 @property (nonatomic) id <ImageIdAndUserNameProtocol> delegate;
+@property (retain, nonatomic) PictureImageview* imageview;
 
-- (id)initWithFrame:(CGRect)frame clickTextArray:(NSArray *)clickTextArray allString:(NSString *)allString imageID:(NSString *)imageID imageURL:(NSString *)imageURL;
-
+//- (id)initWithFrame:(CGRect)frame clickTextArray:(NSArray *)clickTextArray allString:(NSString *)allString imageID:(NSString *)imageID imageURL:(NSString *)imageURL;
+- (id)initWithFrame:(CGRect)frame clickTextArray:(NSArray *)clickTextArray allString:(NSString *)allString imageID:(NSString *)imageID;
 @end

@@ -51,7 +51,6 @@
  */
 
 @class Place;
-@class RootViewController;
 
 @protocol IconDownloaderDelegate;
 

@@ -10,6 +10,7 @@
 #import "LoginViewController.h"
 #import "FourthViewController.h"
 #import "IFTweetLabel.h"
+#import "PhotoMessage.h"
 @interface PhotoMessageViewController ()
 
 @end
@@ -18,7 +19,7 @@
 #define TOOLBAR        20
 @implementation PhotoMessageViewController
 @synthesize delegate;
-
+@synthesize imageDownloadsInProgress;
 #pragma mark
 #pragma mark default Mthods
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -29,7 +30,14 @@
     }
     return self;
 }
-
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    
+    // terminate all pending download connections
+    NSArray *allDownloads = [self.imageDownloadsInProgress allValues];
+    [allDownloads makeObjectsPerformSelector:@selector(cancelDownload)];
+}
 - (void)loadView {
     [super loadView];
     UIView *contentView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 480)];
@@ -44,6 +52,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.imageDownloadsInProgress = [NSMutableDictionary dictionary];
     UIBarButtonItem *btnDBSignupView = [[UIBarButtonItem alloc] 
                                         initWithTitle:@"完成"                                            
                                         style:UIBarButtonItemStyleBordered 
@@ -51,15 +60,15 @@
                                         action:@selector(closeButtonPressed)];
      self.navigationItem.rightBarButtonItem = btnDBSignupView;
     [self photomessageArray];
-    UITableView *tableview= [[UITableView alloc] initWithFrame:CGRectMake(0,0, 320, 392) style:UITableViewStylePlain];
-    tableview.separatorStyle = UITableViewStyleGrouped;
-    tableview.separatorColor = [UIColor blackColor];
-    tableview.tag = TABLEHEIGHT;
-    [tableview setDelegate:self];
-    [tableview setDataSource:self];
-    [self.view addSubview: tableview];
+    phototableview = [[UITableView alloc] initWithFrame:CGRectMake(0,0, 320, 392) style:UITableViewStylePlain];
+    phototableview.separatorStyle = UITableViewStyleGrouped;
+    phototableview.separatorColor = [UIColor blackColor];
+    phototableview.tag = TABLEHEIGHT;
+    [phototableview setDelegate:self];
+    [phototableview setDataSource:self];
+    [self.view addSubview: phototableview];
    
-    [tableview release];
+    [phototableview release];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeLocations:) name:UIKeyboardWillShowNotification object:nil];
     
@@ -138,16 +147,106 @@
         [view removeFromSuperview];
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;//UITableViewCellSelectionStyleBlue;
-    NSDictionary *nsdic = [photomessageArray objectAtIndex:indexPath.row];
+    PhotoMessage* photo= [photomessageArray objectAtIndex:indexPath.row];
+    
     cell.textLabel.text = @"";
-    PhotoMessageView* photomessage = [[PhotoMessageView alloc] initWithFrame:CGRectMake(0, 0, 320, 70) clickTextArray:[nsdic objectForKey:@"clickTextArray"] allString:[nsdic objectForKey:@"allText"] imageID:[nsdic objectForKey:@"imageID"] imageURL:[nsdic objectForKey:@"imageURL"]];
-    photomessage.footlabel.text = [nsdic objectForKey:@"time"];
+    PhotoMessageView* photomessage = [[PhotoMessageView alloc] initWithFrame:CGRectMake(0, 0, 320, 70) clickTextArray:photo.clickTextArray allString:photo.allString imageID:photo.imageID];
+    photomessage.footlabel.text = photo.phototime;
+    if (!photo.image)
+    {
+        if (phototableview.dragging == NO && phototableview.decelerating == NO)
+        {
+            [self startIconDownload:photo forIndexPath:indexPath];
+        }
+        // if a download is deferred or in progress, return a placeholder image
+        photomessage.imageview.image = [UIImage imageNamed:@"Placeholder.png"];                
+    }
+    else
+    {
+        photomessage.imageview.image = photo.image;
+    }
+    //photomessage.imageview.image = [UIImage imageNamed:[nsdic objectForKey:@"imageURL"]];
     photomessage.delegate = self;
     photomessage.butnum = indexPath.row;
     [cell.contentView addSubview:photomessage];
     [photomessage release];
 	return cell;
 }
+#pragma mark Table cell image support
+
+- (void)startIconDownload:(PhotoMessage *)appRecord forIndexPath:(NSIndexPath *)indexPath
+{
+    DownloaderPhotoMessage *iconDownloader = [imageDownloadsInProgress objectForKey:indexPath];
+    if (iconDownloader == nil) 
+    {
+        iconDownloader = [[DownloaderPhotoMessage alloc] init];
+        iconDownloader.appRecord = appRecord;
+        iconDownloader.indexPathInTableView = indexPath;
+        iconDownloader.delegate = self;
+        [imageDownloadsInProgress setObject:iconDownloader forKey:indexPath];
+        [iconDownloader startDownload];
+        [iconDownloader release];   
+    }
+}
+
+// this method is used in case the user scrolled into a set of cells that don't have their app icons yet
+- (void)loadImagesForOnscreenRows
+{
+    if ([photomessageArray count] > 0)
+    {
+        NSArray *visiblePaths = [phototableview indexPathsForVisibleRows];
+        for (NSIndexPath *indexPath in visiblePaths)
+        {
+            PhotoMessage *appRecord = [photomessageArray objectAtIndex:indexPath.row];
+            
+            if (!appRecord.image) // avoid the app icon download if the app already has an icon
+            {
+                [self startIconDownload:appRecord forIndexPath:indexPath];
+            }
+        }
+    }
+}
+
+// called by our ImageDownloader when an icon is ready to be displayed
+- (void)appImageDidLoad:(NSIndexPath *)indexPath
+{
+    DownloaderPhotoMessage *iconDownloader = [imageDownloadsInProgress objectForKey:indexPath];
+    if (iconDownloader != nil)
+    {
+        UITableViewCell *cell = [phototableview cellForRowAtIndexPath:iconDownloader.indexPathInTableView];
+        
+        // Display the newly loaded image
+        for (UIView *cellv in [cell subviews]) {
+            if ([cellv isKindOfClass:[PhotoMessageView class]]) {
+                PhotoMessageView *cellview =  (PhotoMessageView *)cellv; 
+                cellview.imageview.image = iconDownloader.appRecord.image;
+                
+            }
+            
+        }
+    }
+    // Remove the IconDownloader from the in progress list.
+    // This will result in it being deallocated.
+    [imageDownloadsInProgress removeObjectForKey:indexPath];
+}
+
+#pragma mark -
+#pragma mark Deferred image loading (UIScrollViewDelegate)
+
+// Load images for all onscreen rows when scrolling is finished
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
+{
+    if (!decelerate)
+	{
+        [self loadImagesForOnscreenRows];
+    }
+}
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+{
+    [self loadImagesForOnscreenRows];
+}
+
 #pragma mark sendbutton
 - (void) sendmessage{
     [sendfield resignFirstResponder];
@@ -203,22 +302,33 @@
     NSArray* user2 = [[NSArray alloc] initWithObjects:@"hero", nil];
     NSArray* user3 = [[NSArray alloc] initWithObjects:@"How", nil];
     
-    NSDictionary *dic1 = [NSDictionary dictionaryWithObjectsAndKeys:user1,@"clickTextArray",@"All of us have read thrilling stories in which the  ",@"allText",@"logo.png",@"imageURL",@"18 minutes ago",@"time",@"111",@"imageID",nil];
-    NSDictionary *dic2 = [NSDictionary dictionaryWithObjectsAndKeys:user2,@"clickTextArray",@"hero had only a limited and specified time to live.",@"allText",@"weibo.png",@"imageURL",@"18 minutes ago",@"time",@"222",@"imageID",nil];
-    NSDictionary *dic3 = [NSDictionary dictionaryWithObjectsAndKeys:user3,@"clickTextArray",@"How are you. I'm go to shopping. I go home.",@"allText",@"andong.jpg",@"imageURL",@"18 minutes ago",@"time",@"222",@"imageID",nil];
+    NSDictionary *dic1 = [NSDictionary dictionaryWithObjectsAndKeys:user1,@"clickTextArray",@"All of us have read thrilling stories in which the  ",@"allText",@"http://list.image.baidu.com/t/image_category/galleryimg/being/buru/hai_tun.jpg",@"imageURL",@"18 minutes ago",@"time",@"111",@"imageID",nil];
+    NSDictionary *dic2 = [NSDictionary dictionaryWithObjectsAndKeys:user2,@"clickTextArray",@"hero had only a limited and specified time to live.",@"allText",@"http://list.image.baidu.com/t/image_category/galleryimg/being/buru/lao_hu.jpg",@"imageURL",@"18 minutes ago",@"time",@"222",@"imageID",nil];
+    NSDictionary *dic3 = [NSDictionary dictionaryWithObjectsAndKeys:user3,@"clickTextArray",@"How are you. I'm go to shopping. I go home.",@"allText",@"http://list.image.baidu.com/t/image_category/galleryimg/being/buru/cang_shu.jpg",@"imageURL",@"18 minutes ago",@"time",@"222",@"imageID",nil];
+    NSMutableArray* dicArray = [[NSMutableArray alloc] initWithCapacity:0];
+    [dicArray addObject:dic1];
+    [dicArray addObject:dic2];
+    [dicArray addObject:dic3];
+    [dicArray addObject:dic1];
+    [dicArray addObject:dic2];
+    [dicArray addObject:dic3];
+    [dicArray addObject:dic1];
+    [dicArray addObject:dic2];
+    [dicArray addObject:dic3];
+    [dicArray addObject:dic1];
+    [dicArray addObject:dic2];
+    [dicArray addObject:dic3];
     photomessageArray = [[NSMutableArray alloc] initWithCapacity:0];
-    [photomessageArray addObject:dic1];
-    [photomessageArray addObject:dic2];
-    [photomessageArray addObject:dic3];
-    [photomessageArray addObject:dic1];
-    [photomessageArray addObject:dic2];
-    [photomessageArray addObject:dic3];
-    [photomessageArray addObject:dic1];
-    [photomessageArray addObject:dic2];
-    [photomessageArray addObject:dic3];
-    [photomessageArray addObject:dic1];
-    [photomessageArray addObject:dic2];
-    [photomessageArray addObject:dic3];
+    for (NSInteger i = 0; i < [dicArray count]; i++) {
+        NSDictionary* nsdic = [dicArray objectAtIndex:i];
+        PhotoMessage* photome = [[PhotoMessage alloc] init];
+        photome.clickTextArray = [nsdic objectForKey:@"clickTextArray"];
+        photome.allString = [nsdic objectForKey:@"allText"];
+        photome.imageID = [nsdic objectForKey:@"imageID"];
+        photome.imageURLString = [nsdic objectForKey:@"imageURL"];
+        photome.phototime = [nsdic objectForKey:@"time"];
+        [photomessageArray addObject:photome];
+    }
 }
 
 #pragma mark ImageIdAndUserNameProtocol
