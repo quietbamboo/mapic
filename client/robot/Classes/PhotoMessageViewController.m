@@ -165,7 +165,6 @@
     {
         photomessage.imageview.image = photo.image;
     }
-    //photomessage.imageview.image = [UIImage imageNamed:[nsdic objectForKey:@"imageURL"]];
     photomessage.delegate = self;
     photomessage.butnum = indexPath.row;
     [cell.contentView addSubview:photomessage];

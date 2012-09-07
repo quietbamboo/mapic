@@ -109,45 +109,7 @@
     }
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     cell.selectionStyle = UITableViewCellSelectionStyleBlue;
-    //    Place *place = [[Place alloc] init];
-    //NSDictionary *nsdic = [nsArray objectAtIndex:indexPath.row];
     
-    //    place.btnTag = i;
-    //    place.name = [nsdic objectForKey:@"name"];
-    //    place.image = [UIImage imageNamed:[nsdic objectForKey:@"image"]];
-    //    place.latitude = [(NSNumber *)[nsdic objectForKey:@"lat"] doubleValue];
-    //    place.longitude = [(NSNumber *)[nsdic objectForKey:@"lon"] doubleValue];
-    //    place.description = [NSString stringWithFormat:@"%@:%f",[nsdic objectForKey:@"dec"],[nsdic objectForKey:@"Distance"]];
-    //    PlaceMark *placeMark = [[PlaceMark alloc] initWithPlace:place];
-    //    [self.mainMapView addAnnotation:placeMark];
-    //    [place release];
-    //    [placeMark release];
-    
-    //    cell.imageView.image = [UIImage imageNamed:[nsdic objectForKey:@"image"]];
-    //    // cell.imageView.highlightedImage = [UIImage imageNamed:@"flag.png"];//选中cell后的图片 
-    //    //cell.textLabel.font =  [UIFont boldSystemFontOfSize:10];-
-    //    cell.textLabel.text = @" ";//[nsdic objectForKey:@"name"];
-    //    cell.detailTextLabel.text = [NSString stringWithFormat:@"距离:%d%@",[(NSNumber *)[nsdic objectForKey:@"Distance"] intValue],@"米"];
-    //    UILabel *namelable = [[UILabel alloc] initWithFrame:CGRectMake(60, 2.0, 130, 30.0)];
-    //    namelable.text = [nsdic objectForKey:@"name"];
-    //    namelable.font = [UIFont boldSystemFontOfSize:15];     
-    //    namelable.textColor = [UIColor blackColor];         
-    //    namelable.textAlignment = UITextAlignmentLeft; 
-    //    namelable.numberOfLines = 1;
-    //    namelable.lineBreakMode = UILineBreakModeTailTruncation;
-    //    [cell.contentView addSubview:namelable];
-    //    [namelable release];
-    //
-    //    UILabel *desclabel = [[UILabel alloc]initWithFrame:CGRectMake(195.0, 2.0, 80.0, 56.0)];
-    //    desclabel.text = [nsdic objectForKey:@"dec"];   
-    //    
-    //    desclabel.font = [UIFont boldSystemFontOfSize:10];     
-    //    desclabel.textColor = [UIColor purpleColor];         
-    //    desclabel.textAlignment = UITextAlignmentLeft; 
-    //    desclabel.numberOfLines = 3;
-    //    desclabel.lineBreakMode = UILineBreakModeTailTruncation;
-    //    [cell.contentView addSubview:desclabel];
-    //    [desclabel release];
     Place* place = [nsArray objectAtIndex:indexPath.row];
     
     CellView *cellview = [[CellView alloc] initWithFrame:CGRectMake(0, 2, 285,62)];
@@ -284,14 +246,7 @@
             break;
     }
     hjxPhotoview.delegate = self;
-    Place *place = [nsArray objectAtIndex:indexPath.row];//[[Place alloc] init];
-//    NSDictionary *nsdic = [nsArray objectAtIndex:indexPath.row];
-//    place.name = [nsdic objectForKey:@"name"];
-//    place.image = [UIImage imageNamed:[nsdic objectForKey:@"image"]];
-//    place.latitude = [(NSNumber *)[nsdic objectForKey:@"lat"] doubleValue];
-//    place.longitude = [(NSNumber *)[nsdic objectForKey:@"lon"] doubleValue];
-//    place.Distance = [(NSNumber *)[nsdic objectForKey:@"Distance"] intValue];
-//    place.description = [nsdic objectForKey:@"dec"];
+    Place *place = [nsArray objectAtIndex:indexPath.row];
     hjxPhotoview.endPlace = place;
     
     self.navigationController.navigationBarHidden = NO;
@@ -331,14 +286,7 @@
             break;
     }
     hjxPhotoview.delegate = self;
-    Place *place = [nsArray objectAtIndex:indexPath.row];//[[Place alloc] init];
-//    NSDictionary *nsdic = [nsArray objectAtIndex:indexPath.row];
-//    place.name = [nsdic objectForKey:@"name"];
-//    place.image = [UIImage imageNamed:[nsdic objectForKey:@"image"]];
-//    place.latitude = [(NSNumber *)[nsdic objectForKey:@"lat"] doubleValue];
-//    place.longitude = [(NSNumber *)[nsdic objectForKey:@"lon"] doubleValue];
-//    place.Distance = [(NSNumber *)[nsdic objectForKey:@"Distance"] intValue];
-//    place.description = [nsdic objectForKey:@"dec"];
+    Place *place = [nsArray objectAtIndex:indexPath.row];
     hjxPhotoview.endPlace = place;
     //    [self.navigationController pushViewController:detail animated:YES];
     //    [detail release];
