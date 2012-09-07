@@ -753,15 +753,12 @@ typedef enum {
 #pragma mark Three map types of methods
 - (void) satelliteBu{
     [mainMapView setMapType:(MKMapTypeSatellite)];
-    //mainMapView.mapType = MKMapTypeSatellite;
 }
 - (void) standardBu{
     [mainMapView setMapType:MKMapTypeStandard];
-    //mainMapView.mapType = MKMapTypeStandard;
 }
 - (void) hybridBu{
     [mainMapView setMapType:MKMapTypeHybrid];
-    //mainMapView.mapType = MKMapTypeHybrid;
 }
 #pragma mark -
 #pragma mark CustomSegmentedControlDelegate

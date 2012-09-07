@@ -23,6 +23,5 @@
 @property (nonatomic) id <ImageIdAndUserNameProtocol> delegate;
 @property (retain, nonatomic) PictureImageview* imageview;
 
-//- (id)initWithFrame:(CGRect)frame clickTextArray:(NSArray *)clickTextArray allString:(NSString *)allString imageID:(NSString *)imageID imageURL:(NSString *)imageURL;
 - (id)initWithFrame:(CGRect)frame clickTextArray:(NSArray *)clickTextArray allString:(NSString *)allString imageID:(NSString *)imageID;
 @end

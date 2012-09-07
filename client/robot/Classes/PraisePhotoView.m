@@ -15,8 +15,6 @@
     if (self) {
         // Initialization code
 
-//        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(praisephotoNotification:) name:IFTweetLabelURLNotification object:nil];
-        
         CGSize ssize = [[NSString stringWithFormat:@"%@ 称赞了%d张照片",[praiseArray objectAtIndex:0],imageArray.count] sizeWithFont:[UIFont systemFontOfSize:19.0f] constrainedToSize:CGSizeMake(300.0f, 1000.0f) lineBreakMode:UILineBreakModeWordWrap];
         IFTweetLabel *tweetLabel = [[IFTweetLabel alloc] initWithFrame:CGRectMake(10.0f, 0.0f, ssize.width, ssize.height)];
         [tweetLabel setFont:[UIFont boldSystemFontOfSize:15.0f]];
@@ -66,11 +64,6 @@
 - (void)IFLabeluserName:(NSString *)userName{
     [delegate userName:userName UIViewType:PraisePhotoViewtype];
 }
-
-//- (void)praisephotoNotification:(NSNotification *)notification
-//{
-//	NSLog(@"praisephotoNotification: notification = %@", notification.object);
-//}
 
 /*
 // Only override drawRect: if you perform custom drawing.

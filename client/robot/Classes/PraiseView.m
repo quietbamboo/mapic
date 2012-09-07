@@ -27,8 +27,7 @@
         imageview.tag = 0;
         imageview.delegate = self;
         [self addSubview:imageview];
-        //        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(praiseNotification:) name:IFTweetLabelURLNotification object:nil];
-        
+
         CGSize ssize = [[NSString stringWithFormat:@"%@ 称赞了 %@ 的照片。",[praiseArray objectAtIndex:0],[praiseArray objectAtIndex:1]] sizeWithFont:[UIFont systemFontOfSize:19.0f] constrainedToSize:CGSizeMake(220.0f, 1000.0f) lineBreakMode:UILineBreakModeWordWrap];
         IFTweetLabel *tweetLabel = [[IFTweetLabel alloc] initWithFrame:CGRectMake(80.0f, 5.0f, ssize.width, ssize.height)];
         [tweetLabel setFont:[UIFont boldSystemFontOfSize:15.0f]];
@@ -65,10 +64,6 @@
 - (void)IFLabeluserName:(NSString *)userName{
     [delegate userName:userName UIViewType:PraiseViewtype];
 }
-//- (void)praiseNotification:(NSNotification *)notification
-//{
-//	NSLog(@"praiseNotification: notification = %@", notification.object);
-//}
 
 
 /*

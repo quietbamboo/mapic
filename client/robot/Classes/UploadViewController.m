@@ -75,7 +75,7 @@
     [self.view addSubview:scrollview];
 	// Do any additional setup after loading the view.
     UIImageView *imageview = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 460)];
-    imageview.image = self.image;//[UIImage imageNamed:@"andong.jpg"];
+    imageview.image = self.image;
     [scrollview addSubview:imageview];
     [imageview release];
     

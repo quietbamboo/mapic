@@ -25,8 +25,7 @@
         _imageview.userInteractionEnabled=YES;
         _imageview.layer.cornerRadius = 5.0;
         _imageview.layer.masksToBounds = YES;
-        //UIImage *icon = [UIImage imageNamed:imageURL];
-        _imageview.image = [UIImage imageNamed:@""];//icon;
+        _imageview.image = [UIImage imageNamed:@""];
         _imageview.tag = 0;
         _imageview.delegate = self;
         [self addSubview:_imageview];
