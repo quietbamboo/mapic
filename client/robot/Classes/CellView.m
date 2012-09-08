@@ -18,7 +18,7 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        _imageView = [[UIImageView alloc] initWithFrame:CGRectMake(8, 0, 50, 50)];
+        _imageView = [[UIImageView alloc] initWithFrame:CGRectMake(8, 6, 50, 50)];
         _imageView.userInteractionEnabled=YES;
         _imageView.layer.cornerRadius = 5.0;
         _imageView.layer.masksToBounds = YES;
