@@ -37,10 +37,7 @@
         [tweetLabel setBackgroundColor:[UIColor clearColor]];
         [tweetLabel setNumberOfLines:0];
         tweetLabel.delegate = self;
-        tweetLabel.expressions = clickTextArray;//[[NSArray alloc] initWithObjects:
-                                 // headString,
-                                  //@"([hH][tT][tT][pP][sS]?:\\/\\/[^ ,'\">\\]\\)]*[^\\. ,'\">\\]\\)])", // hyperlinks
-                                  //nil];
+        tweetLabel.expressions = clickTextArray;
         [tweetLabel setText:[NSString stringWithFormat:@"%@",allString]];
         [tweetLabel setLinksEnabled:YES];
         [self addSubview:tweetLabel];

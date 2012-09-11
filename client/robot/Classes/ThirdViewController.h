@@ -14,7 +14,6 @@
 #import "MGScrollView.h"
 #import "MGStyledBox.h"
 #import "MGBoxLine.h"
-#import "NewsMessageView.h"
 #import "AttentionView.h"
 #import "PraiseView.h"
 #import "OnTopView.h"
