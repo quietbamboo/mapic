@@ -167,7 +167,7 @@
             break;
             
         case 1:
-            [self.navigationController pushViewController:thirdnews animated:YES];
+            [self.navigationController pushViewController:thirdnews animated:NO];
             [tabHeaderView setSelectedIndex:0];
             break;
             

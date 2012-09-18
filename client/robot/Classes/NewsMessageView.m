@@ -87,7 +87,7 @@
         _footlabel = [[UILabel alloc] initWithFrame:CGRectMake(60, tweetLabel.frame.size.height + 5, 180, 20)];
         _footlabel.text = @"";
         _footlabel.font = [UIFont boldSystemFontOfSize:12];     
-        _footlabel.textColor = [UIColor scrollViewTexturedBackgroundColor];         
+        _footlabel.textColor = [UIColor lightGrayColor];        
         _footlabel.textAlignment = UITextAlignmentLeft;
         _footlabel.backgroundColor = [UIColor clearColor];
         _footlabel.numberOfLines = 1;

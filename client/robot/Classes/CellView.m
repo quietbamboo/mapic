@@ -20,7 +20,7 @@
     if (self) {
         _imageView = [[UIImageView alloc] initWithFrame:CGRectMake(8, 6, 50, 50)];
         _imageView.userInteractionEnabled=YES;
-        _imageView.layer.cornerRadius = 5.0;
+        _imageView.layer.cornerRadius = 4.0;
         _imageView.layer.masksToBounds = YES;
         _imageView.image = [UIImage imageNamed:@""];
         [self addSubview:_imageView];
