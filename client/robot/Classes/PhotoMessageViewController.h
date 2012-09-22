@@ -12,6 +12,7 @@
 #import "ASIFormDataRequest.h"
 #import "MBProgressHUD.h"
 #import "DownloaderPhotoMessage.h"
+#import "ODRefreshControl.h"
 @protocol ModalControllerDelegate;
 
 @interface PhotoMessageViewController : UIViewController <UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate,UIScrollViewDelegate,ImageIdAndUserNameProtocol,ASIHTTPRequestDelegate,DownloaderPhotoMessageDelegate>{
@@ -21,6 +22,7 @@
     MBProgressHUD  * _MBProgress;
     UITableView *phototableview;
     NSMutableDictionary *imageDownloadsInProgress;
+    ODRefreshControl *refreshControl;
 }
 @property (nonatomic, retain) NSMutableDictionary *imageDownloadsInProgress;
 @property (nonatomic,assign) id <ModalControllerDelegate> delegate;

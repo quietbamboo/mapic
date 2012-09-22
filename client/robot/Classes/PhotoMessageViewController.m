@@ -67,6 +67,9 @@
     [phototableview setDelegate:self];
     [phototableview setDataSource:self];
     [self.view addSubview: phototableview];
+    
+    refreshControl = [[ODRefreshControl alloc] initInScrollView:phototableview];
+    [refreshControl addTarget:self action:@selector(dropViewDidBeginRefreshing:) forControlEvents:UIControlEventValueChanged];
    
     [phototableview release];
     
@@ -120,7 +123,22 @@
 - (void)closeButtonPressed {
 	[delegate modalControllerDidFinish:self];
 }
+#pragma mark
+#pragma mark ODRefreshControl Method
+- (void)dropViewDidBeginRefreshing:(ODRefreshControl *)refreshControl
+{
+    double delayInSeconds = 3.0;
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
+    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+        [self doSomeThing];
+    });
+    [photomessageArray removeAllObjects];
+    [self photomessageArray];
+}
 
+- (void)doSomeThing{
+    [refreshControl endRefreshing];
+}
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -296,7 +314,6 @@
 #pragma mark - initphotomessage
 
 - (void) photomessageArray{
-    [self photoMessageviewRequest];
     NSArray* user1 = [[NSArray alloc] initWithObjects:@"All", nil];
     NSArray* user2 = [[NSArray alloc] initWithObjects:@"hero", nil];
     NSArray* user3 = [[NSArray alloc] initWithObjects:@"How", nil];
