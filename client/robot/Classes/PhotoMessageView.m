@@ -44,7 +44,7 @@
         
         _footlabel = [[UILabel alloc] initWithFrame:CGRectMake(80, tweetLabel.frame.size.height - 5, 180, 20)];
         _footlabel.text = @"";
-        _footlabel.font = [UIFont boldSystemFontOfSize:15];     
+        _footlabel.font = [UIFont boldSystemFontOfSize:13];     
         _footlabel.textColor = [UIColor lightGrayColor];         
         _footlabel.textAlignment = UITextAlignmentLeft;
         _footlabel.backgroundColor = [UIColor clearColor];

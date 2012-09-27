@@ -304,7 +304,6 @@
 	// setting the body of the post to the reqeust
 	[request setHTTPBody:body];
 	
-	//NSLog(@"sending ");
 	// now lets make the connection to the web
 	NSData *returnData = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
 	//NSLog(@"sending returned");
@@ -313,8 +312,6 @@
 	if([returnData length] == 0){
 		returnString = @"Either you don't have network access or our server is down.\nTry again later:)";
 	}
-	//NSLog(returnString);
-	
 	//[indicator stopAnimating];
 	//
 	
