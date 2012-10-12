@@ -110,8 +110,6 @@
         MGStyledBox *box5 = [MGStyledBox box];
         [scroller.boxes addObject:box5];
         NSDictionary *nsdic = [photomessageArray objectAtIndex:i];
-            //initWithFrame:CGRectMake(10, 0, 300, 80) headString:[nsdic objectForKey:@"head"] footString:[nsdic objectForKey:@"foot"] imageID:[nsdic objectForKey:@"image"]];
-           // new.footimageView.image = [UIImage imageNamed:@"andong.jpg"]
             NewsMessageView* new = [[NewsMessageView alloc] initWithFrame:CGRectMake(10, 0, 300, 80) clickTextArray:[nsdic objectForKey:@"clickTextArray"] allString:[nsdic objectForKey:@"allText"] headimageID:[nsdic objectForKey:@"headimageID"] headimageURL:[nsdic objectForKey:@"headimageURL"] footimageID:[nsdic objectForKey:@"footimageID"] footimageURL:[nsdic objectForKey:@"footimageURL"]];
         new.footlabel.text = [nsdic objectForKey:@"time"];
             new.backgroundColor = [UIColor clearColor];
